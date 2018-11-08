@@ -62,6 +62,44 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-deep-first-search" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/11/08/deep-first-search/" class="article-date">
+  <time datetime="2018-11-08T15:02:17.000Z" itemprop="datePublished">2018-11-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/11/08/deep-first-search/">deep first search</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>###Deep First Search (深度优先搜索)</p>
+<p>####(非递归)<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">DFS</span><span class="params">(Graph G)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">bool</span> visited[G.vexnum];</span><br><span class="line">	InitStack(S);</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; G.vexnum; ++i)</span><br><span class="line">	&#123;</span><br><span class="line">		visited[i] = <span class="literal">false</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> v = <span class="number">0</span>; v &lt; count; ++v)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (!visited[v])	</span><br><span class="line">		&#123;</span><br><span class="line">			visit(v);</span><br><span class="line">			visited[v] = <span class="literal">true</span>;</span><br><span class="line">			Push(S,v);</span><br><span class="line">			<span class="keyword">while</span>(!isEmpty(S))</span><br><span class="line">			&#123;</span><br><span class="line">				GetTop(S,v);</span><br><span class="line">				<span class="keyword">for</span>(w = FirstNeighbor(G,v);w &gt;= <span class="number">0</span>;w = NextNeighbor(G,v,w))</span><br><span class="line">				&#123;</span><br><span class="line">					<span class="keyword">if</span>(!visited[w])</span><br><span class="line">					&#123;</span><br><span class="line">						visit(w);</span><br><span class="line">						visited[w] = <span class="literal">true</span>;</span><br><span class="line">						Push(S,w);</span><br><span class="line">						<span class="keyword">break</span>;</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">if</span>(w&lt;<span class="number">0</span>)</span><br><span class="line">					Pop(S);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/11/08/deep-first-search/" data-id="cjo8q590e0000umjsv5v9onwy" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-spring学习之注解篇（二）" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/08/25/spring学习之注解篇（二）/" class="article-date">
@@ -145,7 +183,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/08/25/spring学习之注解篇（二）/" data-id="cjo84ud840003zmjsssjxtn2c" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/08/25/spring学习之注解篇（二）/" data-id="cjo8q590p0004umjs3fzcngad" class="article-share-link">Share</a>
       
       
     </footer>
@@ -312,7 +350,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/08/24/spring学习之基础篇（三）/" data-id="cjo84ud8r0006zmjsedw10e94" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/08/24/spring学习之基础篇（三）/" data-id="cjo8q59170007umjs5thye6zr" class="article-share-link">Share</a>
       
       
     </footer>
@@ -485,7 +523,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/08/22/spring学习之注解篇（一）/" data-id="cjo84ud8a0005zmjspy0yzo3r" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/08/22/spring学习之注解篇（一）/" data-id="cjo8q590z0006umjsyir63lks" class="article-share-link">Share</a>
       
       
     </footer>
@@ -642,7 +680,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/08/14/spring学习之基础篇（二）/" data-id="cjo84ud890004zmjsyfjr5l4i" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/08/14/spring学习之基础篇（二）/" data-id="cjo8q590y0005umjsrodzasv4" class="article-share-link">Share</a>
       
       
     </footer>
@@ -830,7 +868,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/08/13/spring学习之基础篇/" data-id="cjo84ud800001zmjsbnw3gocy" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/08/13/spring学习之基础篇/" data-id="cjo8q590m0002umjsw6evh30r" class="article-share-link">Share</a>
       
       
     </footer>
@@ -927,7 +965,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/08/10/spring学习之工具篇/" data-id="cjo84ud820002zmjsms5slzbe" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/08/10/spring学习之工具篇/" data-id="cjo8q590n0003umjsq1tl723f" class="article-share-link">Share</a>
       
       
     </footer>
@@ -1010,7 +1048,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/11/09/new-Blog/" data-id="cjo84ud7u0000zmjsaz85qvk9" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/11/09/new-Blog/" data-id="cjo8q590k0001umjsrccuu9ug" class="article-share-link">Share</a>
       
       
     </footer>
@@ -1038,7 +1076,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a></li></ul>
     </div>
   </div>
 
@@ -1049,6 +1087,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2018/11/08/deep-first-search/">deep first search</a>
+          </li>
         
           <li>
             <a href="/2017/08/25/spring学习之注解篇（二）/">spring学习之注解篇（二）</a>
@@ -1064,10 +1106,6 @@
         
           <li>
             <a href="/2017/08/14/spring学习之基础篇（二）/">spring学习之基础篇（二）</a>
-          </li>
-        
-          <li>
-            <a href="/2017/08/13/spring学习之基础篇/">spring学习之基础篇（一）</a>
           </li>
         
       </ul>
