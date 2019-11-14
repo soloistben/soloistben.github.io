@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>Blockchain | MR.C</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="比特币和以太坊均是区块链技术下一种crypto-currency加密货币 比特币：密码学基础、比特币的数据结构、共识协议和系统实现、挖矿算法和难度调整、比特币脚本、软分叉和硬分叉、匿名和隐私保护 以太坊：基于账户的分布式账本、数据结构（状态树、交易树、收据树）、GHOST协议、挖矿（memory-hard mining puzzle）、挖矿难度调整、权益证明（Casper the Friendl">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Blockchain">
+<meta property="og:url" content="http://yoursite.com/2019/07/19/Blockchain/index.html">
+<meta property="og:site_name" content="MR.C">
+<meta property="og:description" content="比特币和以太坊均是区块链技术下一种crypto-currency加密货币 比特币：密码学基础、比特币的数据结构、共识协议和系统实现、挖矿算法和难度调整、比特币脚本、软分叉和硬分叉、匿名和隐私保护 以太坊：基于账户的分布式账本、数据结构（状态树、交易树、收据树）、GHOST协议、挖矿（memory-hard mining puzzle）、挖矿难度调整、权益证明（Casper the Friendl">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://github.com/soloistben/images/raw/master/block_chain_image/merkle_tree.jpg">
+<meta property="og:updated_time" content="2019-11-14T12:46:46.174Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Blockchain">
+<meta name="twitter:description" content="比特币和以太坊均是区块链技术下一种crypto-currency加密货币 比特币：密码学基础、比特币的数据结构、共识协议和系统实现、挖矿算法和难度调整、比特币脚本、软分叉和硬分叉、匿名和隐私保护 以太坊：基于账户的分布式账本、数据结构（状态树、交易树、收据树）、GHOST协议、挖矿（memory-hard mining puzzle）、挖矿难度调整、权益证明（Casper the Friendl">
+<meta name="twitter:image" content="https://github.com/soloistben/images/raw/master/block_chain_image/merkle_tree.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="MR.C" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">MR.C</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Blockchain" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/07/19/Blockchain/" class="article-date">
+  <time datetime="2019-07-19T00:51:03.000Z" itemprop="datePublished">2019-07-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Blockchain
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li>比特币和以太坊均是区块链技术下一种<strong>crypto-currency加密货币</strong></li>
+<li><strong>比特币：</strong>密码学基础、比特币的数据结构、共识协议和系统实现、挖矿算法和难度调整、比特币脚本、软分叉和硬分叉、匿名和隐私保护</li>
+<li><strong>以太坊：</strong>基于账户的分布式账本、数据结构（状态树、交易树、收据树）、GHOST协议、挖矿（memory-hard mining puzzle）、挖矿难度调整、权益证明（Casper the Friendly Finality Gadget(FFG)）、智能合约</li>
+</ul>
+<h4 id="密码学基础："><a href="#密码学基础：" class="headerlink" title="密码学基础："></a>密码学基础：</h4><p>1、加密货币是不加密的 ，所有信息是公开的，交易金额与时间都是公开的<br>2、比特币中用到密码学的两大功能：<strong>哈希</strong>、<strong>签名</strong><br>3、<strong>cryptographic hash function 哈希</strong>：有两大性质（<strong>collision resistance哈希碰撞</strong>）（<strong>hiding计算过程是单向的、不可逆的</strong>）<br>4、哈希碰撞：当有两个互不相等的输入x和y，而H(x)=H(y)），则称为哈希碰撞；其是不可避免地，但是客观存在；作用是在H(m)计算出来，很难几乎找不到有另外m’的H(m’)=H(m)，则是<span style="border-bottom:2px dashed red;">没有办法再对m作出修改后，不被检测出来（找不到人为的哈希碰撞）</span><br>5、hiding：计算过程无法逆推，<span style="border-bottom:2px dashed red;">则是哈希结果并不会泄露原本信息</span>（前提是输入也是足够大，输入分布要比较均匀，取值概率差不多，否则可以蛮力破解）<br>6、<strong>collision resistance + hiding = digital commitment = digital equivalent of a sealed envelope</strong>    （sealed envelope表示现实生活中的公信机制）<br>7、在输入数量数值不够大时，<span style="border-bottom:2px dashed red;">需要随机数nonce</span>，则H(x)，变为H(x||nonce)，才不会被蛮力破解<br>8、除了密码学基础两大性质之后，还需要一个性质<strong>puzzle friendly</strong>（<span style="border-bottom:2px dashed red;">指就算得到哈希结果，事先是不知道哪个输入会得到该结果</span>）<br>9、挖矿就是寻找nonce，nonce与块头的其他信息组合，然后需要H(block header)&lt;=target（区块链时链表，每块有个块头，块头有很多域设置信息，其中一个就是设置nonce）（<span style="border-bottom:2px dashed red;">挖矿就是不断试不同nonce，然后放入块头进行哈希运算，得出结果落在target space指定范围内</span>）（只有不断试nonce才行，没有其他方法，这也代表了工作量）（一旦找到nonce发布出去，计算一次哈希就可以验证是否正确，称为difficult to solve解决很难，easy to verify验证很简单）<br>10、比特币中所用的哈希函数：<strong>SHA-256</strong>（Secure Hash Algorithm）<br>11、比特币账户，去中心化，在本地创立公钥与私钥（public key, private key）即可，就是一个账户，运用asymmetric encryption algorithm非对称加密算法（<strong>加密用公钥，解密用私钥</strong>）（公钥是公开的（相当于账号），私钥是保留本地的（相当于账户密码），<span style="border-bottom:2px dashed red;">发送方用接收方的公钥加密信息，接收方用其私钥解密</span>）<br>12、公钥 私钥适用于签名，每次交易，<span style="border-bottom:2px dashed red;">发送方需要在交易信息发送前用私钥进行签名</span>（才能确保是发送方发出，而不是冒名顶替，可以用公钥验证是否本人）<br>13、两个人公钥私钥相同的概率可忽略不计（前提是生成公钥私钥的随机源要好，否则就会出现该情况）</p>
+<h4 id="比特币的数据结构："><a href="#比特币的数据结构：" class="headerlink" title="比特币的数据结构："></a>比特币的数据结构：</h4><p>1、hash pointer哈希指针：需要存地址和哈希值<br>2、区块链与普通链表区别是：用了哈希指针代替了普通指针（第一个块是系统产生的，称为genesis block创世纪块），这个结构可以实现tamper-evident log防篡改日志，<span style="border-bottom:2px dashed red;">一旦篡改区块的哈希信息，后面区块哈希信息不匹配</span>，就连接不上了（有了这个机制，可以仅保留目前几个区块就可以了，要是需要前面的区块，可以向系统索取）<br>3、Merkle Tree（结构之一）：哈希指针的二叉树（叶子节点都是data block数据块（交易信息），非叶子节点都是hash point哈希指针）（知道一个root的哈希值，只要有一个地方发生改变，均可知道，只要一改变，哈希值就对不上了）（树比链表结构更优，遍历速度快）<br>4、每个区块分成block header块头和block body块身，交易信息在块身<br>5、<strong>merkle tree</strong>提供merkle proof证明<br>6、比特币节点分成两类：<span style="border-bottom:2px dashed red;">全节点（有块头块身，有交易信息，类似比特币客户端）清节点（仅保留块头，块头仅有root哈希值，用于个人用户，则无法知道交易是否被提交到区块链，需要merkle proof验证）</span><br>7、merkle proof就是可以查询交易的叶子节点，一直往根节点查询，整个路径；<span style="border-bottom:2px dashed red;">需要向全节点请求提供图中红色节点哈希值，即可计算出root哈希值，再进行对比</span>即可知道是否存在该交易（但仅仅能验证该分支的正确性，其他分支无法验证），merkle proof过程称为proof of memebership / proofof inclusion，其复杂度为O(log(n))<br><img src="https://github.com/soloistben/images/raw/master/block_chain_image/merkle_tree.jpg" alt="image"><br>8、要证明一个交易节点不在merkle tree中，需要得到整个树，得到所有叶子节点，在排除，复杂度是O(n)；若是先将叶子节点的哈希值进行排序，则可以根据哈希值找到两个叶子节点（即范围），在验证一下俩节点哈希值往上到root哈希是否正确，若正确，则该交易点不在merkle树中<br>9、只要无环数据结构，都可以用上哈希指针，有环就不可以</p>
+<h4 id="共识协议："><a href="#共识协议：" class="headerlink" title="共识协议："></a>共识协议：</h4><p>pass</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/07/19/Blockchain/" data-id="ck2ypjy9m0000avda3cejh402" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/07/29/DL-RNN/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          DL_RNN
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/07/03/DL-CNN/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">DL_CNN</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/11/14/algorithm/">algorithm</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/14/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2019/08/19/GNN/">GNN</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/29/DL-RNN/">DL_RNN</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/19/Blockchain/">Blockchain</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 (soloistben)<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
