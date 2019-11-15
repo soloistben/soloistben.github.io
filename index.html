@@ -110,14 +110,14 @@
 </li>
 <li>使用打分原则（match不扣分，unmatch和gap扣不同的分数）</li>
 </ul>
-<p>eg.<br>    A G C T<br>    A C     T<br>[第一A和最后T属于match，第二G,C属于unmatch，第三属于gap]<br>[若match不扣分，unmatch扣3分，gap扣2分，则本次对比=-5分，扣分（惩罚分）越低越好]<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">str1 = <span class="string">'AGGGCT'</span></span><br><span class="line">str2 = <span class="string">'SAGE'</span></span><br><span class="line">p_unmatch = <span class="number">3</span></span><br><span class="line">p_gap = <span class="number">2</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">SA</span><span class="params">(str1, str2, p_unmatch, p_gap)</span>:</span></span><br><span class="line">    P = np.zeros((len(str1)+<span class="number">1</span>, len(str2)+<span class="number">1</span>))</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(str1)+<span class="number">1</span>):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(len(str2)+<span class="number">1</span>):</span><br><span class="line">            <span class="keyword">if</span> i==<span class="number">0</span> <span class="keyword">or</span> j==<span class="number">0</span>:</span><br><span class="line">                P[i][<span class="number">0</span>] = i*p_gap</span><br><span class="line">                P[<span class="number">0</span>][j] = j*p_gap</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, len(str1)+<span class="number">1</span>):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">1</span>, len(str2)+<span class="number">1</span>):</span><br><span class="line">            <span class="keyword">if</span> str1[i<span class="number">-1</span>] == str2[j<span class="number">-1</span>]:</span><br><span class="line">                P[i][j] = P[i<span class="number">-1</span>][j<span class="number">-1</span>]</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                P[i][j] = min(&#123;P[i<span class="number">-1</span>][j<span class="number">-1</span>]+p_unmatch, P[i<span class="number">-1</span>][j]+p_gap, P[i][j<span class="number">-1</span>]+p_gap&#125;)</span><br><span class="line">            </span><br><span class="line">    print(P)</span><br><span class="line">    <span class="keyword">return</span> P[<span class="number">-1</span>][<span class="number">-1</span>]</span><br><span class="line"></span><br><span class="line">print(SA(str1, str2, p_unmatch, p_gap))</span><br></pre></td></tr></table></figure></p>
+<p>eg.<br>    A G C T<br>    A U T<br>[第一A和最后T属于match，第二或第三U属于unmatch，第三或第二属于gap]<br>[若match不扣分，unmatch扣3分，gap扣2分，则本次对比=5分，扣分（惩罚分）越低越好]<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">str1 = <span class="string">'AGGGCT'</span></span><br><span class="line">str2 = <span class="string">'SAGE'</span></span><br><span class="line">p_unmatch = <span class="number">3</span></span><br><span class="line">p_gap = <span class="number">2</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">SA</span><span class="params">(str1, str2, p_unmatch, p_gap)</span>:</span></span><br><span class="line">    P = np.zeros((len(str1)+<span class="number">1</span>, len(str2)+<span class="number">1</span>))</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(str1)+<span class="number">1</span>):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(len(str2)+<span class="number">1</span>):</span><br><span class="line">            <span class="keyword">if</span> i==<span class="number">0</span> <span class="keyword">or</span> j==<span class="number">0</span>:</span><br><span class="line">                P[i][<span class="number">0</span>] = i*p_gap</span><br><span class="line">                P[<span class="number">0</span>][j] = j*p_gap</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, len(str1)+<span class="number">1</span>):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">1</span>, len(str2)+<span class="number">1</span>):</span><br><span class="line">            <span class="keyword">if</span> str1[i<span class="number">-1</span>] == str2[j<span class="number">-1</span>]:</span><br><span class="line">                P[i][j] = P[i<span class="number">-1</span>][j<span class="number">-1</span>]</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                P[i][j] = min(&#123;P[i<span class="number">-1</span>][j<span class="number">-1</span>]+p_unmatch, P[i<span class="number">-1</span>][j]+p_gap, P[i][j<span class="number">-1</span>]+p_gap&#125;)</span><br><span class="line">            </span><br><span class="line">    print(P)</span><br><span class="line">    <span class="keyword">return</span> P[<span class="number">-1</span>][<span class="number">-1</span>]</span><br><span class="line"></span><br><span class="line">print(SA(str1, str2, p_unmatch, p_gap))</span><br></pre></td></tr></table></figure></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[[ 0.  2.  4.  6.  8.]</span><br><span class="line"> [ 2.  3.  2.  4.  6.]</span><br><span class="line"> [ 4.  5.  4.  2.  4.]</span><br><span class="line"> [ 6.  7.  6.  4.  5.]</span><br><span class="line"> [ 8.  9.  8.  6.  7.]</span><br><span class="line"> [10. 11. 10.  8.  9.]</span><br><span class="line"> [12. 13. 12. 10. 11.]]</span><br><span class="line">11.0</span><br></pre></td></tr></table></figure>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">----------------------------------------------------</span><br><span class="line">Algorithm: SA(A, B, p_gap, p_xy)</span><br><span class="line">----------------------------------------------------</span><br><span class="line">P[<span class="number">0.</span>..|A|][<span class="number">0.</span>..|B|]</span><br><span class="line"><span class="keyword">for</span> i=<span class="number">0</span> to |A|+<span class="number">1</span> do</span><br><span class="line">    <span class="keyword">for</span> j=<span class="number">0</span> to |B|+<span class="number">1</span> do </span><br><span class="line">        P[i][<span class="number">0</span>] = i*p_gap</span><br><span class="line">        P[<span class="number">0</span>][j] = j*p_gap</span><br><span class="line">    </span><br><span class="line"><span class="keyword">for</span> i=<span class="number">0</span> to |A|+<span class="number">1</span> do</span><br><span class="line">    <span class="keyword">for</span> j=<span class="number">0</span> to |B|+<span class="number">1</span> do </span><br><span class="line">        <span class="keyword">if</span> A[i<span class="number">-1</span>]=B[j<span class="number">-1</span>] then P[i][j]=P[i<span class="number">-1</span>][j<span class="number">-1</span>] </span><br><span class="line">        <span class="keyword">else</span> P[i][j]=min(P[i<span class="number">-1</span>][j<span class="number">-1</span>]+p_xy, P[i<span class="number">-1</span>][j]+p_gap, P[i][j<span class="number">-1</span>]+p_gap)</span><br><span class="line">    end</span><br><span class="line">end</span><br><span class="line"><span class="keyword">return</span> P</span><br><span class="line">----------------------------------------------------</span><br><span class="line">O(nm)</span><br></pre></td></tr></table></figure>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/11/14/algorithm/" data-id="ck2zt1jbf000258day5camoza" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/11/14/algorithm/" data-id="ck2zt6fzy0001h9dav950hlko" class="article-share-link">Share</a>
       
       
     </footer>
@@ -342,7 +342,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/08/19/GNN/" data-id="ck2zt1jbk000358daruiqn33m" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/08/19/GNN/" data-id="ck2zt6g0a0004h9datb3nkb3q" class="article-share-link">Share</a>
       
       
     </footer>
@@ -421,7 +421,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/07/29/DL-RNN/" data-id="ck2zt1jbo000458da1zgvdi6k" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/07/29/DL-RNN/" data-id="ck2zt6g0o0007h9da5ljehgk3" class="article-share-link">Share</a>
       
       
     </footer>
@@ -465,7 +465,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/07/19/Blockchain/" data-id="ck2zt1jb2000058dawlscey7t" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/07/19/Blockchain/" data-id="ck2zt6fzq0000h9da1on1nmji" class="article-share-link">Share</a>
       
       
     </footer>
@@ -544,7 +544,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/07/03/DL-CNN/" data-id="ck2zt1jbb000158dagajr4fk2" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/07/03/DL-CNN/" data-id="ck2zt6g070003h9dapi09zjuh" class="article-share-link">Share</a>
       
       
     </footer>
@@ -603,7 +603,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/06/pandas-property/" data-id="ck2zt1jc4000858da2wo870vi" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/06/pandas-property/" data-id="ck2zt6g0r0008h9dabmqmiu99" class="article-share-link">Share</a>
       
       
     </footer>
@@ -668,7 +668,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/05/octave-property/" data-id="ck2zt1jc2000758dawue82qs9" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/05/octave-property/" data-id="ck2zt6g0f0006h9daexyyf33q" class="article-share-link">Share</a>
       
       
     </footer>
@@ -721,7 +721,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/05/numpy-property/" data-id="ck2zt1jbq000558dankevi3oz" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/05/numpy-property/" data-id="ck2zt6g0d0005h9dap4kvoolo" class="article-share-link">Share</a>
       
       
     </footer>
@@ -758,7 +758,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/12/27/struct-list/" data-id="ck2zt1jct000j58datv7np8cy" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/12/27/struct-list/" data-id="ck2zt6g1d000kh9da3znwqhyi" class="article-share-link">Share</a>
       
       
     </footer>
@@ -795,7 +795,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/12/27/struct-sort/" data-id="ck2zt1jcw000l58das9vtq296" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/12/27/struct-sort/" data-id="ck2zt6g1g000mh9das457h9no" class="article-share-link">Share</a>
       
       
     </footer>
