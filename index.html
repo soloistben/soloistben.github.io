@@ -127,17 +127,17 @@
 <li>Step 4: n4 = 2, S4 = {0,1}, P = S1US2US3Us4 = {0,1,2,3,4,6,7,8,9}</li>
 <li>Step 5: n5 = 1, S5 = {2,3,5}, P = S1US2US3US4US5 = {0,1,2,3,4,5,6,7,8,9} = S</li>
 </ul>
-<h5 id="so-cover-1-4-2-U-3-6-8-U-7-9-U-0-1-U-2-3-5-S"><a href="#so-cover-1-4-2-U-3-6-8-U-7-9-U-0-1-U-2-3-5-S" class="headerlink" title="so cover {1,4,2}U{3,6,8}U{7,9}U{0,1}U{2,3,5} = S"></a>so cover {1,4,2}U{3,6,8}U{7,9}U{0,1}U{2,3,5} = S</h5><p>set cover problem need to obey |St| ≥ nt/|P| </p>
+<h5 id="so-cover-1-4-2-U-3-6-8-U-7-9-U-0-1-U-2-3-5-S"><a href="#so-cover-1-4-2-U-3-6-8-U-7-9-U-0-1-U-2-3-5-S" class="headerlink" title="so cover {1,4,2}U{3,6,8}U{7,9}U{0,1}U{2,3,5} = S"></a>so cover {1,4,2}U{3,6,8}U{7,9}U{0,1}U{2,3,5} = S</h5><p>set cover problem need to obey  <strong>|St+1| ≥ nt/|P| </strong></p>
 <ul>
-<li>if choose l S1| = 2 in step 1, n2 = 8, and n2/|P| = 8/2 = 4, so we need to choose a set containing 4 elements in step 2. That is contradictory.</li>
-<li>if choose l S1| = 3 in step 1, n2 = 7, and n2/|P| = 7/3 ≈ 3, so we need to choose a set containing 3 elements in step 2. </li>
+<li>if choose l S1| = 2 in step 1, n1 = 10, and n1/|P| = 10/2 = 5, so we need to choose a set containing 5 elements in step 2. That is contradictory.</li>
+<li>if choose l S1| = 3 in step 1, n1 =10, and n1/|P| = 10/3 = 3, so we need to choose a set containing 3 elements in step 2. </li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">B = set([<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>])</span><br><span class="line">sets = &#123;&#125;</span><br><span class="line">sets[<span class="number">1</span>] = set([<span class="number">0</span>,<span class="number">1</span>])</span><br><span class="line">sets[<span class="number">2</span>] = set([<span class="number">2</span>,<span class="number">3</span>])</span><br><span class="line">sets[<span class="number">3</span>] = set([<span class="number">1</span>,<span class="number">4</span>,<span class="number">2</span>])</span><br><span class="line">sets[<span class="number">4</span>] = set([<span class="number">2</span>,<span class="number">3</span>,<span class="number">5</span>])</span><br><span class="line">sets[<span class="number">5</span>] = set([<span class="number">1</span>,<span class="number">7</span>])</span><br><span class="line">sets[<span class="number">6</span>] = set([<span class="number">4</span>,<span class="number">6</span>])</span><br><span class="line">sets[<span class="number">7</span>] = set([<span class="number">3</span>,<span class="number">6</span>,<span class="number">8</span>])</span><br><span class="line">sets[<span class="number">8</span>] = set([<span class="number">7</span>,<span class="number">9</span>])</span><br><span class="line"></span><br><span class="line">P = set()</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> B:</span><br><span class="line">    best_sets = <span class="keyword">None</span></span><br><span class="line">    sets_covered = set()</span><br><span class="line">    <span class="keyword">for</span> sets_num, sets_value <span class="keyword">in</span> sets.items():</span><br><span class="line">        covered = B &amp; sets_value    <span class="comment"># 选择交集最大的set</span></span><br><span class="line">        <span class="keyword">if</span> len(covered) &gt; len(sets_covered):</span><br><span class="line">            sets_covered = covered</span><br><span class="line">            best_sets = sets_num </span><br><span class="line">    B -= sets_covered</span><br><span class="line">    print(best_sets,<span class="string">':'</span>,sets_covered)</span><br><span class="line">    P.add(best_sets)</span><br><span class="line">print(P)</span><br></pre></td></tr></table></figure>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">3 : &#123;1, 2, 4&#125;</span><br><span class="line">7 : &#123;8, 3, 6&#125;</span><br><span class="line">8 : &#123;9, 7&#125;</span><br><span class="line">1 : &#123;0&#125;</span><br><span class="line">4 : &#123;5&#125;</span><br><span class="line">&#123;1, 3, 4, 7, 8&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/11/14/algorithm/" data-id="ck3basujm000050egi2ghom9x" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/11/14/algorithm/" data-id="ck3f9r73l000116egtxkkf1oy" class="article-share-link">Share</a>
       
       
     </footer>
@@ -362,7 +362,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/08/19/GNN/" data-id="ck3basuk9000550egcim28g70" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/08/19/GNN/" data-id="ck3f9r73w000516eg861sq32f" class="article-share-link">Share</a>
       
       
     </footer>
@@ -441,7 +441,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/07/29/DL-RNN/" data-id="ck3basuk2000350egauk7cdek" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/07/29/DL-RNN/" data-id="ck3f9r73p000216egt6c972ek" class="article-share-link">Share</a>
       
       
     </footer>
@@ -485,7 +485,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/07/19/Blockchain/" data-id="ck3basujz000250eg1idqqj3q" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/07/19/Blockchain/" data-id="ck3f9r73e000016egprht6g6r" class="article-share-link">Share</a>
       
       
     </footer>
@@ -564,7 +564,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/07/03/DL-CNN/" data-id="ck3basujv000150egyi8j7wro" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/07/03/DL-CNN/" data-id="ck3f9r73r000316eg9t93iutm" class="article-share-link">Share</a>
       
       
     </footer>
@@ -623,7 +623,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/06/pandas-property/" data-id="ck3basukw000c50egylxbbln8" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/06/pandas-property/" data-id="ck3f9r743000816eg2o81npjt" class="article-share-link">Share</a>
       
       
     </footer>
@@ -688,7 +688,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/05/octave-property/" data-id="ck3basukb000650eg46v50gm2" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/05/octave-property/" data-id="ck3f9r741000716eg70bxilm7" class="article-share-link">Share</a>
       
       
     </footer>
@@ -741,7 +741,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/05/numpy-property/" data-id="ck3basukd000750eg1odrt9bs" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/05/numpy-property/" data-id="ck3f9r73z000616egvxuhqzqs" class="article-share-link">Share</a>
       
       
     </footer>
@@ -778,7 +778,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/12/27/struct-list/" data-id="ck3basul4000h50egcluuy7f7" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/12/27/struct-list/" data-id="ck3f9r752000j16eg6ghtw58w" class="article-share-link">Share</a>
       
       
     </footer>
@@ -815,7 +815,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/12/27/struct-sort/" data-id="ck3basula000l50eg4w7j1la9" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/12/27/struct-sort/" data-id="ck3f9r754000l16egkifnuz0y" class="article-share-link">Share</a>
       
       
     </footer>
