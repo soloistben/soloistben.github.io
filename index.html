@@ -202,7 +202,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/12/02/Master-Eng/" data-id="ck3qzvdsm000237eg7eo34xlw" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/12/02/Master-Eng/" data-id="ck4dia9jf0001t2egjvgygxfe" class="article-share-link">Share</a>
       
       
     </footer>
@@ -281,10 +281,21 @@
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">B = set([<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>])</span><br><span class="line">sets = &#123;&#125;</span><br><span class="line">sets[<span class="number">1</span>] = set([<span class="number">0</span>,<span class="number">1</span>])</span><br><span class="line">sets[<span class="number">2</span>] = set([<span class="number">2</span>,<span class="number">3</span>])</span><br><span class="line">sets[<span class="number">3</span>] = set([<span class="number">1</span>,<span class="number">4</span>,<span class="number">2</span>])</span><br><span class="line">sets[<span class="number">4</span>] = set([<span class="number">2</span>,<span class="number">3</span>,<span class="number">5</span>])</span><br><span class="line">sets[<span class="number">5</span>] = set([<span class="number">1</span>,<span class="number">7</span>])</span><br><span class="line">sets[<span class="number">6</span>] = set([<span class="number">4</span>,<span class="number">6</span>])</span><br><span class="line">sets[<span class="number">7</span>] = set([<span class="number">3</span>,<span class="number">6</span>,<span class="number">8</span>])</span><br><span class="line">sets[<span class="number">8</span>] = set([<span class="number">7</span>,<span class="number">9</span>])</span><br><span class="line"></span><br><span class="line">P = set()</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> B:</span><br><span class="line">    best_sets = <span class="keyword">None</span></span><br><span class="line">    sets_covered = set()</span><br><span class="line">    <span class="keyword">for</span> sets_num, sets_value <span class="keyword">in</span> sets.items():</span><br><span class="line">        covered = B &amp; sets_value    <span class="comment"># 选择交集最大的set</span></span><br><span class="line">        <span class="keyword">if</span> len(covered) &gt; len(sets_covered):</span><br><span class="line">            sets_covered = covered</span><br><span class="line">            best_sets = sets_num </span><br><span class="line">    B -= sets_covered</span><br><span class="line">    print(best_sets,<span class="string">':'</span>,sets_covered)</span><br><span class="line">    P.add(best_sets)</span><br><span class="line">print(P)</span><br></pre></td></tr></table></figure>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">3 : &#123;1, 2, 4&#125;</span><br><span class="line">7 : &#123;8, 3, 6&#125;</span><br><span class="line">8 : &#123;9, 7&#125;</span><br><span class="line">1 : &#123;0&#125;</span><br><span class="line">4 : &#123;5&#125;</span><br><span class="line">&#123;1, 3, 4, 7, 8&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<p><img src="https://github.com/soloistben/images/raw/master/algorithm_image/Dijkstra.png" alt="dijkstra_process"></p>
+<hr>
+<p><img src="https://github.com/soloistben/images/raw/master/algorithm_image/Kruskal1.png" alt="kruskal_process"><br><img src="https://github.com/soloistben/images/raw/master/algorithm_image/Kruskal2.png" alt="kruskal_process"><br><img src="https://github.com/soloistben/images/raw/master/algorithm_image/Kruskal3.png" alt="kruskal_process"></p>
+<hr>
+<p><img src="https://github.com/soloistben/images/raw/master/algorithm_image/Network_flow1.png" alt="Network_Flow"><br><img src="https://github.com/soloistben/images/raw/master/algorithm_image/Network_flow2.png" alt="Network_Flow"><br><img src="https://github.com/soloistben/images/raw/master/algorithm_image/Network_flow3.png" alt="Network_Flow"><br><img src="https://github.com/soloistben/images/raw/master/algorithm_image/Network_flow4.png" alt="Network_Flow"></p>
+<hr>
+<p><img src="https://github.com/soloistben/images/raw/master/algorithm_image/bipartite_matching.png" alt="bipartite_matching"><br><img src="https://github.com/soloistben/images/raw/master/algorithm_image/bipartite_matching1.png" alt="bipartite_matching"><br><img src="https://github.com/soloistben/images/raw/master/algorithm_image/bipartite_matching2.png" alt="bipartite_matching"><br><img src="https://github.com/soloistben/images/raw/master/algorithm_image/bipartite_matching3.png" alt="bipartite_matching"><br><img src="https://github.com/soloistben/images/raw/master/algorithm_image/bipartite_matching4.png" alt="bipartite_matching"><br><img src="https://github.com/soloistben/images/raw/master/algorithm_image/bipartite_matching5.png" alt="bipartite_matching"><br><img src="https://github.com/soloistben/images/raw/master/algorithm_image/bipartite_matching6.png" alt="bipartite_matching"></p>
+<hr>
+<p><img src="https://github.com/soloistben/images/raw/master/algorithm_image/Turing_machine1.png" alt="Turing_machine"><br><img src="https://github.com/soloistben/images/raw/master/algorithm_image/Turing_machine2.png" alt="Turing_machine"></p>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/11/14/algorithm/" data-id="ck3qzvdt1000537egx0k0m9ty" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/11/14/algorithm/" data-id="ck4dia9jj0002t2eg4ufp5l95" class="article-share-link">Share</a>
       
       
     </footer>
@@ -509,7 +520,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/08/19/GNN/" data-id="ck3qzvdsp000337egsu9owvlt" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/08/19/GNN/" data-id="ck4dia9jz0006t2egxajwi7i0" class="article-share-link">Share</a>
       
       
     </footer>
@@ -588,7 +599,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/07/29/DL-RNN/" data-id="ck3qzvdsr000437egkvk7us5r" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/07/29/DL-RNN/" data-id="ck4dia9jv0004t2eg4xvpjbgb" class="article-share-link">Share</a>
       
       
     </footer>
@@ -632,7 +643,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/07/19/Blockchain/" data-id="ck3qzvds9000037egkhdb4z65" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/07/19/Blockchain/" data-id="ck4dia9j70000t2egcktdom9y" class="article-share-link">Share</a>
       
       
     </footer>
@@ -711,7 +722,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/07/03/DL-CNN/" data-id="ck3qzvdsh000137egcm1hm8f5" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/07/03/DL-CNN/" data-id="ck4dia9jt0003t2egsdomc7r0" class="article-share-link">Share</a>
       
       
     </footer>
@@ -770,7 +781,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/06/pandas-property/" data-id="ck3qzvdtc000937eggqpcjhsx" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/06/pandas-property/" data-id="ck4dia9k60009t2egqc20bb59" class="article-share-link">Share</a>
       
       
     </footer>
@@ -835,7 +846,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/05/octave-property/" data-id="ck3qzvdta000837egmfpe38vv" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/05/octave-property/" data-id="ck4dia9k10007t2eg600ztx21" class="article-share-link">Share</a>
       
       
     </footer>
@@ -888,7 +899,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/05/numpy-property/" data-id="ck3qzvdt7000737egfq2jtiv1" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/05/numpy-property/" data-id="ck4dia9k40008t2egc2pooq09" class="article-share-link">Share</a>
       
       
     </footer>
@@ -925,7 +936,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/12/27/struct-list/" data-id="ck3qzvdtx000i37egmmdyey56" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/12/27/struct-list/" data-id="ck4dia9ks000kt2egjtry2dkq" class="article-share-link">Share</a>
       
       
     </footer>
