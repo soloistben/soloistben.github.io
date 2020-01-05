@@ -37,7 +37,11 @@
 <meta property="og:image" content="https://github.com/soloistben/images/raw/master/algorithm_image/Turing_machine2.png">
 <meta property="og:image" content="https://github.com/soloistben/images/raw/master/algorithm_image/Turing_machine3.png">
 <meta property="og:image" content="https://github.com/soloistben/images/raw/master/algorithm_image/NP.png">
-<meta property="og:updated_time" content="2020-01-04T02:15:28.227Z">
+<meta property="og:image" content="https://github.com/soloistben/images/raw/master/algorithm_image/SAT.png">
+<meta property="og:image" content="https://github.com/soloistben/images/raw/master/algorithm_image/SAT_Clique.png">
+<meta property="og:image" content="https://github.com/soloistben/images/raw/master/algorithm_image/Clique.png">
+<meta property="og:image" content="https://github.com/soloistben/images/raw/master/algorithm_image/Vertex_Cover.png">
+<meta property="og:updated_time" content="2020-01-05T08:48:59.589Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="algorithm">
 <meta name="twitter:description" content="LCS Longest Common Subsequence 运用动态规划方法查找给定两个序列的最大公共子序列（子序列之间的字符可以不连续，若子串substring的字符必须连续） 由序列尾部开始： 若两个序列尾部字符相等：LCS[i][j] = LSC[i-1][j-1] +1  若两个序列尾部字符不相等：LCS[i][j] = max(LSC[i-1][j], LSC[i][j-1])">
@@ -137,7 +141,11 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[[ 0.  2.  4.  6.  8.]</span><br><span class="line"> [ 2.  3.  2.  4.  6.]</span><br><span class="line"> [ 4.  5.  4.  2.  4.]</span><br><span class="line"> [ 6.  7.  6.  4.  5.]</span><br><span class="line"> [ 8.  9.  8.  6.  7.]</span><br><span class="line"> [10. 11. 10.  8.  9.]</span><br><span class="line"> [12. 13. 12. 10. 11.]]</span><br><span class="line">11.0</span><br></pre></td></tr></table></figure>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">----------------------------------------------------</span><br><span class="line">Algorithm: SA(A, B, p_gap, p_xy)</span><br><span class="line">----------------------------------------------------</span><br><span class="line">P[<span class="number">0.</span>..|A|][<span class="number">0.</span>..|B|]</span><br><span class="line"><span class="keyword">for</span> i=<span class="number">0</span> to |A|+<span class="number">1</span> do</span><br><span class="line">    <span class="keyword">for</span> j=<span class="number">0</span> to |B|+<span class="number">1</span> do </span><br><span class="line">        P[i][<span class="number">0</span>] = i*p_gap</span><br><span class="line">        P[<span class="number">0</span>][j] = j*p_gap</span><br><span class="line"><span class="keyword">for</span> i=<span class="number">0</span> to |A|+<span class="number">1</span> do</span><br><span class="line">    <span class="keyword">for</span> j=<span class="number">0</span> to |B|+<span class="number">1</span> do </span><br><span class="line">        <span class="keyword">if</span> A[i<span class="number">-1</span>]=B[j<span class="number">-1</span>] then P[i][j]=P[i<span class="number">-1</span>][j<span class="number">-1</span>] </span><br><span class="line">        <span class="keyword">else</span> P[i][j]=min(P[i<span class="number">-1</span>][j<span class="number">-1</span>]+p_xy, P[i<span class="number">-1</span>][j]+p_gap, P[i][j<span class="number">-1</span>]+p_gap)</span><br><span class="line">    end</span><br><span class="line">end</span><br><span class="line"><span class="keyword">return</span> P</span><br><span class="line">----------------------------------------------------</span><br><span class="line">O(nm)</span><br></pre></td></tr></table></figure>
 <hr>
-<h4 id="set-cover-problem"><a href="#set-cover-problem" class="headerlink" title="set cover problem"></a>set cover problem</h4><ul>
+<h4 id="Matroid-拟阵"><a href="#Matroid-拟阵" class="headerlink" title="Matroid 拟阵"></a>Matroid 拟阵</h4><ul>
+<li>拟阵理论不能完全覆盖所有的贪心算法（如赫夫曼编码问题），但它可以覆盖大多数具有实际意义的情况。首先介绍拟阵的概念。（有些文献也称作矩阵胚）<br><a href="https://blog.csdn.net/ChiXueZhiHun/article/details/54808939" target="_blank" rel="noopener">Matroid</a></li>
+</ul>
+<hr>
+<h4 id="Set-Cover"><a href="#Set-Cover" class="headerlink" title="Set Cover"></a>Set Cover</h4><ul>
 <li>给定一个集合B，和一些子集sets，在子集中找到最好的覆盖原集合的子集（贪心算法）</li>
 <li>在t时刻，选择子集设为St，当前还剩集合元素个数为nt，以选子集的元素集合为P</li>
 <li>则在子集中，每次选择与原集合<strong>相交</strong>最多元素的子集，且符合公式|St|&gt;= nt/|P|</li>
@@ -170,7 +178,19 @@
 <hr>
 <p><img src="https://github.com/soloistben/images/raw/master/algorithm_image/Turing_machine1.png" alt="Turing_machine"><br><img src="https://github.com/soloistben/images/raw/master/algorithm_image/Turing_machine2.png" alt="Turing_machine"><br><img src="https://github.com/soloistben/images/raw/master/algorithm_image/Turing_machine3.png" alt="Turing_machine"></p>
 <hr>
-<h5 id="P-vs-NP"><a href="#P-vs-NP" class="headerlink" title="P vs NP"></a>P vs NP</h5><ul>
+<h4 id="Halting-Problem"><a href="#Halting-Problem" class="headerlink" title="Halting Problem"></a>Halting Problem</h4><ul>
+<li><p>问题：是否存在一个过程能做这件事：该过程以一个计算机程序以及该程序的一个输入作为输入，并判断该过程在给定输入运行时是否<strong>最终</strong>能停止。</p>
+</li>
+<li><p>假设：存在一个这样的过程<strong>H(P,I)</strong>，P为计算机程序，I为该程序的一个输入,H可以根据P和I返回true（该过程在给定输入运行时能停止)，或者false（该过程在给定输入运行时不能停止）</p>
+</li>
+<li><p>结论：因此不存在这样的一个过程能解决停机问题。</p>
+</li>
+<li><p>停机问题的“现实”意义是说明了程序不是无所不能的</p>
+<p><a href="https://blog.csdn.net/MyLinChi/article/details/79044156" target="_blank" rel="noopener">HP</a></p>
+</li>
+</ul>
+<hr>
+<h4 id="P-vs-NP"><a href="#P-vs-NP" class="headerlink" title="P vs NP"></a>P vs NP</h4><ul>
 <li>P 问题：现阶段可以用计算机在有限时间内解决的问题(<strong>P</strong>olynomial Time)</li>
 <li>NP问题：现阶段无法在有限时间内解决的问题(<strong>N</strong>on-deterministic <strong>P</strong>olynomial Time)</li>
 <li>若P=NP，则任何问题均可用计算机破解，则没有加密可言，任意生物、医疗、经济、科技问题全部可以解决。</li>
@@ -183,22 +203,29 @@
 <li>所有问题 -&gt; 在给定空间、时间下，什么可以计算出来（已经不在是探讨计算的特性，而是寻找时间和空间的本身性质）<br><a href="https://www.bilibili.com/video/av19085452?from=search&amp;seid=7087981409362725035" target="_blank" rel="noopener">b站</a></li>
 </ul>
 <hr>
-<h5 id="CNF-amp-SAT"><a href="#CNF-amp-SAT" class="headerlink" title="CNF &amp; SAT"></a>CNF &amp; SAT</h5><ul>
+<h4 id="CNF-amp-SAT"><a href="#CNF-amp-SAT" class="headerlink" title="CNF &amp; SAT"></a>CNF &amp; SAT</h4><ul>
 <li><strong>Conjunctive Normal Form (CNF)合取范式</strong> 是命题公式的一种标准形。一个命题公式的合取范式可以通过<strong>真值(TRUE)</strong>表得到，也可以通过等价变换得到。（合取范式主要用于解决命题公式的逻辑判断，一个命题的合取范式不是唯一的）</li>
 <li><strong>Satisfaction Problem (SAT)</strong>,  decide if there is an assignment that satisfies the given CNF. SAT is NP<ul>
 <li>TRUE, if CNF is satisfied with the certification</li>
 <li>FALSE, if CNF is not satisfied with the certification</li>
 </ul>
 </li>
-<li>给定一个布尔变量集合（只取0和1）组成SAT和子句集合CNF，是否存在一个真值赋值（SAT结果），<strong>使得CNF为真，即每个子句为真</strong> <a href="https://blog.csdn.net/yxl564710062/article/details/79882746" target="_blank" rel="noopener">3-SAT</a></li>
+<li>给定一个布尔变量集合（只取0和1）组成SAT和子句集合CNF，是否存在一个真值赋值（SAT结果），<strong>使得CNF为真，即每个子句为真</strong><br><a href="https://blog.csdn.net/yxl564710062/article/details/79882746" target="_blank" rel="noopener">3-SAT</a></li>
 <li><strong>CIRCUIT-SAT</strong> is NPC，若将CIRCUIT-SAT问题划分三个SAT问题，是否能证明SAT也是NPC?</li>
 <li><strong>3-CNF Satisfaction Problem (3-SAT)</strong>: decide if there is an assignment that satisfies the given 3-CNF, in which each clause contains exactly 3 literals. </li>
+<li><strong>NP -&gt; NPC -&gt; 3-SAT -&gt; Clique -&gt; Vertex Cover</strong>  (Using Clique To Set Variables of 3-SAT)<br><img src="https://github.com/soloistben/images/raw/master/algorithm_image/SAT.png" alt="SAT"><ul>
+<li>only Variables disconnect its not Variables (x1 disconnect not x1)</li>
+<li>Variables disconnect others in same group (make no sence)</li>
+<li>connected Variables is same value<br><img src="https://github.com/soloistben/images/raw/master/algorithm_image/SAT_Clique.png" alt="SAT_Clique"><br><img src="https://github.com/soloistben/images/raw/master/algorithm_image/Clique.png" alt="Clique"><br><img src="https://github.com/soloistben/images/raw/master/algorithm_image/Vertex_Cover.png" alt="Vertex_Cover"></li>
+</ul>
+</li>
+<li>Independent Set</li>
 </ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/11/14/algorithm/" data-id="ck4yygggf0002oseg1kr4je5p" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/11/14/algorithm/" data-id="ck50s01rf0002fjegwgo19otf" class="article-share-link">Share</a>
       
       
     </footer>
