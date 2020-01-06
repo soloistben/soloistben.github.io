@@ -42,7 +42,7 @@
 <meta property="og:image" content="https://github.com/soloistben/images/raw/master/algorithm_image/Clique.png">
 <meta property="og:image" content="https://github.com/soloistben/images/raw/master/algorithm_image/Vertex_Cover.png">
 <meta property="og:image" content="https://github.com/soloistben/images/raw/master/algorithm_image/Clique_VertexCover.png">
-<meta property="og:updated_time" content="2020-01-05T08:54:35.903Z">
+<meta property="og:updated_time" content="2020-01-06T07:36:20.708Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="algorithm">
 <meta name="twitter:description" content="LCS Longest Common Subsequence 运用动态规划方法查找给定两个序列的最大公共子序列（子序列之间的字符可以不连续，若子串substring的字符必须连续） 由序列尾部开始： 若两个序列尾部字符相等：LCS[i][j] = LSC[i-1][j-1] +1  若两个序列尾部字符不相等：LCS[i][j] = max(LSC[i-1][j], LSC[i][j-1])">
@@ -192,8 +192,8 @@
 </ul>
 <hr>
 <h4 id="P-vs-NP"><a href="#P-vs-NP" class="headerlink" title="P vs NP"></a>P vs NP</h4><ul>
-<li>P 问题：现阶段可以用计算机在有限时间内解决的问题(<strong>P</strong>olynomial Time)</li>
-<li>NP问题：现阶段无法在有限时间内解决的问题(<strong>N</strong>on-deterministic <strong>P</strong>olynomial Time)</li>
+<li>P 问题：现阶段可以用计算机在多项式时间内解决的问题(<strong>P</strong>olynomial Time)</li>
+<li>NP问题：现阶段无法在多项式时间内解决，但可以在多项式时间内验证的问题(<strong>N</strong>on-deterministic <strong>P</strong>olynomial Time)</li>
 <li>若P=NP，则任何问题均可用计算机破解，则没有加密可言，任意生物、医疗、经济、科技问题全部可以解决。</li>
 <li>NP-complete：很多很难的NP问题，本质上是同一个问题（卡在了相同问题上），可以用简单的<strong>多项式时间</strong>转换（数学：<strong>这些NP问题中真正困难的部分</strong>），能解决NP-complete问题就可以解决NP问题（数独游戏、蛋白质折叠（治疗癌症问题））</li>
 <li>证明P是否等于NP，就是一个NP问题</li>
@@ -221,11 +221,16 @@
 </ul>
 </li>
 </ul>
+<hr>
+<ol>
+<li>算法中线性结构，数据元素之间存在一对一的线性关系。</li>
+<li>算法符号，Θ：渐近紧确界，O：渐近上界，Ω：渐近下界；o：非渐近紧确的上界（O提供的渐近上界可能是也可能不是渐近紧确的），ω：非渐近紧确的下界</li>
+</ol>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/11/14/algorithm/" data-id="ck50s5t1r0006upeg57tnpie6" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/11/14/algorithm/" data-id="ck527enro0002vueg1l2ezp7v" class="article-share-link">Share</a>
       
       
     </footer>
