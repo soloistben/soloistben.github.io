@@ -65,6 +65,71 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-octave-property" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/01/05/octave-property/" class="article-date">
+  <time datetime="2019-01-05T15:52:11.000Z" itemprop="datePublished">2019-01-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/01/05/octave-property/">octave_property</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1）基本操作"><a href="#1）基本操作" class="headerlink" title="1）基本操作"></a>1）基本操作</h3><h4 id="加减乘除、等、不等、注释、与、或、异或"><a href="#加减乘除、等、不等、注释、与、或、异或" class="headerlink" title="加减乘除、等、不等、注释、与、或、异或"></a>加减乘除、等、不等、注释、与、或、异或</h4><p><img src="https://github.com/soloistben/images/raw/master/octave_image/1.jpg" alt="image" title="基本操作"></p>
+<h4 id="直接输出（不加分号）、加分号阻止输出（形成变量）、类似C一样限制输出变量、格式变换"><a href="#直接输出（不加分号）、加分号阻止输出（形成变量）、类似C一样限制输出变量、格式变换" class="headerlink" title="直接输出（不加分号）、加分号阻止输出（形成变量）、类似C一样限制输出变量、格式变换"></a>直接输出（不加分号）、加分号阻止输出（形成变量）、类似C一样限制输出变量、格式变换</h4><p><img src="https://github.com/soloistben/images/raw/master/octave_image/2.jpg" alt="image"></p>
+<h4 id="普通矩阵"><a href="#普通矩阵" class="headerlink" title="普通矩阵"></a>普通矩阵</h4><p><img src="https://github.com/soloistben/images/raw/master/octave_image/3.jpg" alt="image"></p>
+<h4 id="行、列矩阵"><a href="#行、列矩阵" class="headerlink" title="行、列矩阵"></a>行、列矩阵</h4><p><img src="https://github.com/soloistben/images/raw/master/octave_image/4.jpg" alt="image"> <img src="https://github.com/soloistben/images/raw/master/octave_image/5.jpg" alt="image"></p>
+<h4 id="全1矩阵"><a href="#全1矩阵" class="headerlink" title="全1矩阵"></a>全1矩阵</h4><p><img src="https://github.com/soloistben/images/raw/master/octave_image/6.jpg" alt="image"></p>
+<h4 id="全0矩阵"><a href="#全0矩阵" class="headerlink" title="全0矩阵"></a>全0矩阵</h4><p><img src="https://github.com/soloistben/images/raw/master/octave_image/7.jpg" alt="image"></p>
+<h4 id="单位矩阵"><a href="#单位矩阵" class="headerlink" title="单位矩阵"></a>单位矩阵</h4><p><img src="https://github.com/soloistben/images/raw/master/octave_image/8.jpg" alt="image"></p>
+<h4 id="随机矩阵"><a href="#随机矩阵" class="headerlink" title="随机矩阵"></a>随机矩阵</h4><p><img src="https://github.com/soloistben/images/raw/master/octave_image/9.jpg" alt="image"></p>
+<h4 id="服从高斯分布的随机矩阵"><a href="#服从高斯分布的随机矩阵" class="headerlink" title="服从高斯分布的随机矩阵"></a>服从高斯分布的随机矩阵</h4><p><img src="https://github.com/soloistben/images/raw/master/octave_image/10.jpg" alt="image"></p>
+<h4 id="范围值（中间可添加增量）"><a href="#范围值（中间可添加增量）" class="headerlink" title="范围值（中间可添加增量）"></a>范围值（中间可添加增量）</h4><p><img src="https://github.com/soloistben/images/raw/master/octave_image/11.jpg" alt="image"></p>
+<h4 id="高斯分布直方图"><a href="#高斯分布直方图" class="headerlink" title="高斯分布直方图"></a>高斯分布直方图</h4><p><img src="https://github.com/soloistben/images/raw/master/octave_image/12.jpg" alt="image"></p>
+<h5 id="help-命令（查看命令使用）"><a href="#help-命令（查看命令使用）" class="headerlink" title="help + 命令（查看命令使用）"></a>help + 命令（查看命令使用）</h5><h3 id="2）数据移动操作"><a href="#2）数据移动操作" class="headerlink" title="2）数据移动操作"></a>2）数据移动操作</h3><h5 id="size-A-（返回矩阵类型，几行几列，也是一个1-2的一维矩阵）"><a href="#size-A-（返回矩阵类型，几行几列，也是一个1-2的一维矩阵）" class="headerlink" title="size(A)（返回矩阵类型，几行几列，也是一个1*2的一维矩阵）"></a>size(A)（返回矩阵类型，几行几列，也是一个1*2的一维矩阵）</h5><h5 id="size-A-1-（返回矩阵A的行数）"><a href="#size-A-1-（返回矩阵A的行数）" class="headerlink" title="size(A,1)（返回矩阵A的行数）"></a>size(A,1)（返回矩阵A的行数）</h5><h5 id="length-A-（返回矩阵A的行数）"><a href="#length-A-（返回矩阵A的行数）" class="headerlink" title="length(A)（返回矩阵A的行数）"></a>length(A)（返回矩阵A的行数）</h5><h5 id="load-xx-dat（加载当前目录的xx-dat文件数据，其xx为变量名称，文件数据为变量值，用于存取矩阵数据）"><a href="#load-xx-dat（加载当前目录的xx-dat文件数据，其xx为变量名称，文件数据为变量值，用于存取矩阵数据）" class="headerlink" title="load xx.dat（加载当前目录的xx.dat文件数据，其xx为变量名称，文件数据为变量值，用于存取矩阵数据）"></a>load xx.dat（加载当前目录的xx.dat文件数据，其xx为变量名称，文件数据为变量值，用于存取矩阵数据）</h5><h5 id="who（显示当前已有变量）"><a href="#who（显示当前已有变量）" class="headerlink" title="who（显示当前已有变量）"></a>who（显示当前已有变量）</h5><h5 id="whos（显示当前已有变量详情）"><a href="#whos（显示当前已有变量详情）" class="headerlink" title="whos（显示当前已有变量详情）"></a>whos（显示当前已有变量详情）</h5><h5 id="clear-xx（清除变量）"><a href="#clear-xx（清除变量）" class="headerlink" title="clear xx（清除变量）"></a>clear xx（清除变量）</h5><h5 id="v-priceY-1-10-（将priceY的前十个元素赋值给v，前提priceY有这么多或更多的数据）"><a href="#v-priceY-1-10-（将priceY的前十个元素赋值给v，前提priceY有这么多或更多的数据）" class="headerlink" title="v = priceY(1,10);（将priceY的前十个元素赋值给v，前提priceY有这么多或更多的数据）"></a>v = priceY(1,10);（将priceY的前十个元素赋值给v，前提priceY有这么多或更多的数据）</h5><h5 id="save-vv-mat-v（将v变量的内容保存在本地vv-mat文件中）"><a href="#save-vv-mat-v（将v变量的内容保存在本地vv-mat文件中）" class="headerlink" title="save vv.mat v（将v变量的内容保存在本地vv.mat文件中）"></a>save vv.mat v（将v变量的内容保存在本地vv.mat文件中）</h5><h5 id="save-vv-txt-v-ascii（以ascii形式保存数据）"><a href="#save-vv-txt-v-ascii（以ascii形式保存数据）" class="headerlink" title="save vv.txt v -ascii（以ascii形式保存数据）"></a>save vv.txt v -ascii（以ascii形式保存数据）</h5><h5 id="clear（会清除所以变量）"><a href="#clear（会清除所以变量）" class="headerlink" title="clear（会清除所以变量）"></a>clear（会清除所以变量）</h5><h5 id="load-vv-mat（会将文件内容恢复到原有变量中，即使原因变量被清除也会新建同名变量）"><a href="#load-vv-mat（会将文件内容恢复到原有变量中，即使原因变量被清除也会新建同名变量）" class="headerlink" title="load vv.mat（会将文件内容恢复到原有变量中，即使原因变量被清除也会新建同名变量）"></a>load vv.mat（会将文件内容恢复到原有变量中，即使原因变量被清除也会新建同名变量）</h5><h5 id="A-2-3-（A矩阵中的-行为2列为3位置的元素）"><a href="#A-2-3-（A矩阵中的-行为2列为3位置的元素）" class="headerlink" title="A(2,3)（A矩阵中的 行为2列为3位置的元素）"></a>A(2,3)（A矩阵中的 行为2列为3位置的元素）</h5><h5 id="A-2-（第2行的所有元素）"><a href="#A-2-（第2行的所有元素）" class="headerlink" title="A(2,:)（第2行的所有元素）"></a>A(2,:)（第2行的所有元素）</h5><h5 id="A-2-（第2列的所有元素）"><a href="#A-2-（第2列的所有元素）" class="headerlink" title="A(:,2)（第2列的所有元素）"></a>A(:,2)（第2列的所有元素）</h5><h5 id="A-1-3-（第1和第三行的所有元素）"><a href="#A-1-3-（第1和第三行的所有元素）" class="headerlink" title="A([1 3],:)（第1和第三行的所有元素）"></a>A([1 3],:)（第1和第三行的所有元素）</h5><h5 id="A-2-1-2-3-（A矩阵第2列直接赋值-1-2-3-，前提行列大小符合）"><a href="#A-2-1-2-3-（A矩阵第2列直接赋值-1-2-3-，前提行列大小符合）" class="headerlink" title="A(:,2)=[1;2;3]（A矩阵第2列直接赋值[1;2;3]，前提行列大小符合）"></a>A(:,2)=[1;2;3]（A矩阵第2列直接赋值[1;2;3]，前提行列大小符合）</h5><h5 id="A-A-1-2-3-（在原矩阵中多添加一列-1-2-3-）"><a href="#A-A-1-2-3-（在原矩阵中多添加一列-1-2-3-）" class="headerlink" title="A=[A,[1;2;3;]]（在原矩阵中多添加一列[1;2;3]）"></a>A=[A,[1;2;3;]]（在原矩阵中多添加一列[1;2;3]）</h5><h5 id="A-（将3x3的A矩阵转成9x1列向量一样输出）"><a href="#A-（将3x3的A矩阵转成9x1列向量一样输出）" class="headerlink" title="A(:)（将3x3的A矩阵转成9x1列向量一样输出）"></a>A(:)（将3x3的A矩阵转成9x1列向量一样输出）</h5><h5 id="C-A-B-（将A-B矩阵上下组合成C）"><a href="#C-A-B-（将A-B矩阵上下组合成C）" class="headerlink" title="C=[A;B]（将A,B矩阵上下组合成C）"></a>C=[A;B]（将A,B矩阵上下组合成C）</h5><h5 id="C-A-B-（将A-B矩阵左右组合成C）"><a href="#C-A-B-（将A-B矩阵左右组合成C）" class="headerlink" title="C=[A B]（将A,B矩阵左右组合成C）"></a>C=[A B]（将A,B矩阵左右组合成C）</h5><h5 id="（矩阵中-A-B-等价于-A-B-）"><a href="#（矩阵中-A-B-等价于-A-B-）" class="headerlink" title="（矩阵中[A B]等价于[A,B]）"></a>（矩阵中[A B]等价于[A,B]）</h5><h3 id="3）数据计算操作"><a href="#3）数据计算操作" class="headerlink" title="3）数据计算操作"></a>3）数据计算操作</h3><h5 id="A-B（A与B矩阵对应相乘）"><a href="#A-B（A与B矩阵对应相乘）" class="headerlink" title="A.*B（A与B矩阵对应相乘）"></a>A.*B（A与B矩阵对应相乘）</h5><h5 id="A-2（A矩阵元素平方）"><a href="#A-2（A矩阵元素平方）" class="headerlink" title="A.^2（A矩阵元素平方）"></a>A.^2（A矩阵元素平方）</h5><h5 id="1-A（A矩阵元素倒数）"><a href="#1-A（A矩阵元素倒数）" class="headerlink" title="1./A（A矩阵元素倒数）"></a>1./A（A矩阵元素倒数）</h5><h5 id="log-A-（对数运算）"><a href="#log-A-（对数运算）" class="headerlink" title="log(A) （对数运算）"></a>log(A) （对数运算）</h5><h5 id="exp-A-（指数运算）"><a href="#exp-A-（指数运算）" class="headerlink" title="exp(A)（指数运算）"></a>exp(A)（指数运算）</h5><h5 id="abs-A-（绝对值运算）"><a href="#abs-A-（绝对值运算）" class="headerlink" title="abs(A)（绝对值运算）"></a>abs(A)（绝对值运算）</h5><h5 id="A（取相反数）"><a href="#A（取相反数）" class="headerlink" title="-A（取相反数）"></a>-A（取相反数）</h5><h5 id="v-1（列向量v全部元素加1）等价于-v-ones-length-v-1"><a href="#v-1（列向量v全部元素加1）等价于-v-ones-length-v-1" class="headerlink" title="v+1（列向量v全部元素加1）等价于 v+ones(length(v),1)"></a>v+1（列向量v全部元素加1）等价于 v+ones(length(v),1)</h5><h5 id="A’（A的转置）"><a href="#A’（A的转置）" class="headerlink" title="A’（A的转置）"></a>A’（A的转置）</h5><h5 id="pinv-A-（A的逆）"><a href="#pinv-A-（A的逆）" class="headerlink" title="pinv(A)（A的逆）"></a>pinv(A)（A的逆）</h5><h4 id="sum求和、prod求积、floor向下取整、ceil向上取整"><a href="#sum求和、prod求积、floor向下取整、ceil向上取整" class="headerlink" title="sum求和、prod求积、floor向下取整、ceil向上取整"></a>sum求和、prod求积、floor向下取整、ceil向上取整</h4><p><img src="https://github.com/soloistben/images/raw/master/octave_image/13.jpg" alt="image"></p>
+<h5 id="sum-A-1-（元素列和）"><a href="#sum-A-1-（元素列和）" class="headerlink" title="sum(A,1)（元素列和）"></a>sum(A,1)（元素列和）</h5><h5 id="sum-A-2-（元素行和）"><a href="#sum-A-2-（元素行和）" class="headerlink" title="sum(A,2)（元素行和）"></a>sum(A,2)（元素行和）</h5><h5 id="sum-sum-A-eye-length-A-（求对角线和，eye是单位阵，前提A为方阵）"><a href="#sum-sum-A-eye-length-A-（求对角线和，eye是单位阵，前提A为方阵）" class="headerlink" title="sum(sum(A.*eye(length(A))（求对角线和，eye是单位阵，前提A为方阵）"></a>sum(sum(A.*eye(length(A))（求对角线和，eye是单位阵，前提A为方阵）</h5><h5 id="flipud-eye-3-（3阶单位矩阵的副对角线为1）"><a href="#flipud-eye-3-（3阶单位矩阵的副对角线为1）" class="headerlink" title="flipud(eye(3))（3阶单位矩阵的副对角线为1）"></a>flipud(eye(3))（3阶单位矩阵的副对角线为1）</h5><h5 id="max-v-（列向量v的最大值）"><a href="#max-v-（列向量v的最大值）" class="headerlink" title="max(v)（列向量v的最大值）"></a>max(v)（列向量v的最大值）</h5><h5 id="val-ins-max-v-（列向量v最大的两个值分别赋值）"><a href="#val-ins-max-v-（列向量v最大的两个值分别赋值）" class="headerlink" title="[val,ins]=max(v)（列向量v最大的两个值分别赋值）"></a>[val,ins]=max(v)（列向量v最大的两个值分别赋值）</h5><h5 id="max-A-（返回每一列的最大元素，组成一维向量组）"><a href="#max-A-（返回每一列的最大元素，组成一维向量组）" class="headerlink" title="max(A)（返回每一列的最大元素，组成一维向量组）"></a>max(A)（返回每一列的最大元素，组成一维向量组）</h5><h5 id="max-max-A-或者max-A-（将形成的一维向量中再找最大值）"><a href="#max-max-A-或者max-A-（将形成的一维向量中再找最大值）" class="headerlink" title="max(max(A))或者max(A(:))（将形成的一维向量中再找最大值）"></a>max(max(A))或者max(A(:))（将形成的一维向量中再找最大值）</h5><p><img src="https://github.com/soloistben/images/raw/master/octave_image/14.jpg" alt="image"></p>
+<h5 id="（1代表找到每一列的最大值，2代表找没一行的最大值）"><a href="#（1代表找到每一列的最大值，2代表找没一行的最大值）" class="headerlink" title="（1代表找到每一列的最大值，2代表找没一行的最大值）"></a>（1代表找到每一列的最大值，2代表找没一行的最大值）</h5><p><img src="https://github.com/soloistben/images/raw/master/octave_image/15.jpg" alt="image"></p>
+<h5 id="v-lt-3（返回一个与v相同类型的矩阵，元素对应的是1和0，1代表true该位置的v的元素比3小）"><a href="#v-lt-3（返回一个与v相同类型的矩阵，元素对应的是1和0，1代表true该位置的v的元素比3小）" class="headerlink" title="v&lt;3（返回一个与v相同类型的矩阵，元素对应的是1和0，1代表true该位置的v的元素比3小）"></a>v&lt;3（返回一个与v相同类型的矩阵，元素对应的是1和0，1代表true该位置的v的元素比3小）</h5><h5 id="find-v-lt-3-（返回比3小的元素下标）"><a href="#find-v-lt-3-（返回比3小的元素下标）" class="headerlink" title="find(v&lt;3) （返回比3小的元素下标）"></a>find(v&lt;3) （返回比3小的元素下标）</h5><h5 id="r-c-find-A-lt-3-（r返回行下标，c返回列下标）"><a href="#r-c-find-A-lt-3-（r返回行下标，c返回列下标）" class="headerlink" title="[r,c]=find(A&lt;3)（r返回行下标，c返回列下标）"></a>[r,c]=find(A&lt;3)（r返回行下标，c返回列下标）</h5><h5 id="magic-3-（返回一个3x3矩阵，行和-列和-对角线和，机器学习基本不用）"><a href="#magic-3-（返回一个3x3矩阵，行和-列和-对角线和，机器学习基本不用）" class="headerlink" title="magic(3)（返回一个3x3矩阵，行和=列和=对角线和，机器学习基本不用）"></a>magic(3)（返回一个3x3矩阵，行和=列和=对角线和，机器学习基本不用）</h5><h3 id="4）数据可视化"><a href="#4）数据可视化" class="headerlink" title="4）数据可视化"></a>4）数据可视化</h3><h4 id="输出函数图像"><a href="#输出函数图像" class="headerlink" title="输出函数图像"></a>输出函数图像</h4><p><img src="https://github.com/soloistben/images/raw/master/octave_image/16.PNG" alt="image"></p>
+<h4 id="两函数图象在同一坐标中"><a href="#两函数图象在同一坐标中" class="headerlink" title="两函数图象在同一坐标中"></a>两函数图象在同一坐标中</h4><p><img src="https://github.com/soloistben/images/raw/master/octave_image/17.PNG" alt="image"></p>
+<h4 id="分开输出"><a href="#分开输出" class="headerlink" title="分开输出"></a>分开输出</h4><p><img src="https://github.com/soloistben/images/raw/master/octave_image/18.PNG" alt="image"></p>
+<h4 id="左右输出"><a href="#左右输出" class="headerlink" title="左右输出"></a>左右输出</h4><p><img src="https://github.com/soloistben/images/raw/master/octave_image/19.PNG" alt="image"></p>
+<h4 id="改变坐标系"><a href="#改变坐标系" class="headerlink" title="改变坐标系"></a>改变坐标系</h4><p><img src="https://github.com/soloistben/images/raw/master/octave_image/20.PNG" alt="image"></p>
+<h4 id="添加横纵坐标名称、title名称、保存数据图"><a href="#添加横纵坐标名称、title名称、保存数据图" class="headerlink" title="添加横纵坐标名称、title名称、保存数据图"></a>添加横纵坐标名称、title名称、保存数据图</h4><p><img src="https://github.com/soloistben/images/raw/master/octave_image/21.PNG" alt="image"></p>
+<h4 id="矩阵输出图像"><a href="#矩阵输出图像" class="headerlink" title="矩阵输出图像"></a>矩阵输出图像</h4><p><img src="https://github.com/soloistben/images/raw/master/octave_image/22.PNG" alt="image"><br><img src="https://github.com/soloistben/images/raw/master/octave_image/23.png" alt="image"> <img src="https://github.com/soloistben/images/raw/master/octave_image/24.png" alt="image"></p>
+<h3 id="5）基础函数使用"><a href="#5）基础函数使用" class="headerlink" title="5）基础函数使用"></a>5）基础函数使用</h3><h4 id="for循环"><a href="#for循环" class="headerlink" title="for循环"></a>for循环</h4><p><img src="https://github.com/soloistben/images/raw/master/octave_image/25.PNG" alt="image"> <img src="https://github.com/soloistben/images/raw/master/octave_image/26.PNG" alt="image"></p>
+<h4 id="while循环"><a href="#while循环" class="headerlink" title="while循环"></a>while循环</h4><p><img src="https://github.com/soloistben/images/raw/master/octave_image/27.PNG" alt="image"></p>
+<h4 id="break操作"><a href="#break操作" class="headerlink" title="break操作"></a>break操作</h4><p><img src="https://github.com/soloistben/images/raw/master/octave_image/28.PNG" alt="image"></p>
+<h4 id="if操作"><a href="#if操作" class="headerlink" title="if操作"></a>if操作</h4><p><img src="https://github.com/soloistben/images/raw/master/octave_image/29.PNG" alt="image"></p>
+<h4 id="自定义函数"><a href="#自定义函数" class="headerlink" title="自定义函数"></a>自定义函数</h4><h4 id="​-在当前目录下建立xxx-m文件"><a href="#​-在当前目录下建立xxx-m文件" class="headerlink" title="​    在当前目录下建立xxx.m文件"></a>​    在当前目录下建立xxx.m文件</h4><h4 id="则xxx是函数名称"><a href="#则xxx是函数名称" class="headerlink" title="则xxx是函数名称"></a>则xxx是函数名称</h4><p><img src="https://github.com/soloistben/images/raw/master/octave_image/30.PNG" alt="image"> <img src="https://github.com/soloistben/images/raw/master/octave_image/31.PNG" alt="image"></p>
+<h4 id="函数可返回多个值"><a href="#函数可返回多个值" class="headerlink" title="函数可返回多个值"></a>函数可返回多个值</h4><p><img src="https://github.com/soloistben/images/raw/master/octave_image/32.PNG" alt="image"><br><img src="https://github.com/soloistben/images/raw/master/octave_image/33.PNG" alt="image"></p>
+<h4 id="复杂函数"><a href="#复杂函数" class="headerlink" title="复杂函数"></a>复杂函数</h4><p><img src="https://github.com/soloistben/images/raw/master/octave_image/34.PNG" alt="image"><br><img src="https://github.com/soloistben/images/raw/master/octave_image/35.PNG" alt="image"> <img src="https://github.com/soloistben/images/raw/master/octave_image/36.PNG" alt="image"> </p>
+<h3 id="6）函数向量化"><a href="#6）函数向量化" class="headerlink" title="6）函数向量化"></a>6）函数向量化</h3><h4 id="循环的数组-gt-一维行或列向量"><a href="#循环的数组-gt-一维行或列向量" class="headerlink" title="循环的数组 =&gt; 一维行或列向量"></a>循环的数组 =&gt; 一维行或列向量</h4><p><img src="https://github.com/soloistben/images/raw/master/octave_image/37.PNG" alt="image"> <img src="https://github.com/soloistben/images/raw/master/octave_image/38.PNG" alt="image"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/01/05/octave-property/" data-id="ck9vbhk1l000cx1eg84r7fpg5" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-numpy-property" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/01/05/numpy-property/" class="article-date">
@@ -108,7 +173,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/05/numpy-property/" data-id="ck9vb5lzk00097xeglkt3fon7" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/05/numpy-property/" data-id="ck9vbhk0v0009x1egfix0qnj1" class="article-share-link">Share</a>
       
       
     </footer>
@@ -145,7 +210,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/12/27/struct-list/" data-id="ck9vb5m00000o7xegahka3gld" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/12/27/struct-list/" data-id="ck9vbhk2a000qx1egei5td99p" class="article-share-link">Share</a>
       
       
     </footer>
@@ -182,7 +247,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/12/27/struct-sort/" data-id="ck9vb5m05000s7xegxdzb7hxf" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/12/27/struct-sort/" data-id="ck9vbhk2e000tx1eg7gxr7rt2" class="article-share-link">Share</a>
       
       
     </footer>
@@ -219,7 +284,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/12/27/struct-threadtree/" data-id="ck9vb5m04000r7xegqg33t8eg" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/12/27/struct-threadtree/" data-id="ck9vbhk2f000ux1egwlea7j1y" class="article-share-link">Share</a>
       
       
     </footer>
@@ -256,7 +321,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/12/26/struct-bstree/" data-id="ck9vb5lzw000k7xegbdxtyhut" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/12/26/struct-bstree/" data-id="ck9vbhk22000lx1egk5fwgz14" class="article-share-link">Share</a>
       
       
     </footer>
@@ -296,7 +361,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/12/26/struct-graph/" data-id="ck9vb5m02000q7xeg28vdgwmb" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/12/26/struct-graph/" data-id="ck9vbhk2g000vx1egmezmd21o" class="article-share-link">Share</a>
       
       
     </footer>
@@ -335,7 +400,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/12/26/struct-bitree/" data-id="ck9vb5lzt000h7xegkzi9s0qw" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/12/26/struct-bitree/" data-id="ck9vbhk25000nx1eggn9jatk1" class="article-share-link">Share</a>
       
       
     </footer>
@@ -372,7 +437,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/12/26/struct-link/" data-id="ck9vb5lzx000l7xegp519667n" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/12/26/struct-link/" data-id="ck9vbhk29000px1eg6qnhww7h" class="article-share-link">Share</a>
       
       
     </footer>
@@ -409,45 +474,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/12/26/struct-queue/" data-id="ck9vb5lzy000m7xeg7eqbsx9f" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-struct-stack" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/12/26/struct-stack/" class="article-date">
-  <time datetime="2018-12-26T05:53:12.000Z" itemprop="datePublished">2018-12-26</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/12/26/struct-stack/">struct_stack</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="数据结构-堆栈"><a href="#数据结构-堆栈" class="headerlink" title="数据结构 堆栈"></a>数据结构 堆栈</h1><h4 id="头文件"><a href="#头文件" class="headerlink" title="头文件"></a>头文件</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> STACK_H</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> STACK_H</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MaxSize 50		<span class="comment">//栈中元素最大个数</span></span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">int</span> ElemType;</span><br><span class="line"></span><br><span class="line"><span class="comment">//顺序栈</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> </span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	ElemType data[MaxSize];</span><br><span class="line">	<span class="keyword">int</span> top;	<span class="comment">//栈顶指针</span></span><br><span class="line">&#125; SqStack;</span><br><span class="line"></span><br><span class="line"><span class="comment">//链栈</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">LinkNode</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	ElemType data;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">LinkNode</span> * <span class="title">next</span>;</span> </span><br><span class="line">&#125;LinkNode,*LinkStack;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">InitSqStack</span><span class="params">(SqStack &amp;S)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">isEmptySqStack</span><span class="params">(SqStack &amp;S)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">PushSqStack</span><span class="params">(SqStack &amp;S,ElemType e)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">PopSqStack</span><span class="params">(SqStack &amp;S,ElemType &amp;e)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">GetTopSqStack</span><span class="params">(SqStack &amp;S,ElemType &amp;e)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">ShowSqStack</span><span class="params">(SqStack &amp;S)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">InitLinkStack</span><span class="params">(LinkStack &amp;S)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">PushLinkStack</span><span class="params">(LinkStack &amp;S,ElemType e)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">PopLinkStack</span><span class="params">(LinkStack &amp;S,ElemType &amp;e)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">GetTopLinkStack</span><span class="params">(LinkStack &amp;S,ElemType &amp;e)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">ShowLinkStack</span><span class="params">(LinkStack &amp;S)</span></span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
-<h4 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"stack.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">//初始化 顺序栈</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">InitSqStack</span><span class="params">(SqStack &amp;S)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	S.top = <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//顺序栈 是否为空</span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">isEmptySqStack</span><span class="params">(SqStack &amp;S)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (S.top == <span class="number">-1</span>)</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">		<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//顺序栈 进栈</span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">PushSqStack</span><span class="params">(SqStack &amp;S,ElemType e)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (S.top == MaxSize<span class="number">-1</span>)		<span class="comment">//是否为满栈</span></span><br><span class="line">		<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">	S.data[++S.top] = e;	<span class="comment">//栈顶指针先往上移，再赋值</span></span><br><span class="line">	<span class="keyword">return</span> <span class="literal">true</span>;    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//顺序栈 出栈</span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">PopSqStack</span><span class="params">(SqStack &amp;S,ElemType &amp;e)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (S.top == <span class="number">-1</span>)</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">false</span>;	<span class="comment">//是否栈空</span></span><br><span class="line">	e = S.data[S.top--];	<span class="comment">//先出栈，指针减一</span></span><br><span class="line">	<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//读取顺序栈顶元素</span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">GetTopSqStack</span><span class="params">(SqStack &amp;S,ElemType &amp;e)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (S.top == <span class="number">-1</span>)</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">false</span>;	<span class="comment">//是否栈空</span></span><br><span class="line">	e = S.data[S.top];</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//显示顺序栈中元素</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">ShowSqStack</span><span class="params">(SqStack &amp;S)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	ElemType e;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"------SqStack-------\n"</span>);</span><br><span class="line">	<span class="keyword">while</span> (PopSqStack(S,e))</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%d "</span>, e);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"\n"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//初始化 链栈</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">InitLinkStack</span><span class="params">(LinkStack &amp;S)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	S = <span class="keyword">new</span> LinkNode;	<span class="comment">//头结点</span></span><br><span class="line">	S-&gt;next = <span class="literal">NULL</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//链栈 进栈</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">PushLinkStack</span><span class="params">(LinkStack &amp;S,ElemType e)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">//链栈一般无栈满情况</span></span><br><span class="line">	LinkNode *node = <span class="keyword">new</span> LinkNode;</span><br><span class="line">	node-&gt;data = e;		<span class="comment">//新建结点</span></span><br><span class="line">	node-&gt;next = S-&gt;next;	<span class="comment">//拼接头结点</span></span><br><span class="line">	S-&gt;next = node;		<span class="comment">//头插入 头结点后驱</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//链栈 出栈</span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">PopLinkStack</span><span class="params">(LinkStack &amp;S,ElemType &amp;e)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (S-&gt;next == <span class="literal">NULL</span>)	<span class="comment">//栈空</span></span><br><span class="line">		<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">	LinkNode *node = S-&gt;next;</span><br><span class="line">	e = node-&gt;data;</span><br><span class="line">	S-&gt;next = node-&gt;next;</span><br><span class="line">	<span class="keyword">delete</span> node;</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//读取链栈顶元素</span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">GetTopLinkStack</span><span class="params">(LinkStack &amp;S,ElemType &amp;e)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (S-&gt;next == <span class="literal">NULL</span>)	<span class="comment">//栈空</span></span><br><span class="line">		<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">	e = S-&gt;next-&gt;data;</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//显示链栈中元素</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">ShowLinkStack</span><span class="params">(LinkStack &amp;S)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	ElemType e;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"------LinkStack-------\n"</span>);</span><br><span class="line">	<span class="keyword">while</span> (PopLinkStack(S,e))</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%d "</span>, e);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"\n"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/12/26/struct-stack/" data-id="ck9vb5m01000p7xegqn47yffe" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/12/26/struct-queue/" data-id="ck9vbhk2b000rx1egp52xb8ju" class="article-share-link">Share</a>
       
       
     </footer>
@@ -475,7 +502,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/basic-protein/">basic protein</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ML/">ML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/basic-protein/">basic protein</a></li></ul>
     </div>
   </div>
 
@@ -485,7 +512,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/basic-protein/" style="font-size: 10px;">basic protein</a>
+      <a href="/tags/ML/" style="font-size: 10px;">ML</a> <a href="/tags/basic-protein/" style="font-size: 10px;">basic protein</a>
     </div>
   </div>
 
@@ -507,6 +534,10 @@
       <ul>
         
           <li>
+            <a href="/2020/05/06/machine-learning/">machine_learning</a>
+          </li>
+        
+          <li>
             <a href="/2020/05/06/RNN-LSTM/">RNN_LSTM</a>
           </li>
         
@@ -520,10 +551,6 @@
         
           <li>
             <a href="/2019/11/14/algorithm/">algorithm</a>
-          </li>
-        
-          <li>
-            <a href="/2019/08/19/GNN/">GNN</a>
           </li>
         
       </ul>
