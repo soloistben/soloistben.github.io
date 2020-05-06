@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>RNN_LSTM | MR.C</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="RNN recurrent (it performs the same function for every input)  the output of the current input depends on the past one computation   RNN can use their internal state (memory) to process sequences of i">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RNN_LSTM">
+<meta property="og:url" content="http://yoursite.com/2020/05/06/RNN-LSTM/index.html">
+<meta property="og:site_name" content="MR.C">
+<meta property="og:description" content="RNN recurrent (it performs the same function for every input)  the output of the current input depends on the past one computation   RNN can use their internal state (memory) to process sequences of i">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://github.com/soloistben/images/raw/master/rnn_lstm_image/rnn.png">
+<meta property="og:image" content="https://github.com/soloistben/images/raw/master/rnn_lstm_image/tanh.png">
+<meta property="og:image" content="https://github.com/soloistben/images/raw/master/rnn_lstm_image/yt.png">
+<meta property="og:image" content="https://github.com/soloistben/images/raw/master/rnn_lstm_image/LSTM.png">
+<meta property="og:image" content="https://github.com/soloistben/images/raw/master/rnn_lstm_image/input_gate.png">
+<meta property="og:image" content="https://github.com/soloistben/images/raw/master/rnn_lstm_image/forget_gate.png">
+<meta property="og:image" content="https://github.com/soloistben/images/raw/master/rnn_lstm_image/output_gate.png">
+<meta property="og:updated_time" content="2020-05-06T12:18:07.061Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="RNN_LSTM">
+<meta name="twitter:description" content="RNN recurrent (it performs the same function for every input)  the output of the current input depends on the past one computation   RNN can use their internal state (memory) to process sequences of i">
+<meta name="twitter:image" content="https://github.com/soloistben/images/raw/master/rnn_lstm_image/rnn.png">
+  
+    <link rel="alternate" href="/atom.xml" title="MR.C" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">MR.C</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-RNN-LSTM" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/05/06/RNN-LSTM/" class="article-date">
+  <time datetime="2020-05-06T12:11:28.000Z" itemprop="datePublished">2020-05-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      RNN_LSTM
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="RNN"><a href="#RNN" class="headerlink" title="RNN"></a>RNN</h4><ul>
+<li><p><strong>recurrent</strong> (it performs the same function for every input)</p>
+</li>
+<li><p>the output of the current input depends on the <strong>past one</strong> computation </p>
+</li>
+<li><p>RNN can use their <strong>internal state (memory)</strong> to process sequences of inputs</p>
+</li>
+<li><p>In RNN, all the inputs are <strong>related</strong> to each other (In other neural networks, all the inputs are independent of each other)</p>
+<p><img src="https://github.com/soloistben/images/raw/master/rnn_lstm_image/rnn.png" alt="rnn" style="zoom:50%;"></p>
+</li>
+<li><p>activation function is <strong>tanh()</strong></p>
+<p><img src="https://github.com/soloistben/images/raw/master/rnn_lstm_image/tanh.png" alt="tanh" style="zoom:43%;"></p>
+</li>
+<li><p>output</p>
+<p><img src="https://github.com/soloistben/images/raw/master/rnn_lstm_image/yt.png" alt="yt" style="zoom:43%;"></p>
+</li>
+<li><p>Advantages</p>
+<ul>
+<li><strong>RNN</strong> can model sequence of data so that each sample can be assumed to be dependent on previous ones </li>
+<li><strong>RNN</strong> are even used with convolutional layers to extend the effective pixel neighborhood. </li>
+</ul>
+</li>
+<li><p>Disadvantages</p>
+<ul>
+<li>Gradient vanishing and exploding problems </li>
+<li>Training an RNN is a very difficult task </li>
+<li>It cannot process very long sequences if using <em>tanh</em> or <em>relu</em> as an activation function</li>
+</ul>
+</li>
+</ul>
+<h4 id="LSTM-Long-Short-Term-Memory"><a href="#LSTM-Long-Short-Term-Memory" class="headerlink" title="LSTM (Long Short-Term Memory)"></a>LSTM (Long Short-Term Memory)</h4><ul>
+<li><p>LSTM is a modified version of RNN, which makes it easier to <strong>remember</strong> past data in memory </p>
+</li>
+<li><p>The <strong>vanishing gradient</strong> problem of RNN is resolved here </p>
+</li>
+<li><p>LSTM is well-suited to classify, process and predict <strong>time series given time lags of unknown duration</strong></p>
+<p><img src="https://github.com/soloistben/images/raw/master/rnn_lstm_image/LSTM.png" alt="LSTM" style="zoom:43%;"></p>
+</li>
+<li><p><strong>Input gate</strong> — discover which value from input should be used to modify the memory </p>
+<ul>
+<li><strong>Sigmoid</strong> function decides which values to let through <strong>0,1.</strong></li>
+<li><strong>tanh</strong> function gives weightage to the values which are passed deciding their level of importance ranging from<strong>-1</strong> to <strong>1</strong> </li>
+</ul>
+<p><img src="https://github.com/soloistben/images/raw/master/rnn_lstm_image/input_gate.png" alt="input_gate" style="zoom:43%;"></p>
+</li>
+<li><p><strong>Forget gate</strong> — discover what details to be discarded from the block</p>
+<ul>
+<li><strong>sigmoid</strong> function looks at the previous state(<strong>ht-1</strong>) and the content input(<strong>Xt</strong>) and outputs a number between <strong>0</strong> (<em>omit this</em>) and <strong>1</strong>(<em>keep this**</em>)<strong> for each number in the cell state </strong>Ct−1**. </li>
+</ul>
+<p><img src="https://github.com/soloistben/images/raw/master/rnn_lstm_image/forget_gate.png" alt="forget_gate" style="zoom:43%;"></p>
+</li>
+<li><p><strong>Output gate</strong> — the input and the memory of the block is used to decide the output </p>
+<p><img src="https://github.com/soloistben/images/raw/master/rnn_lstm_image/output_gate.png" alt="output_gate" style="zoom: 33%;"></p>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/05/06/RNN-LSTM/" data-id="ck9vb5lze00057xeg455gqpb7" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2020/05/06/Amino-acids-proteins/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Amino_acids_proteins</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/basic-protein/">basic protein</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/basic-protein/" style="font-size: 10px;">basic protein</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/05/06/RNN-LSTM/">RNN_LSTM</a>
+          </li>
+        
+          <li>
+            <a href="/2020/05/06/Amino-acids-proteins/">Amino_acids_proteins</a>
+          </li>
+        
+          <li>
+            <a href="/2019/12/02/Master-Eng/">Master_Eng</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/14/algorithm/">algorithm</a>
+          </li>
+        
+          <li>
+            <a href="/2019/08/19/GNN/">GNN</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 (soloistben)<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
