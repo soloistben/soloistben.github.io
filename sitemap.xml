@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2020/05/06/Amino-acids-proteins/</loc>
+    
+    <lastmod>2020-08-06T07:37:29.041Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2020/07/25/Spectral-Cluster/</loc>
     
     <lastmod>2020-07-27T09:32:54.190Z</lastmod>
@@ -26,13 +33,6 @@
     <loc>http://yoursite.com/2020/05/06/RNN-LSTM/</loc>
     
     <lastmod>2020-05-06T12:18:07.061Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2020/05/06/Amino-acids-proteins/</loc>
-    
-    <lastmod>2020-05-06T11:20:00.049Z</lastmod>
     
   </url>
   
