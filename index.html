@@ -97,8 +97,7 @@
 </li>
 </ul>
 <h5 id="Two-HMM"><a href="#Two-HMM" class="headerlink" title="Two. HMM"></a>Two. HMM</h5><ul>
-<li><p>在概率中，隐马尔可夫模型对应所有状态是相互独立的</p>
-</li>
+<li>在概率中，隐马尔可夫模型对应所有状态是相互独立的</li>
 <li><p><strong>P(q_t|q_t-1)</strong>  Transition Probability 转移概率</p>
 <ul>
 <li>P(q_t|q_t-1, q_t-2,…, q_1) = P(q_t|q_t-1)<ul>
@@ -122,13 +121,9 @@
 </li>
 <li><p>两个概率决定了整个隐马尔可夫模型 </p>
 </li>
-<li><p>在信号中用HMM也很多，时间轴每段范围的信号就相当与一个y_t</p>
-<p><img src="https://github.com/soloistben/images/raw/master/hmm_crf/hmm.png" alt="hmm" style="zoom:67%;"></p>
-</li>
-<li><p>每个隐状态的概率和为1，则矩阵行和为1</p>
-</li>
-<li><p>P(X) = ∫_y P(X, Y) dy </p>
-</li>
+<li>在信号中用HMM也很多，时间轴每段范围的信号就相当与一个y_t<br><img src="https://github.com/soloistben/images/raw/master/hmm_crf/hmm.png" alt="hmm" style="zoom:67%;"></li>
+<li>每个隐状态的概率和为1，则矩阵行和为1</li>
+<li>P(X) = ∫_y P(X, Y) dy </li>
 <li><p><strong>P(y_1, y_2, y_3)</strong> = Σq_1 Σq_2 Σq_3 P(y_1, y_2, y_3, q_1, q_2, q_3) = Σq_1 Σq_2 Σq_3 <strong>P(y_3|q_3)P(q_3|q_2)*P(y_2|q_2)P(q_2|q_1)*P(y_1|q_1)P(q_1)</strong> </p>
 <ul>
 <li>P(y_1, y_2, y_3, q_1, q_2, q_3) = P(y_3|y_1, y_2, q_1, q_2, q_3)*P(y_1, y_2, q_1, q_2, q_3)</li>
@@ -154,28 +149,20 @@
 </li>
 </ul>
 </li>
-<li><p>公式范化（计算量较大）</p>
-<p><img src="https://github.com/soloistben/images/raw/master/hmm_crf/hmm_function.png" alt="hmm_function" style="zoom: 67%;"></p>
+<li><p>公式范化（计算量较大）<br><img src="https://github.com/soloistben/images/raw/master/hmm_crf/hmm_function.png" alt="hmm_function" style="zoom: 67%;"></p>
 <ul>
-<li><p>一个定义</p>
-<p><img src="https://github.com/soloistben/images/raw/master/hmm_crf/FB.png" alt="FB" style="zoom:67%;"></p>
+<li><p>一个定义<br><img src="https://github.com/soloistben/images/raw/master/hmm_crf/FB.png" alt="FB" style="zoom:67%;"></p>
 </li>
 <li><p>优化计算量</p>
 <ul>
-<li><p>alpha_i(t) = P(y_1, …, y_t, q_t=i)</p>
-</li>
-<li><p>alpha_i(1) = P(y_1, q_1=i) = P(y_i|q_1=i)P(q1) = b_i(y_1) P(q_1) </p>
-</li>
-<li><p>alpha_j(2) = P(y_1, y_2, q_2=j) = Σq_1P(y_1, y_2, q_1=i, q_2=j) = Σq_1 P(y_2|q_2=j)P(q_2=j|q_1=i)*P(y_1, q_1=i) = P(y_2|q_2=j) Σq_1 P(q_2=j|q_1=i)*alpha_i(1) = b_j(y_1) Σq_1 a_ij*alpha_i(1)</p>
-</li>
-<li><p>开始递归 alpha_j(t) = b_j(y_t) Σq_1 a_ij*alpha_i(t-1) = P(y_1, …, y_t, q_t=j) </p>
-<ul>
+<li>alpha_i(t) = P(y_1, …, y_t, q_t=i)</li>
+<li>alpha_i(1) = P(y_1, q_1=i) = P(y_i|q_1=i)P(q1) = b_i(y_1) P(q_1) </li>
+<li>alpha_j(2) = P(y_1, y_2, q_2=j) = Σq_1P(y_1, y_2, q_1=i, q_2=j) = Σq_1 P(y_2|q_2=j)P(q_2=j|q_1=i)*P(y_1, q_1=i) = P(y_2|q_2=j) Σq_1 P(q_2=j|q_1=i)*alpha_i(1) = b_j(y_1) Σq_1 a_ij*alpha_i(1)</li>
+<li>开始递归 alpha_j(t) = b_j(y_t) Σq_1 a_ij*alpha_i(t-1) = P(y_1, …, y_t, q_t=j) <ul>
 <li><strong>P(y_1, …, y_t) = Σj P(y_1, …, y_t, q_t=j) = Σj alpha_j(t)</strong></li>
 </ul>
 </li>
-<li><p>通过贝叶斯公式</p>
-<p><img src="https://github.com/soloistben/images/raw/master/hmm_crf/FB_2.png" alt="FB_2" style="zoom:67%;"></p>
-<ul>
+<li>通过贝叶斯公式<br><img src="https://github.com/soloistben/images/raw/master/hmm_crf/FB_2.png" alt="FB_2" style="zoom:67%;"><ul>
 <li>P(Y, q_t=i|λ) = P(Y, q_t=i)P(q_t=i) = P(y_1, …, y_t|q_t=i)P(y_t+1, …, y_T|q_t=i)P(q_t=i) =  P(y_1, …, y_t, q_t=i)P(y_t+1, …, y_T|q_t=i) = alpha_i(t) beta_i(t)</li>
 </ul>
 </li>
