@@ -65,6 +65,152 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-HMM-CRF" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/08/09/HMM-CRF/" class="article-date">
+  <time datetime="2020-08-09T12:29:28.000Z" itemprop="datePublished">2020-08-09</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/08/09/HMM-CRF/">HMM_CRF</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="Hidden-Markov-Model-隐马尔可夫-amp-Conditional-Random-Field-条件随机场"><a href="#Hidden-Markov-Model-隐马尔可夫-amp-Conditional-Random-Field-条件随机场" class="headerlink" title="Hidden Markov Model 隐马尔可夫 &amp; Conditional Random Field 条件随机场"></a>Hidden Markov Model 隐马尔可夫 &amp; Conditional Random Field 条件随机场</h4><h5 id="One-Time-Sequence-Series"><a href="#One-Time-Sequence-Series" class="headerlink" title="One. Time Sequence / Series"></a>One. Time Sequence / Series</h5><ul>
+<li>在时间序列中，起伏状态可以被观测到（股票走势就是一种时间序列，股票中的涨跌）</li>
+<li>无法观测到的是时间序列的<strong>隐状态</strong>（股票中是否处于牛市状态，这类的就是隐状态）<ul>
+<li>隐状态会有很多</li>
+<li>当知道隐状态存在时，每个隐状态被观测时，都是相互独立（互不干扰）</li>
+<li>隐状态之间是离散的</li>
+</ul>
+</li>
+</ul>
+<h5 id="Two-HMM"><a href="#Two-HMM" class="headerlink" title="Two. HMM"></a>Two. HMM</h5><ul>
+<li><p>在概率中，隐马尔可夫模型对应所有状态是相互独立的</p>
+</li>
+<li><p><strong>P(q_t|q_t-1)</strong>  Transition Probability 转移概率</p>
+<ul>
+<li>P(q_t|q_t-1, q_t-2,…, q_1) = P(q_t|q_t-1)<ul>
+<li>每个状态只取决于前面一个状态，而非前面所有状态</li>
+<li>即当前隐状态到下一个隐状态的概率</li>
+</ul>
+</li>
+<li>Discrete 离散的（用矩阵表示 A，维度(k, k)，k是开个隐状态）</li>
+</ul>
+</li>
+<li><p><strong>P(y_t|q_t)</strong>  Emmission/Measurement Probability 发射概率 / 观测概率</p>
+<ul>
+<li>P(y_t|q_1,…, q_t-1, q_t, y_1,…, y_t-1) = P(y_t|q_t)<ul>
+<li>已知当前状态 q_t，得到事实变化 y_t 的概率</li>
+</ul>
+</li>
+<li>Discrete or Continuous</li>
+<li>若是离散时，可以用矩阵表示 B，维度(k, L)，L是y的取值范围（也是离散的）</li>
+<li>若是连续的，无法使用矩阵表示，y可能是连续的一个分布</li>
+</ul>
+</li>
+<li><p>两个概率决定了整个隐马尔可夫模型 </p>
+</li>
+<li><p>在信号中用HMM也很多，时间轴每段范围的信号就相当与一个y_t</p>
+<p><img src="https://github.com/soloistben/images/raw/master/hmm_crf/hmm.png" alt="hmm" style="zoom:67%;"></p>
+</li>
+<li><p>每个隐状态的概率和为1，则矩阵行和为1</p>
+</li>
+<li><p>P(X) = ∫_y P(X, Y) dy </p>
+</li>
+<li><p><strong>P(y_1, y_2, y_3)</strong> = Σq_1 Σq_2 Σq_3 P(y_1, y_2, y_3, q_1, q_2, q_3) = Σq_1 Σq_2 Σq_3 <strong>P(y_3|q_3)P(q_3|q_2)*P(y_2|q_2)P(q_2|q_1)*P(y_1|q_1)P(q_1)</strong> </p>
+<ul>
+<li>P(y_1, y_2, y_3, q_1, q_2, q_3) = P(y_3|y_1, y_2, q_1, q_2, q_3)*P(y_1, y_2, q_1, q_2, q_3)</li>
+<li>利用马尔可夫性质：P(y_1, y_2, y_3, q_1, q_2, q_3) = P(y_3|q_3)*P(q_3|y_1, y_2, q_1, q_2)*P(y_1, y_2, q_1, q_2) = P(y_3|q_3)P(q_3|q_2)*P(y_1, y_2, q_1, q_2)</li>
+<li>P(y_3|q_3), P(q_3|q_2), P(y_2|q_2), P(q_2|q_1), P(y_1|q_1) 在马尔可夫参数A, B矩阵中可得</li>
+<li><strong>P(q_1) 是初始状态</strong>，这需要问题给出</li>
+<li>则马尔可夫模型需要三个参数，λ={A, B, P(q_1)} (假设y是离散的)</li>
+</ul>
+</li>
+<li><p>马尔可夫模型有什么用？</p>
+<ul>
+<li>找50人讲10个单词（动物名字）</li>
+<li><strong>λ_cat = argmax_λ log P(y_1, …, y_50|λ)</strong> <ul>
+<li>当初始条件为λ，最大为说cat的情况</li>
+<li>记录所有单词的λ</li>
+<li>用高斯或者高斯混合模型计算λ</li>
+</ul>
+</li>
+<li>当来了个新人，说其中一个单词，那么他说哪个单词概率最大？<ul>
+<li><strong>P(y_new|λ_cat)</strong>, … 概率最大为结果</li>
+<li>若所有该概率计算结果很小时，说明新人说的不是原10个单词</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>公式范化（计算量较大）</p>
+<p><img src="https://github.com/soloistben/images/raw/master/hmm_crf/hmm_function.png" alt="hmm_function" style="zoom: 67%;"></p>
+<ul>
+<li><p>一个定义</p>
+<p><img src="https://github.com/soloistben/images/raw/master/hmm_crf/FB.png" alt="FB" style="zoom:67%;"></p>
+</li>
+<li><p>优化计算量</p>
+<ul>
+<li><p>alpha_i(t) = P(y_1, …, y_t, q_t=i)</p>
+</li>
+<li><p>alpha_i(1) = P(y_1, q_1=i) = P(y_i|q_1=i)P(q1) = b_i(y_1) P(q_1) </p>
+</li>
+<li><p>alpha_j(2) = P(y_1, y_2, q_2=j) = Σq_1P(y_1, y_2, q_1=i, q_2=j) = Σq_1 P(y_2|q_2=j)P(q_2=j|q_1=i)*P(y_1, q_1=i) = P(y_2|q_2=j) Σq_1 P(q_2=j|q_1=i)*alpha_i(1) = b_j(y_1) Σq_1 a_ij*alpha_i(1)</p>
+</li>
+<li><p>开始递归 alpha_j(t) = b_j(y_t) Σq_1 a_ij*alpha_i(t-1) = P(y_1, …, y_t, q_t=j) </p>
+<ul>
+<li><strong>P(y_1, …, y_t) = Σj P(y_1, …, y_t, q_t=j) = Σj alpha_j(t)</strong></li>
+</ul>
+</li>
+<li><p>通过贝叶斯公式</p>
+<p><img src="https://github.com/soloistben/images/raw/master/hmm_crf/FB_2.png" alt="FB_2" style="zoom:67%;"></p>
+<ul>
+<li>P(Y, q_t=i|λ) = P(Y, q_t=i)P(q_t=i) = P(y_1, …, y_t|q_t=i)P(y_t+1, …, y_T|q_t=i)P(q_t=i) =  P(y_1, …, y_t, q_t=i)P(y_t+1, …, y_T|q_t=i) = alpha_i(t) beta_i(t)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>如何学习HMM的参数</p>
+<ul>
+<li>λ = argmax_λ log P(Y|λ) （极大似然估计）</li>
+<li>用EM学习<ul>
+<li>E-step: Σq_1… Σq_t log(P(Y, Q))*P(Q,Y|θ^g) = Σq_1… Σq_t log(P(q_1)*ΠP(q_t|q_t-1)*ΠP(y_t|q_t)) <em> P(Q,Y|θ^g) = Σq_1… Σq_t [log(P(q_1)+Σlog(a_q_t-1,q_t)+Σlog(b_q_t(y_t))] </em> P(Q,Y|θ^g)</li>
+<li>part 5,6还没看完(需要EM基础)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h5 id="Three-CRF"><a href="#Three-CRF" class="headerlink" title="Three. CRF"></a>Three. CRF</h5><p><a href="https://www.youtube.com/watch?v=Ji6KbkyNmk8&amp;list=PLFze15KrfxbGPEHyjxddbbxVvLa5kilFf" target="_blank" rel="noopener">source video</a> <a href="https://github.com/roboticcam/machine-learning-notes/blob/master/files/dynamic_model.pdf" target="_blank" rel="noopener">pdf</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/08/09/HMM-CRF/" data-id="ckdnacbhj0004ogeg6zbnauxj" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ML/">ML</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Spectral-Cluster" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/07/25/Spectral-Cluster/" class="article-date">
@@ -134,7 +280,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/25/Spectral-Cluster/" data-id="ckd17p2y30000bsegu8o8zo1k" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/25/Spectral-Cluster/" data-id="ckdnacbhq0009ogeg3hdlhmlp" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cluster/">cluster</a></li></ul>
@@ -1195,7 +1341,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/05/06/machine-learning/" data-id="ckd17nmgb000p2megfb7ct17f" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/05/06/machine-learning/" data-id="ckdnacbjk000zogeg1aewdio6" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ML/">ML</a></li></ul>
@@ -1288,7 +1434,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/05/06/RNN-LSTM/" data-id="ckd17nmfd00032meg6nhwlz2s" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/05/06/RNN-LSTM/" data-id="ckdnacbhl0005ogegghezu2v0" class="article-share-link">Share</a>
       
       
     </footer>
@@ -1441,7 +1587,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/05/06/Amino-acids-proteins/" data-id="ckd17nmff00042megsi57dc1t" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/05/06/Amino-acids-proteins/" data-id="ckdnacbhc0001ogeg9y3izveh" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/basic-protein/">basic protein</a></li></ul>
@@ -1590,7 +1736,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/12/02/Master-Eng/" data-id="ckd17nmfc00022megl2vzc9bb" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/12/02/Master-Eng/" data-id="ckdnacbhn0006ogegbrbiwuqe" class="article-share-link">Share</a>
       
       
     </footer>
@@ -1737,7 +1883,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/11/14/algorithm/" data-id="ckd17nmfn00082meglff13voi" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/11/14/algorithm/" data-id="ckdnacbie000dogegfq4zdjkl" class="article-share-link">Share</a>
       
       
     </footer>
@@ -1962,7 +2108,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/08/19/GNN/" data-id="ckd17nmf900012megxdr47siq" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/08/19/GNN/" data-id="ckdnacbhf0002ogege57qy0rc" class="article-share-link">Share</a>
       
       
     </footer>
@@ -2041,7 +2187,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/07/29/DL-RNN/" data-id="ckd17nmfl00072megysaag2z0" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/07/29/DL-RNN/" data-id="ckdnacbiv000jogegea83htbp" class="article-share-link">Share</a>
       
       
     </footer>
@@ -2085,86 +2231,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/07/19/Blockchain/" data-id="ckd17nmf300002megz33t85zb" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-DL-CNN" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/07/03/DL-CNN/" class="article-date">
-  <time datetime="2019-07-03T02:29:01.000Z" itemprop="datePublished">2019-07-03</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/07/03/DL-CNN/">DL_CNN</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="激活函数："><a href="#激活函数：" class="headerlink" title="激活函数："></a>激活函数：</h4><p>1、sigmoid常用于二元分类在输出时做激活函数，其他地方tanh更优于sigmoid<br>2、tanh和sigmoid在过大过小时都会出现梯度为零（斜率为0，与x轴平行），则更多选择使用relu（rectified linear unit修正线性单元）（在x=0处不可导，但实际情况很少会出现靠近0的数，则可以忽略）（不确定用什么激活函数，就用relu）（<span style="border-bottom:2px dashed red;">relu不会出现梯度弥散</span>，则会更快）<br>3、 leaky relu（g(z)=max(0.01z,z)）在x&lt;0时有梯度 ，relu在x&lt;0时没有梯度<br>4、选择什么激活函数：在多事几个激活函数训练下，选择使参数更优的激活函数<br>5、若激活函数全是线性函数，则隐含层没有意义，整个神经网络都仅仅只是线性运算<br>6、线性函数作为激活函数一般是在输出时（全连接层）<br>7、实际上大多数现象呈现关系都是正相关关系，并非线性关系，因此用非线性函数作为激活函数是更适合表达正相关关系</p>
-<h4 id="激活函数的导数："><a href="#激活函数的导数：" class="headerlink" title="激活函数的导数："></a>激活函数的导数：</h4><p>1、sigmoid的导数 =&gt; g’(z) =g(z)(1-g(z))，z=0时g’(0)=1/4<br>2、tanh的导数 =&gt; g’(z) = 1-(g(z))^2，z=0时g’(0)=1<br>3、relu的导数 =&gt; g’=0(z&lt;0),g’=1(z&gt;0),z=0时，g’=0或1都可以（不重要，z=0概率太小）<br>4、leaky relu的导数 =&gt; g’=0.01(z&lt;0),g’=1(z&gt;0)</p>
-<h4 id="梯度下降："><a href="#梯度下降：" class="headerlink" title="梯度下降："></a>梯度下降：</h4><p>1、不可以将所有参数初始化为0，否则梯度下降会失效（偏置初始化为0可以，权重初始化为0则会出现问题）<br>2、权重初始化一般都比较小，过大会在tanh和sigmoid中梯度太小甚至出现梯度弥散，使得梯度下降过慢</p>
-<h4 id="前向传播反向传播："><a href="#前向传播反向传播：" class="headerlink" title="前向传播反向传播："></a>前向传播反向传播：</h4><p>1、为什么要更深的神经网络？<br>​    在相同节点情况下，深比浅更快（树的类型）<br>2、每次执行一个神经元节点运算（激活函数g(wx+b)），都会缓存z=wx+b的值，作为激活函数的输入和反向传播的输入</p>
-<h4 id="参数："><a href="#参数：" class="headerlink" title="参数："></a>参数：</h4><p>1、反向传播输出每一层的dw和db，则会更新下一轮的w=w-dw，b=b-db（<span style="border-bottom:2px dashed red;">参数越来越优，越接近真实值，dw、db就会越来越小</span>）<br>2、参数：w、b  超参数：学习率，激活函数，隐含层层数等（均影响w和b的值）<br>3、深度学习，机器学习是迭代的过程，不可能一开始就直接把所有超参数全部设置好</p>
-<h4 id="数据划分："><a href="#数据划分：" class="headerlink" title="数据划分："></a>数据划分：</h4><p>1、数据集一般分为train训练集、dev验证集（验证方差、偏差）、test测试集（泛化性）<br>2、对于小数据，训练:测试=&gt;7:3，训练:验证:测试=6:2:2<br>3、对于大数据，验证集与测试集只需要小比例数据即可，验证集有1w(1%)数据即可用于在多种算法选出最优的几个算法，测试集有1w(1%)就可以评估模型性能，尽可能多数据用于训练<br>4、<span style="border-bottom:2px dashed red;">直接用网络图片，会导致训练集与测试集和验证集不是来自于同一分布</span></p>
-<h4 id="方差与偏差："><a href="#方差与偏差：" class="headerlink" title="方差与偏差："></a>方差与偏差：</h4><p>1、训练集误差小，验证集误差大，可能会是过拟合，属于高方差<br>2、训练集与验证集误差相差不大，但其他分类有明显差距，可能是欠拟合，属于高偏差<br>3、训练集误差大，验证集误差更大，则属于高偏差与高方差<br>4、训练集验证集的误差都小，则属于低偏差与低方差<br>5、一般最优误差是贝叶斯误差，几乎接近0误差<br>6、若高偏差，则需要更深的神经网络or更长时间训练or更好的优化算法<br>7、若偏差不高，则判断是否高方差<br>8、若高方差，则需要更多数据or正则化<br>9、优化目标要做到低方差、低偏差</p>
-<h4 id="正则化："><a href="#正则化：" class="headerlink" title="正则化："></a>正则化：</h4><p>1、用L1正则化，会使w变稀疏，但未改变所占内存大小，并不便于减小权重<br>2、常用L2正则化，但计算量会增大<br>3、使用正则项，可避免数据权值矩阵过大，正则系数过大，使w过小，会减少过拟合，接近高偏差状态<br>4、w越小，z=wx+b也越小，靠近0处的范围，则在tanh和sigmoid激活函数中，激活函数大致呈线性状态，使梯度（斜率）保持较大状态<br>5、在代价函数J加入正则化项，是为了预防权重过大<br>6、代价函数对于梯度下降的每个调幅都单调递减</p>
-<h4 id="Dropout："><a href="#Dropout：" class="headerlink" title="Dropout："></a>Dropout：</h4><p>1、dropout中的keep-prop概率表示每个隐藏单元的不被消除概率<br>2、使用dropout会减小权重，类似正则化，并且完成了一些预防过拟合的外层正则化<br>3、<span style="border-bottom:2px dashed red;">在过拟合严重处可降低keep-prop，不担心过拟合处可提高keep-prop</span><br>4、一般不在输入层使用dropout<br>5、除非出现过拟合状态，否则不用dropout，<span style="border-bottom:2px dashed red;">在计算机视觉常用dropout，在别的领域少用</span><br>6、dropout缺点是代价函数J不再被明确定义<br>7、先执行代码，确保代价函数是单调递减，再使用dropout</p>
-<h4 id="其他减少过拟合方法："><a href="#其他减少过拟合方法：" class="headerlink" title="其他减少过拟合方法："></a>其他减少过拟合方法：</h4><p>1、data augment数据增强，在少图片数据时增多图片数据，有一定减少拟合作用<br>2、early stopping提早结束，在出现过拟合前（验证集误差提高前）获得中等大小的w范数，提早结束训练。缺点时停止了代价函数的降低和停止了优化</p>
-<h4 id="正则化输入："><a href="#正则化输入：" class="headerlink" title="正则化输入："></a>正则化输入：</h4><p>1、归一化特征值输入可以加速神经网络的训练，将代价函数的图像不均匀显示（输入参数之间取值范围差别过大），则将图像显示更加均匀（重建坐标系将输入参数之间范围缩至相差不多）则可以使梯度下降更快<br>2、z=wx+b （w比1大）过大引起梯度爆炸，（w比1小）过小引起梯度弥散<br>3、高斯随机变量初始化权重w，会有一定程度减少发生梯度爆炸和梯度弥散的情况（relu激活函数使用2/n的方差，tanh使用1/n的方差）</p>
-<h4 id="梯度检测："><a href="#梯度检测：" class="headerlink" title="梯度检测："></a>梯度检测：</h4><p>1、梯度检测不要用在训练，用于调试（dθapprox[i]计算需要很长时间，dθ要反向传播计算，所以在调试计算比较好）<br>2、梯度检测结果不好，要检查所有项，找出bug<br>3、若使用了正则化，代价函数不能漏掉正则项<br>4、<span style="border-bottom:2px dashed red;">梯度检测不能使用dropout，使用dropout无法确认代价函数</span></p>
-<h4 id="mini-batch："><a href="#mini-batch：" class="headerlink" title="mini batch："></a>mini batch：</h4><p>1、batch训练，每次迭代都需要遍历整个训练集。理论上，代价函数是单调递减，若是出现增加，则必然有bug或者是一次运行的batch太大（运算时间很长）<br>2、mini batch训练，并不是每一次的迭代都是下降的，整体是单调递减，但会有很多噪声，出现噪音的原因是每个mini batch运算难度不一<br>3、当mini batch=1时，叫随机梯度下降法，每个样本都时独立的mini batch，每次运算都是局部最优，不一定朝着最小值方向，其代价函数永远不收敛，而是在最小值附件波动，缺点是失去所有向量化的运算加速、每次只计算一个会效率低。<br>4、通过减少学习率，噪声会有所减少<br>5、选择折中的mini batch大小，会有更快学习速度，既有向量化的运算加速，且不需要等待整个训练集被处理完就可以开始后续工作<br>6、若是训练集少于2000，直接使用batch会更好<br>7、一般mini batch大小：64、128、256、512，选择2的次方会更快</p>
-<h4 id="指数加权平均（加权移动平均值-滑动平均）："><a href="#指数加权平均（加权移动平均值-滑动平均）：" class="headerlink" title="指数加权平均（加权移动平均值/滑动平均）："></a>指数加权平均（加权移动平均值/滑动平均）：</h4><p>1、Vt=βVt-1 + (1-β)θt     Vt==1/(1-β)<br>2、β=0.9，Vt==10，β=0.98，Vt==50，β=0.5，Vt==2<br>3、用于调整参数，选择中间值会得到更好的效果<br>4、指数加权平均运算占用内存少<br>5、指数加权平均往往比直接求平均数得到更好的估测，缺点是需要保存数据多</p>
-<h4 id="bias-correction偏差修正："><a href="#bias-correction偏差修正：" class="headerlink" title="bias correction偏差修正："></a>bias correction偏差修正：</h4><p>1、偏差修正让平均数运算更加准确<br>2、β约靠近1，在估测初期，值会偏低，则不使用Vt，而使用Vt/(1-β^t)，可修复初期偏低情况</p>
-<h4 id="Momentum梯度下降："><a href="#Momentum梯度下降：" class="headerlink" title="Momentum梯度下降："></a>Momentum梯度下降：</h4><p>1、学习率过大，会摆动过大<br>2、momentum使用指数加权平均数在每次梯度运算更新dw、db的值，会减少噪音（摆动）、更快更直接的到达最小值<br>3、Vdw = βVdw + (1-β)dw<br>​     Vdb = βVdb + (1-β)db<br>​     w = w - αVdw  b = b - αVdb<br>​     超参数：α(学习率)、β(指数加权平均数，常用0.9)<br>4、第二版：Vdw = βVdw + dw去掉了(1-β)，β仍然是0.9，α要相应改变，效果差不多，但更偏向上者</p>
-<h4 id="RMSprop（root-mean-square-prop）均方根："><a href="#RMSprop（root-mean-square-prop）均方根：" class="headerlink" title="RMSprop（root mean square prop）均方根："></a>RMSprop（root mean square prop）均方根：</h4><p>1、与momentum类似，可以加速梯度下降<br>2、w决定水平方向（前进方向），b决定垂直方向（噪音、摆动方向），需要让减缓摆动，希望dw小一点使w更新后跟小，db大一点使b更新后变化不大，从而减少噪音。但需要一个较大的学习率α来加快学习<br>3、Sdw = βSdw + (1-β)(dw)^2<br>​     Sdb = βSdb + (1-β)(db)^2<br>​     w = w - αdw/(√Sdw)  b = b - αdb/(√Sdb)</p>
-<h4 id="Adam优化算法-Adaptive-Moment-Estimation-Momentum-RMSprop"><a href="#Adam优化算法-Adaptive-Moment-Estimation-Momentum-RMSprop" class="headerlink" title="Adam优化算法(Adaptive Moment Estimation)=Momentum+RMSprop:"></a>Adam优化算法(Adaptive Moment Estimation)=Momentum+RMSprop:</h4><p>1、初始化Vdw=0，Sdw=0，Vdb=0，Sdb=0<br>​     t in loop(using mini batch)：<br>​            (momentum)<br>​        Vdw = β1Vdw + (1-β1)dw<br>​        Vdb = β1Vdb + (1-β1)db<br>​            (RMSprop)<br>​        Sdw = β2Sdw + (1-β2)(dw)^2<br>​        Sdb = β2Sdb + (1-β2)(db)^2<br>​           (bias correction)<br>​        Vdw = Vdw/(1-β1^t)    Vdb = Vdb/(1-β1^t)<br>​        Sdw = Sdw/(1-β2^t)    Sdb = Sdb/(1-β2^t)<br>​            (updata w&amp;b)<br>​        w = w - αVdw/(√(Sdw+ε))     b = b - αVdb/(√(Sdb+ε))   （debug α value，β1=0.9，β2=0.999，ε=10^-8(可不设置)）<br>2、结合momentum和RMSprop，适合更加广泛的神经网络</p>
-<h4 id="Learning-rate-decay衰减学习率："><a href="#Learning-rate-decay衰减学习率：" class="headerlink" title="Learning rate decay衰减学习率："></a>Learning rate decay衰减学习率：</h4><p>1、随着训练递进，逐步慢慢减少学习率，从而加快学习速度（学习率过大无法收敛）<br>2、batch分成多个mini batch后，第一次遍历叫epoch1，epoch-num也表示遍历到第几个mini batch<br>3、α = α0/(1+decay-rate*epoch-num)<br>4、当α0=0.2，decay-rate=1时<br>​    epoch  α<br>​        1      0.1<br>​        2      0.67<br>​        3      0.5<br>​        4      0.4<br>5、学习率递减<br>6、指数衰减、离散下降学习率=每次下降减半、手动衰减</p>
-<h4 id="局部最优："><a href="#局部最优：" class="headerlink" title="局部最优："></a>局部最优：</h4><p>1、通常梯度为0的点不是最优点<br>2、代价函数中的梯度为0的点叫鞍点<br>3、在高维度神经网络中，一般不会被困于较差的局部最优<br>4、图形平稳的的地方，会让学习十分缓慢（需要优化算法加速）</p>
-<h4 id="调试处理："><a href="#调试处理：" class="headerlink" title="调试处理："></a>调试处理：</h4><p>1、调试先后重要程度：学习率α、momentum的β、mini batch 大小、隐含节点数、层数、衰减学习率<br>2、调参数之前不知到那个参数更重要，当选择两个参数时，若选择学习率alpha和adam的ε，α会相对更重要，ε取值变化不大，<br><img src="https://github.com/soloistben/images/raw/master/deeplearning_image/1.PNG" alt="image"><br>3、若是在较优点附近的点效果也不错，则需要扩大这几个点范围，再次密集随机取点<br>4、在数轴上取值，随机均匀取样比较合理<br>5、学习率α范围在[0.0001,1]，选择在[10^a,10^b]内取值<br>6、β范围在[0.9,0.999]不好取值（0.9表示10个元素之间的平均，0.999表示1000个元素之间的平均），1-β范围在[0.001,0.1]容易取值，越靠近1取值变化会很大，若β在0.9到0.9005变化不大，而0.999到0.9995就相差很大</p>
-<h4 id="batch归一化："><a href="#batch归一化：" class="headerlink" title="batch归一化："></a>batch归一化：</h4><p>1、归一化输入，可加快学习过程<br>2、在隐含节点中归一化的是z而不是激活函数后的a<br>3、batch归一化与mini batch一起用<br>4、batch归一化类似dropout带来一些噪音，有轻微正则化效果</p>
-<h4 id="softmax分类："><a href="#softmax分类：" class="headerlink" title="softmax分类："></a>softmax分类：</h4><p>1、特点是将输出归一化，输入向量，输出向量</p>
-<h4 id="ML策略："><a href="#ML策略：" class="headerlink" title="ML策略："></a>ML策略：</h4><p>当识别率为90%时，仍远远不够，需要<br>1）收集更多图片数据<br>2）收集更多样的训练数据集<br>3）使用梯度下降算法优化时，训练更长时间<br>4）使用Adam优化算法<br>5）设计一个更大或更小的神经网络<br>6）用dropout或L2正则化<br>7）修改网络框架（更换激活函数、改变隐含节点）</p>
-<h4 id="正交化："><a href="#正交化：" class="headerlink" title="正交化："></a>正交化：</h4><p>1、可以调整的参数设置在不同的正交的维度上，调整其中一个参数，不会或几乎不会影响其他维度上的参数变化，更容易更快速地将参数调整到一个比较好的数值<br>2、若是在训练集表现不好，用更宽更深神经网络、用Adam优化算法<br>3、若是在验证集表现不好，可调节正则化、用更多训练数据<br>4、若是在测试集表现不好，用更多验证数据<br>5、若是在投入真实使用表现不好，需要修改代价函数J、验证集数据<br>6、测试集表现好坏与真实使用表现无关</p>
-<h4 id="单一指数评估指标："><a href="#单一指数评估指标：" class="headerlink" title="单一指数评估指标："></a>单一指数评估指标：</h4><p>1、查准率（表示分类结果的百分比）查全率（表示分类结果对的所占百分比）两者之间往往需要折中<br>2、在查准率表现好的未必在查全率表现好<br>3、不能仅依靠查准率和查全率来选择训练好的分类器，F1 score是查准率P和查全率R的调和平均，更好去选择分类器<br>4、F1 score = 2/(1/P + 1/R)<br>5、当需要顾及多个指标，在观察多个成本大小时，选出最好的那个<br>6、测试集和验证集必须来自于同一分布，逼近同一目标<br>7、大数据时代，大量数据作为训练，少了量分给验证与测试<br>8、为了规避识别图片将情色图片识别进去目标图片范畴，给损失函数加个权重，限制情色图片（图片处理需要将情色图片具体标出来）原：J = 1/mΣL(y-yi)，修改后：J = 1/Σwi * ΣwiL(y-yi)<br>9、定义指标是为了选择出更好的分类器（1、如何定义一个指标衡量想做事情的表现；2、分开考虑如改善系统在指标上的表现）<br>10、当在测试集和验证集中表现好，在实际应用却不好，则需要修改指标，或者改变测试集</p>
-<h4 id="机器学习与人对比："><a href="#机器学习与人对比：" class="headerlink" title="机器学习与人对比："></a>机器学习与人对比：</h4><p>1、通过大量数据训练，机器学习表现会出现超过人类，然后平稳，<span style="border-bottom:2px dashed red;">但始终会有一个性能无法超越的理论上限，叫贝叶斯最优误差Bayes optimal</span><br>2、将贝叶斯误差估计和训练误差之间的误差称为可避免偏差avoidable bias，训练误差与验证误差之间属于方差，哪个误差大就调整哪个<br>3、若训练集误差比贝叶斯误差还好，则是过拟合了<br>4、human-level performance人类水平表现，人类水平误差作为贝叶斯误差的代表<br>5、贝叶斯误差一般为小于0.5%<br>6、可避免偏差：更大模型、更优算法、训练更久、超参数搜索（找到更好神经网络架构）<br>7、方差：更多数据、正则化、dropout、数据增强、超参数搜索</p>
-<h4 id="误差分析："><a href="#误差分析：" class="headerlink" title="误差分析："></a>误差分析：</h4><p>1、收集更多狗图片数据，喂入猫分类器，学习更多，以至于更好区别猫和狗<br>2、在错误分类中，找出问题较为严重的给予解决，抓住问题根本，例如照片模糊影响分类器比例比将狗识别为猫比例更大，应着手解决模糊问题<br>3、监督学习，在大量训练数据下，允许少量标记错误<br>4、验证数据做了修正，测试数据也需要做出同样的修正<br>5、同时检验算法判断正确和判断错误的例子，这才公平，否则对算法的偏差估计可能会变大</p>
-<h4 id="语音识别："><a href="#语音识别：" class="headerlink" title="语音识别："></a>语音识别：</h4><p>1、背景噪音处理<br>2、口音处理<br>3、麦克风过远处理<br>4、儿童语音识别<br>5、口吃、感叹词处理</p>
-<h4 id="神经网络创建准备："><a href="#神经网络创建准备：" class="headerlink" title="神经网络创建准备："></a>神经网络创建准备：</h4><p>1、设立验证集和测试集，还有指标<br>2、搭好机器学习系统原型，用训练集训练一下查看效果，理解算法的表现<br>3、<span style="border-bottom:2px dashed red;">用偏差和方差分析，决定优化方向</span><br>4、想出所有能走的方向，选择实际上最有希望的方向<br>5、若是搭载已成熟的方向，有大量论文理论支撑，可以直接搭载复杂的神经网络，例如人脸识别<br>6、若是新的方向，先由简单神经网络开始<br>7、主要是造出能用的神经网络模型，而不是<strong>发明全新的机器学习算法</strong></p>
-<h4 id="训练集与测试集不是来自同一分布："><a href="#训练集与测试集不是来自同一分布：" class="headerlink" title="训练集与测试集不是来自同一分布："></a>训练集与测试集不是来自同一分布：</h4><p>1、option1：将来自不同分布的图片合并在一起（不推荐）<br>2、option2：若分布1是较多的，训练集=分布1+0.5×分布2，验证集=0.25×分部2，测试集=0.25×分部2<br>3、训练一个语音新方向的神经网络，使用已有语音识别的数据（音频剪辑、听写记录）和部分新方向的数据作为训练集，但验证集和测试集是新方向的数据</p>
-<h4 id="不同分布数据集的偏差与方差："><a href="#不同分布数据集的偏差与方差：" class="headerlink" title="不同分布数据集的偏差与方差："></a>不同分布数据集的偏差与方差：</h4><p>1、训练集和验证集来自不同分布，会出现训练集误差很低，验证集误差相对较高<br>2、新成立数据集：training-dev set 训练验证集（来自于训练集，但不用于训练）<br>3、四部分数据集：训练集|训练验证集|验证集|测试集<br>​    贝叶斯误差：0%<br>​    训练误差：1%<br>​    训练验证误差：9%<br>​    验证误差：10%<br><strong>结论：方差问题！！！</strong><br>​    贝叶斯误差：0%<br>​    训练误差：1%<br>​    训练验证误差：1.5%<br>​    验证误差：10%<br><strong>结论：数据不匹配！！！</strong><br>​    贝叶斯误差：0%<br>​    训练误差：10%<br>​    训练验证误差：11%<br>​    验证误差：12%<br><strong>结论：偏差问题！！！</strong><br>​    贝叶斯误差：0%<br>​    训练误差：10%<br>​    训练验证误差：11%<br>​    验证误差：20%<br><strong>结论：可避免偏差相当高，数据不匹配！！！</strong><br>4、可避免偏差：贝叶斯误差与训练误差之间<br>​     方差：训练误差与训练验证误差<br>​     数据匹配程度：训练验证误差与验证误差<br>​     拟合程度：验证误差与测试误差<br>5、个别情况：验证误差和测试误差均小于训练误差和训练验证误差，是因为验证集数据更容易处理（两者不是同一分布）</p>
-<h4 id="数据不匹配的优化尝试："><a href="#数据不匹配的优化尝试：" class="headerlink" title="数据不匹配的优化尝试："></a>数据不匹配的优化尝试：</h4><p>1、了解不同分布的数据集具体到差异，做误差分析，为避免过拟合，应该人工查看验证集而不是测试集<br>2、若在验证集中噪声可能更大，识别数字准确度不够，则需要收集更多类似验证集的数据去训练（降低数据不匹配，尽量来自于同一分布），或者去<span style="border-bottom:2px dashed red;">模拟噪声、模拟数字发音（将清晰的语音与噪声合成模拟现场的语音），在训练集做数据增强操作！（缺点：噪声也需要多样，否则容易过拟合）</span><br>3、”The quick brown fox jumps over the lazy dog”常在语音识别中出现，包含了26个字母<br>4、无人汽车中的汽车识别，运用人工合成的图片在人眼看来可能很正常，在只是合成了小情况的图片（无法将所有情况考虑进去），容易过拟合。（在渲染得十分逼真的游戏中，截图汽车的图片，但是游戏中汽车款式远少于现实生活中的汽车款式）</p>
-<h4 id="迁移学习："><a href="#迁移学习：" class="headerlink" title="迁移学习："></a>迁移学习：</h4><p>1、将分类猫的神经网络所学习的知识，去学习关于x光图片识别的神经网络。将类似的神经网络学习称为迁移学习<br>2、神经网络框架基本不变，在最后一层输出需要改变成新的输出层<br>3、若是训练数据不多，则仅训练最后一层或两三层即可（节省时间，少数据重新训练可能会过拟合），其他隐含层就可以不训练，使用旧神经网络的参数<br>4、若是数据足够多，可以训练所有层参数<br>5、<span style="border-bottom:2px dashed red;">旧数据的初期训练阶段称为pre-training预训练，新图片数据训练阶段称为fine tuning微调</span><br>6、为什么旧的神经网络学习的东西能迁移到新的神经网络？因为<span style="border-bottom:2px dashed red;">旧神经网络已经学会低层次特征（边缘检测、曲线检测，阳性对象检测），已经学会了结构信息、图像形状信息，学会的点、线等等会帮助新神经网络的高层次特征学习</span><br>7、迁移学习意义是迁移来源问题（旧神经网络）有很多数据，但迁移目标问题（新神经网络）仅有少量数据（过少不足以拟合神经网络）<br>8、数据增强可用少数的图片数据变得更多，其中可以改变RGB通道的数值，改变颜色，使其失真；<br>9、若是仅对一种颜色进行改变，这叫PAC增强（Principle Components Analysis）</p>
-<h4 id="multi-task-learning多任务学习："><a href="#multi-task-learning多任务学习：" class="headerlink" title="multi-task learning多任务学习："></a>multi-task learning多任务学习：</h4><p>1、迁移学习是类似神经网络的串行，多任务学习是类是类似神经网络的并行<br>2、<span style="border-bottom:2px dashed red;">无人汽车的同时执行多个物体的位置检测属于多任务学习</span>，单个神经网络系统中识别多个物体<br>3、单个神经网络识别多个物体比多个独立的神经网络分别识别物体性能更好<br>4、在训练数据中，一张图没有全部标记所需的物体，问题不大，输出结果是问号（不是0不是1），在求和中不会计算问号<br>5、意义：当识别多个物体能共用低层次特征；每个任务的数据量很接近（若有对称性，其他任务提供低层次特征，相对少量的数据也可以学习）；可以训练一个足够大的网络做好所有任务（不足够大的话，性能就比不上单独训练的神经网络）</p>
-<h4 id="end-to-end-learning端到端学习："><a href="#end-to-end-learning端到端学习：" class="headerlink" title="end-to-end learning端到端学习："></a>end-to-end learning端到端学习：</h4><p>1、speech recognition语音识别：MFCC是用于在音频中提取一组特定的人工设计的特征，提取出低层次特征，组织成单词后串成transcript文本<br>2、端到端学习：只需要吧训练集拿过来直接学习到了x和y之间的函数映射，直接绕过其中很多的步骤，简化整个框架（需要大量数据才可以）（训练一个巨大神经网络，进输入音频即可得出文本，不从低层次特征学起）<br>3、face recognition人脸识别：若是用端到端学习，识别整个人一步到位输出身份信息，其实效果并不好（数据量足够的话，其实效率会更好）；若先识别整体人的脸部，裁剪使人脸居中再进行人脸识别会更好（分两部分解决问题都简单，而且数据量都多）<br>4、machine translation机器翻译：英法互译，在有很多数据能将单词一对一对应起来，端到端学习效率是很好<br>5、estimating child’s age估计孩子年龄：用x射线图估计孩子年龄，判断孩子发育是否正常（或者用于破案）。将照片中分割出每一块骨头，分别识别每块骨头应该属于哪里，查看长度，比对正常发育的长度比例，然后估计出孩子年龄（这种情况用端到端学习，效果就不好，没有足够多数据）<br>6、优点：1）只是让数据说话（足够多的x、y映射）（在传统对语音或图片的分割存在有人类的偏见，分割什么，怎么分，如何定义，都是人类创造的）（音频要分音位，图片要分像素，再用低层次特征组合高层次特征）2）省去很多神经网络中间手工组件的设计<br>7、缺点：1）需要大量x-y映射数据 2)省去中间的手工组件设计，也会排除掉一些有用的手工组件设计（机器学习工程师很鄙视手工设计，所以就无法从很小的训练集数据中获得洞察力）（学习知识来源是数据和手工设计）<br>8、<span style="border-bottom:2px dashed red;">用不用端到端学习，取决于是否有大量映射数据</span><br>9、无人驾驶：（深度学习）图像识别多个物体-（控制算法）规划路线，转盘方向-加速/减速指令</p>
-<h4 id="卷积神经网络："><a href="#卷积神经网络：" class="headerlink" title="卷积神经网络："></a>卷积神经网络：</h4><p>1、image classification图像分类、object detection物体检测、neural style transfer 风格迁移<br>2、edge detection边缘检测，先将低层次特征的线条检测出来，再组合成高层次特征，最后组合成完整图像<br>3、conv kernel卷积核=filter过滤器，卷积convolve：元素相乘再求和<br>4、（垂直过滤器）卷积之后，检测到中间有线（6x6图片小，所以得出结果中间亮处线很粗）（若是由黑到亮的原图，结果线是黑色）<br><img src="https://github.com/soloistben/images/raw/master/deeplearning_image/2.png" alt="image"><br>5、sobel filter 增加了中间一行元素的权重，则处在图像中央的像素点，使结果的robust更高。<br><img src="https://github.com/soloistben/images/raw/master/deeplearning_image/3.png" alt="image"><br>6、scharr filter也常用<br><img src="https://github.com/soloistben/images/raw/master/deeplearning_image/4.png" alt="image"><br>7、也可以将filter所有元素设置为参数，用反向传播更新，得到更好filter，对复杂图像更好<br>8、输入图片nxn，过滤器fxf，结果为(n-f+1)x(n-f+1)<br>9、在没有padding情况下，角落的像素与中间的像素相比，中间像素被重复运算的几率更大，意味着丢掉了图像边缘位置信息<br>10、padding的意义：不是每次经过卷积层都需要缩小图片，否则在深层的神经网络中最后图片变得很小；保留边缘信息。<br>11、输入图片nxn，加入p圈的padding变成(n+p)x(n+p)，过滤器fxf，结果为(n+2p-f+1)x(n+2p-f+1)<br>12、padding加入多少圈有两个选择：valid卷积（no padding）、same卷积（输入输出一致，p=(f-1)/2(f一般为奇数，便于指出过滤器位置)）<br>13、输入图片nxn，padding为p，过滤器fxf，步长为s(s&gt;1)，结果为((n+2p-f+1)/s + 1) x ((n+2p-f+1)/s + 1)，不是整数，向下取整<br>14、在数学上，卷积运算前需要将过滤器沿着副对角线做镜像翻转，但在深度学习上没有翻转，仍称为卷积（convolution）；在机器学习上没有翻转，称为互相关（cross-correlation）<br>15、在rgb三通道的图片中，过滤器也需要是深度为3，同样元素相乘，三维的元素之和相加，最后结果是二维<br>16、当同时通过<strong>多种过滤器</strong>之后，所有<span style="border-bottom:2px dashed red;">二维结果堆叠在一起，形成三维</span><br>17、过滤器参数个数，fxfxnc（nc表示通道数，1或3），偏置1个（所有元素加相同一个数），n个过滤器，因此，个数=(fxfxnc+1)xn<br>18、过滤器参数个数不变，无论输入是多大的数据，输出都是固定的，有效避免过拟合<br><img src="https://github.com/soloistben/images/raw/master/deeplearning_image/5.png" alt="image"><br>19、pooling池化用于缩小模型大小，提高计算速度，提高特征的robust （池化超参数是固定的，不需要梯度下降，计算公式与卷积计算公式一致，信道/深度不变）<br>20、常用最大池化，少用平均池化，也有在很深的神经网络时，会使用平均池化<br>21、常用池化大小为2x2，步长为2，等于原来高度宽度缩减一半；也常用3x3,步长为2的（其他大小就要具体看使用什么池化了，也可以加padding，但一般不加）<br>22、池化属于神经网络中的静态属性，是固定的<br>23、将卷积操作和池化操作一起称为卷积，属于一卷积层<br>24、尽量不要自己设置超级参数，查看文献采用超级参数数值<br>25、卷积层参数少于全连接层参数<br>26、激活值（参数数量）减少太快会影响神经网络性能<br>27、与全连接层相比，卷积层有两大优势：parameter sharing参数共享（在卷积操作时，卷积计算可以在不同图片区域使用不同的参数；一个过滤器适合一个图片某一块，则也会适合另一块）、sparsity connections稀疏连接（输入少），有着两个优势也可以预防过拟合<br>28、卷积神经网络善于捕捉trainslation invariance平移不变，即平移图片后，仍能识别成一个东西<br>29、损失函数等于神经网络对整个训练集的预测的损失总和，用梯度下降去减少误差<br>30、Alexnet比Lenet优势：使用了ReLU（Lenet使用的是sigmoid和tanh）、使用了两个GPU、使用LRN层（局部响应归一化）（后来被证实没啥用）<br>31、vgg16，没有太多参数，仅是一种只需要专注于构建卷积层的简单网络，优点是简化了神经网络结构（卷积核是3x3，步长1，same；过滤器2x2，步长2），卷积没有缩小图像（使用padding），仅在池化缩小图像。虽然参数非常巨大，神经网络很深，但是结构不复杂，比较规整<br>32、很深的神经网络很难训练，因为存在vanish梯度消失和exploding梯度爆炸的问题<br>33、使用1x1x1的过滤器，用在6x6x1图片上，效果不好，但用在6x6x32上，效果就很好（将深度上的元素做智能乘积运算）（被称为Network in Network）（用池化仅压缩高度和宽度，则1x1可以压缩/增加深度）（也可以不压缩深度，这就仅仅添加了非线性函数）<br>34、数据量多，则使用更少手工；数据量少（想低调，怕黑客攻击），则使用更多手工（可以获得更好表现 ），使用迁移学习更好<br>35、拥有大量数据，应花更多时间在设计神经网络框架中，手动工程则是十分困难；对于计算机视觉图片识别，计算机视觉文学依赖于大量手工工程<br>36、在基准做得好得技巧（在比赛用的多，在生产较少使用）：<br>​        Ensembling集成（独立训练几个神经网络（3-15个网络，耗时），再平均化输出，会再基准提升个1%、2%）<br>​        Multi-crop at test time（在图片分类中，从同一图片的多种不同视角进行识别（10-crop），平均输出）</p>
-<h4 id="ResNet-残差网络（Residual-Network）："><a href="#ResNet-残差网络（Residual-Network）：" class="headerlink" title="ResNet 残差网络（Residual Network）："></a>ResNet 残差网络（Residual Network）：</h4><p>1、skip connection跳远链接，可从某一网络层获取激活，然后迅速反馈给另外一层，甚至是神经网络的更深层（有助于解决梯度消失和梯度爆炸问题）<br>2、Residual block残差块，ResNet是由残差块构建的<br>3、plain network 普通的神经网络，随着深度的增加，误差先是降低，然后升高；而ResNet深度增加，误差持续越少（几百层都可以）<br>4、<span style="border-bottom:2px dashed red;">在原有普通神经网络中，中间或末尾加入残缺块，性能不差于普通神经网络，更多时候能传递更多信息，性能更好（a[l+2]=g(z[l+2]+a[l])）</span><br>5、残缺块输入a[l]、输出a[l+2]的维度相同，若不同维度，则多加一个矩阵在a[l]前（a[l+2]=g(z[l+2]+w*a[l])）<br><img src="https://github.com/soloistben/images/raw/master/deeplearning_image/6.png" alt="image"></p>
-<h4 id="Google-Inception-Net："><a href="#Google-Inception-Net：" class="headerlink" title="Google Inception Net："></a>Google Inception Net：</h4><p>1、Inception层的作用是代替人工来确定卷积层中的过滤器类型or是否要创建卷积层或者池化层（为了不让人做选择，则全部情况考虑进去）（缺点就是计算成本大）<br><img src="https://github.com/soloistben/images/raw/master/deeplearning_image/7.png" alt="image"><br>2、直接用5x5卷积运算，运算成本太大，每个元素计算1.2亿遍；<span style="border-bottom:2px dashed red;">在5x5卷积运算中间，加入一个1x1，将卷积运算分成两部卷积（先缩小再扩大）则可以降低计算成本，减少到原里1/10，1240万，1x1层被称为bottleneck layer瓶颈层</span><br>3、大幅缩小表示层规模，只要合理构建瓶颈层，就不会降低网络性能<br>4、单个inception模块<br><img src="https://github.com/soloistben/images/raw/master/deeplearning_image/8.png" alt="image"><br>5、整体Inception Net<br><img src="https://github.com/soloistben/images/raw/master/deeplearning_image/9.png" alt="image"><br>6、每个inception模块设计功能可以不一样，还可再Inception层分支出来做FC和softmax</p>
-<h4 id="Object-Detection-对象检测："><a href="#Object-Detection-对象检测：" class="headerlink" title="Object Detection 对象检测："></a>Object Detection 对象检测：</h4><p>1、Image classification 图像分类，Classification with localization 分类定位，用图像分类的思路可以帮助学习分类定位，分类定位的思路又有助于学习对象检测<br>2、无人驾驶中需要检测的对象：pedestrian行人，car汽车、motorcycle摩托车、background背景<br>3、用bounding box边界框定位出目标，需要在神经网络多输出几个单元，输出边界框（就是让神经网络多数出四个数字bx、by、bh、bw用于定位）（<strong>图片左上角为(0,0)，右下角为(1,1)</strong>）<br>4、要想确定边界框的具体位置，需要指定红色方框的中心点(bx,by)，高度为bh，宽度为bw<br>5、<span style="border-bottom:2px dashed red;">在图片标签中，除了分类标签，还需要标签表示边框的四个数字（学习分类时，同时学习了边框）</span><br>6、一张图片的标签，pc表示分两类，pc=1时表示行人、汽车、摩托车（有对象类），pc=0时表示背景（没有对象），则y=[pc bx by  bh bw c1 c2 c3]（c1表示行人，c2表示汽车，c3表示摩托车）（暂时假定一张图至多有一个对象）（若一张图有汽车，则y=[1 bx by bh bw 0 1 0]，若一张背景图，则y=[0 ? ? ? ? ? ? ?]，?表示无意义的参数）（<strong>标签训练数据最终决定了训练结果</strong>）<br>7、损失值则等于一维矩阵中每个元素相应差值的平方和；若pc=1，损失值就是剩下元素的差值平方和；若pc=0，损失值是第一个元素差值平方和（后面7个元素无意义）<br>8、在实际运用上，<span style="border-bottom:2px dashed red;">pc应用logistic regression loss逻辑回归函数（squared error or predict平方预测误差也可以），边界框坐标应用平方误差（或其他类似方法），可以不对c1 c2 c3和softmax激活函数应用对数损失函数</span><br>9、<strong>Landmark detection 特征点检测</strong>，定义好多少个特征点，边界框四个，人脸64个，人体结构32个，均需要手工标注<br>10、对象检测采用的是基于<strong>sliding windows滑动窗口</strong>的目标检测算法（训练数据集，需要将汽车图片截图并标签）（先设定一个边界框，在图片开始滑动截图，以固定步幅滑动窗口，遍历图像的每个区域，每次都将截图喂入卷积神经网络，判断是否有对象）（计算成本高）（需要极小步幅滑动，才能准确定位图片中的对象）<br>11、在卷积神经网络上应用滑动窗口：首先将神经网络<span style="border-bottom:2px dashed red;">全连接层转化为卷积层</span><br><img src="https://github.com/soloistben/images/raw/master/deeplearning_image/10.png" alt="image"><br>设定边界框为14x14，在16x16图中进行滑动窗口卷积，得出4种结果，一次性输出在最终结果（而不是截取成4张图片再独立威入神经网络），在28x28图中滑动窗口卷积可以直接得出64种的所有结果（大大节省了计算成本，但仍然无法确定精准的边界）（与Fast R-CNN类似）<br><img src="https://github.com/soloistben/images/raw/master/deeplearning_image/11.png" alt="image"><br>12、<strong>YOLO(you only look once)算法</strong>：在100x100图片中分成3x3（实际操作可能会是19x19），<span style="border-bottom:2px dashed red;">九宫格中每个格子都要指定标签y=[pc bx by  bh bw c1 c2 c3]</span>，发现哪个格子有对象，则取对象的中点，然后将这个对象分配给包含对象中点的格子<span style="border-bottom:2px dashed red;">（如果有两个格子包含同一个对象，对象仅仅属于对象中点在的格子，对象仅仅属于一个格子，不能同时属于一个格子，对象中点是标签的(bx,by)）</span>，仅需要一次卷积就可输出3x3x8，九种情况，8个属性值。优点在于能输出精确的边界框，前提是每个格子不超过1个对象（将格子再细分）；速度快，可以达到实时识别<br>13、每个格子左上角都是(0,0)右下角都是(1,1)，bx、by的范围值在1之内，bh、bw可能会超过1<br>14、<strong>IoU(Intersection over union)交并比函数</strong>：用于判断对象检测算法运作是否良好。原理：计算预测的边界框和标签的边界框的交集和并集之比，最好情况是比值为1（范围是[0,1]）（约定只要IoU&gt;=0.5都认为正确（不过是人为定的，可以定0.6 0.7））<br>15、<strong>non-max supperession 非最大值抑制</strong>：在对象检测中，针对同一个对象都会做出多次检测，会得到多个预测边界框，非最大值抑制就是处理这些多个预测边界框（卷积神经网络后的结果，给出预测边界框的概率，选中最大概率的那一个，将其他的边界框与其做交并比，高度重叠、交并比很高的其他边界框全部被抑制显示）<br>16、对象检测整体流程：（yolo）将原图分成19x19个格子，通过卷积神经网络输出每个格子的情况，舍弃pc&lt;=0.6的格子，（非最大值抑制）剩下的边界框，仅保留最大pc值得边界框（若是检测对个对象，则独立进行多次非最大值抑制）<br>17、<strong>Anchor box</strong>：在一个格子中可以检测多个对象；定义多个不同形状anchor box，预测结果和这些anchor box关联起来（有时会达到5个anchor box甚至更多），对象会被分配有其中点的（格子，anchor box），原本卷积神经网络输出结果y只代表一个边界框，<span style="border-bottom:2px dashed red;">改为y中增加多个结果</span>（同时标签工作也需要将正确结果y标注清楚），<span style="border-bottom:2px dashed red;">anchor box最后就是非最大抑制后的边界框（缺点：要是仅定义两个anchor box，出现三个对象就不行了；出现两个一个类型的对象，也不行了</span>（但是用了19x19较细格子就很少出现该情况，两个对象中点出现在同一个格子概率很低））（手工选择anchor box必须考虑周全形状才可以）（通过机器学习的方法k-平均算法，可以自动选择一组anchor box，可以适合十几种对象）<br>18、当使用两个anchor box时，每个格子输出都会是有两个边界框，除去pc较低的边界框，在独立运行两次非最大值抑制即可得出最终的边界框<br><img src="https://github.com/soloistben/images/raw/master/deeplearning_image/12.png" alt="image"><br>19、<strong>Region proposals（候选区域）R-CNN（带区域的卷积神经网络）</strong>：在滑动窗口卷积时，进选择一部分有意义的窗口进行卷积操作，减少卷积时间（但还是很慢）（候选区的方法时运行Segmentation algorithm 图像分割算法）<br><img src="https://github.com/soloistben/images/raw/master/deeplearning_image/13.png" alt="image"><br>20、<strong>Fast R-CNN</strong>：将全连接层转化为卷积层，一次卷积就可以得到所有滑动窗口的结果；<strong>Faster R-CNN</strong>：用卷积的方法选择候选区（比Fast R-CNN快，但没有YOLO快）</p>
-<h4 id="Face-recognition-人脸识别："><a href="#Face-recognition-人脸识别：" class="headerlink" title="Face recognition 人脸识别："></a>Face recognition 人脸识别：</h4><p>1、<strong>Face Verification 人类验证</strong>：输入名字和相片，判断是否本人（1对1问题），而人脸识别是识别问题（1对多问题）<br>2、<strong>One-Shot 一步学习</strong>：只通过一张人脸图片，就能识别这个人；设计Similarity函数：直接对比两张图片，输出差异值（若是同一个人差异值很小，若不是同一个人，则差异值很大）<br>3、<strong>Siamese Network</strong>：在神经网络实现Similarity方法，训练一个Siamese网络，将图片喂入，得出结果是一个128维向量或者编码，用于代表这张图片，然后再d函数中实现对比两张图片向量或者编码的范数<br><img src="https://github.com/soloistben/images/raw/master/deeplearning_image/14.png" alt="image"><br>4、<strong>Triple loss三元组损失</strong>：通过神经网络得到较优的人脸图片编码，其中一个方法是设计三元组损失函数，然后应用梯度下降（<span style="border-bottom:2px dashed red;">将原图定义为anchor图片，将是同一个人的图片称为positive，不是同一个人称为negative，同时对比三张图片，这就是三元(A,P,N)</span>）希望得到的结果是d(A,P)&lt;=d(A,N)，即是<strong>||f(A)-f(P)||2&lt;=||f(A)-f(N)||^2</strong>为了防止全部f(xi)输出0值，设置为<strong>||f(A)-f(P)||2-||f(A)-f(N)||2+α&lt;=0</strong>（α称为margin间隔）<br>5、基于三张图片来定义损失函数<strong>L(A,P,N) = Max(||f(A)-f(P)||2-||f(A)-f(N)||2+α, 0)</strong>（loss希望输出0，所以运用max函数）代价函数J  = ΣL(Ai, Pi, Ni)（需要将训练集分为三元组进行训练）（若是随机选择图片组合成三元组，很容易就满足<strong>d(A,P)+α&lt;=d(A,N)</strong>这个条件，尽量选择<strong>d(A,P)≈d(A,N)</strong>这种三元组训练才会让神经网络使d(A,P)更小、d(A,N)更大，否则梯度效果不好，识别也不好，神经网络就没学习到什么）<br>6、可以将人类识别转换为一个二分类问题，是同一个人输出1，不是则输出0（<strong>y = sigmoid(Σ wi*|f(xi)k-f(xj)k|+b)</strong>，用于预测1和0）</p>
-<h4 id="Style-Transfer-风格迁移："><a href="#Style-Transfer-风格迁移：" class="headerlink" title="Style Transfer 风格迁移："></a>Style Transfer 风格迁移：</h4><p>1、神经网络学习已有大师的作品风格（Style）（S），将风格赋予给其他图片（Content）（C），形成同风格的新作品（Generated image）（G）<br>2、图像识别的神经网络：第一层都会去寻找低层次的图片特征（线条、颜色、阴影等）第二层识别的图片的质地，深层则会识别负责的图像<br><img src="https://github.com/soloistben/images/raw/master/deeplearning_image/15.png" alt="image"><br>3、实现风格迁移，关键设计关于G的代价函数J(G)，衡量生成图片的好坏；分成两部分，第一部分是content cost内容代价J(C,G)（衡量原图C与生成图片G的相似程度），第二部分是style cost风格代价J(S,G)（衡量原风格S与生成图片G风格相似程度）<strong>J(G) = α Jcontent(C,G)+β Jstyle(S,G)</strong>（需要梯度下降不断更新G）<br><img src="https://github.com/soloistben/images/raw/master/deeplearning_image/16.png" alt="image"><br>4、<strong>Jcontent(C,G)[l] </strong>，用隐含层去计算内容代价，但不可以选择太浅网络（太浅的话生成图片仅是像素十分接近原图，深的神经网络会问是否有一只狗，然后生产图片肯定有只狗）（因此不能选太浅和太深）；用一个预训练的神经网络（可以是VGG）；分别给C、G设置激活数，a[i](C)和a[i](G)（若两激活数相似，则图片相似）<strong>Jcontent(C,G) = 1/2 ||a[i](C)-a[i](G)||^2</strong><br>5、<strong>Jstyle(S,G)</strong>，选择一层为图片风格定义一个深度测量，将图片风格定义为该层中各个通道之间激活项的相关系数（如何计算每个通道间的相关系数呢？）（<span style="border-bottom:2px dashed red;">若一通道识别纹理，一通道识别橙色，若是两通道相关关系大，则证明在出现纹理的地方颜色有很大概率是橙色</span>）（相关系数定义则是，两通道特征同时/不同时出现的概率）（对比原图S和生成图G的通道间相关系数之间的差距，就能判断风格是否相似）<br>6、设置激活项a[l](i,j,k)（i表示高度，j表示宽度，k表示通道数），定义一个Style Matrix（或者称为gram matrix）风格矩阵G[l](S)（大小为nc x nc，nc是该层通道数）（将k和k’通道相对应的激活项相乘求和，非标准的互相关函数（因为没有减去平均数）），<strong>G[l](S)kk’ = ΣiΣj a[l](i,j,k)a[l](i,j,k’)</strong>（俩激活项若是相关程度大，G值也大），原图S和生成图G都计算风格矩阵G[l](S)、G[l](G)，<strong>Jstyle(S,G)[l] = 1/(2*nh*nw*nc)2||G[l](S)kk’ - G[l](G)kk’||^2 = 1/(2*nh*nw*nc)^2ΣkΣk’(G[l](S)kk’ - G[l](G)kk’)^2</strong>，则<strong>Jstyle(S,G) = Σlλ[l]Jstyle(S,G)[l]</strong>（将每一层的相关系数求和）</p>
-<h4 id="一维与三维图片的卷积"><a href="#一维与三维图片的卷积" class="headerlink" title="一维与三维图片的卷积:"></a>一维与三维图片的卷积:</h4><p>1、心电图或者信号图这种属于一维图片，ct片、x光片的3d立体扫描属于三维图片（电影也可属于三维，长、宽、时间轴，可以应用于检测动作和人物行为）</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/07/03/DL-CNN/" data-id="ckd17nmfr000c2megbgzd6rhn" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/07/19/Blockchain/" data-id="ckdnacbh70000ogegv1zsii08" class="article-share-link">Share</a>
       
       
     </footer>
@@ -2202,7 +2269,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/ML/" style="font-size: 10px;">ML</a> <a href="/tags/basic-protein/" style="font-size: 10px;">basic protein</a> <a href="/tags/cluster/" style="font-size: 10px;">cluster</a>
+      <a href="/tags/ML/" style="font-size: 20px;">ML</a> <a href="/tags/basic-protein/" style="font-size: 10px;">basic protein</a> <a href="/tags/cluster/" style="font-size: 10px;">cluster</a>
     </div>
   </div>
 
@@ -2211,7 +2278,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">八月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a></li></ul>
     </div>
   </div>
 
@@ -2222,6 +2289,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2020/08/09/HMM-CRF/">HMM_CRF</a>
+          </li>
         
           <li>
             <a href="/2020/07/25/Spectral-Cluster/">Spectral_Cluster</a>
@@ -2237,10 +2308,6 @@
         
           <li>
             <a href="/2020/05/06/Amino-acids-proteins/">Amino_acids_proteins</a>
-          </li>
-        
-          <li>
-            <a href="/2019/12/02/Master-Eng/">Master_Eng</a>
           </li>
         
       </ul>

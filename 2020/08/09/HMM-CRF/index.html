@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>HMM_CRF | MR.C</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Hidden Markov Model 隐马尔可夫 &amp;amp; Conditional Random Field 条件随机场One. Time Sequence / Series 在时间序列中，起伏状态可以被观测到（股票走势就是一种时间序列，股票中的涨跌） 无法观测到的是时间序列的隐状态（股票中是否处于牛市状态，这类的就是隐状态） 隐状态会有很多 当知道隐状态存在时，每个隐状态被观测时，都是相互独">
+<meta name="keywords" content="ML">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HMM_CRF">
+<meta property="og:url" content="http://yoursite.com/2020/08/09/HMM-CRF/index.html">
+<meta property="og:site_name" content="MR.C">
+<meta property="og:description" content="Hidden Markov Model 隐马尔可夫 &amp;amp; Conditional Random Field 条件随机场One. Time Sequence / Series 在时间序列中，起伏状态可以被观测到（股票走势就是一种时间序列，股票中的涨跌） 无法观测到的是时间序列的隐状态（股票中是否处于牛市状态，这类的就是隐状态） 隐状态会有很多 当知道隐状态存在时，每个隐状态被观测时，都是相互独">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://github.com/soloistben/images/raw/master/hmm_crf/hmm.png">
+<meta property="og:image" content="https://github.com/soloistben/images/raw/master/hmm_crf/hmm_function.png">
+<meta property="og:image" content="https://github.com/soloistben/images/raw/master/hmm_crf/FB.png">
+<meta property="og:image" content="https://github.com/soloistben/images/raw/master/hmm_crf/FB_2.png">
+<meta property="og:updated_time" content="2020-08-09T16:12:08.473Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="HMM_CRF">
+<meta name="twitter:description" content="Hidden Markov Model 隐马尔可夫 &amp;amp; Conditional Random Field 条件随机场One. Time Sequence / Series 在时间序列中，起伏状态可以被观测到（股票走势就是一种时间序列，股票中的涨跌） 无法观测到的是时间序列的隐状态（股票中是否处于牛市状态，这类的就是隐状态） 隐状态会有很多 当知道隐状态存在时，每个隐状态被观测时，都是相互独">
+<meta name="twitter:image" content="https://github.com/soloistben/images/raw/master/hmm_crf/hmm.png">
+  
+    <link rel="alternate" href="/atom.xml" title="MR.C" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">MR.C</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-HMM-CRF" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/08/09/HMM-CRF/" class="article-date">
+  <time datetime="2020-08-09T12:29:28.000Z" itemprop="datePublished">2020-08-09</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      HMM_CRF
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="Hidden-Markov-Model-隐马尔可夫-amp-Conditional-Random-Field-条件随机场"><a href="#Hidden-Markov-Model-隐马尔可夫-amp-Conditional-Random-Field-条件随机场" class="headerlink" title="Hidden Markov Model 隐马尔可夫 &amp; Conditional Random Field 条件随机场"></a>Hidden Markov Model 隐马尔可夫 &amp; Conditional Random Field 条件随机场</h4><h5 id="One-Time-Sequence-Series"><a href="#One-Time-Sequence-Series" class="headerlink" title="One. Time Sequence / Series"></a>One. Time Sequence / Series</h5><ul>
+<li>在时间序列中，起伏状态可以被观测到（股票走势就是一种时间序列，股票中的涨跌）</li>
+<li>无法观测到的是时间序列的<strong>隐状态</strong>（股票中是否处于牛市状态，这类的就是隐状态）<ul>
+<li>隐状态会有很多</li>
+<li>当知道隐状态存在时，每个隐状态被观测时，都是相互独立（互不干扰）</li>
+<li>隐状态之间是离散的</li>
+</ul>
+</li>
+</ul>
+<h5 id="Two-HMM"><a href="#Two-HMM" class="headerlink" title="Two. HMM"></a>Two. HMM</h5><ul>
+<li><p>在概率中，隐马尔可夫模型对应所有状态是相互独立的</p>
+</li>
+<li><p><strong>P(q_t|q_t-1)</strong>  Transition Probability 转移概率</p>
+<ul>
+<li>P(q_t|q_t-1, q_t-2,…, q_1) = P(q_t|q_t-1)<ul>
+<li>每个状态只取决于前面一个状态，而非前面所有状态</li>
+<li>即当前隐状态到下一个隐状态的概率</li>
+</ul>
+</li>
+<li>Discrete 离散的（用矩阵表示 A，维度(k, k)，k是开个隐状态）</li>
+</ul>
+</li>
+<li><p><strong>P(y_t|q_t)</strong>  Emmission/Measurement Probability 发射概率 / 观测概率</p>
+<ul>
+<li>P(y_t|q_1,…, q_t-1, q_t, y_1,…, y_t-1) = P(y_t|q_t)<ul>
+<li>已知当前状态 q_t，得到事实变化 y_t 的概率</li>
+</ul>
+</li>
+<li>Discrete or Continuous</li>
+<li>若是离散时，可以用矩阵表示 B，维度(k, L)，L是y的取值范围（也是离散的）</li>
+<li>若是连续的，无法使用矩阵表示，y可能是连续的一个分布</li>
+</ul>
+</li>
+<li><p>两个概率决定了整个隐马尔可夫模型 </p>
+</li>
+<li><p>在信号中用HMM也很多，时间轴每段范围的信号就相当与一个y_t</p>
+<p><img src="https://github.com/soloistben/images/raw/master/hmm_crf/hmm.png" alt="hmm" style="zoom:67%;"></p>
+</li>
+<li><p>每个隐状态的概率和为1，则矩阵行和为1</p>
+</li>
+<li><p>P(X) = ∫_y P(X, Y) dy </p>
+</li>
+<li><p><strong>P(y_1, y_2, y_3)</strong> = Σq_1 Σq_2 Σq_3 P(y_1, y_2, y_3, q_1, q_2, q_3) = Σq_1 Σq_2 Σq_3 <strong>P(y_3|q_3)P(q_3|q_2)*P(y_2|q_2)P(q_2|q_1)*P(y_1|q_1)P(q_1)</strong> </p>
+<ul>
+<li>P(y_1, y_2, y_3, q_1, q_2, q_3) = P(y_3|y_1, y_2, q_1, q_2, q_3)*P(y_1, y_2, q_1, q_2, q_3)</li>
+<li>利用马尔可夫性质：P(y_1, y_2, y_3, q_1, q_2, q_3) = P(y_3|q_3)*P(q_3|y_1, y_2, q_1, q_2)*P(y_1, y_2, q_1, q_2) = P(y_3|q_3)P(q_3|q_2)*P(y_1, y_2, q_1, q_2)</li>
+<li>P(y_3|q_3), P(q_3|q_2), P(y_2|q_2), P(q_2|q_1), P(y_1|q_1) 在马尔可夫参数A, B矩阵中可得</li>
+<li><strong>P(q_1) 是初始状态</strong>，这需要问题给出</li>
+<li>则马尔可夫模型需要三个参数，λ={A, B, P(q_1)} (假设y是离散的)</li>
+</ul>
+</li>
+<li><p>马尔可夫模型有什么用？</p>
+<ul>
+<li>找50人讲10个单词（动物名字）</li>
+<li><strong>λ_cat = argmax_λ log P(y_1, …, y_50|λ)</strong> <ul>
+<li>当初始条件为λ，最大为说cat的情况</li>
+<li>记录所有单词的λ</li>
+<li>用高斯或者高斯混合模型计算λ</li>
+</ul>
+</li>
+<li>当来了个新人，说其中一个单词，那么他说哪个单词概率最大？<ul>
+<li><strong>P(y_new|λ_cat)</strong>, … 概率最大为结果</li>
+<li>若所有该概率计算结果很小时，说明新人说的不是原10个单词</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>公式范化（计算量较大）</p>
+<p><img src="https://github.com/soloistben/images/raw/master/hmm_crf/hmm_function.png" alt="hmm_function" style="zoom: 67%;"></p>
+<ul>
+<li><p>一个定义</p>
+<p><img src="https://github.com/soloistben/images/raw/master/hmm_crf/FB.png" alt="FB" style="zoom:67%;"></p>
+</li>
+<li><p>优化计算量</p>
+<ul>
+<li><p>alpha_i(t) = P(y_1, …, y_t, q_t=i)</p>
+</li>
+<li><p>alpha_i(1) = P(y_1, q_1=i) = P(y_i|q_1=i)P(q1) = b_i(y_1) P(q_1) </p>
+</li>
+<li><p>alpha_j(2) = P(y_1, y_2, q_2=j) = Σq_1P(y_1, y_2, q_1=i, q_2=j) = Σq_1 P(y_2|q_2=j)P(q_2=j|q_1=i)*P(y_1, q_1=i) = P(y_2|q_2=j) Σq_1 P(q_2=j|q_1=i)*alpha_i(1) = b_j(y_1) Σq_1 a_ij*alpha_i(1)</p>
+</li>
+<li><p>开始递归 alpha_j(t) = b_j(y_t) Σq_1 a_ij*alpha_i(t-1) = P(y_1, …, y_t, q_t=j) </p>
+<ul>
+<li><strong>P(y_1, …, y_t) = Σj P(y_1, …, y_t, q_t=j) = Σj alpha_j(t)</strong></li>
+</ul>
+</li>
+<li><p>通过贝叶斯公式</p>
+<p><img src="https://github.com/soloistben/images/raw/master/hmm_crf/FB_2.png" alt="FB_2" style="zoom:67%;"></p>
+<ul>
+<li>P(Y, q_t=i|λ) = P(Y, q_t=i)P(q_t=i) = P(y_1, …, y_t|q_t=i)P(y_t+1, …, y_T|q_t=i)P(q_t=i) =  P(y_1, …, y_t, q_t=i)P(y_t+1, …, y_T|q_t=i) = alpha_i(t) beta_i(t)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>如何学习HMM的参数</p>
+<ul>
+<li>λ = argmax_λ log P(Y|λ) （极大似然估计）</li>
+<li>用EM学习<ul>
+<li>E-step: Σq_1… Σq_t log(P(Y, Q))*P(Q,Y|θ^g) = Σq_1… Σq_t log(P(q_1)*ΠP(q_t|q_t-1)*ΠP(y_t|q_t)) <em> P(Q,Y|θ^g) = Σq_1… Σq_t [log(P(q_1)+Σlog(a_q_t-1,q_t)+Σlog(b_q_t(y_t))] </em> P(Q,Y|θ^g)</li>
+<li>part 5,6还没看完(需要EM基础)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h5 id="Three-CRF"><a href="#Three-CRF" class="headerlink" title="Three. CRF"></a>Three. CRF</h5><p><a href="https://www.youtube.com/watch?v=Ji6KbkyNmk8&amp;list=PLFze15KrfxbGPEHyjxddbbxVvLa5kilFf" target="_blank" rel="noopener">source video</a> <a href="https://github.com/roboticcam/machine-learning-notes/blob/master/files/dynamic_model.pdf" target="_blank" rel="noopener">pdf</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/08/09/HMM-CRF/" data-id="ckdnacbhj0004ogeg6zbnauxj" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ML/">ML</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2020/07/25/Spectral-Cluster/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Spectral_Cluster</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ML/">ML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/basic-protein/">basic protein</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cluster/">cluster</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/ML/" style="font-size: 20px;">ML</a> <a href="/tags/basic-protein/" style="font-size: 10px;">basic protein</a> <a href="/tags/cluster/" style="font-size: 10px;">cluster</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">八月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/08/09/HMM-CRF/">HMM_CRF</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/25/Spectral-Cluster/">Spectral_Cluster</a>
+          </li>
+        
+          <li>
+            <a href="/2020/05/06/machine-learning/">machine_learning</a>
+          </li>
+        
+          <li>
+            <a href="/2020/05/06/RNN-LSTM/">RNN_LSTM</a>
+          </li>
+        
+          <li>
+            <a href="/2020/05/06/Amino-acids-proteins/">Amino_acids_proteins</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 (soloistben)<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
