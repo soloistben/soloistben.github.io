@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>Bayes_MRF | MR.C</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Bayes 贝叶斯 &amp;amp; Markov Random Fields 马尔可夫随机场One. 前提 Probabilistic Graphical Model (PGM 概率图模型) （将概率引入图模型，没有图，只能计算，引入图，比较直观，容易观察） Representation 表示 有向图 Bayesian Network (有向无环，则起始结点决定这终止节点的概率) 无向图 Markov">
+<meta name="keywords" content="ML">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Bayes_MRF">
+<meta property="og:url" content="http://yoursite.com/2020/08/12/Bayes-MRF/index.html">
+<meta property="og:site_name" content="MR.C">
+<meta property="og:description" content="Bayes 贝叶斯 &amp;amp; Markov Random Fields 马尔可夫随机场One. 前提 Probabilistic Graphical Model (PGM 概率图模型) （将概率引入图模型，没有图，只能计算，引入图，比较直观，容易观察） Representation 表示 有向图 Bayesian Network (有向无环，则起始结点决定这终止节点的概率) 无向图 Markov">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://github.com/soloistben/images/raw/master/bayes_mrf/bayes_1.png">
+<meta property="og:image" content="https://github.com/soloistben/images/raw/master/bayes_mrf/bayes_2.png">
+<meta property="og:image" content="https://github.com/soloistben/images/raw/master/bayes_mrf/bayes_3.png">
+<meta property="og:image" content="https://github.com/soloistben/images/raw/master/bayes_mrf/bayes_4.png">
+<meta property="og:image" content="https://github.com/soloistben/images/raw/master/bayes_mrf/bayes_5.png">
+<meta property="og:image" content="https://github.com/soloistben/images/raw/master/bayes_mrf/bayes_6.png">
+<meta property="og:image" content="https://github.com/soloistben/images/raw/master/bayes_mrf/Naive_Bayes.png">
+<meta property="og:image" content="https://github.com/soloistben/images/raw/master/bayes_mrf/markov_1.png">
+<meta property="og:image" content="https://github.com/soloistben/images/raw/master/bayes_mrf/pair-markov.png">
+<meta property="og:image" content="https://github.com/soloistben/images/raw/master/bayes_mrf/pair-markov_2.png">
+<meta property="og:image" content="https://github.com/soloistben/images/raw/master/bayes_mrf/pair-markov_3.png">
+<meta property="og:image" content="https://github.com/soloistben/images/raw/master/bayes_mrf/pair-markov_4.png">
+<meta property="og:image" content="https://github.com/soloistben/images/raw/master/bayes_mrf/pair-markov_5.png">
+<meta property="og:updated_time" content="2020-08-13T06:43:53.392Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Bayes_MRF">
+<meta name="twitter:description" content="Bayes 贝叶斯 &amp;amp; Markov Random Fields 马尔可夫随机场One. 前提 Probabilistic Graphical Model (PGM 概率图模型) （将概率引入图模型，没有图，只能计算，引入图，比较直观，容易观察） Representation 表示 有向图 Bayesian Network (有向无环，则起始结点决定这终止节点的概率) 无向图 Markov">
+<meta name="twitter:image" content="https://github.com/soloistben/images/raw/master/bayes_mrf/bayes_1.png">
+  
+    <link rel="alternate" href="/atom.xml" title="MR.C" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">MR.C</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Bayes-MRF" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/08/12/Bayes-MRF/" class="article-date">
+  <time datetime="2020-08-12T12:10:46.000Z" itemprop="datePublished">2020-08-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Bayes_MRF
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="Bayes-贝叶斯-amp-Markov-Random-Fields-马尔可夫随机场"><a href="#Bayes-贝叶斯-amp-Markov-Random-Fields-马尔可夫随机场" class="headerlink" title="Bayes 贝叶斯 &amp; Markov Random Fields 马尔可夫随机场"></a>Bayes 贝叶斯 &amp; Markov Random Fields 马尔可夫随机场</h4><h5 id="One-前提"><a href="#One-前提" class="headerlink" title="One. 前提"></a>One. 前提</h5><ul>
+<li><strong>Probabilistic Graphical Model (PGM 概率图模型)</strong> （将概率引入图模型，没有图，只能计算，引入图，比较直观，容易观察）<ul>
+<li>Representation 表示<ul>
+<li>有向图 Bayesian Network (有向无环，则起始结点决定这终止节点的概率)</li>
+<li>无向图 Markov Network (无向，则结点的概率仅取决于1阶邻居)</li>
+<li>高斯图 <ul>
+<li>Gassian Bayes</li>
+<li>Gassian Markov</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Inference 推断<ul>
+<li>精确推断</li>
+<li>近似推断<ul>
+<li>确定性近似（变分推断）</li>
+<li>随机性近似（MCMC）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Learning 学习<ul>
+<li>参数学习<ul>
+<li>完备数据（非隐变量）（有向，无向）</li>
+<li>隐变量（EM）</li>
+</ul>
+</li>
+<li>结构学习 (学习更好的图结构，参数)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>高维随机变量</strong> P(x_1, x_2, …, x_p) 计算量太大</p>
+<ul>
+<li>边缘概率 P(x_i)</li>
+<li>条件概率 P(x_j|x_i)</li>
+</ul>
+</li>
+<li><p><strong>运算原则</strong></p>
+<ul>
+<li>sum rule: P(x_1) =  ∫ P(x_1, x_2) dx_2 (边缘概率)</li>
+<li>poduct rule: P(x_1, x_2) = P(x_1)*P(x_2|X_1) = P(x_2)*P(x_1|X_2)</li>
+<li>chain rule: P(x_1, x_2, …, x_p) = Π P(x_i|x_1, x_2, …, x_i-1)</li>
+<li>bayesian rule: P(x_2|X_1) = P(x_1, X_2) / P(x_1) = P(x_1, X_2) / ∫ P(x_1, x_2) dx_2 =  P(x_2)*P(x_1|X_2) /  ∫ P(x_1, x_2) dx_2</li>
+</ul>
+</li>
+<li><p><strong>缺点</strong></p>
+<ul>
+<li><font color="red">高维复杂 P(x_1, x_2, …, x_p) 计算量太大</font></li>
+<li>简化 <ul>
+<li>每个<strong>维度之间相互独立</strong>    (特性太强了)<ul>
+<li>P(x_1, x_2, …, x_p) = Π P(x_i)</li>
+<li>Naive Bayes 朴素贝叶斯 P(x|y) = Π P(x_i|y)</li>
+</ul>
+</li>
+<li>Markov Property 马尔可夫特性<ul>
+<li><strong>将来独立于过去</strong>（相关性太单调了，不是很符合现实，现实往往跟几个相关）</li>
+<li>x_i+1 只与 x_i相关，与其他 x_i-1,…,x_1无关</li>
+</ul>
+</li>
+<li><strong>条件独立性</strong>（可降低计算复杂度）<ul>
+<li>给定x_B情况下，集合x_A与集合x_C无关 （x_A，x_B，x_C无交集）</li>
+<li>x_B 只与x_C相关</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><a href="https://www.bilibili.com/video/BV1BW41117xo?p=1" target="_blank" rel="noopener">video</a> <a href="https://www.bilibili.com/s/video/BV1Dk4y1q78a" target="_blank" rel="noopener">MRF video</a></p>
+</li>
+</ul>
+<h5 id="Two-Bayes"><a href="#Two-Bayes" class="headerlink" title="Two. Bayes"></a>Two. Bayes</h5><ul>
+<li><p>链式法则 P(x_1, x_2, …, x_p) = Π P(x_i|x_1, x_2, …, x_i-1)</p>
+</li>
+<li><p>因子分解 P(x_1, x_2,…, x_p) = Π P(x_i|x_p(i)),  x_p(i)为x_i父亲集合 （条件独立性）</p>
+<p><img src="https://github.com/soloistben/images/raw/master/bayes_mrf/bayes_1.png" alt="bayes_1" style="zoom: 80%;"></p>
+</li>
+<li><p><strong>tail to tail</strong></p>
+<ul>
+<li>因子分解 -&gt; P(A,B,C) = P(A)P(B|A)P(C|A)</li>
+<li>链式法则 -&gt; P(A,B,C) = P(A)P(B|A)P(C|A,B)<ul>
+<li>则 P(C|A) = P(C|A,B)，则在发生A时，B,C相互独立（<font color="red">若A被观测，则路径被阻塞，“倒V路径”</font>）</li>
+<li>P(B|A)P(C|A,B) = P(B|A)P(C|A) = P(B,C|A)</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://github.com/soloistben/images/raw/master/bayes_mrf/bayes_2.png" alt="bayes_2" style="zoom:75%;"></p>
+</li>
+<li><p><strong>head to tail</strong></p>
+<ul>
+<li>发生A时，A,C相互独立（<font color="red">若B被观测，则路径被阻塞</font>）</li>
+</ul>
+<p><img src="https://github.com/soloistben/images/raw/master/bayes_mrf/bayes_3.png" alt="bayes_3" style="zoom:80%;"></p>
+</li>
+<li><p><strong>head to head</strong></p>
+<ul>
+<li>默认情况下（C还没被观察）A,B相互独立，路径被阻塞（<font color="red">若C被观测，路径是连通，A,B有关系，不独立则难以分解</font>）</li>
+<li>因子分解 -&gt; P(A,B,C) = P(A)P(B)P(C|A,B) （父亲结点先于子结点）</li>
+<li>链式法则 -&gt; P(A,B,C) = P(A)P(B|A)P(C|A,B)<ul>
+<li>P(B) = P(B|A)，则C还没被观察，A,B相互独立</li>
+</ul>
+</li>
+<li>这个模式是想判断 P(A|C) == P(A|C,B)，在没有B条件时，直接基于C判断A，概率会更大（最初A,B相互独立）</li>
+</ul>
+<p><img src="https://github.com/soloistben/images/raw/master/bayes_mrf/bayes_4.png" alt="bayes_4" style="zoom:75%;"></p>
+<ul>
+<li>（<font color="red">若D被观测，路径也是是连通</font>）</li>
+</ul>
+</li>
+<li><p>有向图是的条件独立性（证明发生x_B, x_A, x_C相互独立）</p>
+<ul>
+<li><p>D-separation</p>
+<ul>
+<li><p>x_A, x_B, x_C 三个集合两两无交集 </p>
+<p><img src="https://github.com/soloistben/images/raw/master/bayes_mrf/bayes_5.png" alt="bayes_5"></p>
+</li>
+<li><p>若A与C，存在B1，B2关系，且属于x_B集合；存在B3，B4关系，且不属于x_B集合</p>
+</li>
+<li><p>则符合：发生x_B, x_A, x_C相互独立 （<strong>全局马尔可夫性</strong>）</p>
+</li>
+<li><p>P(x_i|x_-i) = P(x_i, x_-i) / P(x_i) = p(x) / ∫ P(x_i) dx_i = Π P(x_j|x_p(j)) / ∫ Π P(x_j|x_p(j)) dx_i</p>
+<ul>
+<li><p>x_-i表示集合{x_1,…x_p}中去除x_i, <strong>x/x_i</strong></p>
+</li>
+<li><p>Π P(x_j|x_p(j)) 分成，与x_i有关和无关两部分</p>
+</li>
+<li><p>则 Π P(x_j|x_p(j)) / ∫ Π P(x_j|x_p(j)) dx_i无关部分则可以约去</p>
+<p><img src="https://github.com/soloistben/images/raw/master/bayes_mrf/bayes_6.png" alt="bayes_6"></p>
+</li>
+<li><p>P(x_i|x_-i)  = P(x_i|x_p(i))，即 x_i只与x_i相关的有联系(红点)，与无关的相互独立，也称为Markov Blanket马尔可夫态</p>
+</li>
+<li>一个人与全世界的关系=一个人与身边人的关系</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Bayes Network 模型 （<font color="red">从单一到混合，有限到无限，空间到时间，离散到连续</font>）</p>
+<ul>
+<li><p>离散</p>
+<ul>
+<li><p>单一</p>
+<ul>
+<li><p><strong>Naive Bayes</strong> 朴素贝叶斯 -&gt; 做分类 -&gt; P(x|y) = ΠP(x_i|y=1)  (x 是p维)</p>
+<p><img src="https://github.com/soloistben/images/raw/master/bayes_mrf/Naive_Bayes.png" alt="Naive_Bayes" style="zoom:67%;"></p>
+</li>
+</ul>
+</li>
+<li><p>混合</p>
+<ul>
+<li><strong>GMM</strong> 高斯混合模型 -&gt; 做聚类</li>
+</ul>
+</li>
+<li>时间<ul>
+<li><strong>Markov Chain</strong> 马尔可夫链</li>
+<li><strong>Gaussian Process</strong> 无限维高斯分布</li>
+</ul>
+</li>
+<li>动态模型 = 混合 + 时间<ul>
+<li><strong>HMM</strong> 隐马尔可夫 (隐状态离散)</li>
+<li><strong>LDS</strong> 线性动态系统 <strong>Kalmm Filter</strong> 卡尔曼滤波器（连续，高斯，线性）</li>
+<li><strong>Partide Filter</strong> （非连续，非高斯）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>连续</li>
+<li><strong>Gaussian Bayes Network</strong> 高斯图</li>
+</ul>
+</li>
+</ul>
+<h5 id="Three-MRF"><a href="#Three-MRF" class="headerlink" title="Three. MRF"></a>Three. MRF</h5><ul>
+<li><p>无向图</p>
+</li>
+<li><p>条件独立性，发生x_B时，x_A与x_C无关 （<strong>global markov</strong> 全局马尔可夫）</p>
+<ul>
+<li>存在x_A, x_C被x_B分割（对应 bayes D-separation）， 那么发生x_B时，x_A与x_C无关 </li>
+</ul>
+</li>
+<li><p><strong>local markov</strong> 局部马尔可夫</p>
+<ul>
+<li><p>结点(蓝点)与邻居以外结点(白点)相互独立，仅与邻居(红点) 相关</p>
+<p><img src="https://github.com/soloistben/images/raw/master/bayes_mrf/markov_1.png" alt="markov_1" style="zoom:75%;"></p>
+</li>
+</ul>
+</li>
+<li><p><strong>pair markov</strong>（应用图像领域，图像-&gt;成对马尔可夫随机场-&gt;网格状马尔可夫随机场）</p>
+<ul>
+<li>对于集合x_-i,-j(集合没有i，j结点), 任意两个点x_i, x_j相互独立, (i != j)</li>
+</ul>
+</li>
+<li><p>相互等价，可以互推 global markov <-> local markov <-> pair markov <->  基于最大团的因子分解</-></-></-></p>
+</li>
+<li><p>clique团，最大团</p>
+<ul>
+<li>集合间的结点相互联通</li>
+<li>在一个团无法添加结点，则是最大团</li>
+<li>(c1, c2,…表示团)</li>
+</ul>
+</li>
+<li><p>因子分解 <strong>P(x) = 1/Z Π Φ(x_ci)</strong> ， Z = Σ_x1…Σ_xp Π Φ(x_ci) </p>
+<ul>
+<li><p>Φ 势函数， 必须为正（大于0）</p>
+<ul>
+<li><strong>Φ (x_ci) = exp {-E(x_ci)}</strong>   (E为能量函数，也叫势函数)</li>
+<li>Φ (x_ci)  <-> P(x) 称为 Gibbs Distribution (Boltzmann Distribution 玻尔兹曼分布)</-></li>
+<li>P(x) = 1/Z Π Φ(x_ci) = 1/Z Π exp{-E(x_ci)} = 1/Z exp{-ΣE(x_ci)} </li>
+<li>最大熵原理 =&gt; 指数族分布 (Gibbs Distribution &lt;=&gt; Markov Random Field)</li>
+<li>统计物理</li>
+</ul>
+</li>
+<li><p>ci最大团</p>
+</li>
+<li><p>Z 为联合概率分布的归一化因子</p>
+</li>
+<li><p>基于最大团的因子分解，则可以证明为马尔可夫随机场 (Hammesley-clifford定理)</p>
+</li>
+<li><p>局部势函数：只考虑局部变量；边缘概率：考虑全局变量</p>
+</li>
+<li><p>Pair-MRF 因子分解：<strong>P(x) = 1/Z Π Φ(x_i) Π Φ(x_i, x_j)</strong>   (考虑边)</p>
+</li>
+<li><p>最大后验概率推理（图像分割问题）：max_x P(x)</p>
+<ul>
+<li><p>找到一个x分布，使P(x)最大（则找到图像分割在结果）</p>
+<p><img src="https://github.com/soloistben/images/raw/master/bayes_mrf/pair-markov.png" alt="pair-markov"></p>
+</li>
+<li><p>假设θ(x_i) = -logΦ(x_i); θ(x_i, x_j) = -logΦ(x_i, x_j)</p>
+</li>
+<li><p>max_x P(x) -&gt; 能量最小化 -&gt; min_x E(x) = Σθ(x_i)  + Σθ(x_i, x_j)</p>
+<p><img src="https://github.com/soloistben/images/raw/master/bayes_mrf/pair-markov_2.png" alt="pair-markov_2"></p>
+<p><img src="https://github.com/soloistben/images/raw/master/bayes_mrf/pair-markov_3.png" alt="pair-markov_3" style="zoom:75%;"></p>
+</li>
+<li><p>假设图像具有连续性，相邻结点没有突变（则对角线为0，要没都属于前景要么都是背景），边的势函数可以设置为（斜对角线，为大于0的值，若当前俩点，一个前景一个背景，则惩罚它）</p>
+<p><img src="https://github.com/soloistben/images/raw/master/bayes_mrf/pair-markov_4.png" alt="pair-markov_4"></p>
+</li>
+<li><p>结点的设置势函数，一个前景一个背景</p>
+<p><img src="https://github.com/soloistben/images/raw/master/bayes_mrf/pair-markov_5.png" alt="pair-markov_5"></p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/08/12/Bayes-MRF/" data-id="ckdsft1fl0004dregx0hwxi34" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ML/">ML</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2020/08/09/HMM-CRF/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">HMM_CRF</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ML/">ML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/basic-protein/">basic protein</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cluster/">cluster</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/ML/" style="font-size: 20px;">ML</a> <a href="/tags/basic-protein/" style="font-size: 10px;">basic protein</a> <a href="/tags/cluster/" style="font-size: 10px;">cluster</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">八月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/08/12/Bayes-MRF/">Bayes_MRF</a>
+          </li>
+        
+          <li>
+            <a href="/2020/08/09/HMM-CRF/">HMM_CRF</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/25/Spectral-Cluster/">Spectral_Cluster</a>
+          </li>
+        
+          <li>
+            <a href="/2020/05/06/machine-learning/">machine_learning</a>
+          </li>
+        
+          <li>
+            <a href="/2020/05/06/RNN-LSTM/">RNN_LSTM</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 (soloistben)<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

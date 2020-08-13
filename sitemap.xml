@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2020/08/12/Bayes-MRF/</loc>
+    
+    <lastmod>2020-08-13T06:43:53.392Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2020/08/09/HMM-CRF/</loc>
     
-    <lastmod>2020-08-09T16:15:18.634Z</lastmod>
+    <lastmod>2020-08-12T12:11:58.941Z</lastmod>
     
   </url>
   
