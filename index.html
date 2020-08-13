@@ -155,12 +155,11 @@
 </ul>
 </li>
 </ul>
-<p><a href="https://www.bilibili.com/video/BV1BW41117xo?p=1" target="_blank" rel="noopener">video</a> <a href="https://www.bilibili.com/s/video/BV1Dk4y1q78a" target="_blank" rel="noopener">MRF video</a></p>
+<p><a href="https://www.bilibili.com/video/BV1BW41117xo?p=1" target="_blank" rel="noopener">video</a>    <a href="https://www.bilibili.com/s/video/BV1Dk4y1q78a" target="_blank" rel="noopener">MRF video</a></p>
 </li>
 </ul>
 <h5 id="Two-Bayes"><a href="#Two-Bayes" class="headerlink" title="Two. Bayes"></a>Two. Bayes</h5><ul>
-<li><p>链式法则 P(x_1, x_2, …, x_p) = Π P(x_i|x_1, x_2, …, x_i-1)</p>
-</li>
+<li>链式法则 P(x_1, x_2, …, x_p) = Π P(x_i|x_1, x_2, …, x_i-1)</li>
 <li><p>因子分解 P(x_1, x_2,…, x_p) = Π P(x_i|x_p(i)),  x_p(i)为x_i父亲集合 （条件独立性）</p>
 <p><img src="https://github.com/soloistben/images/raw/master/bayes_mrf/bayes_1.png" alt="bayes_1" style="zoom: 80%;"></p>
 </li>
@@ -200,19 +199,15 @@
 <ul>
 <li><p>D-separation</p>
 <ul>
-<li><p>x_A, x_B, x_C 三个集合两两无交集 </p>
-<p><img src="https://github.com/soloistben/images/raw/master/bayes_mrf/bayes_5.png" alt="bayes_5"></p>
+<li><p>x_A, x_B, x_C 三个集合两两无交集<br><img src="https://github.com/soloistben/images/raw/master/bayes_mrf/bayes_5.png" alt="bayes_5"></p>
 </li>
 <li><p>若A与C，存在B1，B2关系，且属于x_B集合；存在B3，B4关系，且不属于x_B集合</p>
 </li>
-<li><p>则符合：发生x_B, x_A, x_C相互独立 （<strong>全局马尔可夫性</strong>）</p>
-</li>
+<li>则符合：发生x_B, x_A, x_C相互独立 （<strong>全局马尔可夫性</strong>）</li>
 <li><p>P(x_i|x_-i) = P(x_i, x_-i) / P(x_i) = p(x) / ∫ P(x_i) dx_i = Π P(x_j|x_p(j)) / ∫ Π P(x_j|x_p(j)) dx_i</p>
 <ul>
-<li><p>x_-i表示集合{x_1,…x_p}中去除x_i, <strong>x/x_i</strong></p>
-</li>
-<li><p>Π P(x_j|x_p(j)) 分成，与x_i有关和无关两部分</p>
-</li>
+<li>x_-i表示集合{x_1,…x_p}中去除x_i, <strong>x/x_i</strong></li>
+<li>Π P(x_j|x_p(j)) 分成，与x_i有关和无关两部分</li>
 <li><p>则 Π P(x_j|x_p(j)) / ∫ Π P(x_j|x_p(j)) dx_i无关部分则可以约去</p>
 <p><img src="https://github.com/soloistben/images/raw/master/bayes_mrf/bayes_6.png" alt="bayes_6"></p>
 </li>
@@ -254,14 +249,15 @@
 </li>
 </ul>
 </li>
-<li>连续</li>
+<li>连续<ul>
 <li><strong>Gaussian Bayes Network</strong> 高斯图</li>
 </ul>
 </li>
 </ul>
-<h5 id="Three-MRF"><a href="#Three-MRF" class="headerlink" title="Three. MRF"></a>Three. MRF</h5><ul>
-<li><p>无向图</p>
 </li>
+</ul>
+<h5 id="Three-MRF"><a href="#Three-MRF" class="headerlink" title="Three. MRF"></a>Three. MRF</h5><ul>
+<li>无向图</li>
 <li><p>条件独立性，发生x_B时，x_A与x_C无关 （<strong>global markov</strong> 全局马尔可夫）</p>
 <ul>
 <li>存在x_A, x_C被x_B分割（对应 bayes D-separation）， 那么发生x_B时，x_A与x_C无关 </li>
@@ -290,8 +286,7 @@
 </li>
 <li><p>因子分解 <strong>P(x) = 1/Z Π Φ(x_ci)</strong> ， Z = Σ_x1…Σ_xp Π Φ(x_ci) </p>
 <ul>
-<li><p>Φ 势函数， 必须为正（大于0）</p>
-<ul>
+<li>Φ 势函数， 必须为正（大于0）<ul>
 <li><strong>Φ (x_ci) = exp {-E(x_ci)}</strong>   (E为能量函数，也叫势函数)</li>
 <li>Φ (x_ci)  <-> P(x) 称为 Gibbs Distribution (Boltzmann Distribution 玻尔兹曼分布)</-></li>
 <li>P(x) = 1/Z Π Φ(x_ci) = 1/Z Π exp{-E(x_ci)} = 1/Z exp{-ΣE(x_ci)} </li>
@@ -299,16 +294,11 @@
 <li>统计物理</li>
 </ul>
 </li>
-<li><p>ci最大团</p>
-</li>
-<li><p>Z 为联合概率分布的归一化因子</p>
-</li>
-<li><p>基于最大团的因子分解，则可以证明为马尔可夫随机场 (Hammesley-clifford定理)</p>
-</li>
-<li><p>局部势函数：只考虑局部变量；边缘概率：考虑全局变量</p>
-</li>
-<li><p>Pair-MRF 因子分解：<strong>P(x) = 1/Z Π Φ(x_i) Π Φ(x_i, x_j)</strong>   (考虑边)</p>
-</li>
+<li>ci最大团</li>
+<li>Z 为联合概率分布的归一化因子</li>
+<li>基于最大团的因子分解，则可以证明为马尔可夫随机场 (Hammesley-clifford定理)</li>
+<li>局部势函数：只考虑局部变量；边缘概率：考虑全局变量</li>
+<li>Pair-MRF 因子分解：<strong>P(x) = 1/Z Π Φ(x_i) Π Φ(x_i, x_j)</strong>   (考虑边)</li>
 <li><p>最大后验概率推理（图像分割问题）：max_x P(x)</p>
 <ul>
 <li><p>找到一个x分布，使P(x)最大（则找到图像分割在结果）</p>
