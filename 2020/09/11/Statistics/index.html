@@ -5,18 +5,20 @@
   
 
   
-  <title>归档: 2019/11 | MR.C</title>
+  <title>Statistics | MR.C</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Personal notes">
-<meta property="og:type" content="website">
-<meta property="og:title" content="MR.C">
-<meta property="og:url" content="http://yoursite.com/archives/2019/11/index.html">
+  <meta name="description" content="Statistics for Machine LearningOne. 两大派系 频率派：统计机器学习（设计模型，找到loss，设计算法。本质为优化问题） 贝叶斯派：概率图模型（本质为求积分问题（Monte Carlo method, MCMC），直接求解过于复杂，则衍生出概率图模型） X: data, X={x_1, x_2, …, x_n}^T  Dimension(N, P) θ: para">
+<meta name="keywords" content="ML">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Statistics">
+<meta property="og:url" content="http://yoursite.com/2020/09/11/Statistics/index.html">
 <meta property="og:site_name" content="MR.C">
-<meta property="og:description" content="Personal notes">
+<meta property="og:description" content="Statistics for Machine LearningOne. 两大派系 频率派：统计机器学习（设计模型，找到loss，设计算法。本质为优化问题） 贝叶斯派：概率图模型（本质为求积分问题（Monte Carlo method, MCMC），直接求解过于复杂，则衍生出概率图模型） X: data, X={x_1, x_2, …, x_n}^T  Dimension(N, P) θ: para">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-09-11T11:15:07.341Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="MR.C">
-<meta name="twitter:description" content="Personal notes">
+<meta name="twitter:title" content="Statistics">
+<meta name="twitter:description" content="Statistics for Machine LearningOne. 两大派系 频率派：统计机器学习（设计模型，找到loss，设计算法。本质为优化问题） 贝叶斯派：概率图模型（本质为求积分问题（Monte Carlo method, MCMC），直接求解过于复杂，则衍生出概率图模型） X: data, X={x_1, x_2, …, x_n}^T  Dimension(N, P) θ: para">
   
     <link rel="alternate" href="/atom.xml" title="MR.C" type="application/atom+xml">
   
@@ -63,40 +65,96 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/11/14/algorithm/" class="archive-article-date">
-  <time datetime="2019-11-14T12:44:27.000Z" itemprop="datePublished">11月 14</time>
+        <section id="main"><article id="post-Statistics" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/09/11/Statistics/" class="article-date">
+  <time datetime="2020-09-11T08:34:56.000Z" itemprop="datePublished">2020-09-11</time>
 </a>
-      
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/11/14/algorithm/">algorithm</a>
+    <h1 class="article-title" itemprop="name">
+      Statistics
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="Statistics-for-Machine-Learning"><a href="#Statistics-for-Machine-Learning" class="headerlink" title="Statistics for Machine Learning"></a>Statistics for Machine Learning</h4><h5 id="One-两大派系"><a href="#One-两大派系" class="headerlink" title="One. 两大派系"></a>One. 两大派系</h5><ul>
+<li><strong>频率派：统计机器学习</strong>（设计模型，找到loss，设计算法。本质为优化问题）</li>
+<li><strong>贝叶斯派：概率图模型</strong>（本质为求积分问题（Monte Carlo method, MCMC），直接求解过于复杂，则衍生出概率图模型）</li>
+<li>X: data, X={x_1, x_2, …, x_n}^T  Dimension(N, P)</li>
+<li>θ: parameter,   X~p(X|θ)</li>
+<li><strong>频率派</strong><ul>
+<li>θ为未知常数；X为随机变量</li>
+<li>loss = P(X|θ) = Π P(x_i|θ)<ul>
+<li>x_1, x_2, …, x_n之间独立同分布</li>
+</ul>
+</li>
+<li>Maximum Likelihood Estimation 极大似然估计<ul>
+<li>θ_MLE = argmax_θ log P(X|θ)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>贝叶斯派</strong><ul>
+<li>θ为随机变量，服从概率分布θ~P(θ)，即prior probability 先验概率；X为随机变量</li>
+<li>posterior probability 后验概率<ul>
+<li>P(θ|X) = P(X, θ)/P(X) = P(X|θ)P(θ)/P(X) = likelihood*prior / ∫_θ P(X|θ) dθ</li>
+</ul>
+</li>
+<li>Maximum A Posterior Probability 最大后验概率<ul>
+<li>找到θ在分布中最大值点</li>
+<li>θ_MLE = argmax_θ P(X|θ) = argmax_θ P(X|θ)P(θ)</li>
+<li>P(θ|X)其分母是不变的，则θ_MLE与分子成正比，只需要算分子</li>
+</ul>
+</li>
+<li>贝叶斯估计<ul>
+<li>P(θ|X) = P(X|θ)P(θ) /∫_θ P(X|θ) dθ</li>
+<li>必须完整计算整个分子式</li>
+</ul>
+</li>
+<li>贝叶斯预测<ul>
+<li>X (train), X~ (test),  X -&gt; θ -&gt; X~</li>
+<li>训练数据通过学习参数θ，与测试数据关联</li>
+<li>P(X~|X) = ∫_θ P(X~, θ|X) dθ = ∫_θ P(X~|X)P(θ|X) dθ</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/09/11/Statistics/" data-id="ckey59mxh000defeg6837qu6p" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ML/">ML</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2020/08/12/Bayes-MRF/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Bayes_MRF</div>
+    </a>
+  
+</nav>
+
+  
+</article>
 
 </section>
         

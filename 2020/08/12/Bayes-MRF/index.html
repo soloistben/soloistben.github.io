@@ -28,7 +28,7 @@
 <meta property="og:image" content="https://github.com/soloistben/images/raw/master/bayes_mrf/pair-markov_3.png">
 <meta property="og:image" content="https://github.com/soloistben/images/raw/master/bayes_mrf/pair-markov_4.png">
 <meta property="og:image" content="https://github.com/soloistben/images/raw/master/bayes_mrf/pair-markov_5.png">
-<meta property="og:updated_time" content="2020-08-13T09:31:30.260Z">
+<meta property="og:updated_time" content="2020-09-11T07:08:01.545Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Bayes_MRF">
 <meta name="twitter:description" content="Bayes 贝叶斯 &amp;amp; Markov Random Fields 马尔可夫随机场One. 前提 Probabilistic Graphical Model (PGM 概率图模型) （将概率引入图模型，没有图，只能计算，引入图，比较直观，容易观察） Representation 表示 有向图 Bayesian Network (有向无环，则起始结点决定这终止节点的概率) 无向图 Markov">
@@ -144,7 +144,7 @@
 <li>sum rule: P(x_1) =  ∫ P(x_1, x_2) dx_2 (边缘概率)</li>
 <li>poduct rule: P(x_1, x_2) = P(x_1)*P(x_2|X_1) = P(x_2)*P(x_1|X_2)</li>
 <li>chain rule: P(x_1, x_2, …, x_p) = Π P(x_i|x_1, x_2, …, x_i-1)</li>
-<li>bayesian rule: P(x_2|X_1) = P(x_1, X_2) / P(x_1) = P(x_1, X_2) / ∫ P(x_1, x_2) dx_2 =  P(x_2)*P(x_1|X_2) /  ∫ P(x_1, x_2) dx_2</li>
+<li>bayesian rule: P(x_2|x_1) = P(x_1, x_2) / P(x_1) = P(x_1, x_2) / ∫ P(x_1, x_2) dx_2 =  P(x_2)*P(x_1|x_2) /  ∫ P(x_1, x_2) dx_2</li>
 </ul>
 </li>
 <li><p><strong>缺点</strong></p>
@@ -263,7 +263,8 @@
 </li>
 </ul>
 </li>
-<li>连续<ul>
+<li><p>连续</p>
+<ul>
 <li><strong>Gaussian Bayes Network</strong> 高斯图</li>
 </ul>
 </li>
@@ -339,7 +340,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/08/12/Bayes-MRF/" data-id="ckdsft1fl0004dregx0hwxi34" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/08/12/Bayes-MRF/" data-id="ckey59mx80003efeg6atp99rr" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ML/">ML</a></li></ul>
@@ -349,6 +350,15 @@
   
     
 <nav id="article-nav">
+  
+    <a href="/2020/09/11/Statistics/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Statistics
+        
+      </div>
+    </a>
   
   
     <a href="/2020/08/09/HMM-CRF/" id="article-nav-older" class="article-nav-link-wrap">
@@ -391,7 +401,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">八月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">九月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">八月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a></li></ul>
     </div>
   </div>
 
@@ -402,6 +412,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2020/09/11/Statistics/">Statistics</a>
+          </li>
         
           <li>
             <a href="/2020/08/12/Bayes-MRF/">Bayes_MRF</a>
@@ -417,10 +431,6 @@
         
           <li>
             <a href="/2020/05/06/machine-learning/">machine_learning</a>
-          </li>
-        
-          <li>
-            <a href="/2020/05/06/RNN-LSTM/">RNN_LSTM</a>
           </li>
         
       </ul>
