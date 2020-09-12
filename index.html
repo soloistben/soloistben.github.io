@@ -148,9 +148,9 @@
 <li><strong>prior probability</strong> <ul>
 <li>P(Y=c_k)</li>
 <li>属于贝叶斯派，认为参数也属于未知变量，符合概率分布</li>
-<li>若样本特征的分布大部分是连续值，则先验为高斯分布的朴素贝叶斯</li>
-<li>若样本特征的分大部分是多元离散值，则先验为多项式分布的朴素贝叶斯</li>
-<li>若样本特征是二元离散值或者很稀疏的多元离散值，先验为伯努利分布的朴素贝叶斯</li>
+<li>若样本特征的分布大部分是<font color="red">连续值</font>，则先验为<font color="red">高斯分布</font>的朴素贝叶斯</li>
+<li>若样本特征的分大部分是<font color="red">多元离散值</font>，则先验为<font color="red">多项式分布</font>的朴素贝叶斯</li>
+<li>若样本特征是二元离散值或者很稀疏的<font color="red">二元离散值</font>，先验为<font color="red">伯努利分布</font>的朴素贝叶斯</li>
 <li><a href="https://www.cnblogs.com/pinard/p/6074222.html" target="_blank" rel="noopener">sk-learn</a></li>
 </ul>
 </li>
@@ -187,7 +187,7 @@
 </li>
 <li>f(x) = argmin Σ[L(c_k|f(x))]P(c_k|X) <ul>
 <li>根据L(Y, f(x))函数展开，消去Y==f(x)项</li>
-<li>f(x) = argmin ΣP(y!=c_k|X=x) = argmin (1-P(y=c_k|X=x)) = argmax P(y=c_k|X=x)</li>
+<li>f(x) = <strong>argmin ΣP(y!=c_k|X=x)</strong> = argmin (1-P(y=c_k|X=x)) = <strong>argmax P(y=c_k|X=x)</strong></li>
 </ul>
 </li>
 <li>意义：<strong>样本x属于其他类别的最小概率为多少</strong>（等价于 样本x属于c_k类别的最大概率为多少）</li>
