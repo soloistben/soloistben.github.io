@@ -136,7 +136,7 @@
 <h5 id="Two-Naive-Bayes"><a href="#Two-Naive-Bayes" class="headerlink" title="Two. Naive Bayes"></a>Two. Naive Bayes</h5><ul>
 <li><strong>朴素贝叶斯 = 贝叶斯定理 + 特征条件独立</strong><ul>
 <li>贝叶斯定理计算复杂，设定特征条件独立简化计算</li>
-<li>但特征条件独立，特性太强了，不符合现实情况</li>
+<li>但特征条件独立，特性太强了，不符合现实情况（见Bayes_MRF对图概率模型的缺点描述）</li>
 </ul>
 </li>
 <li>Data<ul>
@@ -193,7 +193,7 @@
 <li>意义：<strong>样本x属于其他类别的最小概率为多少</strong>（等价于 样本x属于c_k类别的最大概率为多少）</li>
 </ul>
 </li>
-<li>详情案例见统计学习方法63页</li>
+<li>详情案例见统计学习方法(第二版)63页</li>
 </ul>
 <h5 id="Three-Decision-Tree"><a href="#Three-Decision-Tree" class="headerlink" title="Three. Decision Tree"></a>Three. Decision Tree</h5><h5 id="Four-KNN"><a href="#Four-KNN" class="headerlink" title="Four. KNN"></a>Four. KNN</h5><h5 id="Five-Logistic-Regression"><a href="#Five-Logistic-Regression" class="headerlink" title="Five. Logistic Regression"></a>Five. Logistic Regression</h5><h5 id="Six-Support-Vector-Machines"><a href="#Six-Support-Vector-Machines" class="headerlink" title="Six. Support Vector Machines"></a>Six. Support Vector Machines</h5>
       
@@ -265,22 +265,19 @@
 </li>
 </ul>
 </li>
-<li><p><strong>高维随机变量</strong> P(x_1, x_2, …, x_p) 计算量太大</p>
-<ul>
+<li><strong>高维随机变量</strong> P(x_1, x_2, …, x_p) 计算量太大<ul>
 <li>边缘概率 P(x_i)</li>
 <li>条件概率 P(x_j|x_i)</li>
 </ul>
 </li>
-<li><p><strong>运算原则</strong></p>
-<ul>
+<li><strong>运算原则</strong><ul>
 <li>sum rule: P(x_1) =  ∫ P(x_1, x_2) dx_2 (边缘概率)</li>
 <li>poduct rule: P(x_1, x_2) = P(x_1)*P(x_2|X_1) = P(x_2)*P(x_1|X_2)</li>
 <li>chain rule: P(x_1, x_2, …, x_p) = Π P(x_i|x_1, x_2, …, x_i-1)</li>
 <li>bayesian rule: P(x_2|x_1) = P(x_1, x_2) / P(x_1) = P(x_1, x_2) / ∫ P(x_1, x_2) dx_2 =  P(x_2)*P(x_1|x_2) /  ∫ P(x_1, x_2) dx_2</li>
 </ul>
 </li>
-<li><p><strong>缺点</strong></p>
-<ul>
+<li><strong>缺点</strong><ul>
 <li><font color="red">高维复杂 P(x_1, x_2, …, x_p) 计算量太大</font></li>
 <li>简化 <ul>
 <li>每个<strong>维度之间相互独立</strong>    (特性太强了)<ul>
@@ -295,19 +292,17 @@
 </li>
 <li><strong>条件独立性</strong>（可降低计算复杂度）<ul>
 <li>给定x_B情况下，集合x_A与集合x_C无关 （x_A，x_B，x_C无交集）</li>
-<li>x_B 只与x_C相关</li>
+<li>x_B 只与x_C相关<br><a href="https://www.bilibili.com/video/BV1BW41117xo?p=1" target="_blank" rel="noopener">video</a>    <a href="https://www.bilibili.com/s/video/BV1Dk4y1q78a" target="_blank" rel="noopener">MRF video</a></li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
-<p><a href="https://www.bilibili.com/video/BV1BW41117xo?p=1" target="_blank" rel="noopener">video</a>    <a href="https://www.bilibili.com/s/video/BV1Dk4y1q78a" target="_blank" rel="noopener">MRF video</a></p>
 </li>
 </ul>
 <h5 id="Two-Bayes"><a href="#Two-Bayes" class="headerlink" title="Two. Bayes"></a>Two. Bayes</h5><ul>
 <li>链式法则 P(x_1, x_2, …, x_p) = Π P(x_i|x_1, x_2, …, x_i-1)</li>
-<li><p>因子分解 P(x_1, x_2,…, x_p) = Π P(x_i|x_p(i)),  x_p(i)为x_i父亲集合 （条件独立性）</p>
-<p><img src="https://github.com/soloistben/images/raw/master/bayes_mrf/bayes_1.png" alt="bayes_1" style="zoom: 80%;"></p>
+<li><p>因子分解 P(x_1, x_2,…, x_p) = Π P(x_i|x_p(i)),  x_p(i)为x_i父亲集合 （条件独立性）<br><img src="https://github.com/soloistben/images/raw/master/bayes_mrf/bayes_1.png" alt="bayes_1" style="zoom: 80%;"></p>
 </li>
 <li><p><strong>tail to tail</strong></p>
 <ul>
@@ -395,8 +390,7 @@
 </li>
 </ul>
 </li>
-<li><p>连续</p>
-<ul>
+<li>连续<ul>
 <li><strong>Gaussian Bayes Network</strong> 高斯图</li>
 </ul>
 </li>
@@ -405,8 +399,7 @@
 </ul>
 <h5 id="Three-MRF"><a href="#Three-MRF" class="headerlink" title="Three. MRF"></a>Three. MRF</h5><ul>
 <li>无向图</li>
-<li><p>条件独立性，发生x_B时，x_A与x_C无关 （<strong>global markov</strong> 全局马尔可夫）</p>
-<ul>
+<li>条件独立性，发生x_B时，x_A与x_C无关 （<strong>global markov</strong> 全局马尔可夫）<ul>
 <li>存在x_A, x_C被x_B分割（对应 bayes D-separation）， 那么发生x_B时，x_A与x_C无关 </li>
 </ul>
 </li>
@@ -422,10 +415,8 @@
 <li>对于集合x_-i,-j(集合没有i，j结点), 任意两个点x_i, x_j相互独立, (i != j)</li>
 </ul>
 </li>
-<li><p>相互等价，可以互推 global markov <-> local markov <-> pair markov <->  基于最大团的因子分解</-></-></-></p>
-</li>
-<li><p>clique团，最大团</p>
-<ul>
+<li>相互等价，可以互推 global markov <-> local markov <-> pair markov <->  基于最大团的因子分解</-></-></-></li>
+<li>clique团，最大团<ul>
 <li>集合间的结点相互联通</li>
 <li>在一个团无法添加结点，则是最大团</li>
 <li>(c1, c2,…表示团)</li>
