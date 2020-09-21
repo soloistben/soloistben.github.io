@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="MR.C">
 <meta property="og:description" content="Statistics for Machine LearningOne. 两大派系 频率派：统计机器学习（设计模型，找到loss，设计算法。本质为优化问题） 贝叶斯派：概率图模型（本质为求积分问题(Monte Carlo method, MCMC)，直接求解过于复杂，则衍生出概率图模型） Data X: data, X={x_1, x_2, …, x_n}^T  Dimension(N, P) θ:">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-09-12T03:02:38.527Z">
+<meta property="og:updated_time" content="2020-09-21T08:15:03.319Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Statistics">
 <meta name="twitter:description" content="Statistics for Machine LearningOne. 两大派系 频率派：统计机器学习（设计模型，找到loss，设计算法。本质为优化问题） 贝叶斯派：概率图模型（本质为求积分问题(Monte Carlo method, MCMC)，直接求解过于复杂，则衍生出概率图模型） Data X: data, X={x_1, x_2, …, x_n}^T  Dimension(N, P) θ:">
@@ -166,9 +166,9 @@
 </ul>
 </li>
 <li><strong>posterior probability</strong><ul>
-<li>P(Y=c_k|X=x) = P(X=x|T=c_k)P(Y=c_k)/ΣP(X=x|T=c_k)P(Y=c_k) = P(T=c_k)ΠP(X^(j)=x^(j)|Y=c_k)/Σ P(T=c_k)ΠP(X^(j)=x^(j)|Y=c_k)</li>
+<li>P(Y=c_k|X=x) = P(X=x|Y=c_k)P(Y=c_k)/ΣP(X=x|Y=c_k)P(Y=c_k) = P(Y=c_k)ΠP(X^(j)=x^(j)|Y=c_k)/Σ P(Y=c_k)ΠP(X^(j)=x^(j)|Y=c_k)</li>
 <li>则分类器为<ul>
-<li>y=f(x) = argmax P(Y=c_k|X=x) = argmax P(T=c_k)ΠP(X^(j)=x^(j)|Y=c_k)</li>
+<li>y=f(x) = argmax P(Y=c_k|X=x) = argmax P(Y=c_k)ΠP(X^(j)=x^(j)|Y=c_k)</li>
 <li>分母不变，则仅于分子成正比</li>
 <li>意义：<strong>样本x属于c_k类别的最大概率为多少</strong></li>
 </ul>
