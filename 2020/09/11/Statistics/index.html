@@ -21,7 +21,7 @@
 <meta property="og:image" content="https://github.com/soloistben/images/raw/master/statistics/DT4.png">
 <meta property="og:image" content="https://github.com/soloistben/images/raw/master/statistics/DT5.png">
 <meta property="og:image" content="https://github.com/soloistben/images/raw/master/statistics/DT6.png">
-<meta property="og:updated_time" content="2020-09-23T14:30:32.940Z">
+<meta property="og:updated_time" content="2020-09-24T00:48:40.712Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Statistics">
 <meta name="twitter:description" content="Statistics for Machine LearningOne. 两大派系 频率派：统计机器学习（设计模型，找到loss function，设计算法。本质为优化问题） 贝叶斯派：概率图模型（本质为求积分问题(Monte Carlo method, MCMC)，直接求解过于复杂，则衍生出概率图模型） Data X: data, X={x_1, x_2, …, x_n}^T  Dimension">
@@ -242,17 +242,17 @@
 <li>选择对应最大信息增益的特征，再根据该特征将数据划分成两个子集，再其中未分好的子集中再次递归选择最大信息增益的特征</li>
 </ul>
 </li>
-<li>缺点：由于信息增益会导致偏向于选择取值较多的特征、没有考虑连续特征、没考虑缺失值</li>
 </ul>
 </li>
+</ul>
+</li>
+<li><p>缺点：由于信息增益会导致偏向于选择取值较多的特征、没有考虑连续特征、没考虑缺失值</p>
+<ul>
 <li><p><strong>C4.5算法</strong>（分类、多叉树）</p>
 <ul>
-<li><p>特征选择</p>
-<ul>
+<li>特征选择</li>
 <li><p>Information Gain Ratio 信息增益比=信息增益 / 特征熵</p>
 <p><img src="https://github.com/soloistben/images/raw/master/statistics/DT3.png" alt="DT3" style="zoom: 67%;"></p>
-</li>
-</ul>
 </li>
 <li><p>生成</p>
 <ul>
@@ -261,10 +261,10 @@
 </li>
 <li>缺点<ul>
 <li>基于信息论的熵模型的，这里面会涉及大量的对数运算</li>
-<li>二叉树模型会比多叉树运算效率高</li>
-<li>无剪枝</li>
 </ul>
 </li>
+<li>二叉树模型会比多叉树运算效率高</li>
+<li>无剪枝</li>
 </ul>
 </li>
 <li><p><strong>CART</strong> classification and regression tree（分类、回归、二叉树）</p>
@@ -273,9 +273,9 @@
 <ul>
 <li><p>特征选择</p>
 <ul>
-<li><p>Gini基尼指数</p>
+<li>Gini基尼指数</li>
+<li><p>基尼指数Gini(D)表示集合D的不确定性，Gini(D, A)表示基于特征A 划分后D的不确定性</p>
 <ul>
-<li>基尼指数Gini(D)表示集合D的不确定性，Gini(D, A)表示基于特征A 划分后D的不确定性</li>
 <li>基尼指数越大，样本集合不确定性也越大（基尼指数和熵都可以近似表示分类误差率）</li>
 </ul>
 <p><img src="https://github.com/soloistben/images/raw/master/statistics/DT4.png" alt="DT4"></p>
@@ -285,7 +285,10 @@
 <li><p>生成</p>
 <ul>
 <li>根据计算现有特征对样本集合D的基尼指数，每次迭代均选择最小基尼指数对应的特征作为最优切分点</li>
-<li>生成决策树之后，根据底端开始不短剪枝，直至根结点，形成子树</li>
+</ul>
+</li>
+<li><p>生成决策树之后，根据底端开始不短剪枝，直至根结点，形成子树</p>
+<ul>
 <li><p>损失函数</p>
 <p><img src="https://github.com/soloistben/images/raw/master/statistics/DT5.png" alt="DT5" style="zoom:75%;"></p>
 </li>
