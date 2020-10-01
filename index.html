@@ -133,7 +133,91 @@
 </ul>
 </li>
 </ul>
-<h5 id="Two-Naive-Bayes"><a href="#Two-Naive-Bayes" class="headerlink" title="Two. Naive Bayes"></a>Two. Naive Bayes</h5><ul>
+<h5 id="Two-Linear-Regression"><a href="#Two-Linear-Regression" class="headerlink" title="Two. Linear Regression"></a>Two. Linear Regression</h5><p><img src="https://github.com/soloistben/images/raw/master/statistics/Linear_Regression/LR1.png" alt="LR1" style="zoom: 50%;"></p>
+<p>数据定义：N个p维样本，即X维度(N, p) （N &gt; p，样本之间独立同分布）；真实值Y维度(N,1)；直线f(w) = w^T x + b（偏置b可先忽略）</p>
+<ul>
+<li><p><strong>矩阵表达</strong></p>
+<ul>
+<li>Least Squares 最小二乘估计法（最小平方法）</li>
+<li><strong>L(w) = Σ||w^T x_i - y_i||^2</strong> = Σ(w^T x_i - y_i)^2 = (w^T X^T - Y^T) (Xw - Y) = w^T X^T X w - 2 w^T X^T Y + Y^T Y<ul>
+<li><strong>w~ = argmin L(w)</strong></li>
+</ul>
+</li>
+<li>求导 dL/dw =  2 X^T X w - 2 X^T Y = 0  —-&gt; X^T X w = X^T Y<ul>
+<li><strong>w~ = (X^T X)^-1 X^T Y</strong> (伪逆：(X^T X)^-1 X^T)</li>
+</ul>
+</li>
+<li>x_3的误差为(w^T x_3 - y_3)，即所有误差分成一小段一小段</li>
+</ul>
+</li>
+<li><p><strong>几何意义</strong></p>
+<ul>
+<li>f(w) = w^T x &lt;=&gt; f(β) = x^T β</li>
+<li>可以将数据X看成p维的空间，Y是不在该p维空间内</li>
+<li><p>目标：在p维空间中找到一条直线f(β)离Y最近，即Y在p维空间的投影</p>
+<ul>
+<li><p>若向量a与向量b垂直，则 a^T b = 0</p>
+<p><img src="https://github.com/soloistben/images/raw/master/statistics/Linear_Regression/LR2.png" alt="LR2" style="zoom: 50%;"></p>
+</li>
+<li><p>虚线为(Y - Xβ) 与X的p维空间垂直，X^T (Y-Xβ) = 0 —-&gt; β = (X^T X)^-1 X^T Y</p>
+</li>
+<li>误差分散在p个维度上</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>概率角度</strong></p>
+<ul>
+<li>最小二乘法 &lt;=&gt; 噪声为高斯分布的极大似然估计法（MLE with Gaussian noise）</li>
+<li>数据本身会带有噪声 ε~N(0, σ^2)</li>
+<li>y = f(w) + ε = w^T x + ε<ul>
+<li>y|x,w ~ N(w^T x, σ^2)  &lt;=&gt; <strong>P(y|x,w)</strong> =1/(sqrt(2*pi)*σ) exp(-(y - w^T x)^2/(2*σ^2))</li>
+</ul>
+</li>
+<li>定义log-likelihood： <ul>
+<li>L_MLE (w) = log P(y|x,w) = log Π P(y_i|x_i,w) = Σ log P(y_i|x_i,w) = Σ[log(1/(sqrt(2*pi)*σ)) + log(exp(-(y_i - w^T x_i)^2/(2*σ^2)))] = Σ[log(1/(sqrt(2*pi)*σ)) -(y_i - w^T x_i)^2/(2*σ^2)]</li>
+<li>样本之间独立同分布 </li>
+<li>w~ = argmax L_MLE (w) = argmax -(y_i - w^T x_i)^2/(2*σ^2) = argmin (y_i - w^T x_i)^2</li>
+<li>则与最小二乘法定义一样 (<strong>LSE &lt;=&gt; MLE with Gaussian noise</strong>)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Regularization 正则化</strong> </p>
+<ul>
+<li>若样本没有那么多，X维度(N, p)的N没有远大于p，则求w~中的(X^T X)往往不可逆，（p过大，有无数种结果）会引起<strong>过拟合</strong><ul>
+<li>最直接是加样本数据</li>
+<li>降维or特征选择or特征提取 (PCA)</li>
+<li>正则化（损失函数加个约束）：argmin [L(w)+λP(w)]</li>
+</ul>
+</li>
+<li>L1 -&gt; Lasso<ul>
+<li>P(w) = ||w||_1</li>
+</ul>
+</li>
+<li>L2 -&gt; Ridge 岭回归<ul>
+<li>P(w) = ||w||_2 = w^T w</li>
+<li>权值衰减</li>
+<li>J(w) = Σ||w^T x_i - y_i||^2 + λ w^T w = w^T X^T X w - 2 w^T X^T Y + Y^T Y + λ w^T w = w^T(X^T X + λ I) w - 2 w^T X^T Y + Y^T Y<ul>
+<li>w~ = argmin J(w)</li>
+<li>dJ/dw = 2 (X^T X + λ I)w - 2 X^T Y = 0, w~ = (X^T X + λ I)^-1 X^T Y</li>
+<li>X^T X 是半正定矩阵+对角矩阵=(X^T X + λ I)正定矩阵，必然<strong>可逆</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>贝叶斯的角度<ul>
+<li>参数w服从分布，w~N(0,σ_0^2) —&gt; <strong>P(w)</strong> = 1/(sqrt(2*pi)*σ_0) exp(||w||^2/(2*σ_0^2))</li>
+<li>P(w|y) = P(y|w)P(w) / P(y)</li>
+<li>MAP: w~ = argmax P(w|y) = argmax P(y|w)P(w) = argmax log(P(y|w)P(w)) = argmax log[1/(2*pi*σ_0*σ) exp(-(y_i - w^T x_i)^2/(2*σ^2) -||w||^2/(2*σ_0^2))] = argmin [(y_i - w^T x_i)^2 + σ^2/σ_0^2||w||^2] = argmin [L(w)+λP(w)]</li>
+<li>λ = σ^2/σ_0^2</li>
+<li><strong>Regularized LSE &lt;=&gt; MAP with Gaussian noise and Gaussian prior</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h5 id="Three-Naive-Bayes"><a href="#Three-Naive-Bayes" class="headerlink" title="Three. Naive Bayes"></a>Three. Naive Bayes</h5><ul>
 <li><strong>朴素贝叶斯 = 贝叶斯定理 + 特征条件独立</strong><ul>
 <li>贝叶斯定理计算复杂，设定特征条件独立简化计算</li>
 <li>但特征条件独立，特性太强了，不符合现实情况（见Bayes_MRF对图概率模型的缺点描述）</li>
@@ -195,7 +279,7 @@
 </li>
 <li>详情案例见统计学习方法(第二版)63页</li>
 </ul>
-<h5 id="Three-Decision-Tree"><a href="#Three-Decision-Tree" class="headerlink" title="Three. Decision Tree"></a>Three. Decision Tree</h5><ul>
+<h5 id="Four-Decision-Tree"><a href="#Four-Decision-Tree" class="headerlink" title="Four. Decision Tree"></a>Four. Decision Tree</h5><ul>
 <li><p>基于数据特征构造决策树</p>
 <ul>
 <li>有向边</li>
@@ -252,7 +336,8 @@
 <li>与ID3算法类似</li>
 </ul>
 </li>
-<li>缺点<ul>
+<li><p>缺点</p>
+<ul>
 <li>基于信息论的熵模型的，这里面会涉及大量的对数运算</li>
 </ul>
 </li>
@@ -268,15 +353,12 @@
 <li>Gini基尼指数</li>
 </ul>
 </li>
-<li><p>基尼指数Gini(D)表示集合D的不确定性，Gini(D, A)表示基于特征A 划分后D的不确定性</p>
-<ul>
-<li><p>基尼指数越大，样本集合不确定性也越大（基尼指数和熵都可以近似表示分类误差率）</p>
-<p><img src="https://github.com/soloistben/images/raw/master/statistics/DT4.png" alt="DT4"></p>
-</li>
+<li>基尼指数Gini(D)表示集合D的不确定性，Gini(D, A)表示基于特征A 划分后D的不确定性</li>
+<li>基尼指数越大，样本集合不确定性也越大（基尼指数和熵都可以近似表示分类误差率）</li>
 </ul>
-</li>
-<li><p>生成</p>
-</li>
+<p><img src="https://github.com/soloistben/images/raw/master/statistics/DT4.png" alt="DT4"></p>
+<ul>
+<li>生成</li>
 <li>根据计算现有特征对样本集合D的基尼指数，每次迭代均选择最小基尼指数对应的特征作为最优切分点</li>
 <li>生成决策树之后，根据底端开始不短剪枝，直至根结点，形成子树</li>
 </ul>
