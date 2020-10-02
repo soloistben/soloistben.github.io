@@ -133,28 +133,25 @@
 <li>直接降维 （特征选择：人工选取重要特征 ）</li>
 <li><p>线性降维</p>
 <ul>
-<li><p>Principal Components Analysis <strong>PCA</strong> 主成分分析</p>
+<li><p><strong>Principal Components Analysis PCA 主成分分析</strong></p>
 <ul>
-<li><p>将线性相关的特征通过正交变换为线性无关（对原始特征空间的重构）</p>
-<ul>
-<li>线性相关（多个特征存在联系）</li>
-</ul>
+<li><p>将线性相关的特征通过正交变换为线性无关（对原始特征空间的重构）（线性相关（存在2个以上特征之间联系））</p>
 <p><img src="https://github.com/soloistben/images/raw/master/statistics/Dimensionality_Reduction/DR3.png" alt="DR3" style="zoom: 67%;"></p>
 </li>
 <li><p>最大投影方差</p>
 <ul>
-<li>找到一个u_1平面，使投影间距达到最大（投影到u_2平面，距离太小，没有意义）</li>
+<li>找到一个u_1平面，使投影间距达到最大（投影到u_2平面，距离太小，没有意义）<ul>
 <li>这个平面就是主成分（线性无关的基(特征向量)为数据中的主要成分，降到k维，则选取第k大的特征值所对应的特征向量）</li>
 <li>第1步：中心化：先将所有数据平移，利于计算，即 x_i - X～</li>
 <li>第2步：投影到u_1平面：(x_i - X～)^T u_1（设定 |u_1|=1，即u_1^T u_1=1）</li>
-<li>第3步：投影方差 J = 1/N Σ [(x_i - X~)^T u_1]^2 = 1/N Σ [u_1^T (x_i - X~) (x_i - X~)^T u_1] = u_1^T S u_1<ul>
+<li>第3步：投影方差 J = 1/N Σ [(x_i - X~)^T u_1]^2 = 1/N Σ [u_1^T (x_i - X~) (x_i - X~)^T u_1] = u_1^T S u_1</li>
+</ul>
+</li>
 <li>u_1~ = argmax u_1^T S u_1  s.t. u_1^T u_1=1<ul>
 <li>使用拉格朗日求解</li>
 <li>L(u_1, λ) = u_1^T S u_1 + λ(1-u_1^T u_1)</li>
 <li>dL/du_1 = 2 S u_1 - 2λ u_1 = 0  ==&gt; <strong>S u_1 = λ u_1</strong> </li>
 <li><strong>u_1为eigen-vector特征向量，λ为eigen-value特征值</strong></li>
-</ul>
-</li>
 </ul>
 </li>
 </ul>
