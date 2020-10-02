@@ -21,7 +21,7 @@
 <meta property="og:image" content="https://github.com/soloistben/images/raw/master/statistics/DT4.png">
 <meta property="og:image" content="https://github.com/soloistben/images/raw/master/statistics/DT5.png">
 <meta property="og:image" content="https://github.com/soloistben/images/raw/master/statistics/DT6.png">
-<meta property="og:updated_time" content="2020-10-02T08:58:16.137Z">
+<meta property="og:updated_time" content="2020-10-02T09:00:35.769Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Decision_Tree">
 <meta name="twitter:description" content="基于数据特征构造决策树  有向边 结点  内部结点(internal node)-&amp;gt;表示特征 叶子结点(leaf node)-&amp;gt;表示类别   从根结点开始，对实例的某一特征进行取得阈值，从而划分，再递归根据后续的特征，再取值划分，直至到叶子结点，完成分类    决策树表示给定特征条件下类的条件概率分布。 一个条概率分布定义特征空间的一个划分上 将特征空间划分为互不相交的单元cell，">
@@ -136,13 +136,15 @@
 </li>
 <li><p><strong>C4.5算法</strong>（分类、多叉树）</p>
 <ul>
-<li>特征选择</li>
-</ul>
-</li>
+<li><p>特征选择</p>
+<ul>
 <li><p>Information Gain Ratio 信息增益比=信息增益 / 特征熵</p>
 <p><img src="https://github.com/soloistben/images/raw/master/statistics/DT3.png" alt="DT3" style="zoom: 67%;"></p>
-<ul>
-<li>生成：与ID3算法类似</li>
+</li>
+</ul>
+</li>
+<li><p>生成：与ID3算法类似</p>
+</li>
 <li>缺点：基于信息论的熵模型的，这里面会涉及大量的对数运算</li>
 <li>二叉树模型会比多叉树运算效率高</li>
 <li>无剪枝</li>
@@ -171,12 +173,13 @@
 <ul>
 <li>T为任意子树，C(T)为对训练数据的预测误差（基尼指数），|T|为子树叶子结点个数，a为大于0的参数，Ca(T)表示了整体的损失</li>
 </ul>
-<p><img src="https://github.com/soloistben/images/raw/master/statistics/DT6.png" alt="DT6" style="zoom:75%;"></p>
 </li>
 </ul>
 </li>
-<li><p>回归</p>
-</li>
+</ul>
+<p><img src="https://github.com/soloistben/images/raw/master/statistics/DT6.png" alt="DT6" style="zoom:75%;"></p>
+<ul>
+<li>回归</li>
 </ul>
 </li>
 </ul>
