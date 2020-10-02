@@ -133,7 +133,7 @@
 </ul>
 </li>
 </ul>
-<h5 id="Two-Linear-Regression（频率派）"><a href="#Two-Linear-Regression（频率派）" class="headerlink" title="Two. Linear Regression（频率派）"></a>Two. Linear Regression（频率派）</h5><p><img src="https://github.com/soloistben/images/raw/master/statistics/Linear_Regression/LR1.png" alt="LR1" style="zoom: 50%;"></p>
+<h5 id="Two-Linear-Regression"><a href="#Two-Linear-Regression" class="headerlink" title="Two. Linear Regression"></a>Two. Linear Regression</h5><p><img src="https://github.com/soloistben/images/raw/master/statistics/Linear_Regression/LR1.png" alt="LR1" style="zoom: 50%;"></p>
 <p>数据定义：N个p维样本，即X维度(N, p) （N &gt; p，样本之间独立同分布）；真实值Y维度(N,1)；直线f(w) = w^T x + b（偏置b可先忽略）</p>
 <ul>
 <li><p>特点（<strong>现有模型都是基于下面特点，打破一个或者多个</strong>）</p>
@@ -236,20 +236,24 @@
 </li>
 </ul>
 <h5 id="Three-Linear-Classification"><a href="#Three-Linear-Classification" class="headerlink" title="Three. Linear Classification"></a>Three. Linear Classification</h5><ul>
-<li>线性回归——&gt;激活函数，降维——-&gt;线性分类</li>
-<li>硬分类：0/1<ul>
+<li><p>线性回归——&gt;激活函数，降维——-&gt;线性分类</p>
+</li>
+<li><p>硬分类：0/1</p>
+<ul>
 <li>线性判别分析 (Fisher)</li>
 <li>感知机</li>
 </ul>
 </li>
-<li>软分类：[0,1]区间内概率<ul>
-<li>生成式：Gaussian Discriminant Analysis（转换用贝叶斯求解）</li>
-<li>判别式：Logisitic Regression（直接学习P(Y|X)）</li>
+<li><p>软分类：[0,1]区间内概率</p>
+<ul>
+<li>生成式模型：Gaussian Discriminant Analysis, Naive Bayes, Markov（转换用贝叶斯求解）</li>
+<li>判别式模型：Logisitic Regression, KNN, Perceptron, Decision Tree, SVM, CRF, （直接学习P(Y|X)，用MLE学习参数）</li>
 </ul>
 </li>
 <li><p><strong>Perceptron 感知机</strong> (1957年)</p>
 <p><img src="https://github.com/soloistben/images/raw/master/statistics/Linear_Classification/LC1.png" alt="LC1" style="zoom: 67%;"></p>
 <ul>
+<li>判别模型</li>
 <li>样本：{(x_i, y_i)}, N个</li>
 <li>思想：错误驱动（先初始化w，检查分错的样本，前提是线性可分）（感知错误，纠正错误）</li>
 <li>模型：f(x) = sign(w^T x + b) （w^T x大于等于0表示为1（分类正确），反之为-1（分类错误））</li>
@@ -264,7 +268,7 @@
 <li><p><strong>线性判别分析</strong></p>
 <p><img src="https://github.com/soloistben/images/raw/master/statistics/Linear_Classification/LC2.png" alt="LC2" style="zoom:50%;"></p>
 <ul>
-<li>样本：N个p维样本，二分类(+1,-1)，正样本个数N_1，均值X_c1，方差S_c1，负样本个数N_2，均值X_c2，方差S_c2</li>
+<li>样本：N个p维样本，二分类(+1,-1)，正样本个数N_1，均值X_c1，方差S_c1，负样本个数N_2，均值X_c2，方差S_c2，（S_c1 = 1/N_1 Σ (x_i - X_c1)(x_i - X_c1)^T）</li>
 <li>思想：类内小，类间大<ul>
 <li>将所有样本映射到一个Z平面（模型学习找最优平面），设定阈值，根据类的方差将样本分类</li>
 <li>类内样本距离应该更紧凑（高内聚），类间更松散（松耦合）</li>
@@ -285,7 +289,7 @@
 <li>策略：L(w) = (Z_1-Z_2)^2 / (S_1+S_2) = [w^T (X_c1 - X_c2)(X_c1 - X_c2)^T w] / [ w^T (S_c1+ S_c2) w ]<ul>
 <li>分子 = [w^T (1/N_1 Σ x_i - 1/N_2 Σ x_i)]^2 = [w^T (X_c1 - X_c2)]^2 = w^T (X_c1 - X_c2)(X_c1 - X_c2)^T w</li>
 <li>分母 =  w^T S_c1 w +  w^T S_c2 w =  w^T (S_c1+ S_c2) w<ul>
-<li>S_1 =  1/N_1 Σ (w^T x_i - 1/N_1 Σ w^T x_j)(w^T x_i - 1/N_1 Σ w^T x_j)^T=w^T [1/N_1 Σ (x_i - x_c1)(x_i - x_c1)^T] w = w^T S_c1 w</li>
+<li>S_1 =  1/N_1 Σ (w^T x_i - 1/N_1 Σ w^T x_j)(w^T x_i - 1/N_1 Σ w^T x_j)^T=w^T [1/N_1 Σ (x_i - X_c1)(x_i - X_c1)^T] w = w^T S_c1 w</li>
 </ul>
 </li>
 <li>定义S_b类内方差（between-class），S_w类间方差（with-class）</li>
@@ -303,17 +307,88 @@
 <li><strong>线性判别分析为早期分类方法，有很大局限性，目前不用</strong></li>
 </ul>
 </li>
-<li><strong>Logistic Regression</strong><ul>
-<li></li>
+<li><p><strong>Logistic Regression</strong></p>
+<ul>
+<li>线性回归——&gt;sigmoid——-&gt;线性分类</li>
+<li>判别模型</li>
+<li>model<ul>
+<li>sigmoid(x) = 1/(1+e^-x)，将w^T x映射到处于[0,1]区间的概率值p</li>
+<li>p_1 = P(y=1|x) = sigmoid(w^T x) = 1/(1+e^(w^T x))</li>
+<li>p_0 = P(y=0|x) = sigmoid(w^T x) = e^(w^T x)/(1+e^(w^T x))</li>
+<li>综合表达：P(y|x) = p_1^y * p_0^(1-y)</li>
+</ul>
+</li>
+<li>w~ = argmax P(Y|X) = argmax log Π P(y_i|x_i) = argmax Σ log P(y_i|x_i) = argmax Σ [y_i*log p_1 + (1-y_i)*log p_0] （-cross entropy）<ul>
+<li>MLE &lt;=&gt; loss function (min cross entropy)</li>
 </ul>
 </li>
 </ul>
-<h5 id="Four-Naive-Bayes"><a href="#Four-Naive-Bayes" class="headerlink" title="Four. Naive Bayes"></a>Four. Naive Bayes</h5><ul>
+</li>
+<li><p><strong>Gaussian Discriminant Analysis</strong></p>
+<ul>
+<li>生成模型、连续<ul>
+<li>y~ = argmax P(y|x) = argmax P(x|y)P(y)</li>
+<li>分类：最终比较P(y=0|x)，P(y=1|x)大小</li>
+<li>P(y|x)正比于P(x|y)P(y)，即联合概率P(x, y)</li>
+</ul>
+</li>
+<li>Data：N个d维样本，二分类(0,1)，正样本个数N_1，方差S_1，负样本个数N_2，方差S_2</li>
+<li><strong>prior probability</strong> <ul>
+<li>先验概率服从伯努利分布</li>
+<li>y ~ Bernoulli，P(y=1) = p，P(y=0) = 1-p</li>
+<li>P(y) = p^y*(1-p)^(1-y)</li>
+</ul>
+</li>
+<li><strong>conditional probability</strong><ul>
+<li>条件概率服从高斯分布（样本足够大时服从高斯分布）</li>
+<li>x|y=1 ~ N(u_1, σ)</li>
+<li>x|y=0 ~ N(u_2, σ)</li>
+<li>方差一样（权值共享），均值不一样</li>
+<li>P(x|y) = N(u_1, σ)^y * N(u_2, σ)^(1-y)</li>
+</ul>
+</li>
+<li><strong>loss function</strong><ul>
+<li>log MLE =&gt; L(θ) =  log Π P(x_i, y_i) = Σ log [P(x_i|y_i)P(y_i)] = Σ[log P(x_i|y_i) + log P(y_i)] =  Σ[log N(u_1, σ)^y_i * N(u_2, σ)^(1-y_i) + log p^y_i*(1-p)^(1-y_i)] = Σ[y_i*log N(u_1, σ) + (1-y_i)*log N(u_2, σ) + y_i*log p + (1-y_i)*log (1-p)]</li>
+<li>θ = (u_1, u_2, σ, p)</li>
+<li>θ ~ = argmax L(θ)</li>
+<li>求解4个参数<ul>
+<li>p<ul>
+<li>相关部分 L = Σ [log p^y_i + log (1-p)^(1-y_i)]</li>
+<li>dL/dp = Σ [y_i/p - (1-y_i)/(1-p)] = 0  =&gt;  Σ [y_i*(1-p)- (1-y_i)*p] = Σ (y_i - p) = 0</li>
+<li>p~ = 1/N Σ y_i  = N_1/N（二分类（0,1），Σ y_i = N_1）</li>
+</ul>
+</li>
+<li>u_1 （同理 u_2）<ul>
+<li>相关部分 L = Σ y_i*log N(u_1, σ) = Σ y_i*log [1/((2*pi)^(d/2)*σ^(1/2)) exp((x_i-u_1)^T(x_i-u_1)/-2*σ)</li>
+<li>u_1 = argmax L = argmax Σ y_i * [(x_i-u_1)^T(x_i-u_1)/-2*σ] =  argmax -1/2 Σ y_i * [(x_i-u_1)^T(x_i-u_1)σ^-1] = argmax -1/2 Σ y_i * [x_i^T σ^-1 x_i - 2*u_1^T σ^-1 x_i + u_1^T σ^-1 u_1] </li>
+<li>dL/du_1 = -1/2 Σ y_i * [-2*σ^-1 x_i + 2*σ^-1 u_1] = 0  =&gt;   Σ y_i * (u_1 - x_i) = 0</li>
+<li>u_1 = Σ y_i x_i / Σ y_i = Σ y_i x_i / N_1</li>
+</ul>
+</li>
+<li>σ<ul>
+<li>相关部分 L = Σ[y_i*log N(u_1, σ) + (1-y_i)*log N(u_2, σ)] = Σlog N(u_1, σ) +  Σlog N(u_2, σ)<ul>
+<li>（二分类，非0即1，可以拆分算，可以省去y_i）</li>
+</ul>
+</li>
+<li><a href="https://www.bilibili.com/video/BV1aE411o7qd?p=20" target="_blank" rel="noopener">详解</a></li>
+<li>σ = 1/N (N_1*S_1 + N_2*S_2)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Naive Bayes</strong></p>
+<ul>
 <li><strong>朴素贝叶斯 = 贝叶斯定理 + 特征条件独立</strong><ul>
 <li>贝叶斯定理计算复杂，设定特征条件独立简化计算</li>
 <li>但特征条件独立，特性太强了，不符合现实情况（见Bayes_MRF对图概率模型的缺点描述）</li>
+<li>最简单概率图模型</li>
 </ul>
 </li>
+<li>生成模型、离散</li>
 <li>Data<ul>
 <li>X: data, (n, d), n个数据样本，每个d维向量</li>
 <li>Y: class, Y={c_1, c_2, …,c_k}, k个类别</li>
@@ -369,6 +444,8 @@
 </ul>
 </li>
 <li>详情案例见统计学习方法(第二版)63页</li>
+</ul>
+</li>
 </ul>
 <h5 id="Five-Decision-Tree"><a href="#Five-Decision-Tree" class="headerlink" title="Five. Decision Tree"></a>Five. Decision Tree</h5><ul>
 <li><p>基于数据特征构造决策树</p>
