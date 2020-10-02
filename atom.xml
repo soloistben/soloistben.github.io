@@ -32,17 +32,27 @@
   </entry>
   
   <entry>
-    <title>PCA</title>
-    <link href="http://yoursite.com/2020/10/02/PCA/"/>
-    <id>http://yoursite.com/2020/10/02/PCA/</id>
+    <title>Dimensionality Reduction</title>
+    <link href="http://yoursite.com/2020/10/02/Dimensionality-Reduction/"/>
+    <id>http://yoursite.com/2020/10/02/Dimensionality-Reduction/</id>
     <published>2020-10-02T08:49:56.000Z</published>
-    <updated>2020-10-02T08:49:56.863Z</updated>
+    <updated>2020-10-02T13:05:08.358Z</updated>
+    
+    <content type="html"><![CDATA[<p>+ </p>]]></content>
     
     <summary type="html">
+    
+      
+      
+        &lt;p&gt;+ &lt;/p&gt;
+
+      
     
     </summary>
     
     
+    
+      <category term="ML" scheme="http://yoursite.com/tags/ML/"/>
     
   </entry>
   
