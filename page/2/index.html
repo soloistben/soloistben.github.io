@@ -65,6 +65,378 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-algorithm" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/11/14/algorithm/" class="article-date">
+  <time datetime="2019-11-14T12:44:27.000Z" itemprop="datePublished">2019-11-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/11/14/algorithm/">algorithm</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="LCS-Longest-Common-Subsequence"><a href="#LCS-Longest-Common-Subsequence" class="headerlink" title="LCS Longest Common Subsequence"></a>LCS Longest Common Subsequence</h4><ul>
+<li>运用动态规划方法查找给定两个序列的最大公共子序列（子序列之间的字符可以不连续，若子串substring的字符必须连续）</li>
+<li>由序列尾部开始：<ul>
+<li>若两个序列尾部字符相等：LCS[i][j] = LSC[i-1][j-1] +1 </li>
+<li>若两个序列尾部字符不相等：LCS[i][j] = max(LSC[i-1][j], LSC[i][j-1])</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://github.com/soloistben/images/raw/master/algorithm_image/lcs.png" alt="LCS"><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">str1 = <span class="string">'GXTXAYB'</span></span><br><span class="line">str2 = <span class="string">'AGGTAB'</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">lcs</span><span class="params">(str1, str2)</span>:</span></span><br><span class="line">    L = np.zeros((len(str1)+<span class="number">1</span>, len(str2)+<span class="number">1</span>))</span><br><span class="line">    <span class="comment">#print(L)</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(str1)+<span class="number">1</span>):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(len(str2)+<span class="number">1</span>):</span><br><span class="line">            <span class="keyword">if</span> i==<span class="number">0</span> <span class="keyword">or</span> j==<span class="number">0</span>:</span><br><span class="line">                L[i][j] = <span class="number">0</span></span><br><span class="line">            <span class="keyword">elif</span> str1[i<span class="number">-1</span>] == str2[j<span class="number">-1</span>]:</span><br><span class="line">                L[i][j] = L[i<span class="number">-1</span>][j<span class="number">-1</span>] + <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                L[i][j] = max(L[i<span class="number">-1</span>][j], L[i][j<span class="number">-1</span>])</span><br><span class="line">    print(L)</span><br><span class="line">    <span class="keyword">return</span> L[<span class="number">-1</span>, <span class="number">-1</span>]</span><br><span class="line"></span><br><span class="line">print(lcs(str1, str2))</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[[0. 0. 0. 0. 0. 0. 0.]</span><br><span class="line"> [0. 0. 1. 1. 1. 1. 1.]</span><br><span class="line"> [0. 0. 1. 1. 1. 1. 1.]</span><br><span class="line"> [0. 0. 1. 1. 2. 2. 2.]</span><br><span class="line"> [0. 0. 1. 1. 2. 2. 2.]</span><br><span class="line"> [0. 1. 1. 1. 2. 3. 3.]</span><br><span class="line"> [0. 1. 1. 1. 2. 3. 3.]</span><br><span class="line"> [0. 1. 1. 1. 2. 3. 4.]]</span><br><span class="line">4.0</span><br></pre></td></tr></table></figure>
+<p><img src="https://github.com/soloistben/images/raw/master/algorithm_image/dynamic_lcs.png" alt="dynamic_lcs"></p>
+<h6 id="Pseudocode"><a href="#Pseudocode" class="headerlink" title="Pseudocode"></a>Pseudocode</h6><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">----------------------------------------------------</span><br><span class="line">Algorithm: LCS(A, B)</span><br><span class="line">----------------------------------------------------</span><br><span class="line">L[<span class="number">0.</span>..|A|][<span class="number">0.</span>..|B|]</span><br><span class="line"><span class="keyword">for</span> i=<span class="number">0</span> to |A|+<span class="number">1</span> do</span><br><span class="line">    <span class="keyword">for</span> j=<span class="number">0</span> to |B|+<span class="number">1</span> do </span><br><span class="line">        <span class="keyword">if</span> A[i<span class="number">-1</span>]=B[j<span class="number">-1</span>] then L[i][j]=L[i<span class="number">-1</span>][j<span class="number">-1</span>]+<span class="number">1</span> </span><br><span class="line">        <span class="keyword">else</span> L[i][j]=max(L[i<span class="number">-1</span>][j], L[i][j<span class="number">-1</span>])</span><br><span class="line">    end</span><br><span class="line">end</span><br><span class="line"><span class="keyword">return</span> L</span><br><span class="line">----------------------------------------------------</span><br><span class="line">O(nm)</span><br></pre></td></tr></table></figure>
+<hr>
+<h4 id="SA-Sequence-Alignment"><a href="#SA-Sequence-Alignment" class="headerlink" title="SA Sequence Alignment"></a>SA Sequence Alignment</h4><ul>
+<li>运用动态规划方法对给定两个序列做对比（原用于基因DNA链碱基的序列对比）</li>
+<li>对比结果有三种情况：<ul>
+<li>match 相等</li>
+<li>unmatch 不想等</li>
+<li>gap 缺额（两个序列长度不一致）</li>
+</ul>
+</li>
+<li>使用打分原则（match不扣分，unmatch和gap扣不同的分数）</li>
+</ul>
+<p>eg.<br>    A G C T<br>    A U T<br>[第一A和最后T属于match，第二或第三U属于unmatch，第三或第二属于gap]<br>[若match不扣分，unmatch扣3分，gap扣2分，则本次对比=5分，扣分（惩罚分）越低越好]<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">str1 = <span class="string">'AGGGCT'</span></span><br><span class="line">str2 = <span class="string">'SAGE'</span></span><br><span class="line">p_unmatch = <span class="number">3</span></span><br><span class="line">p_gap = <span class="number">2</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">SA</span><span class="params">(str1, str2, p_unmatch, p_gap)</span>:</span></span><br><span class="line">    P = np.zeros((len(str1)+<span class="number">1</span>, len(str2)+<span class="number">1</span>))</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(str1)+<span class="number">1</span>):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(len(str2)+<span class="number">1</span>):</span><br><span class="line">            <span class="keyword">if</span> i==<span class="number">0</span> <span class="keyword">or</span> j==<span class="number">0</span>:</span><br><span class="line">                P[i][<span class="number">0</span>] = i*p_gap</span><br><span class="line">                P[<span class="number">0</span>][j] = j*p_gap</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, len(str1)+<span class="number">1</span>):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">1</span>, len(str2)+<span class="number">1</span>):</span><br><span class="line">            <span class="keyword">if</span> str1[i<span class="number">-1</span>] == str2[j<span class="number">-1</span>]:</span><br><span class="line">                P[i][j] = P[i<span class="number">-1</span>][j<span class="number">-1</span>]</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                P[i][j] = min(&#123;P[i<span class="number">-1</span>][j<span class="number">-1</span>]+p_unmatch, P[i<span class="number">-1</span>][j]+p_gap, P[i][j<span class="number">-1</span>]+p_gap&#125;)</span><br><span class="line">            </span><br><span class="line">    print(P)</span><br><span class="line">    <span class="keyword">return</span> P[<span class="number">-1</span>][<span class="number">-1</span>]</span><br><span class="line"></span><br><span class="line">print(SA(str1, str2, p_unmatch, p_gap))</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[[ 0.  2.  4.  6.  8.]</span><br><span class="line"> [ 2.  3.  2.  4.  6.]</span><br><span class="line"> [ 4.  5.  4.  2.  4.]</span><br><span class="line"> [ 6.  7.  6.  4.  5.]</span><br><span class="line"> [ 8.  9.  8.  6.  7.]</span><br><span class="line"> [10. 11. 10.  8.  9.]</span><br><span class="line"> [12. 13. 12. 10. 11.]]</span><br><span class="line">11.0</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">----------------------------------------------------</span><br><span class="line">Algorithm: SA(A, B, p_gap, p_xy)</span><br><span class="line">----------------------------------------------------</span><br><span class="line">P[<span class="number">0.</span>..|A|][<span class="number">0.</span>..|B|]</span><br><span class="line"><span class="keyword">for</span> i=<span class="number">0</span> to |A|+<span class="number">1</span> do</span><br><span class="line">    <span class="keyword">for</span> j=<span class="number">0</span> to |B|+<span class="number">1</span> do </span><br><span class="line">        P[i][<span class="number">0</span>] = i*p_gap</span><br><span class="line">        P[<span class="number">0</span>][j] = j*p_gap</span><br><span class="line"><span class="keyword">for</span> i=<span class="number">0</span> to |A|+<span class="number">1</span> do</span><br><span class="line">    <span class="keyword">for</span> j=<span class="number">0</span> to |B|+<span class="number">1</span> do </span><br><span class="line">        <span class="keyword">if</span> A[i<span class="number">-1</span>]=B[j<span class="number">-1</span>] then P[i][j]=P[i<span class="number">-1</span>][j<span class="number">-1</span>] </span><br><span class="line">        <span class="keyword">else</span> P[i][j]=min(P[i<span class="number">-1</span>][j<span class="number">-1</span>]+p_xy, P[i<span class="number">-1</span>][j]+p_gap, P[i][j<span class="number">-1</span>]+p_gap)</span><br><span class="line">    end</span><br><span class="line">end</span><br><span class="line"><span class="keyword">return</span> P</span><br><span class="line">----------------------------------------------------</span><br><span class="line">O(nm)</span><br></pre></td></tr></table></figure>
+<hr>
+<h4 id="Matroid-拟阵"><a href="#Matroid-拟阵" class="headerlink" title="Matroid 拟阵"></a>Matroid 拟阵</h4><ul>
+<li>拟阵理论不能完全覆盖所有的贪心算法（如赫夫曼编码问题），但它可以覆盖大多数具有实际意义的情况。首先介绍拟阵的概念。（有些文献也称作矩阵胚）<br><a href="https://blog.csdn.net/ChiXueZhiHun/article/details/54808939" target="_blank" rel="noopener">Matroid</a></li>
+</ul>
+<hr>
+<h4 id="Set-Cover"><a href="#Set-Cover" class="headerlink" title="Set Cover"></a>Set Cover</h4><ul>
+<li>给定一个集合B，和一些子集sets，在子集中找到最好的覆盖原集合的子集（贪心算法）</li>
+<li>在t时刻，选择子集设为St，当前还剩集合元素个数为nt，以选子集的元素集合为P</li>
+<li>则在子集中，每次选择与原集合<strong>相交</strong>最多元素的子集，且符合公式|St|&gt;= nt/|P|</li>
+</ul>
+<h5 id="S-0-1-2-3-4-5-6-7-8-9"><a href="#S-0-1-2-3-4-5-6-7-8-9" class="headerlink" title="S = {0,1,2,3,4,5,6,7,8,9}"></a>S = {0,1,2,3,4,5,6,7,8,9}</h5><h5 id="Sets-0-1-2-3-1-4-2-2-3-5-1-7-4-6-3-6-8-7-9"><a href="#Sets-0-1-2-3-1-4-2-2-3-5-1-7-4-6-3-6-8-7-9" class="headerlink" title="Sets = {0,1}, {2,3}, {1,4,2}, {2,3,5}, {1,7}, {4,6}, {3,6,8}, {7,9}"></a>Sets = {0,1}, {2,3}, {1,4,2}, {2,3,5}, {1,7}, {4,6}, {3,6,8}, {7,9}</h5><p>Let nt be the number of uncovered elements after step t, P be optimal selection<br>Choose max (sets ∩ S) in each step:</p>
+<ul>
+<li>Step 1: n1 = 10, S1 = {1,4,2}, P = S1 = {1,2,4}</li>
+<li>Step 2: n2 = 7, S2 = {3,6,8}, P = S1US2 = {1,2,3,4,6,8}</li>
+<li>Step 3: n3 = 4, S3 = {7,9}, P = S1US2US3 = {1,2,3,4,6,7,8,9}</li>
+<li>Step 4: n4 = 2, S4 = {0,1}, P = S1US2US3Us4 = {0,1,2,3,4,6,7,8,9}</li>
+<li>Step 5: n5 = 1, S5 = {2,3,5}, P = S1US2US3US4US5 = {0,1,2,3,4,5,6,7,8,9} = S</li>
+</ul>
+<h5 id="so-cover-1-4-2-U-3-6-8-U-7-9-U-0-1-U-2-3-5-S"><a href="#so-cover-1-4-2-U-3-6-8-U-7-9-U-0-1-U-2-3-5-S" class="headerlink" title="so cover {1,4,2}U{3,6,8}U{7,9}U{0,1}U{2,3,5} = S"></a>so cover {1,4,2}U{3,6,8}U{7,9}U{0,1}U{2,3,5} = S</h5><p>set cover problem need to obey  <strong>|St+1| ≥ nt/|P| </strong></p>
+<ul>
+<li>if choose l S1| = 2 in step 1, n1 = 10, and n1/|P| = 10/2 = 5, so we need to choose a set containing 5 elements in step 2. That is contradictory.</li>
+<li>if choose l S1| = 3 in step 1, n1 =10, and n1/|P| = 10/3 = 3, so we need to choose a set containing 3 elements in step 2. </li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">B = set([<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>])</span><br><span class="line">sets = &#123;&#125;</span><br><span class="line">sets[<span class="number">1</span>] = set([<span class="number">0</span>,<span class="number">1</span>])</span><br><span class="line">sets[<span class="number">2</span>] = set([<span class="number">2</span>,<span class="number">3</span>])</span><br><span class="line">sets[<span class="number">3</span>] = set([<span class="number">1</span>,<span class="number">4</span>,<span class="number">2</span>])</span><br><span class="line">sets[<span class="number">4</span>] = set([<span class="number">2</span>,<span class="number">3</span>,<span class="number">5</span>])</span><br><span class="line">sets[<span class="number">5</span>] = set([<span class="number">1</span>,<span class="number">7</span>])</span><br><span class="line">sets[<span class="number">6</span>] = set([<span class="number">4</span>,<span class="number">6</span>])</span><br><span class="line">sets[<span class="number">7</span>] = set([<span class="number">3</span>,<span class="number">6</span>,<span class="number">8</span>])</span><br><span class="line">sets[<span class="number">8</span>] = set([<span class="number">7</span>,<span class="number">9</span>])</span><br><span class="line"></span><br><span class="line">P = set()</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> B:</span><br><span class="line">    best_sets = <span class="keyword">None</span></span><br><span class="line">    sets_covered = set()</span><br><span class="line">    <span class="keyword">for</span> sets_num, sets_value <span class="keyword">in</span> sets.items():</span><br><span class="line">        covered = B &amp; sets_value    <span class="comment"># 选择交集最大的set</span></span><br><span class="line">        <span class="keyword">if</span> len(covered) &gt; len(sets_covered):</span><br><span class="line">            sets_covered = covered</span><br><span class="line">            best_sets = sets_num </span><br><span class="line">    B -= sets_covered</span><br><span class="line">    print(best_sets,<span class="string">':'</span>,sets_covered)</span><br><span class="line">    P.add(best_sets)</span><br><span class="line">print(P)</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">3 : &#123;1, 2, 4&#125;</span><br><span class="line">7 : &#123;8, 3, 6&#125;</span><br><span class="line">8 : &#123;9, 7&#125;</span><br><span class="line">1 : &#123;0&#125;</span><br><span class="line">4 : &#123;5&#125;</span><br><span class="line">&#123;1, 3, 4, 7, 8&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<p><img src="https://github.com/soloistben/images/raw/master/algorithm_image/Dijkstra.png" alt="dijkstra_process"></p>
+<hr>
+<p><img src="https://github.com/soloistben/images/raw/master/algorithm_image/bellman_ford.png" alt="bellman_ford"><br><img src="https://github.com/soloistben/images/raw/master/algorithm_image/bell.png" alt="bell"></p>
+<hr>
+<p><img src="https://github.com/soloistben/images/raw/master/algorithm_image/Kruskal1.png" alt="kruskal_process"><br><img src="https://github.com/soloistben/images/raw/master/algorithm_image/Kruskal2.png" alt="kruskal_process"><br><img src="https://github.com/soloistben/images/raw/master/algorithm_image/Kruskal3.png" alt="kruskal_process"></p>
+<hr>
+<p><img src="https://github.com/soloistben/images/raw/master/algorithm_image/Network_flow1.png" alt="Network_Flow"><br><img src="https://github.com/soloistben/images/raw/master/algorithm_image/Network_flow2.png" alt="Network_Flow"><br><img src="https://github.com/soloistben/images/raw/master/algorithm_image/Network_flow3.png" alt="Network_Flow"><br><img src="https://github.com/soloistben/images/raw/master/algorithm_image/Network_flow4.png" alt="Network_Flow"></p>
+<hr>
+<p><img src="https://github.com/soloistben/images/raw/master/algorithm_image/bipartite_matching.png" alt="bipartite_matching"><br><img src="https://github.com/soloistben/images/raw/master/algorithm_image/bipartite_matching1.png" alt="bipartite_matching"><br><img src="https://github.com/soloistben/images/raw/master/algorithm_image/bipartite_matching2.png" alt="bipartite_matching"><br><img src="https://github.com/soloistben/images/raw/master/algorithm_image/bipartite_matching3.png" alt="bipartite_matching"><br><img src="https://github.com/soloistben/images/raw/master/algorithm_image/bipartite_matching4.png" alt="bipartite_matching"><br><img src="https://github.com/soloistben/images/raw/master/algorithm_image/bipartite_matching5.png" alt="bipartite_matching"><br><img src="https://github.com/soloistben/images/raw/master/algorithm_image/bipartite_matching6.png" alt="bipartite_matching"></p>
+<hr>
+<p><img src="https://github.com/soloistben/images/raw/master/algorithm_image/Turing_machine1.png" alt="Turing_machine"><br><img src="https://github.com/soloistben/images/raw/master/algorithm_image/Turing_machine2.png" alt="Turing_machine"><br><img src="https://github.com/soloistben/images/raw/master/algorithm_image/Turing_machine3.png" alt="Turing_machine"></p>
+<hr>
+<h4 id="Halting-Problem"><a href="#Halting-Problem" class="headerlink" title="Halting Problem"></a>Halting Problem</h4><ul>
+<li><p>问题：是否存在一个过程能做这件事：该过程以一个计算机程序以及该程序的一个输入作为输入，并判断该过程在给定输入运行时是否<strong>最终</strong>能停止。</p>
+</li>
+<li><p>假设：存在一个这样的过程<strong>H(P,I)</strong>，P为计算机程序，I为该程序的一个输入,H可以根据P和I返回true（该过程在给定输入运行时能停止)，或者false（该过程在给定输入运行时不能停止）</p>
+</li>
+<li><p>结论：因此不存在这样的一个过程能解决停机问题。</p>
+</li>
+<li><p>停机问题的“现实”意义是说明了程序不是无所不能的</p>
+<p><a href="https://blog.csdn.net/MyLinChi/article/details/79044156" target="_blank" rel="noopener">HP</a></p>
+</li>
+</ul>
+<hr>
+<h4 id="P-vs-NP"><a href="#P-vs-NP" class="headerlink" title="P vs NP"></a>P vs NP</h4><ul>
+<li>P 问题：现阶段可以用计算机在多项式时间内解决的问题(<strong>P</strong>olynomial Time)</li>
+<li>NP问题：现阶段无法在多项式时间内解决，但可以在多项式时间内验证的问题(<strong>N</strong>on-deterministic <strong>P</strong>olynomial Time)</li>
+<li>若P=NP，则任何问题均可用计算机破解，则没有加密可言，任意生物、医疗、经济、科技问题全部可以解决。</li>
+<li>NP-complete：很多很难的NP问题，本质上是同一个问题（卡在了相同问题上），可以用简单的<strong>多项式时间</strong>转换（数学：<strong>这些NP问题中真正困难的部分</strong>），能解决NP-complete问题就可以解决NP问题（数独游戏、蛋白质折叠（治疗癌症问题））</li>
+<li>证明P是否等于NP，就是一个NP问题</li>
+<li>NP-hard = NP-complete + 各种指数级别问题（下棋的计算或验证）(NP-hrad问题 是假定有无限时间和空间)<br><img src="https://github.com/soloistben/images/raw/master/algorithm_image/NP.png" alt="NP"></li>
+<li>P-SAPCE：在无限时间，只使用多项式数量的空间，就可以求解（包括NP-complete）</li>
+<li>BPP: 多项式时间内有几率求解问题 （BQP = BPP的量子计算）（包括P）</li>
+<li>比NP-hrad更难的问题 = “没有任何电脑在任意时间或空间可解出来的问题”（指数层叠，多项式层叠）</li>
+<li>所有问题 -&gt; 在给定空间、时间下，什么可以计算出来（已经不在是探讨计算的特性，而是寻找时间和空间的本身性质）<br><a href="https://www.bilibili.com/video/av19085452?from=search&amp;seid=7087981409362725035" target="_blank" rel="noopener">b站</a></li>
+</ul>
+<hr>
+<h4 id="CNF-amp-SAT"><a href="#CNF-amp-SAT" class="headerlink" title="CNF &amp; SAT"></a>CNF &amp; SAT</h4><ul>
+<li><strong>Conjunctive Normal Form (CNF)合取范式</strong> 是命题公式的一种标准形。一个命题公式的合取范式可以通过<strong>真值(TRUE)</strong>表得到，也可以通过等价变换得到。（合取范式主要用于解决命题公式的逻辑判断，一个命题的合取范式不是唯一的）</li>
+<li><strong>Satisfaction Problem (SAT)</strong>,  decide if there is an assignment that satisfies the given CNF. SAT is NP<ul>
+<li>TRUE, if CNF is satisfied with the certification</li>
+<li>FALSE, if CNF is not satisfied with the certification</li>
+</ul>
+</li>
+<li>给定一个布尔变量集合（只取0和1）组成SAT和子句集合CNF，是否存在一个真值赋值（SAT结果），<strong>使得CNF为真，即每个子句为真</strong><br><a href="https://blog.csdn.net/yxl564710062/article/details/79882746" target="_blank" rel="noopener">3-SAT</a></li>
+<li><strong>CIRCUIT-SAT</strong> is NPC，若将CIRCUIT-SAT问题划分三个SAT问题，是否能证明SAT也是NPC?</li>
+<li><strong>3-CNF Satisfaction Problem (3-SAT)</strong>: decide if there is an assignment that satisfies the given 3-CNF, in which each clause contains exactly 3 literals. </li>
+<li><strong>NP -&gt; NPC -&gt; 3-SAT -&gt; Clique -&gt; Vertex Cover</strong>  (Using Clique To Set Variables of 3-SAT)<br><img src="https://github.com/soloistben/images/raw/master/algorithm_image/SAT.png" alt="SAT"><ul>
+<li>only Variables disconnect its not Variables (x1 disconnect not x1)</li>
+<li>Variables disconnect others in same group (make no sence)</li>
+<li>connected Variables is same value<br><img src="https://github.com/soloistben/images/raw/master/algorithm_image/SAT_Clique.png" alt="SAT_Clique"><br><img src="https://github.com/soloistben/images/raw/master/algorithm_image/Clique.png" alt="Clique"><br><img src="https://github.com/soloistben/images/raw/master/algorithm_image/Vertex_Cover.png" alt="Vertex_Cover"><br><img src="https://github.com/soloistben/images/raw/master/algorithm_image/Clique_VertexCover.png" alt="Clique_VertexCover"></li>
+</ul>
+</li>
+</ul>
+<hr>
+<ol>
+<li>算法中线性结构，数据元素之间存在一对一的线性关系。</li>
+<li>算法符号，Θ：渐近紧确界，O：渐近上界，Ω：渐近下界；o：非渐近紧确的上界（O提供的渐近上界可能是也可能不是渐近紧确的），ω：非渐近紧确的下界</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/11/14/algorithm/" data-id="ckfs0jao9000k9xegeadpoat6" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-GNN" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/08/19/GNN/" class="article-date">
+  <time datetime="2019-08-19T05:39:28.000Z" itemprop="datePublished">2019-08-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/08/19/GNN/">GNN</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="NOTE-of-Graph-Neural-Networks-A-Review-of-Methods-and-Applications"><a href="#NOTE-of-Graph-Neural-Networks-A-Review-of-Methods-and-Applications" class="headerlink" title="NOTE of Graph Neural Networks: A Review of Methods and Applications"></a>NOTE of Graph Neural Networks: A Review of Methods and Applications</h4><ol>
+<li>As a unique non-Euclidean data structure for machine learning, graph analysis focuses on node classification, link prediction, and clustering.</li>
+<li>Why GNN?</li>
+</ol>
+<ul>
+<li>Composed to CNN, GNN is highly expressive representations</li>
+<li>shared weights reduce the computational cost compared with traditional spectral graph theory; multi-layer structure is the key to deal with hierarchical patterns, which captures the features of various sizes.</li>
+<li>CNN can only operate on regular Euclidean data like images (2D grid) and text (1D sequence), GNN can.</li>
+<li>graph embedding learns to represent graph nodes, edges or sub-graphs in low-dimensional vectors. </li>
+<li>Deep-Walk, which is first graph embedding, is based on representation learning, word embedding and Skip-Gram model. Just like node2vec. However, <ul>
+<li>no parameters are shared between nodes, so it means the number of parameters grows linearly with the number of nodes. </li>
+<li>The direct embedding methods lack the ability of generalization, which means they cannot deal with dynamic graphs or generalize to new graphs</li>
+</ul>
+</li>
+</ul>
+<ol start="3">
+<li>GNN model input and/or output consisting of elements and their dependency.</li>
+<li>There isn’t a natural order of nodes in the graph. (CNN &amp; RNN can’t input node of no special order)</li>
+<li>In the standard neural networks, the dependency information is just regarded as the feature of nodes, not edge which represents the information of dependency between two nodes in a graph!</li>
+<li>GNN update the hidden state of nodes by a weighted sum of the states of their neighborhood.</li>
+<li>Human brain is almost based on the graph which is extracted from daily experience. </li>
+<li>GNN can learn the <em>reasoning</em> graph from large experimental data.</li>
+<li><strong>Message Passing Neural Network (MPNN)</strong> could generalize several graph neural network and graph convolutional network approaches. </li>
+<li><strong>Non-local Neural Network (NLNN)</strong> unifies several “self-attention”-style methods.</li>
+<li>Both of MPNN&amp;NLNN focus on specific application domains and can’t provide a review over other graph attention models.</li>
+<li><strong>Graph Network (GN) </strong>has strong capability to generalize other models. However, the graph network model is highly abstract and only gives a rough classification of the applications.</li>
+<li>Graph neural networks suffer from over-smoothing and scaling problems. There are still no effective methods for dealing with dynamic graphs as well as modeling non-structural sensory data.</li>
+<li>Original framework:</li>
+</ol>
+<ul>
+<li>Notations<br><img src="https://github.com/soloistben/images/raw/master/gnn_image/1.jpg" alt="chinese"><br><img src="https://github.com/soloistben/images/raw/master/gnn_image/2.png" alt="eng"></li>
+<li>The target of GNN is to learn a state embedding <strong>h_v ∈ Rs </strong>which contains the information of neighborhood for each node.</li>
+<li>Let <strong>f</strong> be a parametric function, called local transition function, that is shared among all nodes and updates the node state according to the input neighborhood.</li>
+<li>Let <strong>g</strong> be the local output function that describes how the output is produced.</li>
+<li><strong>h_v = f (x_v, x_co[v], h_ne[v], x_ne[v])  o_v = g (h_v, x_v)</strong>  (x is the features of v)</li>
+<li><strong>Vectorize: H = F (H, X)  O = G (H, XN)</strong>  (F is global translation function, G is global output function)</li>
+<li>The value of H is the fixed point of Eq.3 and is uniquely defined with the assumption that F is a contraction map.</li>
+<li>GNN uses the following classic iterative scheme for computing the state.     <strong>Ht+1 = F(Ht, X)</strong></li>
+<li>With the target information (t_v for a specific node) for the supervision. <strong>loss = ⅀ (t_i − o_i)</strong></li>
+</ul>
+<ol start="15">
+<li>Limitations:</li>
+</ol>
+<ul>
+<li>GNN is inefficient to update the hidden states of nodes iteratively for the fixed point.</li>
+<li>There are also some informative features on the edges which cannot be effectively modeled in the original GNN. </li>
+<li>It’s unsuitable to use the fixed points if we focus on the representation of nodes instead of graphs because the distribution of representation in the fixed point will be much smooth in value and less informative for distinguishing each node.</li>
+</ul>
+<ol start="16">
+<li><strong>Variants of Graph Neural Networks</strong> to release the limitations:</li>
+</ol>
+<ul>
+<li>different graph types:<ul>
+<li>Directed Graphs. Directed edges can bring more information than undirected edges.</li>
+<li>Heterogeneous Graphs. <ul>
+<li>The simplest way to process heterogeneous graph is to convert the type of each node to a one-hot feature vector which is concatenated with the original feature.</li>
+<li>For each neighbor group, GraphInception treats it as a sub-graph in a homogeneous graph to do propagation and concatenates the propagation results from different homogeneous graphs to do a collective node representation. (heterogeneous graph attention network, <strong>HAN</strong>)</li>
+<li>[<a href="https://zhuanlan.zhihu.com/p/47040007]" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/47040007]</a></li>
+</ul>
+</li>
+<li>Graphs with Edge Information.<ul>
+<li>Converting the graph to a bipartite graph where the original edges also become nodes and one original edge is split into two new edges which means there are two new edges between the edge node and begin/end nodes. (The encoder of <strong>G2S</strong> uses the following aggregation function for neighbors).</li>
+<li>Adapting different weight matrices for the propagation on different kinds of edges. When the number of relations is very large, r-GCN introduces two kinds of regularization to reduce the number of parameters for modeling amounts of relations: basis and block diagonal-decomposition</li>
+</ul>
+</li>
+<li>Dynamic Graphs. It has static graph structure and dynamic input signals.</li>
+</ul>
+</li>
+<li>several modifications:<ul>
+<li><strong>Graph Convolutional Network (GCN)</strong>: convolutions to the graph domain<ul>
+<li>spectral approaches,使用谱分解的方法，应用图的拉普拉斯矩阵分解进行节点的信息收集     </li>
+<li>non-spectral (spatial) approaches,直接使用图的拓扑结构，根据图的邻居信息进行信息收集</li>
+</ul>
+</li>
+<li><strong>Gated graph neural network (GGNN)</strong>: using the gate mechanism like GRU or LSTM in the propagation step to diminish the restrictions in the former GNN models and improve the long-term propagation of information across the graph structure. Tree LSTM、Graph LSTM and Sentence LSTM</li>
+<li><strong>Graph Attention Network (GAT)</strong> : incorporates the attention mechanism into the propagation step. <ul>
+<li>GAT computes the hidden states of each node by attending over its neighbors, following a self-attention strategy.     </li>
+<li>Gated Attention Network (GAAN) also uses the multi-head attention mechanism. However, it uses a self-attention mechanism to gather information from different heads to replace the average operation of GAT.</li>
+</ul>
+</li>
+<li><strong>Residual connection</strong>: aiming to achieve better results as more layers make each node aggregate more information from neighbors, because more layers could also propagate the noisy information from an exponentially increasing number of expanded neighborhood members.<ul>
+<li>Highway GCN</li>
+<li>Jump Knowledge Network, selects from all of the intermediate representations (which ”jump” to the last layer) for each node at the last layer, which makes the model adapt the effective neighborhood size for each node as needed. uses three approaches of concatenation, max-pooling and LSTM-attention in the experiments to aggregate information. (The Jump Knowledge Network performs well on the experiments in social, bioinformatics and citation networks. It could also be combined with models like Graph Convolutional Networks, GraphSAGE and Graph Attention Networks to improve their performance.)</li>
+</ul>
+</li>
+<li><strong>Hierarchical Pooling</strong>, Complicated and large-scale graphs usually carry rich hierarchical structures which are of great importance for node-level and graph-level classification tasks</li>
+</ul>
+</li>
+</ul>
+<ol start="17">
+<li>Training Method:</li>
+</ol>
+<ul>
+<li>Sampling<ul>
+<li>GraphSAGE replaced full graph Laplacian in GCN with learnable aggregation functions, which are key to perform message passing and generalize to unseen nodes.  With learned aggregation and propagation functions, GraphSAGE could generate embeddings for unseen nodes.</li>
+<li>PinSage, By simulating random walks starting from target nodes, this approach chooses the top T nodes with the highest normalized visit counts.</li>
+<li>FastGCN, Instead of sampling neighbors for each node, FastGCN directly samples the receptive field for each layer.  </li>
+<li>adaptive sampler could find optimal sampling importance and reduce variance simultaneously</li>
+</ul>
+</li>
+<li>Receptive Field Control, a control-variate based stochastic approximation algorithms for GCN by utilizing the historical activations of nodes as a control variate. </li>
+<li>Data Augmentation, To solve the limitations, the authors proposed Co-Training GCN and Self-Training GCN to enlarge the training dataset. </li>
+<li>Unsupervised Training, Graph auto-encoders (GAE) aim at representing nodes into low-dimensional vectors by an unsupervised training manner.</li>
+</ul>
+<ol start="18">
+<li>Frameworks:</li>
+</ol>
+<ul>
+<li><strong>Message Passing Neural Networks (MPNN)</strong> unified GNN &amp; GCN. It abstracts the commonalities between several of the most popular models for graph-structured data.<ul>
+<li>message passing </li>
+<li>Readout computes a feature vector for the whole graph</li>
+</ul>
+</li>
+<li><strong>Non-local Neural Networks (NLNN)</strong> unified several self-attention for capturing long-range dependencies with deep neural networks. It computes the response at a position as a weighted sum of the features at all positions. List the choices for f function:<ul>
+<li>Gaussian (natural choice) </li>
+<li>Embedded Gaussian </li>
+<li>Dot product </li>
+<li>Concatenation.</li>
+</ul>
+</li>
+<li><span style="border-bottom:2px dashed red;"><strong>Graph Networks (GN) </strong>unified MPNN &amp; NLNN and so on.</span><ul>
+<li>Graph definition</li>
+<li>GN block contains<ul>
+<li>three “update” functions, φ_e, φ_h &amp; φ_u, </li>
+<li>three “aggregation” functions, ρ ( The ρ functions must be invariant to permutations of their inputs and should take variable numbers of arguments)<br><img src="https://github.com/soloistben/images/raw/master/gnn_image/3.png" alt="func"></li>
+</ul>
+</li>
+<li>Computation steps<br><img src="https://github.com/soloistben/images/raw/master/gnn_image/4.png" alt="steps"></li>
+<li>Design Principles<ul>
+<li><strong>Flexible representations</strong><ul>
+<li>One can simply tailor the output of a GN block according to specific demands of tasks </li>
+<li>be applied to both structural scenarios where the graph structure is explicit and non structural scenarios where the relational structure should be inferred or assumed.</li>
+</ul>
+</li>
+<li><strong>Configurable within-block structure</strong>. Based on different structure and functions settings, a variety of models (such as MPNN, NLNN and other variants) could be expressed by the GN framework.</li>
+<li><strong>Composable multi-block architectures.</strong><ul>
+<li>Arbitrary numbers of GN blocks could be composed in sequence with shared or unshared parameters.</li>
+<li>utilizes GN blocks to construct an encode process decode architecture and a recurrent GN-based architecture.</li>
+<li>Other techniques for building GN based architectures could also be useful, such as skip connections, LSTM- or GRU-style gating schemes and so on.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ol start="19">
+<li>Applications of GNN:</li>
+</ol>
+<ul>
+<li>supervised, semi-supervised, unsupervised and reinforcement learning</li>
+<li>Structural Scenarios<ul>
+<li>Physics</li>
+<li>Chemistry and Biology</li>
+<li>Knowledge graph</li>
+</ul>
+</li>
+<li>Non-Structural Scenarios<ul>
+<li>Image<ul>
+<li>Visual Reasoning</li>
+<li>Semantic Segmentation</li>
+</ul>
+</li>
+<li>Text<ul>
+<li>Text classification</li>
+<li>Sequence labeling</li>
+<li>Neural machine translation</li>
+<li>Relation extraction</li>
+<li>Event extraction</li>
+<li>Other applications</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Other Scenarios<ul>
+<li>Generative Models</li>
+<li>Combinatorial Optimization</li>
+</ul>
+</li>
+</ul>
+<ol start="20">
+<li>Problems</li>
+</ol>
+<ul>
+<li>Shallow Structure</li>
+<li>Dynamic Graphs</li>
+<li>Non-Structural Scenarios</li>
+<li>Scalability </li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/08/19/GNN/" data-id="ckfs0janz000a9xegi47jj8yk" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-DL-RNN" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/07/29/DL-RNN/" class="article-date">
@@ -134,7 +506,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/07/29/DL-RNN/" data-id="ckfcjxxil000eb4ege22xxzcy" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/07/29/DL-RNN/" data-id="ckfs0jao6000h9xegcarn4i48" class="article-share-link">Share</a>
       
       
     </footer>
@@ -178,7 +550,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/07/19/Blockchain/" data-id="ckfcjxxhw0000b4egicr2irt9" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/07/19/Blockchain/" data-id="ckfs0jann00019xege4n4601q" class="article-share-link">Share</a>
       
       
     </footer>
@@ -257,7 +629,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/07/03/DL-CNN/" data-id="ckfcjxxii000cb4eg486bu15w" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/07/03/DL-CNN/" data-id="ckfs0jaov000o9xego2r24e27" class="article-share-link">Share</a>
       
       
     </footer>
@@ -316,7 +688,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/06/pandas-property/" data-id="ckfcjxxix000pb4eg5g2ilt16" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/06/pandas-property/" data-id="ckfs0jaoz000r9xegj4f11tvk" class="article-share-link">Share</a>
       
       
     </footer>
@@ -381,7 +753,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/05/octave-property/" data-id="ckfcjxxiu000nb4egh13ocsrt" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/05/octave-property/" data-id="ckfs0jaob000l9xegrnmwb1jn" class="article-share-link">Share</a>
       
       
     </footer>
@@ -434,7 +806,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/05/numpy-property/" data-id="ckfcjxxip000kb4egr7727di9" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/05/numpy-property/" data-id="ckfs0jao8000j9xeg3ntbsvpl" class="article-share-link">Share</a>
       
       
     </footer>
@@ -471,7 +843,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/12/27/struct-list/" data-id="ckfcjxxjt000xb4egygh5pz1v" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/12/27/struct-list/" data-id="ckfs0jap8000y9xegk71vtskk" class="article-share-link">Share</a>
       
       
     </footer>
@@ -508,81 +880,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/12/27/struct-sort/" data-id="ckfcjxxk10013b4eg2guvl2fc" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-struct-threadtree" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/12/27/struct-threadtree/" class="article-date">
-  <time datetime="2018-12-27T03:01:45.000Z" itemprop="datePublished">2018-12-27</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/12/27/struct-threadtree/">struct-threadtree</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="数据结构-线索二叉树"><a href="#数据结构-线索二叉树" class="headerlink" title="数据结构 线索二叉树"></a>数据结构 线索二叉树</h1><h4 id="头文件"><a href="#头文件" class="headerlink" title="头文件"></a>头文件</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> THREADTREE_H</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> THREADTREE_H</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">char</span> ElemType;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 二叉链表，利用空余连接指向直连前驱或者后继</span></span><br><span class="line"><span class="comment"> * tag = 1时，lchild指向前驱，rchild指向后继，tag = 0时，lchild、rchild指向子树</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">ThreadNode</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	ElemType data;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">ThreadNode</span> *<span class="title">lchild</span>, *<span class="title">rchild</span>;</span></span><br><span class="line">	<span class="keyword">int</span> ltag,rtag;</span><br><span class="line">&#125;ThreadNode,*ThreadTree;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">InitTree</span><span class="params">(ThreadTree &amp;T, ElemType Data, <span class="keyword">int</span> index)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">PreOrderTraverse</span><span class="params">(ThreadTree &amp;T)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">InThread</span><span class="params">(ThreadTree &amp;p,ThreadTree &amp;pre)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">CreateInThread</span><span class="params">(ThreadTree T)</span></span>;</span><br><span class="line"><span class="function">ThreadNode *<span class="title">Firstnode</span><span class="params">(ThreadNode *p)</span></span>;</span><br><span class="line"><span class="function">ThreadNode *<span class="title">Nextnode</span><span class="params">(ThreadNode *p)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Inorder</span><span class="params">(ThreadNode *T)</span></span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
-<h4 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"threadtree.h"</span></span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//初始化一棵普通二叉</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">InitTree</span><span class="params">(ThreadTree &amp;T, ElemType Data, <span class="keyword">int</span> index)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">//index=0代表根节点，1表示左子树结点，2表示右子树结点</span></span><br><span class="line">	<span class="keyword">char</span> data = Data;</span><br><span class="line">	<span class="keyword">while</span> (data != <span class="string">'#'</span>)	<span class="comment">//在循环中，输错重新输入</span></span><br><span class="line">	&#123;</span><br><span class="line">		data = Data;	<span class="comment">//输入错误时，修正data值</span></span><br><span class="line">		<span class="keyword">if</span> (index == <span class="number">0</span>) &#123;</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">"input root :"</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span> (index == <span class="number">1</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">"input %c to left child :"</span>,data);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span> (index == <span class="number">2</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">"input %c to right child :"</span>,data);</span><br><span class="line">		&#125;</span><br><span class="line">		fflush(<span class="built_in">stdin</span>);</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%c"</span>,&amp;data);</span><br><span class="line">		<span class="keyword">if</span> (data != <span class="string">'#'</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span> (data &gt;= <span class="string">'a'</span> &amp;&amp; data &lt;= <span class="string">'z'</span>) &#123;</span><br><span class="line">				T = <span class="keyword">new</span> ThreadNode();</span><br><span class="line">				T-&gt;data = data;</span><br><span class="line">				T-&gt;lchild = <span class="literal">NULL</span>;</span><br><span class="line">				T-&gt;rchild = <span class="literal">NULL</span>;</span><br><span class="line">				InitTree(T-&gt;lchild, T-&gt;data, <span class="number">1</span>);    <span class="comment">//子树，父亲节点的值，标识</span></span><br><span class="line">				InitTree(T-&gt;rchild, T-&gt;data, <span class="number">2</span>);</span><br><span class="line">				<span class="keyword">return</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span> </span><br><span class="line">			&#123;</span><br><span class="line">				<span class="built_in">printf</span>(<span class="string">"Not in range 'a-z'\n"</span>);</span><br><span class="line">			&#125;	</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//先序遍历</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">PreOrderTraverse</span><span class="params">(ThreadTree &amp;T)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (T)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span>(T-&gt;lchild != <span class="literal">NULL</span> &amp;&amp; T-&gt;rchild != <span class="literal">NULL</span>)</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">"%c    %d    %c    %d    %c\n"</span>,T-&gt;lchild-&gt;data,T-&gt;ltag,T-&gt;data,T-&gt;rtag,T-&gt;rchild-&gt;data);</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(T-&gt;lchild == <span class="literal">NULL</span> &amp;&amp; T-&gt;rchild != <span class="literal">NULL</span>)</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">"%c    %d    %c    %d    %c\n"</span>,<span class="string">'#'</span>,T-&gt;ltag,T-&gt;data,T-&gt;rtag,T-&gt;rchild-&gt;data);</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(T-&gt;lchild != <span class="literal">NULL</span> &amp;&amp; T-&gt;rchild == <span class="literal">NULL</span>)</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">"%c    %d    %c    %d    %c\n"</span>,T-&gt;lchild-&gt;data,T-&gt;ltag,T-&gt;data,T-&gt;rtag,<span class="string">'#'</span>);</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(T-&gt;lchild == <span class="literal">NULL</span> &amp;&amp; T-&gt;rchild == <span class="literal">NULL</span>)</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">"%c    %d    %c    %d    %c\n"</span>,<span class="string">'#'</span>,T-&gt;ltag,T-&gt;data,T-&gt;rtag,<span class="string">'#'</span>);</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span>(T-&gt;ltag != <span class="number">1</span>)</span><br><span class="line">			PreOrderTraverse(T-&gt;lchild);</span><br><span class="line">		<span class="keyword">if</span>(T-&gt;rtag != <span class="number">1</span>)</span><br><span class="line">			PreOrderTraverse(T-&gt;rchild);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//中序遍历对二叉树线索化的递归算法 (pre是前驱，p是后继)</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">InThread</span><span class="params">(ThreadTree &amp;p,ThreadTree &amp;pre)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (p != <span class="literal">NULL</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		InThread(p-&gt;lchild,pre);	<span class="comment">//递归，线索化左子树</span></span><br><span class="line">		<span class="keyword">if</span> (p-&gt;lchild == <span class="literal">NULL</span>)		<span class="comment">//左子树为空，建立前驱线索</span></span><br><span class="line">		&#123;</span><br><span class="line">			p-&gt;lchild = pre;</span><br><span class="line">			p-&gt;ltag = <span class="number">1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (pre!=<span class="literal">NULL</span> &amp;&amp; pre-&gt;rchild==<span class="literal">NULL</span>)	</span><br><span class="line">		&#123;</span><br><span class="line">			pre-&gt;rchild = p;		<span class="comment">//建立前驱结点的后继线索</span></span><br><span class="line">			pre-&gt;rtag = <span class="number">1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		pre = p;				<span class="comment">//标记当前结点成为刚刚访问过的结点</span></span><br><span class="line">		InThread(p-&gt;rchild,pre);	<span class="comment">//线索化右子树</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//线索化二叉树</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">CreateInThread</span><span class="params">(ThreadTree T)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	ThreadTree pre = <span class="literal">NULL</span>;</span><br><span class="line">	<span class="keyword">if</span> (T!=<span class="literal">NULL</span>)	<span class="comment">//前提传入 一颗二叉树，将其线索化</span></span><br><span class="line">	&#123;</span><br><span class="line">		InThread(T,pre);</span><br><span class="line">		pre-&gt;rchild = <span class="literal">NULL</span>;		<span class="comment">//处理遍历的最好一个结点</span></span><br><span class="line">		pre-&gt;rtag = <span class="number">1</span>;	</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//线索二叉树中序序列下第一个节点</span></span><br><span class="line"><span class="function">ThreadNode *<span class="title">Firstnode</span><span class="params">(ThreadNode *p)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">while</span>(p-&gt;ltag == <span class="number">0</span>)	<span class="comment">//最左下结点，不一定是叶子结点</span></span><br><span class="line">		p = p-&gt;lchild;</span><br><span class="line">	<span class="keyword">return</span> p;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//线索二叉树中序序列下后继节点</span></span><br><span class="line"><span class="function">ThreadNode *<span class="title">Nextnode</span><span class="params">(ThreadNode *p)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(p-&gt;rtag == <span class="number">0</span>)</span><br><span class="line">		<span class="keyword">return</span> Firstnode(p-&gt;rchild);</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">		<span class="keyword">return</span> p-&gt;rchild;		<span class="comment">//rtag == 1</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//线索二叉树的中序遍历</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Inorder</span><span class="params">(ThreadNode *T)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(ThreadNode *p=Firstnode(T);p != <span class="literal">NULL</span>; p=Nextnode(p))</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%c "</span>, p-&gt;data);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/12/27/struct-threadtree/" data-id="ckfcjxxk40015b4egpqp4cjt0" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-struct-bstree" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/12/26/struct-bstree/" class="article-date">
-  <time datetime="2018-12-26T06:31:44.000Z" itemprop="datePublished">2018-12-26</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/12/26/struct-bstree/">struct_bstree</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="数据结构-排序树"><a href="#数据结构-排序树" class="headerlink" title="数据结构 排序树"></a>数据结构 排序树</h1><h4 id="头文件"><a href="#头文件" class="headerlink" title="头文件"></a>头文件</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> BSTREE_H</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BSTREE_H</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">int</span> ElemType; </span><br><span class="line"></span><br><span class="line"><span class="comment">//二叉排序树</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">BiTNode</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	ElemType data;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">BiTNode</span> *<span class="title">lchild</span>, *<span class="title">rchild</span>;</span></span><br><span class="line">&#125;BiTNode, *BiTree;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> BiTNode BSTNode;</span><br><span class="line"></span><br><span class="line"><span class="function">BSTNode *<span class="title">BST_Search</span><span class="params">(BiTree T, ElemType key, BSTNode *&amp;p)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">BST_Insert</span><span class="params">(BiTree &amp;T, ElemType k)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Creat_BST</span><span class="params">(BiTree &amp;T, ElemType str[], <span class="keyword">int</span> n)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">InOrderTraverse</span><span class="params">(BiTree &amp;T)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">JudgeBST</span><span class="params">(BiTree T)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">level</span><span class="params">(BiTree T,BSTNode *x)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">JudgeAVL</span><span class="params">(BiTree T,<span class="keyword">int</span>  &amp;balance,<span class="keyword">int</span> &amp;h)</span></span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
-<h4 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"bstree.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">//二叉排序树 查找函数 返回指向关键字值为key的结点指针，</span></span><br><span class="line"><span class="comment">//若不存在，返回NULL</span></span><br><span class="line"><span class="comment">//非递归方法</span></span><br><span class="line"><span class="function">BSTNode *<span class="title">BST_Search</span><span class="params">(BiTree T, ElemType key, BSTNode *&amp;p)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	p = <span class="literal">NULL</span>; 	<span class="comment">//指向被查找结点的双亲，用于插入和删除操作</span></span><br><span class="line">	<span class="keyword">while</span>(T!=<span class="literal">NULL</span> &amp;&amp; key!=T-&gt;data)</span><br><span class="line">	&#123;</span><br><span class="line">		p = T;</span><br><span class="line">		<span class="keyword">if</span>(key &lt; T-&gt;data)</span><br><span class="line">			T = T-&gt;lchild;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">			T = T-&gt;rchild;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> T;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//二叉排序树 插入一个关键字为k的结点</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">BST_Insert</span><span class="params">(BiTree &amp;T, ElemType k)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(T == <span class="literal">NULL</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		T = <span class="keyword">new</span> BSTNode();</span><br><span class="line">		T-&gt;data = k;</span><br><span class="line">		T-&gt;lchild = T-&gt;rchild = <span class="literal">NULL</span>;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">1</span>;		<span class="comment">//返回1 表示成功</span></span><br><span class="line">	&#125;<span class="keyword">else</span> <span class="keyword">if</span>(k == T-&gt;data)&#123; </span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;		<span class="comment">//存在相同关键字</span></span><br><span class="line">	&#125;<span class="keyword">else</span> <span class="keyword">if</span>(k &lt; T-&gt;data)&#123;</span><br><span class="line">		<span class="keyword">return</span> BST_Insert(T-&gt;lchild,k);</span><br><span class="line">	&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> BST_Insert(T-&gt;rchild,k);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//二叉排序树构造</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Creat_BST</span><span class="params">(BiTree &amp;T, ElemType str[], <span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">//用关键字数组str[]建立一个二叉排序树</span></span><br><span class="line">	T = <span class="literal">NULL</span>;</span><br><span class="line">	<span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span> (i &lt; n)&#123;</span><br><span class="line">		BST_Insert(T,str[i]);</span><br><span class="line">		i++;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//中序遍历</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">InOrderTraverse</span><span class="params">(BiTree &amp;T)</span>	</span></span><br><span class="line"><span class="function"></span>&#123;	</span><br><span class="line">	<span class="keyword">if</span> (T) </span><br><span class="line">	&#123;</span><br><span class="line">		InOrderTraverse(T-&gt;lchild);</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%d "</span>, T-&gt;data);</span><br><span class="line">		InOrderTraverse(T-&gt;rchild);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ElemType predt = <span class="number">-3276</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//判断是否是二叉排序树（中序遍历保持曾序则为排序树）</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">JudgeBST</span><span class="params">(BiTree T)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> t1,t2;</span><br><span class="line">	<span class="keyword">if</span> (T==<span class="literal">NULL</span>)</span><br><span class="line">		<span class="keyword">return</span> <span class="number">1</span>;	<span class="comment">//空树</span></span><br><span class="line">	<span class="keyword">else</span>&#123;</span><br><span class="line">		t1 = JudgeBST(T-&gt;lchild);</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span> (t1==<span class="number">0</span> || predt&gt;=T-&gt;data)	<span class="comment">//左子树返回 或者 前驱大于当前节点</span></span><br><span class="line">			<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">		predt = T-&gt;data;	<span class="comment">//保存当前节点的关键字</span></span><br><span class="line"></span><br><span class="line">		t2 = JudgeBST(T-&gt;rchild);</span><br><span class="line">		<span class="keyword">return</span> t2;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//返回结点在二叉排序树的层数</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">level</span><span class="params">(BiTree T,BSTNode *x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> n = <span class="number">0</span>;</span><br><span class="line">	BiTree t = T;</span><br><span class="line">	<span class="keyword">if</span> (T != <span class="literal">NULL</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		n++;</span><br><span class="line">		<span class="keyword">while</span>(t-&gt;data != x-&gt;data)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span> (t-&gt;data &lt; x-&gt;data)</span><br><span class="line">				t = t-&gt;rchild;	<span class="comment">//去右子树查找</span></span><br><span class="line">			<span class="keyword">else</span></span><br><span class="line">				t = t-&gt;lchild;	<span class="comment">//去左子树查找</span></span><br><span class="line">			n++;	<span class="comment">//层次+1</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> n;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">abs</span><span class="params">(<span class="keyword">int</span> i)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(i&lt;<span class="number">0</span>)</span><br><span class="line">		i = -i;</span><br><span class="line">	<span class="keyword">return</span> i;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//判断是否是平衡二叉树</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">JudgeAVL</span><span class="params">(BiTree T, <span class="keyword">int</span> &amp;balance, <span class="keyword">int</span> &amp;h)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> tl=<span class="number">0</span>,tr=<span class="number">0</span>,hl=<span class="number">0</span>,hr=<span class="number">0</span>;	<span class="comment">//左右子树的平衡标记和高度</span></span><br><span class="line">	<span class="keyword">if</span> (T==<span class="literal">NULL</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		h = <span class="number">0</span>;	<span class="comment">//空树，高度为0</span></span><br><span class="line">		balance = <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span> (T-&gt;lchild==<span class="literal">NULL</span> &amp;&amp; T-&gt;rchild==<span class="literal">NULL</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		h = <span class="number">1</span>;	<span class="comment">//仅有根节点，高度为1</span></span><br><span class="line">		balance = <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span>&#123;</span><br><span class="line">		JudgeAVL(T-&gt;lchild,tl,hl);	<span class="comment">//判断左右子树的高度和平衡度</span></span><br><span class="line">		JudgeAVL(T-&gt;rchild,tr,hr);</span><br><span class="line">		h = (hl&gt;hr ? hl:hr) + <span class="number">1</span>;	<span class="comment">//取深度大的一边</span></span><br><span class="line">		<span class="keyword">if</span> (<span class="built_in">abs</span>(hl-hr) &lt; <span class="number">2</span>)</span><br><span class="line">			balance = tl &amp;&amp; tr;		<span class="comment">//逻辑与，左右子树均平衡（1）二叉树才平衡</span></span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">			balance = <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/12/26/struct-bstree/" data-id="ckfcjxxjl000ub4egdcp8kke4" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/12/27/struct-sort/" data-id="ckfs0japf00159xegouyj4tpe" class="article-share-link">Share</a>
       
       
     </footer>
@@ -629,7 +927,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">九月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">八月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">十月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">九月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">八月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a></li></ul>
     </div>
   </div>
 
@@ -642,6 +940,14 @@
       <ul>
         
           <li>
+            <a href="/2020/10/02/SVM/">SVM</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/02/PCA/">PCA</a>
+          </li>
+        
+          <li>
             <a href="/2020/09/11/Statistics/">Statistics</a>
           </li>
         
@@ -651,14 +957,6 @@
         
           <li>
             <a href="/2020/08/09/HMM-CRF/">HMM_CRF</a>
-          </li>
-        
-          <li>
-            <a href="/2020/07/25/Spectral-Cluster/">Spectral_Cluster</a>
-          </li>
-        
-          <li>
-            <a href="/2020/05/06/machine-learning/">machine_learning</a>
           </li>
         
       </ul>
