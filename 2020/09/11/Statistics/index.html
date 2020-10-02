@@ -25,7 +25,7 @@
 <meta property="og:image" content="https://github.com/soloistben/images/raw/master/statistics/DT4.png">
 <meta property="og:image" content="https://github.com/soloistben/images/raw/master/statistics/DT5.png">
 <meta property="og:image" content="https://github.com/soloistben/images/raw/master/statistics/DT6.png">
-<meta property="og:updated_time" content="2020-10-02T03:59:30.941Z">
+<meta property="og:updated_time" content="2020-10-02T04:01:18.828Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Statistics">
 <meta name="twitter:description" content="Statistics for Machine LearningOne. 两大派系 频率派：统计机器学习（设计模型，找到loss function，设计算法。本质为优化问题） 贝叶斯派：概率图模型（本质为求积分问题(Monte Carlo method, MCMC)，直接求解过于复杂，则衍生出概率图模型） Data X: data, X={x_1, x_2, …, x_n}^T  Dimension">
@@ -314,6 +314,10 @@
 <li><strong>线性判别分析为早期分类方法，有很大局限性，目前不用</strong></li>
 </ul>
 </li>
+<li><strong>Logistic Regression</strong><ul>
+<li></li>
+</ul>
+</li>
 </ul>
 <h5 id="Four-Naive-Bayes"><a href="#Four-Naive-Bayes" class="headerlink" title="Four. Naive Bayes"></a>Four. Naive Bayes</h5><ul>
 <li><strong>朴素贝叶斯 = 贝叶斯定理 + 特征条件独立</strong><ul>
@@ -434,7 +438,8 @@
 <li>与ID3算法类似</li>
 </ul>
 </li>
-<li>缺点<ul>
+<li><p>缺点</p>
+<ul>
 <li>基于信息论的熵模型的，这里面会涉及大量的对数运算</li>
 </ul>
 </li>
@@ -444,13 +449,15 @@
 </li>
 <li><p><strong>CART</strong> classification and regression tree（分类、回归、二叉树）</p>
 <ul>
-<li><p>分类</p>
-<ul>
+<li>分类<ul>
 <li>特征选择<ul>
 <li>Gini基尼指数</li>
 </ul>
 </li>
-<li>基尼指数Gini(D)表示集合D的不确定性，Gini(D, A)表示基于特征A 划分后D的不确定性</li>
+</ul>
+</li>
+<li><p>基尼指数Gini(D)表示集合D的不确定性，Gini(D, A)表示基于特征A 划分后D的不确定性</p>
+<ul>
 <li>基尼指数越大，样本集合不确定性也越大（基尼指数和熵都可以近似表示分类误差率）</li>
 </ul>
 <p><img src="https://github.com/soloistben/images/raw/master/statistics/DT4.png" alt="DT4"></p>
@@ -476,7 +483,7 @@
 </ul>
 </li>
 </ul>
-<h5 id="Four-KNN"><a href="#Four-KNN" class="headerlink" title="Four. KNN"></a>Four. KNN</h5><h5 id="Five-Logistic-Regression"><a href="#Five-Logistic-Regression" class="headerlink" title="Five. Logistic Regression"></a>Five. Logistic Regression</h5><h5 id="Six-Support-Vector-Machines"><a href="#Six-Support-Vector-Machines" class="headerlink" title="Six. Support Vector Machines"></a>Six. Support Vector Machines</h5>
+<h5 id="Four-KNN"><a href="#Four-KNN" class="headerlink" title="Four. KNN"></a>Four. KNN</h5><h5 id="Six-Support-Vector-Machines"><a href="#Six-Support-Vector-Machines" class="headerlink" title="Six. Support Vector Machines"></a>Six. Support Vector Machines</h5>
       
     </div>
     <footer class="article-footer">
