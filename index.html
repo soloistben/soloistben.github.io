@@ -96,13 +96,13 @@
 <li>在没有很多数据集时，只能降维</li>
 <li>每增加一维，二值的特征，都是2的指数倍增长，要想覆盖所有样本空间，则需要2的指数倍数据才可以（而且往往不只是二值）</li>
 <li><p>从几何层面看：</p>
-<p><img src="/home/hwc/git/image/statistics/Dimensionality_Reduction/DR1.png" alt="DR1" style="zoom: 33%;"></p>
+<p><img src="https://github.com/soloistben/images/raw/master/statistics/Dimensionality_Reduction/DR1.png" alt="DR1" style="zoom: 33%;"></p>
 <ul>
 <li>2维正方形面积：1，圆形：pi*(0.5)^2</li>
 <li>3维正方体体积：1，球体体积：4/3*pi*(0.5)^3 = K*(0.5)^3</li>
 <li>D维超立方体体积：1，超球体体积： K*(0.5)^D</li>
 <li><p>D趋向无穷大之后，超球体体积约等于0，则为空心的，则数据分布在超立方体的四角，造成了样本数据十分稀疏且分布不均匀，因此很难分类</p>
-<p><img src="/home/hwc/git/image/statistics/Dimensionality_Reduction/DR2.png" alt="DR2" style="zoom:33%;"></p>
+<p><img src="https://github.com/soloistben/images/raw/master/statistics/Dimensionality_Reduction/DR2.png" alt="DR2" style="zoom:33%;"></p>
 </li>
 <li><p>D维外超球体体积：K*1^D = K，环形体积：外超球体体积 - 内超球体体积 = K - K(1-e)^D</p>
 <ul>
@@ -139,7 +139,7 @@
 <ul>
 <li>线性相关（多个特征存在联系）</li>
 </ul>
-<p><img src="/home/hwc/git/image/statistics/Dimensionality_Reduction/DR3.png" alt="DR3" style="zoom: 67%;"></p>
+<p><img src="https://github.com/soloistben/images/raw/master/statistics/Dimensionality_Reduction/DR3.png" alt="DR3" style="zoom: 67%;"></p>
 </li>
 <li><p>最大投影方差</p>
 <ul>
