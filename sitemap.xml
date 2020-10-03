@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2020/10/02/SVM/</loc>
+    
+    <lastmod>2020-10-03T08:41:18.761Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2020/10/02/Dimensionality-Reduction/</loc>
     
-    <lastmod>2020-10-03T03:10:51.569Z</lastmod>
+    <lastmod>2020-10-03T03:16:05.358Z</lastmod>
     
   </url>
   
@@ -19,13 +26,6 @@
     <loc>http://yoursite.com/2020/10/02/Decision-Tree/</loc>
     
     <lastmod>2020-10-02T09:02:15.922Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2020/10/02/SVM/</loc>
-    
-    <lastmod>2020-10-02T08:50:04.873Z</lastmod>
     
   </url>
   
