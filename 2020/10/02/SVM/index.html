@@ -7,21 +7,21 @@
   
   <title>SVM | MR.C</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Data : N个p维样本 X（维度N×p），y_i = {-1,1} SVM 三宝：间隔，对偶，核技巧   提出SVM是为了解决二分类问题；成功分类的直线（平面）有无数个，SVM就要找到最优的结果（即所有样本距离平面都足够大）  hard-margin SVM（硬间隔） 最大间隔分类器 = max margin(w, b)   s.t. y_i(w^T x_i+b) &amp;gt; 0 for i">
+  <meta name="description" content="Data : N个p维样本 X（维度N×p），y_i = {-1,1} SVM 三宝：间隔，对偶，核技巧   提出SVM是为了解决二分类问题；成功分类的直线（平面）有无数个，SVM就要找到最优的结果（即所有样本距离平面都足够大）  hard-margin SVM（硬间隔）  最大间隔分类器 = max margin(w, b)   s.t. y_i(w^T x_i+b) &amp;gt; 0 for i">
 <meta name="keywords" content="ML">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SVM">
 <meta property="og:url" content="http://yoursite.com/2020/10/02/SVM/index.html">
 <meta property="og:site_name" content="MR.C">
-<meta property="og:description" content="Data : N个p维样本 X（维度N×p），y_i = {-1,1} SVM 三宝：间隔，对偶，核技巧   提出SVM是为了解决二分类问题；成功分类的直线（平面）有无数个，SVM就要找到最优的结果（即所有样本距离平面都足够大）  hard-margin SVM（硬间隔） 最大间隔分类器 = max margin(w, b)   s.t. y_i(w^T x_i+b) &amp;gt; 0 for i">
+<meta property="og:description" content="Data : N个p维样本 X（维度N×p），y_i = {-1,1} SVM 三宝：间隔，对偶，核技巧   提出SVM是为了解决二分类问题；成功分类的直线（平面）有无数个，SVM就要找到最优的结果（即所有样本距离平面都足够大）  hard-margin SVM（硬间隔）  最大间隔分类器 = max margin(w, b)   s.t. y_i(w^T x_i+b) &amp;gt; 0 for i">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://yoursite.com/home/hwc/git/image/statistics/SVM/SVM1.png">
-<meta property="og:image" content="http://yoursite.com/home/hwc/git/image/statistics/SVM/SVM2.png">
-<meta property="og:updated_time" content="2020-10-03T08:41:18.761Z">
+<meta property="og:image" content="https://github.com/soloistben/images/raw/master/statistics/SVM/SVM1.png">
+<meta property="og:image" content="https://github.com/soloistben/images/raw/master/statistics/SVM/SVM2.png">
+<meta property="og:updated_time" content="2020-10-03T08:43:34.784Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SVM">
-<meta name="twitter:description" content="Data : N个p维样本 X（维度N×p），y_i = {-1,1} SVM 三宝：间隔，对偶，核技巧   提出SVM是为了解决二分类问题；成功分类的直线（平面）有无数个，SVM就要找到最优的结果（即所有样本距离平面都足够大）  hard-margin SVM（硬间隔） 最大间隔分类器 = max margin(w, b)   s.t. y_i(w^T x_i+b) &amp;gt; 0 for i">
-<meta name="twitter:image" content="http://yoursite.com/home/hwc/git/image/statistics/SVM/SVM1.png">
+<meta name="twitter:description" content="Data : N个p维样本 X（维度N×p），y_i = {-1,1} SVM 三宝：间隔，对偶，核技巧   提出SVM是为了解决二分类问题；成功分类的直线（平面）有无数个，SVM就要找到最优的结果（即所有样本距离平面都足够大）  hard-margin SVM（硬间隔）  最大间隔分类器 = max margin(w, b)   s.t. y_i(w^T x_i+b) &amp;gt; 0 for i">
+<meta name="twitter:image" content="https://github.com/soloistben/images/raw/master/statistics/SVM/SVM1.png">
   
     <link rel="alternate" href="/atom.xml" title="MR.C" type="application/atom+xml">
   
@@ -93,18 +93,16 @@
         <ul>
 <li>Data : N个p维样本 X（维度N×p），y_i = {-1,1}</li>
 <li><p>SVM 三宝：间隔，对偶，核技巧</p>
-<p><img src="/home/hwc/git/image/statistics/SVM/SVM1.png" alt="SVM1" style="zoom:50%;"></p>
+<p><img src="https://github.com/soloistben/images/raw/master/statistics/SVM/SVM1.png" alt="SVM1" style="zoom:50%;"></p>
 </li>
 <li><p>提出SVM是为了解决二分类问题；成功分类的直线（平面）有无数个，SVM就要找到最优的结果（即所有样本距离平面都足够大）</p>
 </li>
-<li><strong>hard-margin SVM</strong>（硬间隔）<ul>
+<li><p><strong>hard-margin SVM</strong>（硬间隔）</p>
+<ul>
 <li>最大间隔分类器 = max margin(w, b)   s.t. y_i(w^T x_i+b) &gt; 0 for i = 1,…,N</li>
 <li>点到直线距离，垂直线最短</li>
 <li>margin(w, b) = min distance(w, b, x_i) = <strong>min 1/||w|| |w^T x_i + b|</strong></li>
-</ul>
-</li>
-<li><p>=&gt; max_w,b min_x 1/||w|| |w^T x_i + b| (s.t. y_i(w^T x_i+b) &gt; 0) = max_w,b 1/||w|| min_x y_i(w^T x_i + b) (存在r&gt;0，使y_i(w^T x_i + b) =r，可以设置r=1)</p>
-<ul>
+<li>=&gt; max_w,b min_x 1/||w|| |w^T x_i + b| (s.t. y_i(w^T x_i+b) &gt; 0) = max_w,b 1/||w|| min_x y_i(w^T x_i + b) (存在r&gt;0，使y_i(w^T x_i + b) =r，可以设置r=1)</li>
 <li>=&gt; max 1/||w|| s.t. min y_i(w^T x_i + b) = 1 =&gt; <strong>min 1/2 w^T w  s.t. y_i(w^T x_i + b) &gt;=1</strong>(convex optimization 二次凸优化问题)(primal problem原问题)</li>
 <li>拉格朗日：L(w, b, λ) = 1/2 w^T w + Σ λ_i(1-y_i(w^T x_i + b)) (λ_i &gt;= 0, (1-y_i(w^T x_i + b)) &lt;= 0；若(1-y_i(w^T x_i + b))&gt;0，L为正无穷，无解；仅在 λ_i=0， (1-y_i(w^T x_i + b)) =0，达到最大L)</li>
 <li><strong>primal problem 原问题</strong>&lt;=&gt; <strong>min_w,b max_λ L(w, b, λ)  s.t. λ_i &gt;= 0</strong> （对w，b没有限制）=&gt; min 1/2 w^T w</li>
@@ -119,7 +117,7 @@
 <li>原问题和对偶问题具有强对偶关系&lt;=&gt;满足KKT条件</li>
 <li>w~ = Σ λ_i y_i x_i, （存在x_k, y_k，1-y_k(w^T x_k + b)=0）b~ = y_k - w^T x_k = y_k - (Σ λ_i y_i x_i^T) x_k</li>
 <li><p><strong>f(x) = sign(w~^T x + b~)</strong></p>
-<p><img src="/home/hwc/git/image/statistics/SVM/SVM2.png" alt="SVM2" style="zoom:50%;"></p>
+<p><img src="https://github.com/soloistben/images/raw/master/statistics/SVM/SVM2.png" alt="SVM2" style="zoom:50%;"></p>
 </li>
 <li><p>落在虚线的样本点就是x_k（y_k(w^T x_k + b)=1），就称为support vector支持向量，只有支持向量对求解有意义，其他的样本点对应的λ均为0</p>
 </li>
