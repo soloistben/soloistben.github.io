@@ -17,7 +17,11 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://github.com/soloistben/images/raw/master/statistics/SVM/SVM1.png">
 <meta property="og:image" content="https://github.com/soloistben/images/raw/master/statistics/SVM/SVM2.png">
-<meta property="og:updated_time" content="2020-10-03T08:43:34.784Z">
+<meta property="og:image" content="https://github.com/soloistben/images/raw/master/statistics/SVM/SVM3.png">
+<meta property="og:image" content="https://github.com/soloistben/images/raw/master/statistics/SVM/SVM4.png">
+<meta property="og:image" content="https://github.com/soloistben/images/raw/master/statistics/SVM/SVM5.png">
+<meta property="og:image" content="https://github.com/soloistben/images/raw/master/statistics/SVM/SVM6.png">
+<meta property="og:updated_time" content="2020-10-03T13:25:32.022Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SVM">
 <meta name="twitter:description" content="Data : N个p维样本 X（维度N×p），y_i = {-1,1} SVM 三宝：间隔，对偶，核技巧   提出SVM是为了解决二分类问题；成功分类的直线（平面）有无数个，SVM就要找到最优的结果（即所有样本距离平面都足够大）  hard-margin SVM（硬间隔）  最大间隔分类器 = max margin(w, b)   s.t. y_i(w^T x_i+b) &amp;gt; 0 for i">
@@ -95,38 +99,97 @@
 <li><p>SVM 三宝：间隔，对偶，核技巧</p>
 <p><img src="https://github.com/soloistben/images/raw/master/statistics/SVM/SVM1.png" alt="SVM1" style="zoom:50%;"></p>
 </li>
-<li><p>提出SVM是为了解决二分类问题；成功分类的直线（平面）有无数个，SVM就要找到最优的结果（即所有样本距离平面都足够大）</p>
+<li><p>提出SVM是为了解决二分类问题；成功分类的直线（平面）有无数个，SVM就要找到最优的结果（即<strong>所有样本距离平面都足够大</strong>）</p>
 </li>
 <li><p><strong>hard-margin SVM</strong>（硬间隔）</p>
 <ul>
 <li>最大间隔分类器 = max margin(w, b)   s.t. y_i(w^T x_i+b) &gt; 0 for i = 1,…,N</li>
 <li>点到直线距离，垂直线最短</li>
 <li>margin(w, b) = min distance(w, b, x_i) = <strong>min 1/||w|| |w^T x_i + b|</strong></li>
-<li>=&gt; max_w,b min_x 1/||w|| |w^T x_i + b| (s.t. y_i(w^T x_i+b) &gt; 0) = max_w,b 1/||w|| min_x y_i(w^T x_i + b) (存在r&gt;0，使y_i(w^T x_i + b) =r，可以设置r=1)</li>
-<li>=&gt; max 1/||w|| s.t. min y_i(w^T x_i + b) = 1 =&gt; <strong>min 1/2 w^T w  s.t. y_i(w^T x_i + b) &gt;=1</strong>(convex optimization 二次凸优化问题)(primal problem原问题)</li>
+<li>→ max_w,b min_x 1/||w|| |w^T x_i + b| (s.t. y_i(w^T x_i+b) &gt; 0) = max_w,b 1/||w|| min_x y_i(w^T x_i + b) (存在r&gt;0，使y_i(w^T x_i + b) =r，可以设置r=1)</li>
+<li>→ max 1/||w|| s.t. min y_i(w^T x_i + b) = 1 → <strong>min 1/2 w^T w  s.t. y_i(w^T x_i + b) &gt;=1</strong>(convex optimization 二次凸优化问题)(primal problem原问题)</li>
 <li>拉格朗日：L(w, b, λ) = 1/2 w^T w + Σ λ_i(1-y_i(w^T x_i + b)) (λ_i &gt;= 0, (1-y_i(w^T x_i + b)) &lt;= 0；若(1-y_i(w^T x_i + b))&gt;0，L为正无穷，无解；仅在 λ_i=0， (1-y_i(w^T x_i + b)) =0，达到最大L)</li>
-<li><strong>primal problem 原问题</strong>&lt;=&gt; <strong>min_w,b max_λ L(w, b, λ)  s.t. λ_i &gt;= 0</strong> （对w，b没有限制）=&gt; min 1/2 w^T w</li>
-<li><p><strong>dual problem 对偶问题</strong> =&gt; <strong>max_λ min_w,b L(w, b, λ)  s.t. λ_i &gt;= 0</strong>  </p>
-<ul>
+<li><strong>primal problem 原问题</strong>&lt;=&gt; <strong>min_w,b max_λ L(w, b, λ)  s.t. λ_i &gt;= 0</strong> （对w，b没有限制）→ min 1/2 w^T w</li>
+<li><strong>dual problem 对偶问题</strong>：<strong>max_λ min_w,b L(w, b, λ)  s.t. λ_i &gt;= 0</strong>  <ul>
 <li>min max L &gt;= max min L 弱对偶关系（鸡头凤尾），若直接相等，则为强对偶关系</li>
 <li>（若L问题是二次凸优化问题，则min max L = max min L为强对偶关系）</li>
 <li>dL/db = d[Σ λ_i(1-y_i(w^T x_i + b))]/db = d[- Σ λ_i y_i b]/db = -<strong>Σ λ_i y_i =0</strong>，带入原式L = 1/2 w^T w + Σ λ_i - Σ λ_i y_i w^T x_i</li>
-<li>dL/dw = w - Σ λ_i y_i x_i = 0  =&gt; <strong>w = Σ λ_i y_i x_i</strong>，带入原式L = 1/2 w^T w + Σ λ_i - w^T w  = Σ λ_i - 1/2 w^T w </li>
-<li>=&gt; <strong>min 1/2 w^T w - Σ λ_i  s.t. λ_i&gt;=0, Σ λ_i y_i =0</strong> （此处不能求λ偏导）</li>
+<li>dL/dw = w - Σ λ_i y_i x_i = 0  → <strong>w = Σ λ_i y_i x_i</strong>，带入原式L = 1/2 w^T w + Σ λ_i - w^T w  = Σ λ_i - 1/2 w^T w </li>
+<li>→ <strong>min 1/2 w^T w - Σ λ_i  s.t. λ_i&gt;=0, Σ λ_i y_i =0</strong> （此处不能求λ偏导）</li>
 <li><strong>KKT条件</strong>：参数偏导为0（dL/db=0，dL/dw=0，dL/dλ=0），λ_i(1-y_i(w^T x_i + b))=0， λ_i&gt;=0，(1-y_i(w^T x_i + b)&lt;=0</li>
 <li>原问题和对偶问题具有强对偶关系&lt;=&gt;满足KKT条件</li>
 <li>w~ = Σ λ_i y_i x_i, （存在x_k, y_k，1-y_k(w^T x_k + b)=0）b~ = y_k - w^T x_k = y_k - (Σ λ_i y_i x_i^T) x_k</li>
+</ul>
+</li>
 <li><p><strong>f(x) = sign(w~^T x + b~)</strong></p>
 <p><img src="https://github.com/soloistben/images/raw/master/statistics/SVM/SVM2.png" alt="SVM2" style="zoom:50%;"></p>
+<ul>
+<li>落在虚线的样本点就是x_k（y_k(w^T x_k + b)=1），就称为support vector支持向量，只有支持向量对求解有意义，其他的样本点对应的λ均为0</li>
+</ul>
 </li>
-<li><p>落在虚线的样本点就是x_k（y_k(w^T x_k + b)=1），就称为support vector支持向量，只有支持向量对求解有意义，其他的样本点对应的λ均为0</p>
+</ul>
+</li>
+<li><p><strong>soft-margin SVM</strong>（软间隔）</p>
+<ul>
+<li>hard-margin SVM是基于样本属于可分的，但是实际数据是存在噪声，可能导致分不好，甚至不可分</li>
+<li><p>soft-margin SVM在hard-margin SVM基础上允许一点点错误，min 1/2 w^T w + loss </p>
+<ul>
+<li>分错点的个数：loss = Σ I{y_i(w^T x_i + b)&lt;1} （关于w是不连续的，无法求导，因此不采取）</li>
+<li><p>hinge 距离：hinge loss = max{0, 1-y_i(w^T x_i + b)}</p>
+<p><img src="https://github.com/soloistben/images/raw/master/statistics/SVM/SVM3.png" alt="SVM3" style="zoom: 67%;"></p>
+</li>
+<li><p>min 1/2 w^T w + C Σ max{0, 1-y_i(w^T x_i + b)}  s.t. y_i(w^T x_i + b)&gt;=1 （超参数C）</p>
+</li>
+<li><p>→ 设定ξ_i = y_i(w^T x_i + b)，<strong>min 1/2 w^T w + C Σ ξ_i</strong>  s.t. y_i(w^T x_i + b)&gt;=1-ξ_i, ξ_i&gt;=0（同样用对偶问题方式来求解）</p>
+<p><img src="https://github.com/soloistben/images/raw/master/statistics/SVM/SVM4.png" alt="SVM4" style="zoom: 50%;"></p>
 </li>
 </ul>
 </li>
 </ul>
 </li>
-<li><strong>soft-margin SVM</strong>（软间隔）</li>
-<li><strong>kernel SVM</strong></li>
+<li><p>约束优化问题</p>
+<ul>
+<li>primal problem 原问题：<strong>min f(x)  s.t. m_i(x)&lt;=0, n_j(x)=0 (i=1,…,M, j=1,…,N)</strong></li>
+</ul>
+</li>
+<li><p>原问题的无约束形式（关于x的函数）：拉格朗日：L(x, λ, η) = f(x) + Σ λ_i m_i(x) + Σ η_i n_i(x)  → <strong>min_x max_λ,η L(x, λ, η)  s.t. λ_i&gt;=0</strong></p>
+<ul>
+<li>证明两者等价：如果违法约束m_i(x)&gt;0，max_λ L → ∞；反之，max_λ L 必有最大值（λ_i=0时）（即排除了m_i(x)&gt;0情况，过滤掉违反约束的情况）<ul>
+<li>dual problem 对偶问题（关于λ,η的函数）：<strong>max_λ,η min_x L(x, λ, η)  s.t. λ_i&gt;=0</strong></li>
+</ul>
+</li>
+<li><strong>弱对偶性：对偶问题&lt;=原问题</strong> （max_λ,η min_x L(x, λ, η)  &lt;= min_x max_λ,η L(x, λ, η)）</li>
+<li>证明：min_x L &lt;= L &lt;= max_λ,η L  →  A(λ,η) &lt;= L &lt;= B(x)  →  A(λ,η) &lt;= B(x)  →  max A(λ,η) &lt;= min B(x)  </li>
+<li>→ max_λ,η min_x L(x, λ, η)  &lt;= min_x max_λ,η L(x, λ, η) </li>
+<li>（在min_x L已经确定x，则只剩下关于 λ,η的函数A，函数B同理）</li>
+<li>强对偶性：对偶问题=原问题<ul>
+<li>几何解释</li>
+</ul>
+</li>
+<li>primal problem: min f(x)  s.t. m_1(x)&lt;=0 (D定义域，D=dom_f ∩ dom_m_1) <strong>原问题最优解：p* = min f(x)</strong></li>
+<li>L(x, λ) = f(x) + λ m_1(x) s.t. λ&gt;=0 <strong>对偶最优解：d* = max_λ min_x L(x, λ)</strong></li>
+<li><p>将问题投影入二维空间：引入集合(区域) G = {(m_1(x), f(x))|x∈D}（不知道G是凸还是非凸，非凸具有一般性，则画个非凸的图像）</p>
+<p><img src="https://github.com/soloistben/images/raw/master/statistics/SVM/SVM5.png" alt="SVM5" style="zoom: 67%;"></p>
+<ul>
+<li><strong>p* = inf {f(x)|(m_1(x), f(x))∈G, m_1(x)&lt;=0}</strong>（集合中没有最小值概念，对应的是下确界）<ul>
+<li>P* 对应图中蓝色部分（左半边区域对纵轴的映射），下确界则为左半边区域最低点在纵轴的映射</li>
+</ul>
+</li>
+<li><p>d* = max_λ g(λ) , g(λ) = min_x  f(x) + λ m_1(x) , <strong>g(λ) = inf {f(x) + λ_i m_1(x)|(m_1(x), f(x))∈G}</strong></p>
+<ul>
+<li>一条过原点直线 f(x) + λ m_1(x) = 0 (斜率λ可变)，g(λ)范围可以从直线开始与G相切到离开G相切的地方（红线范围）g(λ) &lt;= p* </li>
+<li>当调整斜率λ*，得到一个 g(λ*) = f(x) + λ* m_1(x) 同时与G的俩角相切，此时，直线与纵轴的交点为d*（绿线）</li>
+<li><p>d<em> &lt;= p\</em> （凸优化+slater条件 → d<em> = p\</em>）（SVM是二次规划问题，符合slater条件）</p>
+<p><img src="https://github.com/soloistben/images/raw/master/statistics/SVM/SVM6.png" alt="SVM6" style="zoom: 67%;"></p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>kernel SVM</strong></p>
+</li>
 </ul>
 
       
