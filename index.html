@@ -320,17 +320,16 @@
 <li>P* 对应图中蓝色部分（左半边区域对纵轴的映射），下确界则为左半边区域最低点在纵轴的映射</li>
 </ul>
 </li>
-<li><p>d* = max_λ g(λ) , g(λ) = min_x  f(x) + λ m_1(x) , <strong>g(λ) = inf {f(x) + λ_i m_1(x)|(m_1(x), f(x))∈G}</strong></p>
-<ul>
+<li>d* = max_λ g(λ) , g(λ) = min_x  f(x) + λ m_1(x) , <strong>g(λ) = inf {f(x) + λ_i m_1(x)|(m_1(x), f(x))∈G}</strong><ul>
 <li>一条过原点直线 f(x) + λ m_1(x) = 0 (斜率λ可变)，g(λ)范围可以从直线开始与G相切到离开G相切的地方（红线范围）g(λ) &lt;= p* </li>
 <li>当调整斜率λ*，得到一个 g(λ*) = f(x) + λ* m_1(x) 同时与G的俩角相切，此时，直线与纵轴的交点为d*（绿线）</li>
-<li><p>d<em> &lt;= p\</em> （凸优化+slater条件 → d<em> = p\</em>）（SVM是二次规划问题，符合slater条件）</p>
-<p><img src="https://github.com/soloistben/images/raw/master/statistics/SVM/SVM6.png" alt="SVM6" style="zoom: 67%;"></p>
-</li>
 </ul>
 </li>
 </ul>
 </li>
+<li><p>d* &lt;= p* （凸优化+slater条件 → d* = p*）（SVM是二次规划问题，符合slater条件）</p>
+<pre><code>&lt;img src=&quot;https://github.com/soloistben/images/raw/master/statistics/SVM/SVM6.png&quot; alt=&quot;SVM6&quot; style=&quot;zoom: 67%;&quot; /&gt;
+</code></pre></li>
 </ul>
 </li>
 <li><p><strong>kernel SVM</strong></p>
