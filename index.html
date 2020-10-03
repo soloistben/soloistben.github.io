@@ -152,16 +152,39 @@
 <li>L(u_1, λ) = u_1^T S u_1 + λ(1-u_1^T u_1)</li>
 <li>dL/du_1 = 2 S u_1 - 2λ u_1 = 0  ==&gt; <strong>S u_1 = λ u_1</strong> </li>
 <li><strong>u_1为eigen-vector特征向量，λ为eigen-value特征值</strong></li>
+<li>解法1：对方差矩阵特征分解，即可求解PCA</li>
+<li>解法2：直接对原始数据进行操作：中心化后的 HX = UΣV^T 进行奇异值分解（U和V均为正交矩阵），S = X^T H X = X^T H^T H X = (VΣU^T)(UΣV^T) = V Σ^2 V^T（可先忽略1/N常数）（维度p×p），因此直接求解HX奇异值分解，也就是求解了S的特征分解</li>
+<li>假设 B = H X X^T H = (UΣV^T)(VΣU^T) = U Σ^2 U^T（维度N×N），则B与S有一样的eigenvalue，（S特征分解得到方向V（主成分）然后通过HX V得到新坐标）（B特征分解直接得到坐标U，称为主坐标分析 <strong>principal coordinate analysis PCoA</strong>）</li>
+<li>HX V = UΣV^T V = UΣ（UΣ是坐标矩阵），BUΣ = U Σ^2 U^T UΣ = UΣ Σ^2（UΣ是特征向量组成的矩阵）</li>
 </ul>
 </li>
 </ul>
 </li>
 <li>最小重构代价<ul>
 <li>投影在u_1平面的点恢复到原来样子的代价</li>
-<li>设从原p维降到q维（下面u代表特征）</li>
+<li>设从原p维降到q维（下面u代表特征）<ul>
 <li>x_i = Σ_k^p (x_i^T u_k) u_k, x_i ~ = Σ_k^q (x_i^T u_k) u_k  (用特征u_k描述样本x_i，(x_i^T u_k)为距离大小，u_k为单位大小，则第k维描述为(x_i^T u_k) u_k)</li>
 <li>代价函数 L = 1/N Σ||x_i - x_i ~||^2 = Σ_(k=q+1)^p u_k T S u_k  = Σ_(k=q+1)^p λ_k (s.t. u_k^T u_k=1)</li>
-<li>u_k = argmin L</li>
+<li>u_k = argmin L </li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>概率角度</p>
+<ul>
+<li>P-PCA<ul>
+<li>设定observed data X为p维（特征为连续型数据），latent variable Z为q维（q&lt;p）</li>
+<li>设定Z～N(0, I)（服从高斯分布，q维）</li>
+<li>X = WZ + u + ε（X是Z的一个线性变换加噪声），X|Z~N(WZ + u, σ^2 I)，X~N(u, WW^T+σ^2 I)</li>
+<li>噪声ε~N(0, σ^2 I)（p维）</li>
+<li>这也是一种Linear Gaussian Model（称该模型各向同性，对各方向影响是一样的）</li>
+</ul>
+</li>
+<li><p>求P(Z), P(X|Z), P(X), 最后求后验P(Z|X)、用EM求参数W, u, σ</p>
+<p><img src="https://github.com/soloistben/images/raw/master/statistics/Dimensionality_Reduction/DR4.png" alt="DR4" style="zoom:75%;"></p>
+</li>
+<li><p>从服从高斯分布的Z中，投影点在方向W，进行线性变换得到X，也得到服从高斯分布的X|Z，方向W上有很多的高斯分布（各向同性）；X的分布不在方向W上，且中间很宽（因为高斯分布中间高两边低）</p>
+</li>
 </ul>
 </li>
 </ul>
@@ -169,8 +192,7 @@
 <li>MDS</li>
 </ul>
 </li>
-<li><p>非线性降温</p>
-<ul>
+<li>非线性降维<ul>
 <li>流型</li>
 <li>Isomap</li>
 <li>LLE</li>
