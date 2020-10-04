@@ -375,9 +375,10 @@
 <ul>
 <li>Kernel Method（思想角度）</li>
 <li>Kernel Trick（计算角度）</li>
-<li><p>Kernel function</p>
+<li><p>Kernel function<br>|  线性可分  | 一点点错误 |  严格非线性  |<br>|  :—-  | :—-  | :—-  |<br>| PLA（感知机算法） | Pocket Algorthm | Φ(x)+PLA |<br>| Hard-Margin SVM | Soft-Margin SVM | Φ(x)+Hard-Margin SVM = Kernel SVM |</p>
 <ul>
-<li><strong>非线性带来高维转换（从模型角度）</strong><br>|  线性可分  | 一点点错误 |  严格非线性  |<br>|  :—-  | :—-  | :—-  |<br>| PLA（感知机算法） | Pocket Algorthm | Φ(x)+PLA |<br>| Hard-Margin SVM | Soft-Margin SVM | Φ(x)+Hard-Margin SVM = Kernel SVM |</li>
+<li><p><strong>非线性带来高维转换（从模型角度）</strong></p>
+<ul>
 <li><p>PLA (Perceptron Learning Algorithm)通过初始化不同w、b，求得不同超平面；Hard-Margin SVM找到最好的超平面</p>
 <ul>
 <li><p>但对数据而言是往往是包含噪声，因此需要对严格线性可分的条件放松，允许放一点点错误，获得更好的范化性能（如左图）</p>
@@ -386,10 +387,13 @@
 <li><p>但面对右图的情况，非线性可分问题，即使允许放一点点错误，也是无法分类的。</p>
 </li>
 <li>对于PLA，则有多层感知机（神经网络）→深度学习 （多一层感知机，就可以更逼近一个连续函数，则可以解决非线性问题）</li>
+</ul>
+</li>
 <li><p><strong>非线性可分问题 → Φ(x) 非线性转换到高维空间 → 线性可分问题</strong></p>
 <p><img src="https://github.com/soloistben/images/raw/master/statistics/SVM/SVM8.png" alt="SVM8" style="zoom: 67%;"></p>
-</li>
-<li><p>面对典型异或问题，PLA是无法解决该问题（深度学习可以），将二维空间转换为三维空间，即可用红色超平面划分（Cover Theorem：高维空间比低维更易线性可分）</p>
+<ul>
+<li>面对典型异或问题，PLA是无法解决该问题（深度学习可以），将二维空间转换为三维空间，即可用红色超平面划分（Cover Theorem：高维空间比低维更易线性可分）</li>
+</ul>
 </li>
 </ul>
 </li>
@@ -411,7 +415,7 @@
 </li>
 </ul>
 </li>
-<li>一般核函数指正定核函数 <a href="https://www.bilibili.com/video/BV1aE411o7qd?p=37" target="_blank" rel="noopener">详解</a><ul>
+<li>一般核函数指<strong>正定核函数</strong> <a href="https://www.bilibili.com/video/BV1aE411o7qd?p=37" target="_blank" rel="noopener">详解</a><ul>
 <li>更精确定义：K可以将任意输入空间X映射到高维空间，则K(x, x’)为核函数</li>
 <li>正定核函数：K可以将任意输入空间X映射到高维空间，有K(x, x’)，存在Φ（Φ∈Hilbert Space）可以输入空间X映射到高维空间，且使K(x, x’) = &lt;Φ(x), Φ(x’)&gt;，则K(x, x’)为正定核函数</li>
 <li>正定核函数（另一个定义）：K可以将任意输入空间X映射到高维空间，有K(x, x’)，若满足两个条件（对称性、正定性）则为正定和函数<ul>
