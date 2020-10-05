@@ -19,7 +19,7 @@
 <meta property="og:image" content="https://github.com/soloistben/images/raw/master/statistics/Linear_Regression/LR2.png">
 <meta property="og:image" content="https://github.com/soloistben/images/raw/master/statistics/Linear_Classification/LC1.png">
 <meta property="og:image" content="https://github.com/soloistben/images/raw/master/statistics/Linear_Classification/LC2.png">
-<meta property="og:updated_time" content="2020-10-05T03:55:42.850Z">
+<meta property="og:updated_time" content="2020-10-05T08:01:15.841Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Statistics">
 <meta name="twitter:description" content="Statistics for Machine LearningOne. 两大派系 频率派：统计机器学习（设计模型，找到loss function，设计算法。本质为优化问题） 正则化（L1,L2） 核化（Kernel SVM） 集成化（AdaBoost，RandForest） 层次化（Neural Network：MLP(Multi-Layer Perceptron)，Autoencoder，CNN">
@@ -412,20 +412,24 @@
 </li>
 <li><p><strong>Naive Bayes</strong></p>
 <ul>
-<li><strong>朴素贝叶斯 = 贝叶斯定理 + 特征条件独立</strong><ul>
+<li><p><strong>朴素贝叶斯 = 贝叶斯定理 + 特征条件独立</strong></p>
+<ul>
 <li>贝叶斯定理计算复杂，设定特征条件独立简化计算</li>
 <li>但特征条件独立，特性太强了，不符合现实情况（见Bayes_MRF对图概率模型的缺点描述）</li>
 <li>最简单概率图模型</li>
 </ul>
 </li>
-<li>生成模型、离散</li>
-<li>Data<ul>
+<li><p>生成模型、离散</p>
+</li>
+<li><p>Data</p>
+<ul>
 <li>X: data, (n, d), n个数据样本，每个d维向量</li>
 <li>Y: class, Y={c_1, c_2, …,c_k}, k个类别</li>
 <li>y: label, (1, n), n个标签</li>
 </ul>
 </li>
-<li><strong>prior probability</strong> <ul>
+<li><p><strong>prior probability</strong> </p>
+<ul>
 <li>P(Y=c_k)</li>
 <li>属于贝叶斯派，认为参数也属于未知变量，符合概率分布</li>
 <li>若样本特征的分布大部分是<font color="red">连续值</font>，则先验为<font color="red">高斯分布</font>的朴素贝叶斯</li>
@@ -434,46 +438,57 @@
 <li><a href="https://www.cnblogs.com/pinard/p/6074222.html" target="_blank" rel="noopener">sk-learn</a></li>
 </ul>
 </li>
-<li><strong>conditional probability</strong><ul>
+<li><p><strong>conditional probability</strong></p>
+<ul>
 <li>P(X=x|Y=c_k) = P(X^(1)=x^(1), …, X^(d)=x^(d)|Y=c_k) = ΠP(X^(j)=x^(j)|Y=c_k)</li>
 <li>特征条件独立</li>
 <li>^(1) 上标表示第1维度</li>
 </ul>
 </li>
-<li><strong>joint probability distributions</strong><ul>
+<li><p><strong>joint probability distributions</strong></p>
+<ul>
 <li>联合概率分布</li>
 <li>P(X, Y) = P(X|Y)P(Y)</li>
 </ul>
 </li>
-<li><strong>posterior probability</strong><ul>
+<li><p><strong>posterior probability</strong></p>
+<ul>
 <li>P(Y=c_k|X=x) = P(X=x|Y=c_k)P(Y=c_k)/ΣP(X=x|Y=c_k)P(Y=c_k) = P(Y=c_k)ΠP(X^(j)=x^(j)|Y=c_k)/Σ P(Y=c_k)ΠP(X^(j)=x^(j)|Y=c_k)</li>
 <li>则分类器为<ul>
 <li>y=f(x) = argmax P(Y=c_k|X=x) = argmax P(Y=c_k)ΠP(X^(j)=x^(j)|Y=c_k)</li>
 <li>分母不变，则仅于分子成正比</li>
 <li>意义：<strong>样本x属于c_k类别的最大概率为多少</strong></li>
+<li>代码实践中，训练时学习均值和方差，测试时直接计算对数极大似然</li>
 </ul>
 </li>
 </ul>
 </li>
-<li><strong>loss function</strong><ul>
+<li><p><strong>loss function</strong></p>
+<ul>
 <li>最大后验概率转-&gt;期望风险最小化</li>
 <li>L(Y, f(x)) = 1 if Y!=f(x) or 0 if Y==f(x)<ul>
 <li>Y: train label, y=f(x) : predict label</li>
 </ul>
 </li>
-<li>期望风险函数：R_exp(f) = E[L(Y, f(x))]<ul>
+</ul>
+</li>
+<li><p>期望风险函数：R_exp(f) = E[L(Y, f(x))]</p>
+<ul>
 <li>根据联合概率分布：R_exp(f)  = E_x Σ[L(c_k|f(x))]P(c_k|X)</li>
 </ul>
 </li>
-<li>f(x) = argmin Σ[L(c_k|f(x))]P(c_k|X) <ul>
+<li><p>f(x) = argmin Σ[L(c_k|f(x))]P(c_k|X) </p>
+<ul>
 <li>根据L(Y, f(x))函数展开，消去Y==f(x)项</li>
-<li>f(x) = <strong>argmin ΣP(y!=c_k|X=x)</strong> = argmin (1-P(y=c_k|X=x)) = <strong>argmax P(y=c_k|X=x)</strong></li>
-</ul>
-</li>
+<li>f(x) = <strong>argmin ΣP(y!=c_k|X=x)</strong> = argmin (1-P(y=c_k|X=x)) = <strong>argmax P(y=c_k|X=x)</strong><ul>
 <li>意义：<strong>样本x属于其他类别的最小概率为多少</strong>（等价于 样本x属于c_k类别的最大概率为多少）</li>
 </ul>
 </li>
-<li>详情案例见统计学习方法(第二版)63页</li>
+</ul>
+</li>
+<li><p>详情案例见统计学习方法(第二版)63页</p>
+</li>
+<li>Naive Bayes Pyhon实现（sklearn）<a href="https://github.com/soloistben/images/blob/master/statistics/Linear_Classification/naive_bayes_demo.py" target="_blank" rel="noopener">code</a><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">  prior: P(y) = class_count[y]/n_samples  (non-negative, sum = 1.)</span></span><br><span class="line"><span class="string">  condition: P(x|y) = ΠP(X^(i)=x^(i)|y)   (i for i-th feature, P(x|y)~N(μ,σ^2))</span></span><br><span class="line"><span class="string">  posterior: P(y|x) = P(x,y)/P(x) = P(y)P(x|y)/Σ[P(y)P(x|y)]</span></span><br><span class="line"><span class="string">             P(y|x) = argmax P(y)P(x|y)</span></span><br><span class="line"><span class="string">  MLE: y = argmax log[P(y)ΠP(x|y)] = argmax [log P(y) - 1/2Σ[log(2*pi*σ^2)+(x-μ)^2/σ^2]]</span></span><br><span class="line"><span class="string">  </span></span><br><span class="line"><span class="string">  x:[n_samples, n_feature]</span></span><br><span class="line"><span class="string">  y:[n_samples,]</span></span><br><span class="line"><span class="string">  μ:[n_class, n_feature]</span></span><br><span class="line"><span class="string">  σ^2:[n_class, n_feature]</span></span><br><span class="line"><span class="string">  </span></span><br><span class="line"><span class="string">  class_count: [n_class,] (sum(class_count) = n_samples) </span></span><br><span class="line"><span class="string">  (n_new: class_cout in this times, n_past: class_cout in last times)</span></span><br><span class="line"><span class="string">  update μ, σ^2</span></span><br><span class="line"><span class="string">      μ_new = np.mean(X_i)</span></span><br><span class="line"><span class="string">      σ^2_new = np.var(X_i)</span></span><br><span class="line"><span class="string">  </span></span><br><span class="line"><span class="string">      μ = (μ_new*n_new + μ_pass*n_past)/(n_new+n_past)</span></span><br><span class="line"><span class="string">      σ^2 = (σ^2_new*n_new + σ^2_pass*n_pass + (n_new*n_past/(n_new+n_past)*(μ-μ_new)^2)/(n_new+n_past)</span></span><br><span class="line"><span class="string">  </span></span><br><span class="line"><span class="string">  train time: learning μ, σ^2 in train data</span></span><br><span class="line"><span class="string">  test time: log MLE in test data</span></span><br><span class="line"><span class="string">  '''</span></span><br><span class="line">  </span><br><span class="line">  <span class="class"><span class="keyword">class</span> <span class="title">Naive_Bayes_Gaussian</span><span class="params">()</span>:</span></span><br><span class="line">  </span><br><span class="line">      <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, X, y, var_smoothing=<span class="number">1e-9</span>)</span>:</span></span><br><span class="line">          self.X = X</span><br><span class="line">          self.y = y</span><br><span class="line">          self.epsilon_ = var_smoothing * np.var(X, axis=<span class="number">0</span>).max()</span><br><span class="line">          self.classes_ = np.unique(y)</span><br><span class="line">  </span><br><span class="line">          n_features = X.shape[<span class="number">1</span>]</span><br><span class="line">          n_classes = len(self.classes_)</span><br><span class="line">  </span><br><span class="line">          self.theta_ = np.zeros((n_classes, n_features))</span><br><span class="line">          self.sigma_ = np.zeros((n_classes, n_features))</span><br><span class="line">          self.class_count_ = np.zeros(n_classes, dtype=np.float64)</span><br><span class="line">          self.class_prior_ = np.zeros(len(self.classes_), dtype=np.float64) <span class="comment"># init P(y)</span></span><br><span class="line">  </span><br><span class="line">      <span class="function"><span class="keyword">def</span> <span class="title">fit</span><span class="params">(self)</span>:</span></span><br><span class="line">          <span class="keyword">return</span> self._partial_fit(self.X, self.y)</span><br><span class="line">  </span><br><span class="line">      <span class="function"><span class="keyword">def</span> <span class="title">predict</span><span class="params">(self, test_X)</span>:</span></span><br><span class="line">          jll = self._joint_log_likelihood(test_X)</span><br><span class="line">          <span class="keyword">return</span> self.classes_[np.argmax(jll, axis=<span class="number">1</span>)]</span><br><span class="line">  </span><br><span class="line">      <span class="function"><span class="keyword">def</span> <span class="title">_partial_fit</span><span class="params">(self, X, y)</span>:</span></span><br><span class="line">          <span class="comment"># Put epsilon back in each time</span></span><br><span class="line">          self.sigma_[:, :] -= self.epsilon_</span><br><span class="line">          </span><br><span class="line">          classes = self.classes_</span><br><span class="line">          unique_y = np.unique(y)</span><br><span class="line">  </span><br><span class="line">          <span class="comment"># loop on n_class, learning mu and var</span></span><br><span class="line">          <span class="keyword">for</span> y_i <span class="keyword">in</span> unique_y:</span><br><span class="line">              i = classes.searchsorted(y_i)</span><br><span class="line">              X_i = X[y == y_i, :]    <span class="comment"># X_i [n_class, n_feature]</span></span><br><span class="line">              N_i = X_i.shape[<span class="number">0</span>]</span><br><span class="line">              new_theta, new_sigma = self._update_mean_variance(</span><br><span class="line">                  self.class_count_[i], self.theta_[i, :], self.sigma_[i, :], X_i)</span><br><span class="line">  </span><br><span class="line">              self.theta_[i, :] = new_theta</span><br><span class="line">              self.sigma_[i, :] = new_sigma</span><br><span class="line">              self.class_count_[i] += N_i</span><br><span class="line">  </span><br><span class="line">          self.sigma_[:, :] += self.epsilon_</span><br><span class="line">          self.class_prior_ = self.class_count_ / self.class_count_.sum()</span><br><span class="line">          <span class="keyword">return</span> self</span><br><span class="line">  </span><br><span class="line">      <span class="function"><span class="keyword">def</span> <span class="title">_joint_log_likelihood</span><span class="params">(self, test_X)</span>:</span></span><br><span class="line">          joint_log_likelihood = []</span><br><span class="line">          <span class="keyword">for</span> i <span class="keyword">in</span> range(np.size(self.classes_)):</span><br><span class="line">              jointi = np.log(self.class_prior_[i])</span><br><span class="line">              n_ij = - <span class="number">0.5</span> * np.sum(np.log(<span class="number">2.</span>*np.pi*self.sigma_[i, :]))</span><br><span class="line">              n_ij -= <span class="number">0.5</span> * np.sum(((test_X - self.theta_[i, :])**<span class="number">2</span>)/(self.sigma_[i, :]), <span class="number">1</span>)</span><br><span class="line">              joint_log_likelihood.append(jointi + n_ij)</span><br><span class="line">  </span><br><span class="line">          joint_log_likelihood = np.array(joint_log_likelihood).T</span><br><span class="line">          <span class="keyword">return</span> joint_log_likelihood</span><br><span class="line">  </span><br><span class="line"><span class="meta">      @staticmethod</span></span><br><span class="line">      <span class="function"><span class="keyword">def</span> <span class="title">_update_mean_variance</span><span class="params">(n_past, mu, var, X)</span>:</span></span><br><span class="line">          </span><br><span class="line">          <span class="keyword">if</span> X.shape[<span class="number">0</span>] == <span class="number">0</span>:</span><br><span class="line">              <span class="keyword">return</span> mu, var</span><br><span class="line">  </span><br><span class="line">          n_new = X.shape[<span class="number">0</span>]</span><br><span class="line">          new_var = np.var(X, axis=<span class="number">0</span>)</span><br><span class="line">          new_mu = np.mean(X, axis=<span class="number">0</span>)</span><br><span class="line">  </span><br><span class="line">          <span class="keyword">if</span> n_past == <span class="number">0</span>:</span><br><span class="line">              <span class="keyword">return</span> new_mu, new_var</span><br><span class="line">  </span><br><span class="line">          <span class="comment"># update μ</span></span><br><span class="line">          n_total = float(n_past + n_new)</span><br><span class="line">          total_mu = (n_new * new_mu + n_past * mu) / n_total</span><br><span class="line">  </span><br><span class="line">          <span class="comment"># update σ^2</span></span><br><span class="line">          old_ssd = n_past * var</span><br><span class="line">          new_ssd = n_new * new_var</span><br><span class="line">          total_ssd = (old_ssd + new_ssd + (n_new*n_past/n_total)*(mu-new_mu)**<span class="number">2</span>)</span><br><span class="line">          total_var = total_ssd / n_total</span><br><span class="line">  </span><br><span class="line">          <span class="keyword">return</span> total_mu, total_var</span><br></pre></td></tr></table></figure></li>
 </ul>
 </li>
 </ul>
