@@ -29,7 +29,7 @@
 <meta property="og:image" content="https://github.com/soloistben/images/raw/master/bayes_mrf/pair-markov_3.png">
 <meta property="og:image" content="https://github.com/soloistben/images/raw/master/bayes_mrf/pair-markov_4.png">
 <meta property="og:image" content="https://github.com/soloistben/images/raw/master/bayes_mrf/pair-markov_5.png">
-<meta property="og:updated_time" content="2020-10-06T06:25:03.696Z">
+<meta property="og:updated_time" content="2020-10-06T07:07:50.064Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Bayes_MRF">
 <meta name="twitter:description" content="Bayes 贝叶斯 &amp;amp; Markov Random Fields 马尔可夫随机场One. 前提 Probabilistic Graphical Model (PGM 概率图模型) （将概率引入图模型，没有图，只能计算，引入图，比较直观，容易观察） Representation 表示 有向图 Bayesian Network (有向无环，则起始结点决定这终止节点的概率) 无向图 Markov">
@@ -275,7 +275,7 @@
 <li>无向图</li>
 <li><p>条件独立性，发生x_B时，x_A与x_C无关 （<strong>global markov</strong> 全局马尔可夫）</p>
 <ul>
-<li>存在x_A, x_C被x_B分割（对应 bayes D-separation）， 那么发生x_B时，x_A与x_C无关 </li>
+<li>存在集合x_A, x_C被x_B分割（对应 bayes D-separation）， 那么发生x_B时，x_A与x_C无关 </li>
 </ul>
 </li>
 <li><p><strong>local markov</strong> 局部马尔可夫</p>
@@ -287,27 +287,30 @@
 </li>
 <li><p><strong>pair markov</strong>（应用图像领域，图像-&gt;成对马尔可夫随机场-&gt;网格状马尔可夫随机场）</p>
 <ul>
-<li>对于集合x_-i,-j(集合没有i，j结点), 任意两个点x_i, x_j相互独立, (i != j)</li>
+<li>在集合x_-i,-j(集合没有i，j结点), 对于任意两个点x_i, x_j没有直接连接，则相互独立, (i != j)</li>
 </ul>
 </li>
-<li>相互等价，可以互推 global markov <-> local markov <-> pair markov <->  基于最大团的因子分解</-></-></-></li>
+<li>条件独立性体现的三个方面，并且相互等价，可以互推 global markov &lt;=&gt; local markov &lt;=&gt; pair markov &lt;=&gt;  基于最大团的因子分解<ul>
 <li>clique团，最大团<ul>
 <li>集合间的结点相互联通</li>
 <li>在一个团无法添加结点，则是最大团</li>
 <li>(c1, c2,…表示团)</li>
 </ul>
 </li>
-<li><p>因子分解 <strong>P(x) = 1/Z Π Φ(x_ci)</strong> ， Z = Σ_x1…Σ_xp Π Φ(x_ci) </p>
+</ul>
+</li>
+<li><p>因子分解 <strong>P(x) = 1/Z Π Φ(x_ci)</strong> ， Z = Σ_x1…Σ_xp Π Φ(x_ci) （用因子分解证明条件独立性）</p>
 <ul>
 <li>Φ 势函数， 必须为正（大于0）<ul>
 <li><strong>Φ (x_ci) = exp {-E(x_ci)}</strong>   (E为能量函数，也叫势函数)</li>
 <li>Φ (x_ci)  <-> P(x) 称为 Gibbs Distribution (Boltzmann Distribution 玻尔兹曼分布)</-></li>
 <li>P(x) = 1/Z Π Φ(x_ci) = 1/Z Π exp{-E(x_ci)} = 1/Z exp{-ΣE(x_ci)} </li>
-<li>最大熵原理 =&gt; 指数族分布 (Gibbs Distribution &lt;=&gt; Markov Random Field)</li>
-<li>统计物理</li>
+<li>Gibbs Distribution是统计物理的名称，与指数族分布形式一样（俩个等价）</li>
+<li>最大熵原理：在满足已知事实，最终推出分布属于指数族分布 </li>
+<li>结论：Gibbs Distribution &lt;=&gt; Markov Random Field</li>
 </ul>
 </li>
-<li>ci最大团</li>
+<li>ci最大团，x_ci最大团随机变量集合</li>
 <li>Z 为联合概率分布的归一化因子</li>
 <li>基于最大团的因子分解，则可以证明为马尔可夫随机场 (Hammesley-clifford定理)</li>
 <li>局部势函数：只考虑局部变量；边缘概率：考虑全局变量</li>
