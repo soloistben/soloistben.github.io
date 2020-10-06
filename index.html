@@ -140,7 +140,6 @@
 <li><strong>hidden variable I</strong>: i<sub>1</sub>, i<sub>2</sub>, ..., i<sub>t</sub>,... → Q = {q<sub>1</sub>, ...q<sub>N</sub>} （隐变量i的值域）</li>
 <li><span class="math inline">\(A = [a_{ij}], a_{ij} = P(i_{t+1}=q_{j}|i_{t}=q_{i})\)</span></li>
 <li><span class="math inline">\(B = [b_{j(k)}], b_{j(k)} = P(o_{t}=v_{k}|i_{t}=q_{j})\)</span></li>
-<li><span class="math inline">\(B = [b_{j(k)}]\)</span></li>
 </ul></li>
 <li>两个假设
 <ul>
@@ -174,6 +173,8 @@
       <a data-url="http://yoursite.com/2020/10/06/Hidden-Markov-Model/" data-id="ckfy3344z000jvmeghqe2ivcu" class="article-share-link">Share</a>
       
       
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ML/">ML</a></li></ul>
+
     </footer>
   </div>
   
@@ -206,10 +207,10 @@
         <ul>
 <li>Inference 推断 → 求概率
 <ul>
-<li>P(X) = P(x_1, x_2, ..., x_p)</li>
-<li>边缘概率：P(x_i) = Σ_1...Σ_(i-1) Σ_(i+1)...Σ_p P(X) （除了i的都积分）</li>
-<li>条件概率：P(x_a|x_b) （x=x_a ∪ x_b）</li>
-<li>最大后验 MAP Inference：Z~ = argmax P(Z|X) ∝argmax P(Z,X) （贝叶斯定理）（不一定直接求后验，只要得到最大Z～即可）</li>
+<li>P(X) = P(x<sub>1</sub>, x<sub>2</sub>, ..., x<sub>p</sub>)</li>
+<li>边缘概率：$P(x_{i}) = Σ_{1}...Σ_{i-1} Σ_{i+1}...Σ_{p} P(X) $（除了i的都积分）</li>
+<li>条件概率：<span class="math inline">\(P(x_{a}|x_{b})~~(x=x_{a}\bigcup x_{b})\)</span></li>
+<li>最大后验 MAP Inference：$ = argmax P(Z|X)argmax P(Z,X) <span class="math inline">\(（贝叶斯定理）（不一定直接求后验，只要得到最大即\)</span>$可）</li>
 </ul></li>
 <li>方法
 <ul>
@@ -249,14 +250,14 @@
 <p><img src="https://github.com/soloistben/images/raw/master/PGM_Inference/VE1.png" alt="VE1" style="zoom:75%;"></p>
 <ul>
 <li>假设a,b,c,d均为二值的随机变量{0,1}</li>
-<li>P(d) = Σ_a,b,c P(a,b,c,d) = Σ_a,b,c P(a)P(b|a)P(c|b)P(d|c) （将各个条件概率看成因子）
+<li><span class="math inline">\(P(d) = Σ_{a,b,c} P(a,b,c,d) = Σ_{a,b,c} P(a)P(b|a)P(c|b)P(d|c)\)</span> （将各个条件概率看成因子）
 <ul>
 <li>→ P(a=0)P(b=0|a=0)P(c=0|b=0)P(d|c=0) +P(a=1)P(b=0|a=1)P(c=0|b=0)P(d|c=0)+...+P(a=1)P(b=1|a=1)P(c=1|b=1)P(d|c=1) = 8*因子积</li>
 <li>由于马尔可夫的性质，结点只与相邻的相关，与其他无关，可以优先将有关的先合并。</li>
-<li>→ Σ_b,c P(c|b)P(d|c) Σ_a P(a)P(b|a) （Σ_a P(a)P(b|a) = Σ_a P(a,b) = P(b)，<strong>将P(a)看成一个函数Φ(a)，P(b|a)看成Φ(a,b)，则Σ_a P(a)P(b|a)看成Φ_a(b)</strong>）</li>
-<li>→ Σ_c P(d|c) Σ_bP(c|b) Φ_a(b) = Σ_c P(d|c) Φ_b(c) = Φ_c(d)</li>
+<li>→ <span class="math inline">\(Σ_{b,c} P(c|b)P(d|c) Σ_{a} P(a)P(b|a)\)</span> （<span class="math inline">\(Σ_{a} P(a)P(b|a) = Σ_{a} P(a,b) = P(b)\)</span>，<strong>将P(a)看成一个函数Φ(a)，P(b|a)看成Φ(a,b)，则Σ<sub>a</sub> P(a)P(b|a)看成Φ<sub>a</sub>(b)</strong>）</li>
+<li>→ <span class="math inline">\(Σ_{c} P(d|c) Σ_{b}P(c|b)Φ_{a}(b) = Σ_{c} P(d|c) Φ_{b}(c) = Φ_{c}(d)\)</span></li>
 </ul></li>
-<li>若是无向图，则为 P(a,b,c,d) = 1/Z Π Φ(x)</li>
+<li>若是无向图，则为 <span class="math inline">\(P(a,b,c,d) = \frac{1}{Z}\prod Φ(x)\)</span></li>
 <li>主要思想：乘法分配律（ab+ac=a(a+c)）</li>
 <li>缺点：1、重复计算（求另外一个点时，则需要重新求（则没有存储中间结果，若是链很长，则计算量很大））；2、消去次序（一般相关最少的先消去，但在无向图找到最优消去次序是NP-Hard问题）</li>
 </ul>
