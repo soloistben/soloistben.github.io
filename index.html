@@ -252,7 +252,7 @@
 <li>假设a,b,c,d均为二值的随机变量{0,1}</li>
 <li><span class="math inline">\(P(d) = Σ_{a,b,c} P(a,b,c,d) = Σ_{a,b,c} P(a)P(b|a)P(c|b)P(d|c)\)</span> （将各个条件概率看成因子）
 <ul>
-<li>→ P(a=0)P(b=0|a=0)P(c=0|b=0)P(d|c=0) +P(a=1)P(b=0|a=1)P(c=0|b=0)P(d|c=0)+...+P(a=1)P(b=1|a=1)P(c=1|b=1)P(d|c=1) = 8*因子积</li>
+<li>→ <span class="math inline">\(P(a=0)P(b=0|a=0)P(c=0|b=0)P(d|c=0) +P(a=1)P(b=0|a=1)P(c=0|b=0)P(d|c=0)+...+P(a=1)P(b=1|a=1)P(c=1|b=1)P(d|c=1) = 8*\)</span>因子积</li>
 <li>由于马尔可夫的性质，结点只与相邻的相关，与其他无关，可以优先将有关的先合并。</li>
 <li>→ <span class="math inline">\(Σ_{b,c} P(c|b)P(d|c) Σ_{a} P(a)P(b|a)\)</span> （<span class="math inline">\(Σ_{a} P(a)P(b|a) = Σ_{a} P(a,b) = P(b)\)</span>，<strong>将P(a)看成一个函数Φ(a)，P(b|a)看成Φ(a,b)，则Σ<sub>a</sub> P(a)P(b|a)看成Φ<sub>a</sub>(b)</strong>）</li>
 <li>→ <span class="math inline">\(Σ_{c} P(d|c) Σ_{b}P(c|b)Φ_{a}(b) = Σ_{c} P(d|c) Φ_{b}(c) = Φ_{c}(d)\)</span></li>
