@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2020/08/12/Bayes-MRF/</loc>
+    
+    <lastmod>2020-10-06T06:25:03.696Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2020/10/05/Exponential-Family-Distribution/</loc>
     
-    <lastmod>2020-10-06T03:53:52.858Z</lastmod>
+    <lastmod>2020-10-06T03:57:18.148Z</lastmod>
     
   </url>
   
@@ -33,13 +40,6 @@
     <loc>http://yoursite.com/2020/10/02/Decision-Tree/</loc>
     
     <lastmod>2020-10-02T09:02:15.922Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2020/08/12/Bayes-MRF/</loc>
-    
-    <lastmod>2020-09-12T02:59:36.299Z</lastmod>
     
   </url>
   

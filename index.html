@@ -172,7 +172,7 @@
 <li>则 p_1 = p_2 = … p_k = 1/k，p(x)是了离散型均匀分布</li>
 </ul>
 </li>
-<li>最大熵原理：在满足已知事实（约束条件）（已知数据）下，什么分布是具有最大熵的分布<ul>
+<li>最大熵原理：<strong>在满足已知事实（约束条件）（已知数据）下，什么分布是具有最大熵的分布</strong><ul>
 <li>Data = {x_1,x_2,…,x_N} 通过经验分布（概率分布P~(X=x) = p~(x) = count(x)/N）定量描述数据</li>
 <li>需要P分布的E_p~[x], Var_p~[x]，设定f(x)是任意关于x的向量函数（f=[f_1,f_2,…,f_Q]^T），则E_p~[f(x)]=Δ （即是已知事实）</li>
 <li>P(X) → p(x), H[p] = -Σp(x)log p(x) → min Σp(x) log p(x)  s.t. Σp(x) = 1, E_p[f(x)]=Σp(x)f(x)=E_p~[f(x)]=Δ </li>
@@ -1173,9 +1173,9 @@
 <li>Representation 表示<ul>
 <li>有向图 Bayesian Network (有向无环，则起始结点决定这终止节点的概率)</li>
 <li>无向图 Markov Network (无向，则结点的概率仅取决于1阶邻居)</li>
-<li>高斯图 <ul>
-<li>Gassian Bayes</li>
-<li>Gassian Markov</li>
+<li>高斯图 （连续）<ul>
+<li>Gassian Bayes Network</li>
+<li>Gassian Markov Network</li>
 </ul>
 </li>
 </ul>
@@ -1184,7 +1184,7 @@
 <li>精确推断</li>
 <li>近似推断<ul>
 <li>确定性近似（变分推断）</li>
-<li>随机性近似（MCMC）</li>
+<li>随机性近似（蒙特卡洛，MCMC）</li>
 </ul>
 </li>
 </ul>
@@ -1237,14 +1237,14 @@
 </ul>
 <h5 id="Two-Bayes"><a href="#Two-Bayes" class="headerlink" title="Two. Bayes"></a>Two. Bayes</h5><ul>
 <li>链式法则 P(x_1, x_2, …, x_p) = Π P(x_i|x_1, x_2, …, x_i-1)</li>
-<li><p>因子分解 P(x_1, x_2,…, x_p) = Π P(x_i|x_p(i)),  x_p(i)为x_i父亲集合 （条件独立性）<br><img src="https://github.com/soloistben/images/raw/master/bayes_mrf/bayes_1.png" alt="bayes_1" style="zoom: 80%;"></p>
+<li><p>因子分解 P(x_1, x_2,…, x_p) = Π P(x_i|x_p(i))（x_p(i)为x_i父亲集合，即指向x_i的结点）（条件独立性）<br><img src="https://github.com/soloistben/images/raw/master/bayes_mrf/bayes_1.png" alt="bayes_1" style="zoom: 80%;"></p>
 </li>
 <li><p><strong>tail to tail</strong></p>
 <ul>
 <li>因子分解 -&gt; P(A,B,C) = P(A)P(B|A)P(C|A)</li>
 <li>链式法则 -&gt; P(A,B,C) = P(A)P(B|A)P(C|A,B)<ul>
-<li>则 P(C|A) = P(C|A,B)，则在发生A时，B,C相互独立（<font color="red">若A被观测，则路径被阻塞，“倒V路径”</font>）</li>
-<li>P(B|A)P(C|A,B) = P(B|A)P(C|A) = P(B,C|A)</li>
+<li>则 P(C|A) = P(C|A,B)（A，B同时发生时，不影响C），则在发生A时，B,C相互独立（<font color="red">若A被观测，则路径被阻塞，B,C相互独立，“倒V路径”</font>）</li>
+<li>条件独立性：P(B|A)P(C|A) = P(B|A)P(C|A,B) = P(B,C|A)</li>
 </ul>
 </li>
 </ul>
@@ -1252,23 +1252,25 @@
 </li>
 <li><p><strong>head to tail</strong></p>
 <ul>
-<li>发生A时，A,C相互独立（<font color="red">若B被观测，则路径被阻塞</font>）</li>
+<li>因子分解 -&gt; P(A,B,C) = P(A)P(B|A)P(C|B)</li>
+<li>链式法则 -&gt; P(A,B,C) = P(A)P(B|A)P(C|A,B)</li>
+<li>发生B时，A,C相互独立（<font color="red">若B被观测，则路径被阻塞，A,C相互独立</font>）</li>
 </ul>
 <p><img src="https://github.com/soloistben/images/raw/master/bayes_mrf/bayes_3.png" alt="bayes_3" style="zoom:80%;"></p>
 </li>
 <li><p><strong>head to head</strong></p>
 <ul>
-<li>默认情况下（C还没被观察）A,B相互独立，路径被阻塞（<font color="red">若C被观测，路径是连通，A,B有关系，不独立则难以分解</font>）</li>
+<li>默认情况下（C还没被观察）A,B相互独立，路径被阻塞（<font color="red">若C被观测，路径是连通，A、B有关系，不独立则难以分解</font>）</li>
 <li>因子分解 -&gt; P(A,B,C) = P(A)P(B)P(C|A,B) （父亲结点先于子结点）</li>
 <li>链式法则 -&gt; P(A,B,C) = P(A)P(B|A)P(C|A,B)<ul>
-<li>P(B) = P(B|A)，则C还没被观察，A,B相互独立</li>
+<li>P(B) = P(B|A)，则默认情况下，C还没被观察，A,B相互独立</li>
 </ul>
 </li>
 <li>这个模式是想判断 P(A|C) == P(A|C,B)，在没有B条件时，直接基于C判断A，概率会更大（最初A,B相互独立）</li>
 </ul>
 <p><img src="https://github.com/soloistben/images/raw/master/bayes_mrf/bayes_4.png" alt="bayes_4" style="zoom:75%;"></p>
 <ul>
-<li>（<font color="red">若D被观测，路径也是是连通</font>）</li>
+<li>（<font color="red">若D被观测，路径也是是连通，A、B有关系</font>）</li>
 </ul>
 </li>
 <li><p>有向图是的条件独立性（证明发生x_B, x_A, x_C相互独立）</p>
@@ -1279,15 +1281,15 @@
 </li>
 <li><p>若A与C，存在B1，B2关系，且属于x_B集合；存在B3，B4关系，且不属于x_B集合</p>
 </li>
-<li>则符合：发生x_B, x_A, x_C相互独立 （<strong>全局马尔可夫性</strong>）</li>
-<li><p>P(x_i|x_-i) = P(x_i, x_-i) / P(x_i) = p(x) / ∫ P(x_i) dx_i = Π P(x_j|x_p(j)) / ∫ Π P(x_j|x_p(j)) dx_i</p>
+<li>则符合：发生x_B时，存在上述情况， x_A, x_C相互独立 （<strong>全局马尔可夫性</strong>）</li>
+<li><p>P(x_i|x_-i) = P(x_i, x_-i) / P(x_-i) = p(x) / ∫ P(x_i) dx_i = Π P(x_j|x_p(j)) / ∫ Π P(x_j|x_p(j)) dx_i</p>
 <ul>
 <li>x_-i表示集合{x_1,…x_p}中去除x_i, <strong>x/x_i</strong></li>
-<li>Π P(x_j|x_p(j)) 分成，与x_i有关和无关两部分</li>
+<li>Π P(x_j|x_p(j)) 分为与x_i有关和无关两部分</li>
 <li><p>则 Π P(x_j|x_p(j)) / ∫ Π P(x_j|x_p(j)) dx_i无关部分则可以约去</p>
 <p><img src="https://github.com/soloistben/images/raw/master/bayes_mrf/bayes_6.png" alt="bayes_6"></p>
 </li>
-<li><p>P(x_i|x_-i)  = P(x_i|x_p(i))，即 x_i只与x_i相关的有联系(红点)，与无关的相互独立，也称为Markov Blanket马尔可夫态</p>
+<li><p>P(x_i|x_-i)  = P(x_i|x_p(i))，即 x_i只与x_i相关的有联系(红点)，与无关的相互独立，也称为Markov Blanket</p>
 </li>
 <li>一个人与全世界的关系=一个人与身边人的关系</li>
 </ul>
@@ -1302,14 +1304,16 @@
 <ul>
 <li><p>单一</p>
 <ul>
-<li><p><strong>Naive Bayes</strong> 朴素贝叶斯 -&gt; 做分类 -&gt; P(x|y) = ΠP(x_i|y=1)  (x 是p维)</p>
+<li><p><strong>Naive Bayes</strong> 朴素贝叶斯 -&gt; 做分类 -&gt; P(x|y) = ΠP(x_i|y=1)  (x 是p维， 当y被观测时，x各维度相互独立)</p>
 <p><img src="https://github.com/soloistben/images/raw/master/bayes_mrf/Naive_Bayes.png" alt="Naive_Bayes" style="zoom:67%;"></p>
 </li>
 </ul>
 </li>
 <li><p>混合</p>
 <ul>
-<li><strong>GMM</strong> 高斯混合模型 -&gt; 做聚类</li>
+<li><p><strong>GMM</strong> 高斯混合模型（多个高斯分布） -&gt; 做聚类</p>
+<p><img src="https://github.com/soloistben/images/raw/master/bayes_mrf/GMM.png" alt="GMM" style="zoom:75%;"></p>
+</li>
 </ul>
 </li>
 <li>时间<ul>
@@ -1325,7 +1329,8 @@
 </li>
 </ul>
 </li>
-<li>连续<ul>
+<li><p>连续</p>
+<ul>
 <li><strong>Gaussian Bayes Network</strong> 高斯图</li>
 </ul>
 </li>
@@ -1334,7 +1339,8 @@
 </ul>
 <h5 id="Three-MRF"><a href="#Three-MRF" class="headerlink" title="Three. MRF"></a>Three. MRF</h5><ul>
 <li>无向图</li>
-<li>条件独立性，发生x_B时，x_A与x_C无关 （<strong>global markov</strong> 全局马尔可夫）<ul>
+<li><p>条件独立性，发生x_B时，x_A与x_C无关 （<strong>global markov</strong> 全局马尔可夫）</p>
+<ul>
 <li>存在x_A, x_C被x_B分割（对应 bayes D-separation）， 那么发生x_B时，x_A与x_C无关 </li>
 </ul>
 </li>
