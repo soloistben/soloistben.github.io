@@ -16,7 +16,7 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://github.com/soloistben/images/raw/master/HMM/HMM1.png">
 <meta property="og:image" content="https://github.com/soloistben/images/raw/master/HMM/HMM2.png">
-<meta property="og:updated_time" content="2020-10-06T13:36:04.315Z">
+<meta property="og:updated_time" content="2020-10-06T14:05:10.307Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hidden_Markov_Model">
 <meta name="twitter:description" content="Hidden Markov Model = Markov Random Field + Time   动态模型=概率图模型+时间（可以是真正的时间，也可以是序列） GMM高斯混合模型（样本之间独立同分布）；但是动态模型，样本之间不是独立同分布   图中动态模型包括：横向的时间关系（Time），纵向的混合关系（Mixture，不同变量混合）  若hidden variable是离散的，则动态模型为">
@@ -104,21 +104,21 @@
 </li>
 <li><p>HMM: param λ = (π, A, B)（π是初始概率分布、A转移矩阵、发射矩阵）</p>
 <ul>
-<li><strong>observed variable O</strong>: o~1~, o~2~, …, o~t~,… → V = {v~1~, …v~M~} （观察值，观测变量o的值域）</li>
-<li><strong>hidden variable I</strong>: i~1~, i~2~, …, i~t~,… → Q = {q~1~, …q~N~} （隐变量i的值域）</li>
-<li>$A = [a_{ij}], a_{ij} = P(i_{t+1}=q_{j}|i_{t}=q_{i})$</li>
-<li>$B = [b_{j(k)}], b_{j(k)} = P(o_{t}=v_{k}|i_{t}=q_{j})$</li>
+<li><strong>observed variable O</strong>: o_1, o_2, …, o_t,… → V = {v_1, …v_M} （观察值，观测变量o的值域）</li>
+<li><strong>hidden variable I</strong>: i_1, i_2, …, i_t,… → Q = {q_1, …q_N} （隐变量i的值域）</li>
+<li>A = [a_ij], a_ij = P(i_t+1=q_j|i_t=q_i)</li>
+<li>$B = [b_j(k)], b_j(k) = P(o_t=v_k|i_t=q_j)</li>
 </ul>
 </li>
 <li>两个假设<ul>
 <li>齐次马尔可夫假设<ul>
-<li>$P(i_{t+1}|i_{t}, i_{t-1}, …, i_{1}, o_{t}, o_{t-1}, …, o_{1}) = P(i_{t+1}|i_{t})$</li>
-<li>隐状态i~t+1~​只与隐状态​i~t~有关</li>
+<li>P(i_t+1|i_t, i_t-1, …, i_1, o_t, o_t-1, …, o_1) = P(i_t+1|i_t)</li>
+<li>隐状态i_t+1只与隐状态i_t有关</li>
 </ul>
 </li>
 <li>观测独立假设<ul>
-<li>$P(o_{t}|i_{t}, i_{t-1}, …, t_{1}, o_{t-1}, …, o_{1}) = P(o_{t}|i_{t})$</li>
-<li>观测状态o~t~只与观测状态i~t~有关</li>
+<li>P(o_t|i_t, i_t-1, …, t_1, o_t-1, …, o_1) = P(o_t|i_t)</li>
+<li>观测状态o_t只与观测状态i_t有关</li>
 </ul>
 </li>
 </ul>
@@ -128,8 +128,8 @@
 <li>Evalution → P(O|λ) （已知参数下，求解O现象的概率）→ 前向后向算法</li>
 <li>Learning → 求解参数，λ = argmax P(O|λ) → EM算法（以前是Baum Welch算法）</li>
 <li>Decoding → 找到一个状态序列，使 P(I|O)达到最大（I～ = argmax P(I|O)）<ul>
-<li>预测问题：$P(i_{t+1}|o_{1},…,o_{t-1}, o_{t})$ 已知t个观察序列，预测下一时刻t+1的隐状态</li>
-<li><strong>滤波问题</strong>：$P(i_{t}|o_{1},…,o_{t-1}, o_{t})$ 已知t个观察序列，求解当前时刻t的隐状态</li>
+<li>预测问题：P(i_t+1|o_1,…,o_t-1, o_t) 已知t个观察序列，预测下一时刻t+1的隐状态</li>
+<li><strong>滤波问题</strong>：P(i_t|o_1,…,o_t-1, o_t) 已知t个观察序列，求解当前时刻t的隐状态</li>
 </ul>
 </li>
 </ul>
