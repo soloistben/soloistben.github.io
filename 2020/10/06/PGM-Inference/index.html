@@ -7,19 +7,19 @@
   
   <title>PGM_Inference | MR.C</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Inference 推断 → 求概率  P(X) = P(x1, x2, ..., xp) 边缘概率：$P(x_{i}) = Σ_{1}...Σ_{i-1} Σ_{i+1}...Σ_{p} P(X) $（除了i的都积分） 条件概率：\(P(x_{a}|x_{b})~~(x=x_{a}\bigcup x_{b})\) 最大后验 MAP Inference：$ = argmax P(Z|X)argm">
+  <meta name="description" content="Inference 推断 → 求概率  P(X) = P(x1, x2, ..., xp) 边缘概率：$P(x_{i}) = Σ_{1}...Σ_{i-1} Σ_{i+1}...Σ_{p} P(X) $（除了i的都积分） 条件概率：\(P(x_{a}|x_{b}),(x=x_{a}\bigcup x_{b})\) 最大后验 MAP Inference：\(\hat{Z} = argmaxP(Z|">
 <meta name="keywords" content="ML">
 <meta property="og:type" content="article">
 <meta property="og:title" content="PGM_Inference">
 <meta property="og:url" content="http://yoursite.com/2020/10/06/PGM-Inference/index.html">
 <meta property="og:site_name" content="MR.C">
-<meta property="og:description" content="Inference 推断 → 求概率  P(X) = P(x1, x2, ..., xp) 边缘概率：$P(x_{i}) = Σ_{1}...Σ_{i-1} Σ_{i+1}...Σ_{p} P(X) $（除了i的都积分） 条件概率：\(P(x_{a}|x_{b})~~(x=x_{a}\bigcup x_{b})\) 最大后验 MAP Inference：$ = argmax P(Z|X)argm">
+<meta property="og:description" content="Inference 推断 → 求概率  P(X) = P(x1, x2, ..., xp) 边缘概率：$P(x_{i}) = Σ_{1}...Σ_{i-1} Σ_{i+1}...Σ_{p} P(X) $（除了i的都积分） 条件概率：\(P(x_{a}|x_{b}),(x=x_{a}\bigcup x_{b})\) 最大后验 MAP Inference：\(\hat{Z} = argmaxP(Z|">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://github.com/soloistben/images/raw/master/PGM_Inference/VE1.png">
-<meta property="og:updated_time" content="2020-10-06T15:30:42.193Z">
+<meta property="og:updated_time" content="2020-10-06T15:35:03.529Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PGM_Inference">
-<meta name="twitter:description" content="Inference 推断 → 求概率  P(X) = P(x1, x2, ..., xp) 边缘概率：$P(x_{i}) = Σ_{1}...Σ_{i-1} Σ_{i+1}...Σ_{p} P(X) $（除了i的都积分） 条件概率：\(P(x_{a}|x_{b})~~(x=x_{a}\bigcup x_{b})\) 最大后验 MAP Inference：$ = argmax P(Z|X)argm">
+<meta name="twitter:description" content="Inference 推断 → 求概率  P(X) = P(x1, x2, ..., xp) 边缘概率：$P(x_{i}) = Σ_{1}...Σ_{i-1} Σ_{i+1}...Σ_{p} P(X) $（除了i的都积分） 条件概率：\(P(x_{a}|x_{b}),(x=x_{a}\bigcup x_{b})\) 最大后验 MAP Inference：\(\hat{Z} = argmaxP(Z|">
 <meta name="twitter:image" content="https://github.com/soloistben/images/raw/master/PGM_Inference/VE1.png">
   
     <link rel="alternate" href="/atom.xml" title="MR.C" type="application/atom+xml">
@@ -94,8 +94,8 @@
 <ul>
 <li>P(X) = P(x<sub>1</sub>, x<sub>2</sub>, ..., x<sub>p</sub>)</li>
 <li>边缘概率：$P(x_{i}) = Σ_{1}...Σ_{i-1} Σ_{i+1}...Σ_{p} P(X) $（除了i的都积分）</li>
-<li>条件概率：<span class="math inline">\(P(x_{a}|x_{b})~~(x=x_{a}\bigcup x_{b})\)</span></li>
-<li>最大后验 MAP Inference：$ = argmax P(Z|X)argmax P(Z,X) <span class="math inline">\(（贝叶斯定理）（不一定直接求后验，只要得到最大即\)</span>$可）</li>
+<li>条件概率：<span class="math inline">\(P(x_{a}|x_{b}),(x=x_{a}\bigcup x_{b})\)</span></li>
+<li>最大后验 MAP Inference：<span class="math inline">\(\hat{Z} = argmaxP(Z|X) \propto argmax P(Z,X)\)</span>（贝叶斯定理）（不一定直接求后验，只要得到最大即<span class="math inline">\(\hat{Z}\)</span>可）</li>
 </ul></li>
 <li>方法
 <ul>
