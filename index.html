@@ -250,7 +250,7 @@
 <ul>
 <li>假设a,b,c,d均为二值的随机变量{0,1}</li>
 <li>$P(d) = Σ<em>{a,b,c} P(a,b,c,d) = Σ</em>{a,b,c} P(a)P(b|a)P(c|b)P(d|c)$ （将各个条件概率看成因子）<ul>
-<li>→ P(a=0)P(b=0|a=0)P(c=0|b=0)P(d|c=0)+P(a=1)P(b=0|a=1)P(c=0|b=0)P(d|c=0)+…+P(a=1)P(b=1|a=1)P(c=1|b=1)P(d|c=1) = 8*​因子积</li>
+<li>→ P(a=0)P(b=0|a=0)P(c=0|b=0)P(d|c=0)+P(a=1)P(b=0|a=1)P(c=0|b=0)P(d|c=0)+…+P(a=1)P(b=1|a=1)P(c=1|b=1)P(d|c=1) = 8*因子积</li>
 <li>由于马尔可夫的性质，结点只与相邻的相关，与其他无关，可以优先将有关的先合并。</li>
 <li>→ $Σ<em>{b,c} P(c|b)P(d|c) Σ</em>{a} P(a)P(b|a)$ （$Σ<em>{a} P(a)P(b|a) = Σ</em>{a} P(a,b) = P(b)$，<strong>将P(a)看成一个函数Φ(a)，P(b|a)看成Φ(a,b)，则Σ~a~ P(a)P(b|a)看成Φ~a~(b)</strong>）</li>
 <li>→ $Σ<em>{c} P(d|c) Σ</em>{b}P(c|b)Φ<em>{a}(b) = Σ</em>{c} P(d|c) Φ<em>{b}(c) = Φ</em>{c}(d)$</li>
