@@ -7,20 +7,20 @@
   
   <title>Hidden_Markov_Model | MR.C</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Hidden Markov Model = Markov Random Field + Time  动态模型=概率图模型+时间（可以是真正的时间，也可以是序列） GMM高斯混合模型（样本之间独立同分布）；但是动态模型，样本之间不是独立同分布  图中动态模型包括：横向的时间关系（Time），纵向的混合关系（Mixture，不同变量混合） 若hidden variable是离散的，则动态模型为HMM">
+  <meta name="description" content="Hidden Markov Model = Markov Random Field + Time   动态模型=概率图模型+时间（可以是真正的时间，也可以是序列） GMM高斯混合模型（样本之间独立同分布）；但是动态模型，样本之间不是独立同分布   图中动态模型包括：横向的时间关系（Time），纵向的混合关系（Mixture，不同变量混合）  若hidden variable是离散的，则动态模型为">
 <meta name="keywords" content="ML">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hidden_Markov_Model">
 <meta property="og:url" content="http://yoursite.com/2020/10/06/Hidden-Markov-Model/index.html">
 <meta property="og:site_name" content="MR.C">
-<meta property="og:description" content="Hidden Markov Model = Markov Random Field + Time  动态模型=概率图模型+时间（可以是真正的时间，也可以是序列） GMM高斯混合模型（样本之间独立同分布）；但是动态模型，样本之间不是独立同分布  图中动态模型包括：横向的时间关系（Time），纵向的混合关系（Mixture，不同变量混合） 若hidden variable是离散的，则动态模型为HMM">
+<meta property="og:description" content="Hidden Markov Model = Markov Random Field + Time   动态模型=概率图模型+时间（可以是真正的时间，也可以是序列） GMM高斯混合模型（样本之间独立同分布）；但是动态模型，样本之间不是独立同分布   图中动态模型包括：横向的时间关系（Time），纵向的混合关系（Mixture，不同变量混合）  若hidden variable是离散的，则动态模型为">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://github.com/soloistben/images/raw/master/HMM/HMM1.png">
 <meta property="og:image" content="https://github.com/soloistben/images/raw/master/HMM/HMM2.png">
-<meta property="og:updated_time" content="2020-10-06T14:26:40.832Z">
+<meta property="og:updated_time" content="2020-10-06T14:35:26.418Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hidden_Markov_Model">
-<meta name="twitter:description" content="Hidden Markov Model = Markov Random Field + Time  动态模型=概率图模型+时间（可以是真正的时间，也可以是序列） GMM高斯混合模型（样本之间独立同分布）；但是动态模型，样本之间不是独立同分布  图中动态模型包括：横向的时间关系（Time），纵向的混合关系（Mixture，不同变量混合） 若hidden variable是离散的，则动态模型为HMM">
+<meta name="twitter:description" content="Hidden Markov Model = Markov Random Field + Time   动态模型=概率图模型+时间（可以是真正的时间，也可以是序列） GMM高斯混合模型（样本之间独立同分布）；但是动态模型，样本之间不是独立同分布   图中动态模型包括：横向的时间关系（Time），纵向的混合关系（Mixture，不同变量混合）  若hidden variable是离散的，则动态模型为">
 <meta name="twitter:image" content="https://github.com/soloistben/images/raw/master/HMM/HMM1.png">
   
     <link rel="alternate" href="/atom.xml" title="MR.C" type="application/atom+xml">
@@ -91,46 +91,50 @@
     <div class="article-entry" itemprop="articleBody">
       
         <ul>
-<li><strong>Hidden Markov Model = Markov Random Field + Time</strong>
+<li><p><strong>Hidden Markov Model = Markov Random Field + Time</strong> </p>
 <ul>
 <li>动态模型=概率图模型+时间（可以是真正的时间，也可以是序列）</li>
 <li><p>GMM高斯混合模型（样本之间独立同分布）；但是动态模型，样本之间不是独立同分布</p>
-<p><img src="https://github.com/soloistben/images/raw/master/HMM/HMM1.png" alt="HMM1" style="zoom: 67%;"></p></li>
-<li>图中动态模型包括：横向的时间关系（Time），纵向的混合关系（Mixture，不同变量混合）</li>
-<li><p><strong>若hidden variable是离散的，则动态模型为HMM</strong>；线性连续的，则是Kalmm Filter 卡尔曼滤波器；非线性连续的，则是Partide Filter</p></li>
+<p><img src="https://github.com/soloistben/images/raw/master/HMM/HMM1.png" alt="HMM1" style="zoom: 67%;"></p>
+</li>
+<li><p>图中动态模型包括：横向的时间关系（Time），纵向的混合关系（Mixture，不同变量混合）</p>
+</li>
+<li><strong>若hidden variable是离散的，则动态模型为HMM</strong>；线性连续的，则是Kalmm Filter 卡尔曼滤波器；非线性连续的，则是Partide Filter</li>
 </ul>
-<p><img src="https://github.com/soloistben/images/raw/master/HMM/HMM2.png" alt="HMM2" style="zoom:75%;"></p></li>
-<li>HMM: param λ = (π, A, B)（π是初始概率分布、A转移矩阵、发射矩阵）
+<p><img src="https://github.com/soloistben/images/raw/master/HMM/HMM2.png" alt="HMM2" style="zoom:75%;"></p>
+</li>
+<li><p>HMM: param λ = (π, A, B)（π是初始概率分布、A转移矩阵、发射矩阵）</p>
 <ul>
-<li><strong>observed variable O</strong>: o_1, o_2, ..., o_t,... → V = {v_1, ...v_M} （观察值，观测变量o的值域）</li>
-<li><strong>hidden variable I</strong>: i_1, i_2, ..., i_t,... → Q = {q_1, ...q_N} （隐变量i的值域）</li>
+<li><strong>observed variable O</strong>: o_1, o_2, …, o_t,… → V = {v_1, …v_M} （观察值，观测变量o的值域）</li>
+<li><strong>hidden variable I</strong>: i_1, i_2, …, i_t,… → Q = {q_1, …q_N} （隐变量i的值域）</li>
 <li>A = [a_ij], a_ij = P(i_t+1=q_j|i_t=q_i)</li>
 <li>B = [b_j(k)], b_j(k) = P(o_t=v_k|i_t=q_j)</li>
-<li><span class="math inline">\(B = [b_{j(k)}]\)</span> i<sub>1</sub></li>
-</ul></li>
-<li>两个假设
-<ul>
-<li>齐次马尔可夫假设
-<ul>
-<li>P(i_t+1|i_t, i_t-1, ..., i_1, o_t, o_t-1, ..., o_1) = P(i_t+1|i_t)</li>
+<li>$B = [b_{j(k)}]$ i~1~ ==kk==</li>
+</ul>
+</li>
+<li>两个假设<ul>
+<li>齐次马尔可夫假设<ul>
+<li>P(i_t+1|i_t, i_t-1, …, i_1, o_t, o_t-1, …, o_1) = P(i_t+1|i_t)</li>
 <li>隐状态i_t+1只与隐状态i_t有关</li>
-</ul></li>
-<li>观测独立假设
-<ul>
-<li>P(o_t|i_t, i_t-1, ..., t_1, o_t-1, ..., o_1) = P(o_t|i_t)</li>
+</ul>
+</li>
+<li>观测独立假设<ul>
+<li>P(o_t|i_t, i_t-1, …, t_1, o_t-1, …, o_1) = P(o_t|i_t)</li>
 <li>观测状态o_t只与观测状态i_t有关</li>
-</ul></li>
-</ul></li>
-<li>HMM解决三个问题（已知参数 λ = (π, A, B)）
-<ul>
+</ul>
+</li>
+</ul>
+</li>
+<li>HMM解决三个问题（已知参数 λ = (π, A, B)）<ul>
 <li>Evalution → P(O|λ) （已知参数下，求解O现象的概率）→ 前向后向算法</li>
 <li>Learning → 求解参数，λ = argmax P(O|λ) → EM算法（以前是Baum Welch算法）</li>
-<li>Decoding → 找到一个状态序列，使 P(I|O)达到最大（I～ = argmax P(I|O)）
-<ul>
-<li>预测问题：P(i_t+1|o_1,...,o_t-1, o_t) 已知t个观察序列，预测下一时刻t+1的隐状态</li>
-<li><strong>滤波问题</strong>：P(i_t|o_1,...,o_t-1, o_t) 已知t个观察序列，求解当前时刻t的隐状态</li>
-</ul></li>
-</ul></li>
+<li>Decoding → 找到一个状态序列，使 P(I|O)达到最大（I～ = argmax P(I|O)）<ul>
+<li>预测问题：P(i_t+1|o_1,…,o_t-1, o_t) 已知t个观察序列，预测下一时刻t+1的隐状态</li>
+<li><strong>滤波问题</strong>：P(i_t|o_1,…,o_t-1, o_t) 已知t个观察序列，求解当前时刻t的隐状态</li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 <p><a href="https://www.bilibili.com/video/BV1aE411o7qd?p=82" target="_blank" rel="noopener">白板系列</a></p>
 
