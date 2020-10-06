@@ -5,18 +5,22 @@
   
 
   
-  <title>Tag: ML | MR.C</title>
+  <title>Hidden_Markov_Model | MR.C</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Personal notes">
-<meta property="og:type" content="website">
-<meta property="og:title" content="MR.C">
-<meta property="og:url" content="http://yoursite.com/tags/ML/index.html">
+  <meta name="description" content="Hidden Markov Model = Markov Random Field + Time   动态模型=概率图模型+时间（可以是真正的时间，也可以是序列） GMM高斯混合模型（样本之间独立同分布）；但是动态模型，样本之间不是独立同分布   图中动态模型包括：横向的时间关系（Time），纵向的混合关系（Mixture，不同变量混合）  若hidden variable是离散的，则动态模型为">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hidden_Markov_Model">
+<meta property="og:url" content="http://yoursite.com/2020/10/06/Hidden-Markov-Model/index.html">
 <meta property="og:site_name" content="MR.C">
-<meta property="og:description" content="Personal notes">
+<meta property="og:description" content="Hidden Markov Model = Markov Random Field + Time   动态模型=概率图模型+时间（可以是真正的时间，也可以是序列） GMM高斯混合模型（样本之间独立同分布）；但是动态模型，样本之间不是独立同分布   图中动态模型包括：横向的时间关系（Time），纵向的混合关系（Mixture，不同变量混合）  若hidden variable是离散的，则动态模型为">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://github.com/soloistben/images/raw/master/HMM/HMM1.png">
+<meta property="og:image" content="https://github.com/soloistben/images/raw/master/HMM/HMM2.png">
+<meta property="og:updated_time" content="2020-10-06T13:09:08.316Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="MR.C">
-<meta name="twitter:description" content="Personal notes">
+<meta name="twitter:title" content="Hidden_Markov_Model">
+<meta name="twitter:description" content="Hidden Markov Model = Markov Random Field + Time   动态模型=概率图模型+时间（可以是真正的时间，也可以是序列） GMM高斯混合模型（样本之间独立同分布）；但是动态模型，样本之间不是独立同分布   图中动态模型包括：横向的时间关系（Time），纵向的混合关系（Mixture，不同变量混合）  若hidden variable是离散的，则动态模型为">
+<meta name="twitter:image" content="https://github.com/soloistben/images/raw/master/HMM/HMM1.png">
   
     <link rel="alternate" href="/atom.xml" title="MR.C" type="application/atom+xml">
   
@@ -63,192 +67,108 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2020/10/06/PGM-Inference/" class="archive-article-date">
-  <time datetime="2020-10-06T07:09:49.000Z" itemprop="datePublished">10月 6</time>
+        <section id="main"><article id="post-Hidden-Markov-Model" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/10/06/Hidden-Markov-Model/" class="article-date">
+  <time datetime="2020-10-06T12:55:04.000Z" itemprop="datePublished">2020-10-06</time>
 </a>
-      
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/10/06/PGM-Inference/">PGM_Inference</a>
+    <h1 class="article-title" itemprop="name">
+      Hidden_Markov_Model
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2020/10/05/Exponential-Family-Distribution/" class="archive-article-date">
-  <time datetime="2020-10-05T08:43:34.000Z" itemprop="datePublished">10月 5</time>
-</a>
+    <div class="article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/10/05/Exponential-Family-Distribution/">Exponential_Family_Distribution</a>
-    </h1>
-  
+        <ul>
+<li><p><strong>Hidden Markov Model = Markov Random Field + Time</strong> </p>
+<ul>
+<li>动态模型=概率图模型+时间（可以是真正的时间，也可以是序列）</li>
+<li><p>GMM高斯混合模型（样本之间独立同分布）；但是动态模型，样本之间不是独立同分布</p>
+<p><img src="https://github.com/soloistben/images/raw/master/HMM/HMM1.png" alt="HMM1" style="zoom: 67%;"></p>
+</li>
+<li><p>图中动态模型包括：横向的时间关系（Time），纵向的混合关系（Mixture，不同变量混合）</p>
+</li>
+<li><strong>若hidden variable是离散的，则动态模型为HMM</strong>；线性连续的，则是Kalmm Filter 卡尔曼滤波器；非线性连续的，则是Partide Filter</li>
+</ul>
+<p><img src="https://github.com/soloistben/images/raw/master/HMM/HMM2.png" alt="HMM2" style="zoom:75%;"></p>
+</li>
+<li><p>HMM: param λ = (π, A, B)（π是初始概率分布、A转移矩阵、发射矩阵）</p>
+<ul>
+<li><strong>observed variable O</strong>: o_1, o_2, …, o_t,… → V = {v_1, …v_M} （观察值，观测变量o的值域）</li>
+<li><strong>hidden variable I</strong>: i_1, i_2, …, i_t,… → Q = {q_1, …q_N} （隐变量i的值域）</li>
+<li>A = [a_ij], a_ij = P(i_t+1=q_j|i_t=q_i)</li>
+<li>B = [b_j(k)], b_j(k) = P(o_t=v_k|i_t=q_j)</li>
+</ul>
+</li>
+<li><p>两个假设</p>
+<ul>
+<li>齐次马尔可夫假设<ul>
+<li>P(i_t+1|i_t, i_t-1, …, t_1, o_t, o_t-1, …, o_1) = P(i_t+1|i_t)</li>
+<li>隐状态i_t+1只与隐状态i_t有关</li>
+</ul>
+</li>
+<li>观测独立假设<ul>
+<li>P(o_t|i_t, i_t-1, …, t_1, o_t-1, …, o_1) = P(o_t|i_t)</li>
+<li>观测状态o_t只与观测状态i_t有关</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>HMM解决三个问题（已知参数 λ = (π, A, B)）</p>
+<ul>
+<li>Evalution → P(O|λ) （已知参数下，求解O现象的概率）→ 前向后向算法</li>
+<li>Learning → 求解参数，λ = argmax P(O|λ) → EM算法（以前是Baum Welch算法）</li>
+<li>Decoding → 找到一个状态序列，使 P(I|O)达到最大（I～ = argmax P(I|O)）<ul>
+<li>预测问题：P(i_t+1|o_1, o_2, …, o_t) 已知t个观察序列，预测下一时刻t+1的隐状态</li>
+<li><strong>滤波问题</strong>：P(i_t|o_1, o_2, …, o_t) 已知t个观察序列，求解当前时刻t的隐状态</li>
+</ul>
+</li>
+</ul>
+<p><a href="https://www.bilibili.com/video/BV1aE411o7qd?p=82" target="_blank" rel="noopener">白板系列</a></p>
+</li>
+</ul>
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2020/10/02/Dimensionality-Reduction/" class="archive-article-date">
-  <time datetime="2020-10-02T13:10:36.000Z" itemprop="datePublished">10月 2</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/10/02/Dimensionality-Reduction/">Dimensionality_Reduction</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2020/10/02/SVM/" class="archive-article-date">
-  <time datetime="2020-10-02T08:50:04.000Z" itemprop="datePublished">10月 2</time>
-</a>
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/10/06/Hidden-Markov-Model/" data-id="ckfxzcllh000d5qegscil2trn" class="article-share-link">Share</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/10/02/SVM/">SVM</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2020/10/02/Decision-Tree/" class="archive-article-date">
-  <time datetime="2020-10-02T08:49:49.000Z" itemprop="datePublished">10月 2</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/10/02/Decision-Tree/">Decision_Tree</a>
-    </h1>
-  
-
-    </header>
+    </footer>
   </div>
-</article>
   
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2020/09/11/Statistics/" class="archive-article-date">
-  <time datetime="2020-09-11T08:34:56.000Z" itemprop="datePublished">9月 11</time>
-</a>
-      
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/09/11/Statistics/">Statistics</a>
-    </h1>
+    <a href="/2020/10/06/EM/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          EM
+        
+      </div>
+    </a>
   
+  
+    <a href="/2020/10/06/PGM-Inference/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">PGM_Inference</div>
+    </a>
+  
+</nav>
 
-    </header>
-  </div>
+  
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2020/08/12/Bayes-MRF/" class="archive-article-date">
-  <time datetime="2020-08-12T12:10:46.000Z" itemprop="datePublished">8月 12</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/08/12/Bayes-MRF/">Bayes_MRF</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2020/08/09/HMM-CRF/" class="archive-article-date">
-  <time datetime="2020-08-09T12:29:28.000Z" itemprop="datePublished">8月 9</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/08/09/HMM-CRF/">HMM_CRF</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2020/05/06/machine-learning/" class="archive-article-date">
-  <time datetime="2020-05-06T12:20:41.000Z" itemprop="datePublished">5月 6</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/06/machine-learning/">machine_learning</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
 
 </section>
         

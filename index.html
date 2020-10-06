@@ -65,6 +65,221 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-EM" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/10/06/EM/" class="article-date">
+  <time datetime="2020-10-06T13:07:10.000Z" itemprop="datePublished">2020-10-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/10/06/EM/">EM</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/10/06/EM/" data-id="ckfxzcll600035qegv97pbikz" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Hidden-Markov-Model" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/10/06/Hidden-Markov-Model/" class="article-date">
+  <time datetime="2020-10-06T12:55:04.000Z" itemprop="datePublished">2020-10-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/10/06/Hidden-Markov-Model/">Hidden_Markov_Model</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li><p><strong>Hidden Markov Model = Markov Random Field + Time</strong> </p>
+<ul>
+<li>动态模型=概率图模型+时间（可以是真正的时间，也可以是序列）</li>
+<li><p>GMM高斯混合模型（样本之间独立同分布）；但是动态模型，样本之间不是独立同分布</p>
+<p><img src="https://github.com/soloistben/images/raw/master/HMM/HMM1.png" alt="HMM1" style="zoom: 67%;"></p>
+</li>
+<li><p>图中动态模型包括：横向的时间关系（Time），纵向的混合关系（Mixture，不同变量混合）</p>
+</li>
+<li><strong>若hidden variable是离散的，则动态模型为HMM</strong>；线性连续的，则是Kalmm Filter 卡尔曼滤波器；非线性连续的，则是Partide Filter</li>
+</ul>
+<p><img src="https://github.com/soloistben/images/raw/master/HMM/HMM2.png" alt="HMM2" style="zoom:75%;"></p>
+</li>
+<li><p>HMM: param λ = (π, A, B)（π是初始概率分布、A转移矩阵、发射矩阵）</p>
+<ul>
+<li><strong>observed variable O</strong>: o_1, o_2, …, o_t,… → V = {v_1, …v_M} （观察值，观测变量o的值域）</li>
+<li><strong>hidden variable I</strong>: i_1, i_2, …, i_t,… → Q = {q_1, …q_N} （隐变量i的值域）</li>
+<li>A = [a_ij], a_ij = P(i_t+1=q_j|i_t=q_i)</li>
+<li>B = [b_j(k)], b_j(k) = P(o_t=v_k|i_t=q_j)</li>
+</ul>
+</li>
+<li><p>两个假设</p>
+<ul>
+<li>齐次马尔可夫假设<ul>
+<li>P(i_t+1|i_t, i_t-1, …, t_1, o_t, o_t-1, …, o_1) = P(i_t+1|i_t)</li>
+<li>隐状态i_t+1只与隐状态i_t有关</li>
+</ul>
+</li>
+<li>观测独立假设<ul>
+<li>P(o_t|i_t, i_t-1, …, t_1, o_t-1, …, o_1) = P(o_t|i_t)</li>
+<li>观测状态o_t只与观测状态i_t有关</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>HMM解决三个问题（已知参数 λ = (π, A, B)）</p>
+<ul>
+<li>Evalution → P(O|λ) （已知参数下，求解O现象的概率）→ 前向后向算法</li>
+<li>Learning → 求解参数，λ = argmax P(O|λ) → EM算法（以前是Baum Welch算法）</li>
+<li>Decoding → 找到一个状态序列，使 P(I|O)达到最大（I～ = argmax P(I|O)）<ul>
+<li>预测问题：P(i_t+1|o_1, o_2, …, o_t) 已知t个观察序列，预测下一时刻t+1的隐状态</li>
+<li><strong>滤波问题</strong>：P(i_t|o_1, o_2, …, o_t) 已知t个观察序列，求解当前时刻t的隐状态</li>
+</ul>
+</li>
+</ul>
+<p><a href="https://www.bilibili.com/video/BV1aE411o7qd?p=82" target="_blank" rel="noopener">白板系列</a></p>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/10/06/Hidden-Markov-Model/" data-id="ckfxzcllh000d5qegscil2trn" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-PGM-Inference" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/10/06/PGM-Inference/" class="article-date">
+  <time datetime="2020-10-06T07:09:49.000Z" itemprop="datePublished">2020-10-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/10/06/PGM-Inference/">PGM_Inference</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li>Inference 推断 → 求概率<ul>
+<li>P(X) = P(x_1, x_2, …, x_p)</li>
+<li>边缘概率：P(x_i) = Σ_1…Σ_(i-1) Σ_(i+1)…Σ_p P(X) （除了i的都积分）</li>
+<li>条件概率：P(x_a|x_b)  （x=x_a ∪ x_b）</li>
+<li>最大后验 MAP Inference：Z~ = argmax P(Z|X) ∝argmax P(Z,X) （贝叶斯定理）（不一定直接求后验，只要得到最大Z～即可）</li>
+</ul>
+</li>
+<li>方法<ul>
+<li>精确推断<ul>
+<li>Variable Elimination (VE) 变量消除法</li>
+<li><strong>Belief Propagation</strong> (BP) 信念传播（与反向传播不一样）（弥补VE缺点）<ul>
+<li>另外一个名称：Sum-Product Algorithm</li>
+<li>针对树结构</li>
+</ul>
+</li>
+<li>Junction Tree Algorithm<ul>
+<li>基于BP，由树结构扩展到普通图结构</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>近似推断<ul>
+<li>Loop Belief Propagation<ul>
+<li>基于BP，针对有环图</li>
+</ul>
+</li>
+<li>Mente Carlo Inference<ul>
+<li>Importance Sampling</li>
+<li>MCMC (Markov Chain Mente Carlo)</li>
+<li>基于采样</li>
+</ul>
+</li>
+<li>Variational Inference<ul>
+<li>确定性近似</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h5 id="Variable-Elimination"><a href="#Variable-Elimination" class="headerlink" title="Variable Elimination"></a>Variable Elimination</h5><p><img src="https://github.com/soloistben/images/raw/master/PGM_Inference/VE1.png" alt="VE1" style="zoom:75%;"></p>
+<ul>
+<li>假设a,b,c,d均为二值的随机变量{0,1}</li>
+<li>P(d) = Σ_a,b,c P(a,b,c,d) = Σ_a,b,c P(a)P(b|a)P(c|b)P(d|c) （将各个条件概率看成因子）<ul>
+<li>→ P(a=0)P(b=0|a=0)P(c=0|b=0)P(d|c=0) +P(a=1)P(b=0|a=1)P(c=0|b=0)P(d|c=0)+…+P(a=1)P(b=1|a=1)P(c=1|b=1)P(d|c=1) = 8*因子积</li>
+<li>由于马尔可夫的性质，结点只与相邻的相关，与其他无关，可以优先将有关的先合并。</li>
+<li>→ Σ_b,c P(c|b)P(d|c) Σ_a P(a)P(b|a) （Σ_a P(a)P(b|a) = Σ_a P(a,b) = P(b)，<strong>将P(a)看成一个函数Φ(a)，P(b|a)看成Φ(a,b)，则Σ_a P(a)P(b|a)看成Φ_a(b)</strong>）</li>
+<li>→ Σ_c P(d|c) Σ_bP(c|b) Φ_a(b) = Σ_c P(d|c) Φ_b(c) = Φ_c(d)</li>
+</ul>
+</li>
+<li>若是无向图，则为 P(a,b,c,d) = 1/Z Π Φ(x)</li>
+<li>主要思想：乘法分配律（ab+ac=a(a+c)）</li>
+<li>缺点：1、重复计算（求另外一个点时，则需要重新求（则没有存储中间结果，若是链很长，则计算量很大））；2、消去次序（一般相关最少的先消去，但在无向图找到最优消去次序是NP-Hard问题）</li>
+</ul>
+<h5 id="Belief-Propagation"><a href="#Belief-Propagation" class="headerlink" title="Belief Propagation"></a>Belief Propagation</h5><p>+ </p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/10/06/PGM-Inference/" data-id="ckfxzclln000k5qegk1w1na1g" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ML/">ML</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Exponential-Family-Distribution" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/10/05/Exponential-Family-Distribution/" class="article-date">
@@ -188,7 +403,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/10/05/Exponential-Family-Distribution/" data-id="ckfxfi620000ccweg1xuyexpm" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/10/05/Exponential-Family-Distribution/" data-id="ckfxzcllb00085qegh21jua5z" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ML/">ML</a></li></ul>
@@ -340,7 +555,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/10/02/Dimensionality-Reduction/" data-id="ckfxfi621000dcwegfprbkq9q" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/10/02/Dimensionality-Reduction/" data-id="ckfxzclle000a5qegrbd3hn3k" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ML/">ML</a></li></ul>
@@ -580,7 +795,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/10/02/SVM/" data-id="ckfxfi633000pcwegbuzk1y63" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/10/02/SVM/" data-id="ckfxzcllt000r5qeg5oowgima" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ML/">ML</a></li></ul>
@@ -708,7 +923,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/10/02/Decision-Tree/" data-id="ckfxfi61n0003cwegwippv1sh" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/10/02/Decision-Tree/" data-id="ckfxzcll900055qegl65ivu4m" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ML/">ML</a></li></ul>
@@ -743,14 +958,14 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h4 id="Statistics-for-Machine-Learning"><a href="#Statistics-for-Machine-Learning" class="headerlink" title="Statistics for Machine Learning"></a>Statistics for Machine Learning</h4><h5 id="One-两大派系"><a href="#One-两大派系" class="headerlink" title="One. 两大派系"></a>One. 两大派系</h5><ul>
-<li><strong>频率派：统计机器学习</strong>（设计模型，找到loss function，设计算法。本质为优化问题）<ul>
+<li><strong>频率派：统计机器学习</strong>（model (f(x)=w^T x+b), strategy (loss function), algorithm (GD, SGD, 牛顿法、拟牛顿法)，本质为<strong>优化问题</strong>）<ul>
 <li>正则化（L1,L2）</li>
 <li>核化（Kernel SVM）</li>
 <li>集成化（AdaBoost，RandForest）</li>
 <li>层次化（Neural Network：MLP(Multi-Layer Perceptron)，Autoencoder，CNN，RNN）(统称 Deep Neural Network)</li>
 </ul>
 </li>
-<li><strong>贝叶斯派：概率图模型</strong>（本质为求积分问题(Monte Carlo method, MCMC)，直接求解过于复杂，则衍生出概率图模型））<ul>
+<li><strong>贝叶斯派：概率图模型</strong>（本质为：通过Inference求（后验概率）<strong>积分问题</strong>(Monte Carlo method, MCMC)；直接求解过于复杂，则衍生出概率图模型））<ul>
 <li>有向图：Bayesian Network (Deep Directed Network)<ul>
 <li>Sigmoid Belief Network</li>
 <li>Variational Autoencoder (VAE)</li>
@@ -1134,7 +1349,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/11/Statistics/" data-id="ckfxfi639000tcwegy6udrt41" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/11/Statistics/" data-id="ckfxzcllw000w5qegc07ap36e" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ML/">ML</a></li></ul>
@@ -1168,11 +1383,11 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="Bayes-贝叶斯-amp-Markov-Random-Fields-马尔可夫随机场"><a href="#Bayes-贝叶斯-amp-Markov-Random-Fields-马尔可夫随机场" class="headerlink" title="Bayes 贝叶斯 &amp; Markov Random Fields 马尔可夫随机场"></a>Bayes 贝叶斯 &amp; Markov Random Fields 马尔可夫随机场</h4><h5 id="One-前提"><a href="#One-前提" class="headerlink" title="One. 前提"></a>One. 前提</h5><ul>
+        <h4 id="Bayes-Network贝叶斯网络-amp-Markov-Random-Fields-马尔可夫随机场"><a href="#Bayes-Network贝叶斯网络-amp-Markov-Random-Fields-马尔可夫随机场" class="headerlink" title="Bayes Network贝叶斯网络 &amp; Markov Random Fields 马尔可夫随机场"></a>Bayes Network贝叶斯网络 &amp; Markov Random Fields 马尔可夫随机场</h4><h5 id="One-前提"><a href="#One-前提" class="headerlink" title="One. 前提"></a>One. 前提</h5><ul>
 <li><strong>Probabilistic Graphical Model (PGM 概率图模型)</strong> （将概率引入图模型，没有图，只能计算，引入图，比较直观，容易观察）<ul>
 <li>Representation 表示<ul>
 <li>有向图 Bayesian Network (有向无环，则起始结点决定这终止节点的概率)</li>
-<li>无向图 Markov Network (无向，则结点的概率仅取决于1阶邻居)</li>
+<li>无向图 Markov Network (Markov Random Fields) (无向，则结点的概率仅取决于1阶邻居)</li>
 <li>高斯图 （连续）<ul>
 <li>Gassian Bayes Network</li>
 <li>Gassian Markov Network</li>
@@ -1181,7 +1396,10 @@
 </ul>
 </li>
 <li>Inference 推断<ul>
-<li>精确推断</li>
+<li>精确推断<ul>
+<li>Variable Elimination, Belief Propagation, Junction Tree Algorithm</li>
+</ul>
+</li>
 <li>近似推断<ul>
 <li>确定性近似（变分推断）</li>
 <li>随机性近似（蒙特卡洛，MCMC）</li>
@@ -1407,7 +1625,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/08/12/Bayes-MRF/" data-id="ckfxfi61e0000cweg6w3btvit" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/08/12/Bayes-MRF/" data-id="ckfxzcll800045qeg9hkt77fx" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ML/">ML</a></li></ul>
@@ -1452,8 +1670,7 @@
 </ul>
 <h5 id="Two-HMM"><a href="#Two-HMM" class="headerlink" title="Two. HMM"></a>Two. HMM</h5><ul>
 <li>在概率中，隐马尔可夫模型对应所有状态是相互独立的</li>
-<li><p><strong>P(q_t|q_t-1)</strong>  Transition Probability 转移概率</p>
-<ul>
+<li><strong>P(q_t|q_t-1)</strong>  Transition Probability 转移概率<ul>
 <li>P(q_t|q_t-1, q_t-2,…, q_1) = P(q_t|q_t-1)<ul>
 <li>每个状态只取决于前面一个状态，而非前面所有状态</li>
 <li>即当前隐状态到下一个隐状态的概率</li>
@@ -1462,8 +1679,7 @@
 <li>Discrete 离散的（用矩阵表示 A，维度(k, k)，k是开个隐状态）</li>
 </ul>
 </li>
-<li><p><strong>P(y_t|q_t)</strong>  Emmission/Measurement Probability 发射概率 / 观测概率</p>
-<ul>
+<li><strong>P(y_t|q_t)</strong>  Emmission/Measurement Probability 发射概率 / 观测概率<ul>
 <li>P(y_t|q_1,…, q_t-1, q_t, y_1,…, y_t-1) = P(y_t|q_t)<ul>
 <li>已知当前状态 q_t，得到事实变化 y_t 的概率</li>
 </ul>
@@ -1473,13 +1689,13 @@
 <li>若是连续的，无法使用矩阵表示，y可能是连续的一个分布</li>
 </ul>
 </li>
-<li><p>两个概率决定了整个隐马尔可夫模型 </p>
+<li>两个概率决定了整个隐马尔可夫模型 </li>
+<li><p>在信号中用HMM也很多，时间轴每段范围的信号就相当与一个y_t<br><img src="https://github.com/soloistben/images/raw/master/hmm_crf/hmm.png" alt="hmm" style="zoom:67%;"></p>
 </li>
-<li>在信号中用HMM也很多，时间轴每段范围的信号就相当与一个y_t<br><img src="https://github.com/soloistben/images/raw/master/hmm_crf/hmm.png" alt="hmm" style="zoom:67%;"></li>
-<li>每个隐状态的概率和为1，则矩阵行和为1</li>
+<li><p>每个隐状态的概率和为1，则矩阵行和为1</p>
+</li>
 <li>P(X) = ∫_y P(X, Y) dy </li>
-<li><p><strong>P(y_1, y_2, y_3)</strong> = Σq_1 Σq_2 Σq_3 P(y_1, y_2, y_3, q_1, q_2, q_3) = Σq_1 Σq_2 Σq_3 <strong>P(y_3|q_3)P(q_3|q_2)*P(y_2|q_2)P(q_2|q_1)*P(y_1|q_1)P(q_1)</strong> </p>
-<ul>
+<li><strong>P(y_1, y_2, y_3)</strong> = Σq_1 Σq_2 Σq_3 P(y_1, y_2, y_3, q_1, q_2, q_3) = Σq_1 Σq_2 Σq_3 <strong>P(y_3|q_3)P(q_3|q_2)*P(y_2|q_2)P(q_2|q_1)*P(y_1|q_1)P(q_1)</strong> <ul>
 <li>P(y_1, y_2, y_3, q_1, q_2, q_3) = P(y_3|y_1, y_2, q_1, q_2, q_3)*P(y_1, y_2, q_1, q_2, q_3)</li>
 <li>利用马尔可夫性质：P(y_1, y_2, y_3, q_1, q_2, q_3) = P(y_3|q_3)*P(q_3|y_1, y_2, q_1, q_2)*P(y_1, y_2, q_1, q_2) = P(y_3|q_3)P(q_3|q_2)*P(y_1, y_2, q_1, q_2)</li>
 <li>P(y_3|q_3), P(q_3|q_2), P(y_2|q_2), P(q_2|q_1), P(y_1|q_1) 在马尔可夫参数A, B矩阵中可得</li>
@@ -1487,8 +1703,7 @@
 <li>则马尔可夫模型需要三个参数，λ={A, B, P(q_1)} (假设y是离散的)</li>
 </ul>
 </li>
-<li><p>马尔可夫模型有什么用？</p>
-<ul>
+<li>马尔可夫模型有什么用？<ul>
 <li>找50人讲10个单词（动物名字）</li>
 <li><strong>λ_cat = argmax_λ log P(y_1, …, y_50|λ)</strong> <ul>
 <li>当初始条件为λ，最大为说cat的情况</li>
@@ -1524,8 +1739,7 @@
 </li>
 </ul>
 </li>
-<li><p>如何学习HMM的参数</p>
-<ul>
+<li>如何学习HMM的参数<ul>
 <li>λ = argmax_λ log P(Y|λ) （极大似然估计）</li>
 <li>用EM学习<ul>
 <li>E-step: Σq_1… Σq_t log(P(Y, Q))*P(Q,Y|θ^g) = Σq_1… Σq_t log(P(q_1)*ΠP(q_t|q_t-1)*ΠP(y_t|q_t)) <em> P(Q,Y|θ^g) = Σq_1… Σq_t [log(P(q_1)+Σlog(a_q_t-1,q_t)+Σlog(b_q_t(y_t))] </em> P(Q,Y|θ^g)</li>
@@ -1535,1250 +1749,16 @@
 </ul>
 </li>
 </ul>
-<p><a href="https://www.youtube.com/watch?v=Ji6KbkyNmk8&amp;list=PLFze15KrfxbGPEHyjxddbbxVvLa5kilFf" target="_blank" rel="noopener">source video</a> <a href="https://github.com/roboticcam/machine-learning-notes/blob/master/files/dynamic_model.pdf" target="_blank" rel="noopener">pdf</a></p>
-<h5 id="Three-CRF"><a href="#Three-CRF" class="headerlink" title="Three. CRF"></a>Three. CRF</h5><p>+ </p>
-
+<p><a href="https://www.youtube.com/watch?v=Ji6KbkyNmk8&amp;list=PLFze15KrfxbGPEHyjxddbbxVvLa5kilFf" target="_blank" rel="noopener">徐亦达系列</a> <a href="https://github.com/roboticcam/machine-learning-notes/blob/master/files/dynamic_model.pdf" target="_blank" rel="noopener">pdf</a> <a href="https://www.bilibili.com/video/BV1aE411o7qd?p=82" target="_blank" rel="noopener">白板系列</a></p>
+<h5 id="Three-CRF"><a href="#Three-CRF" class="headerlink" title="Three. CRF"></a>Three. CRF</h5>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/08/09/HMM-CRF/" data-id="ckfxfi61p0005cweg82s1ejvd" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/08/09/HMM-CRF/" data-id="ckfxzcllc00095qegqya52zjp" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ML/">ML</a></li></ul>
 
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Spectral-Cluster" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/07/25/Spectral-Cluster/" class="article-date">
-  <time datetime="2020-07-25T05:19:54.000Z" itemprop="datePublished">2020-07-25</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/25/Spectral-Cluster/">Spectral_Cluster</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="Spectral-Cluster-谱聚类"><a href="#Spectral-Cluster-谱聚类" class="headerlink" title="Spectral Cluster 谱聚类"></a>Spectral Cluster 谱聚类</h4><h5 id="一、分类与聚类"><a href="#一、分类与聚类" class="headerlink" title="一、分类与聚类"></a>一、分类与聚类</h5><p>1、分类任务就是通过学习得到一个目标函数f，把每个属性集x映射到一个预先定义的类别标号y中。</p>
-<p>2、聚类指事先并不知道任何样本的类别标号，希望通过某种算法来把一组未知类别的样本划分成若干类别，并不关心某一类是什么，我们需要实现的目标只是把相似的东西聚到一起。目的是个簇内的元素之间越相似，簇间的相似度越小。</p>
-<h5 id="二、k-means-与-spectral-cluster"><a href="#二、k-means-与-spectral-cluster" class="headerlink" title="二、k-means 与 spectral cluster"></a>二、k-means 与 spectral cluster</h5><p>k-means 每次选择k个中心点，将每个数据点归类到离它最近的那个中心点所代表的簇中，迭代多次，一直到迭代了最大的步数或者前后 <strong>J</strong> 的值相差小于一个阈值为止。(u_k为中心点，r_nk 为数据点 x_n 被归类到 cluster k 的时候为 1 ，否则为 0 )<br>​        <img src="https://github.com/soloistben/images/raw/master/spectral_cluster/kmean.png" alt="kmean"></p>
-<ul>
-<li>结点与附近的结点相似度会更高，距离远的结点相似度更低；因此，对角线上颜色更亮，右上角左下角的区域更暗 </li>
-</ul>
-<p><img src="https://github.com/soloistben/images/raw/master/spectral_cluster/affinity_matrix.png" alt="Similarity Matrix" style="zoom: 25%;"></p>
-<p>然而，k-means初始的中心点是随机选的，每次选择结果不同，大部分情况结果还是令人满意，偶尔也会陷入局部最优。传统 k-means的x_n输入是每个结点的所有信息（即完整的N维度信息）。</p>
-<p>spectral cluster 谱聚类只需要结点之间的相似度矩阵即可，并不需要结点的完整信息，因此不必像k-means那样要求N维的欧氏空间的向量。即抓住了结点之间的主要信息，排除了冗余信息，计算复杂度也更小，所以比传统聚类方法会更加健壮一些。</p>
-<h5 id="三、谱的涵义"><a href="#三、谱的涵义" class="headerlink" title="三、谱的涵义"></a>三、谱的涵义</h5><p>对于谱的概念，简而言之，可以把谱认定为对一个信号（视频，音频，图像，图）分解成为一些简单的元素线性组合（小波基，图基）。为了使得这种分解更加有意义，可以使得这些分解的元素之间是线性无关的（正交的），也就是说这些分解的简单元素可以看作是信号的基。面对研究的东西，往往都会细分的更细小层面才能挖掘更主要的信息，犹如研究生物，则要细分到细胞、基因层面；研究物理，则要细分到质子、夸克层面；目前深度学习研究图片也是细分到像素层级，音频则细分到音频、音位层级。因此针对图也是如此。</p>
-<p><img src="https://github.com/soloistben/images/raw/master/spectral_cluster/spectrum.png" alt="spectrum" style="zoom: 50%;"></p>
-<p>在信号处理中，谱就是傅立叶变换，它提供了不同频率下的正弦和余弦波作为基，将信号在这些基进行分解。</p>
-<p>​        <img src="https://github.com/soloistben/images/raw/master/spectral_cluster/fourier.png" alt="fourier" style="zoom: 67%;"></p>
-<p>在图中，“谱”则是指对图的拉普拉斯矩阵的特征分解，特征分解后正交化的特征向量就是对应的正交基，所有的特征值的全体统称为拉普拉斯矩阵的谱，最后则可以用特征向量和特征值来表示图的信息。</p>
-<h5 id="四、Graph-与-Laplacian"><a href="#四、Graph-与-Laplacian" class="headerlink" title="四、Graph 与 Laplacian"></a>四、Graph 与 Laplacian</h5><ul>
-<li><p>Graph G = (V, E, X)</p>
-<p>结构信息：V 表示结点集，E 表示结点之间的边集，A 表示N维的邻接矩阵（若是无向图，则邻接矩阵内元素是0/1; 若是有向图，则邻接矩阵内元素的值是具体权重值w），D表示N维的度矩阵（对应结点的拥有邻居结点数，放置在矩阵对角线上）。</p>
-</li>
-</ul>
-<p>​        特征信息：X表示结点的N维度信息。</p>
-<ul>
-<li><p><strong>为什么特征分解最终选择拉普拉斯矩阵而不是相似矩阵？</strong></p>
-<p>因为拉普拉斯矩阵的独有属性，它是半正定矩阵，则特征值都是大于或等于0, 可以有多个0特征值，每个0特征值对应特征向量上的值大于0对应的节点之间具有连通性，对应一个子图。拉普拉斯矩阵拥有相似矩阵（邻接矩阵）的特性，又拥有独有特性，则更好表达图的信息。</p>
-</li>
-<li><p><strong>为什么需要使用归一化后的拉普拉斯矩阵？</strong></p>
-<p>聚类的目的为两点：第一点是最小化簇间的相似度，第二点是最大化簇内相似度。未归一化的拉普拉斯矩阵仅能达到第一点，归一化的拉普拉斯矩阵    能达到两点要求。(具体如何达到两点的推导，见文章<strong><code>A Tutorial on Spectral Clustering</code></strong>)</p>
-<p><img src="https://github.com/soloistben/images/raw/master/spectral_cluster/laplacian.png" alt="Laplacain Matrix" style="zoom: 25%;"></p>
-</li>
-<li><p>特征分解</p>
-<p>求解得到特征值、特征向量，小到大排序特征值，对应特征向量也排序，则最终得到选择前k个最小特征值对应的特征向量。</p>
-<ul>
-<li>在Eigenvector Matrix，第0列是特征值为0对应的特征向量，是个全1列向量（颜色相同）（因为第二步构造的是全连接矩阵，则仅有一个特征值为0）</li>
-<li>第1列对应较亮色块是值大于0的情况，暗色块值小于0，因此较亮色块中对应结点属于一个簇；第2列则是黄色块部分属于一个簇，等。依次类推即可。</li>
-<li>中间图为Eigenvector Matrix 通过t-SNE降到2维的结果，能将不同簇的结点都明显区分，同簇的结点分布呈线状，荧光绿色与紫色部分仍有少许连接。</li>
-<li>右间图为Eigenvector Matrix 通过t-SNE降到3维的结果，在3D空间领域，也能将不同簇的结点区分，同簇的结点分布呈线状，荧光绿色与紫色部分仍有少许连接，黄色与棕色有一两个点连接。</li>
-</ul>
-</li>
-</ul>
-<p><img src="https://github.com/soloistben/images/raw/master/spectral_cluster/eigenvector.png" alt="Eigenvector Matrix" style="zoom: 25%;"><img src="https://github.com/soloistben/images/raw/master/spectral_cluster/eigenvector_2d.png" alt="Eigenvector Matrix 2D" style="zoom: 25%;"><br><img src="https://github.com/soloistben/images/raw/master/spectral_cluster/eigenvector_3d.png" alt="Eigenvector Matrix 3D" style="zoom: 50%;"></p>
-<p>  即spectral cluster可以看作为node feature高维matrix data (n,d) 经过一个<a href="http://blog.pluskid.org/?p=290" target="_blank" rel="noopener">laplace mapping</a>降维得到一个低维embedding  (n, k)，embedding中融入更主要的信息，舍弃冗余信息。        </p>
-<h5 id="五、Spectral-Clustering"><a href="#五、Spectral-Clustering" class="headerlink" title="五、Spectral Clustering"></a>五、Spectral Clustering</h5><p>​    获得embedding即执行k-means</p>
-<p><img src="https://github.com/soloistben/images/raw/master/spectral_cluster/orgin.png" alt="原数据图" style="zoom: 25%;"><img src="https://github.com/soloistben/images/raw/master/spectral_cluster/k_means.png" alt="直接 k-means 的结果" style="zoom:25%;"></p>
-<p><img src="https://github.com/soloistben/images/raw/master/spectral_cluster/SpectralClustering.png" alt="谱聚类结果" style="zoom:25%;"></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/25/Spectral-Cluster/" data-id="ckfxfi627000icweg47srh00s" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cluster/">cluster</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-machine-learning" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/05/06/machine-learning/" class="article-date">
-  <time datetime="2020-05-06T12:20:41.000Z" itemprop="datePublished">2020-05-06</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/05/06/machine-learning/">machine_learning</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="机器学习-machine-learning-from-TJU"><a href="#机器学习-machine-learning-from-TJU" class="headerlink" title="机器学习 machine learning from TJU"></a>机器学习 machine learning from TJU</h3><h4 id="One-绪论"><a href="#One-绪论" class="headerlink" title="One. 绪论"></a>One. 绪论</h4><ol>
-<li><p>什么是智能？</p>
-<ul>
-<li><strong>Self-adaption 自适应</strong> （迁移学习，通用AI模型 ( Artificial General Intelligence, 即strong AI)）</li>
-<li><strong>Self-consciousness 自我意识</strong> （模糊决策）</li>
-<li>运算智能：快速计算，存储</li>
-<li>感知智能：人类五官的能力（视觉、听觉、触觉等）【已解决】</li>
-<li>认知智能：大脑的能力（逻辑推理、知识理解、决策思考）<strong>（语言处理）</strong>（概念、意识、观念）（理解、思考、决策）【正在解决】</li>
-</ul>
-</li>
-<li><p><strong>Turning Test</strong> 图灵测试：正常人分别和正常人、AI聊天，是否能分清人与AI（是否有用是哲学问题，AI是否伪装，从而不通过Turning Test）</p>
-<p><strong>Behaviorism 行为主义</strong>，仅看行为是否符合智能，不管内部部分（有漏洞）</p>
-<p><strong>Connectionism联结主义</strong>，只看内部构造（用神经网络模拟），符合大脑构造，则认为有智能（婴儿无法通过Turning test，但他结构是符合的）（但无法知道大脑构造，如何产生意识？）</p>
-<p>模拟鸟的飞行，制造飞机（虽然达不到鸟内部的全部飞行系统，但能模拟飞行）</p>
-<p><img src="https://github.com/soloistben/images/raw/master/machine_learning_image/turning test.png" alt="turning test" style="zoom: 33%;"></p>
-</li>
-<li><p>如何制造 AI？</p>
-<ul>
-<li><strong>“Thinking” by “Searching”</strong>：“思考”即“搜索” (Behaviorism)，类似搜索引擎，信息检索，在已有知识寻找最佳答案（大脑积累知识，面对问题，就是搜索大脑已有知识（但无法确定大脑是如何搜索的））<ul>
-<li>Knowledge Graph 知识图谱</li>
-</ul>
-</li>
-<li><strong>“Learning”</strong>：学习知识，发现新的知识<ul>
-<li>什么是新的知识?（知识-&gt;模式-&gt;稳定的关联关系）</li>
-<li><strong>pattern</strong> 模式识别（机器学习的前身）（语言的语法是一种模式，物理规律也是模式）</li>
-<li>模式识别和机器学习的区别在于：前者喂给机器的是各种特征描述，从而让机器对未知的事物进行判断；后者喂给机器的是某一事物的海量样本，让机器通过样本来自己发现特征，最后去判断某些未知的事物。（机器学习在挖掘数据最终找到模式） （模式识别=数据挖掘）</li>
-</ul>
-</li>
-<li><strong>“Thinking” by “Learning”</strong>：“思考”即“学习”，Known Data-&gt;Model-&gt;Unknown Data<ul>
-<li>Model 模型就是对模式的大概猜测</li>
-<li>y=f(x), f()就是模式</li>
-<li>由于模式很多种，模型则用 y = ax+b 去猜测，算法则调整a和b参数</li>
-<li>机器学习就是科学研究的自动化（确定变量-&gt;做实验-&gt;找到变量之间规律）</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>机器学习的基本框架</p>
-<ul>
-<li>一系列可能函数 &amp; 训练数据 -&gt; 通过算法 -&gt; 选出最好的函数</li>
-<li><strong>Supervise Learning</strong> 监督学习，模型只需要找到输入和标记之间的关联关系（标记是人工的，不是自己手标的，就是已标好数据（这种要成本））</li>
-<li><strong>Semi-Supervised Learning</strong> 半监督学习，少量部分样本标记的监督学习</li>
-<li><strong>UnSupervise Learning</strong> 无监督学习，无标记，模型自己总结出类别（聚类）</li>
-<li><strong>Reinforcement Learning</strong> 强化学习，利用间接”标记“来学习<ul>
-<li>围棋的”输赢“，样本是棋局，直接标记是棋子在哪个位置是最好的（但没有这种标记，没有人知道哪里是最好的），间接标记是这个棋局是黑白输赢结果</li>
-<li>online learning or 反复学习</li>
-<li>输出是有反馈，对模型进行奖励机制</li>
-</ul>
-</li>
-<li>基于规则的模型：人定义”特征“，人定义特征和输出之间的关系</li>
-<li>基于统计的模型：人定义”特征“，模型确定特征和输出之间的关系（特征工程）<ul>
-<li>cat？= 0.1*毛色+0.2*耳朵形状+0.3*眼睛形状 …</li>
-</ul>
-</li>
-<li>深度学习模型：人不定义”特征“，模型确定原始信息和输出之间的关系（可以达到 end-to-end model）（人类选择的特征未必是最好的）<ul>
-<li>深度学习可以发现特征（通过是神经网络学习原始信息获得高阶特征，一些人类未必发现的特征）</li>
-<li>越深越能发现复杂特征</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>AI的一些重要问题</p>
-<ul>
-<li><p>标记、model、feature</p>
-</li>
-<li><p>什么是好模型？</p>
-<ul>
-<li><p>（泛化能力）描述性，但难以具体化，不可计算（欠拟合Underfitting）</p>
-</li>
-<li><p>（性能）具体可计算，适合范围小，描述性差（过拟合<strong>Overfitting</strong>）（模型复杂性越高容易过拟合）（难以避免）</p>
-</li>
-<li><p>两者折中比较难</p>
-</li>
-<li><p>机器学习的最终目标是在未知数据上效果最好</p>
-<p><img src="https://github.com/soloistben/images/raw/master/machine_learning_image/overfitting.png" alt="overfitting" style="zoom: 50%;"></p>
-</li>
-<li><p>严格上，数据需要分 训练集，开发集，测试集（避免虚假结果）</p>
-</li>
-<li><p>”成功就是最大的失败“（越成功会越保守，而事物是发展的，会在新事物上会越失败）</p>
-</li>
-<li><p>面对企业：</p>
-<ul>
-<li>基于规则的模型：问题简单，大量已知知识（可解释性好；基于人归纳，会比较抽象，越抽象越鲁棒性）</li>
-<li>基于统计的模型：数据量不大，有一些明确的特征（可解释性一般，但都能猜到；基于数据归纳，不够抽象）</li>
-<li>深度学习模型：数据量<strong>大</strong>，算力高，没有明确特征，先验知识缺乏（黑箱子，可解释性<strong>差</strong>）</li>
-</ul>
-</li>
-<li><p>面对科研：越复杂越好</p>
-</li>
-</ul>
-</li>
-<li><p><strong>Global Knownledge 世界知识</strong>（人工智能选特征选模型，仍需要辅助的知识（经验知识，常识））</p>
-<p><img src="https://github.com/soloistben/images/raw/master/machine_learning_image/global_knownledge.png" alt="global knownledge" style="zoom: 50%;"></p>
-<ul>
-<li>人的学习不需要太多数据样本（小样本学习）</li>
-<li>人可以小样本学习，也是有经验知识（先验知识），但儿童学习语言无法解释（儿童无先验知识，”大脑有普遍语法存在“）</li>
-<li>有了先验知识，就可以对训练样本要求少一些（小样本学习），只学习特殊的知识即可。</li>
-</ul>
-</li>
-<li><p><strong>Explainable</strong> 可解释性</p>
-<ul>
-<li><p>为什么模型会这么决策？</p>
-</li>
-<li><p>有了可解释性，可追溯源头，从根本上改进它。</p>
-</li>
-<li><p>自动驾驶事故率低于人类司机，为什么我们却不信任它？</p>
-<p>（因为自动驾驶出事故的原因不可解释，出事故是概率性的）</p>
-</li>
-<li><p>刷脸支付，出错也是不可解释的</p>
-</li>
-</ul>
-</li>
-<li><p><strong>Ethics</strong> 伦理问题</p>
-<ul>
-<li><p>若有意识的机器人是否拥有人权？</p>
-</li>
-<li><p>AI通过用户的非隐私数据获得隐私数据</p>
-<p>（识别用户的性格或者需求，左右用户做出选择（尤其在选举或者个性化推荐））</p>
-<p>（搜索引擎（<strong>主动获取信息</strong>）是用户信息入口，会影响国家整体发展）</p>
-<p>（现在约50%信息是依照个性推荐（<strong>被动获取信息</strong>），会导致个性分化、信息茧房，会加大偏见和隔阂，局限在自己圈子，最终导致社会撕裂，不接受他人，无法全面认识世界）</p>
-</li>
-<li><p>若AI能预测一个人的犯罪概率，是否在犯罪前先控制他？</p>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ol>
-<h4 id="Two-Machine-Learning-Foundations-from-台大林軒田"><a href="#Two-Machine-Learning-Foundations-from-台大林軒田" class="headerlink" title="Two. Machine Learning Foundations from 台大林軒田"></a>Two. Machine Learning Foundations from 台大林軒田</h4><ol>
-<li><p><strong>machine learning = sample data + blurry pattern + not easily programmable definition</strong></p>
-</li>
-<li><p>Data Mining -&gt; feature -&gt; Machine Learning (在机器学习选择特征时，尽量选取特征之间相关性小的特征，相关性越大，则越冗余，就没意义了)</p>
-</li>
-<li><p>Machine Learning use data to compute hypothesis g that approximates target f. (Machine Learning ∈ Statitics)</p>
-</li>
-<li><p><strong>Perceptron 感知器</strong>，h(x) = sign(Σwi xi - threshold) (i =1,2,…)</p>
-<ul>
-<li><p>模拟神经细胞，接收信号，整合起来（<strong>加权求和</strong>），接收整体的信号超过某个阈值，则激活神经细胞</p>
-</li>
-<li><p>将threshold融入权重w，作为w0，h(x) = sign(Σwi xi)  (i =0,1,2,…) = sign(w^T x)，大于0为正例，小于0为负例。（线性感知器）</p>
-<p><img src="https://github.com/soloistben/images/raw/master/machine_learning_image/Perceptron.png" alt="Perceptron" style="zoom:33%;"></p>
-<ul>
-<li><p>令 h(x)=0， x2为纵轴，x1为横轴，x2 = -w1/w2 * x1 - w0/w2，右图分类效果较好（w1比w2大，即x1特征比x2特征更重要）</p>
-</li>
-<li><p>PLA  Perceptron Learning Algorithm 寻找最优划分的线性函数</p>
-<p><img src="https://github.com/soloistben/images/raw/master/machine_learning_image/preceptron_1.png" alt="update weight" style="zoom:43%;"></p>
-</li>
-<li><p>前提是线性可分的，则可以在有限步内停止，每次调整都会更接近完美分类面；若非线性，则无法停止。(大多数情况是非线性的，有noise；可用pocket算法，在非线性情况下，在一定调整步数下，选择错误率最低的结果)</p>
-<p><img src="https://github.com/soloistben/images/raw/master/machine_learning_image/preceptron_3.png" alt="weight update" style="zoom: 50%;"></p>
-<p><img src="https://github.com/soloistben/images/raw/master/machine_learning_image/preceptron_2.png" alt="PLA" style="zoom:43%;"></p>
-</li>
-</ul>
-</li>
-<li><p>perceptrons <-> linear (binary) classifiers</-></p>
-</li>
-</ul>
-</li>
-<li><p><strong>Types of Learning</strong> 机器学习的类型</p>
-<ul>
-<li>output space<ul>
-<li>binary or more binary <strong>Classification</strong> （预测类别，划分样本）</li>
-<li><strong>Regression</strong> （预测一个实数，样本的拟合问题，连接样本）<ul>
-<li><strong>可以用回归任务做分类</strong></li>
-<li>先算出一个数，设定阈值，然后可以分类</li>
-</ul>
-</li>
-<li><strong>Structured</strong> learning (一维（序列结构，语法结构学习），二维（图结构），三维（蛋白质结构，分子结构)）</li>
-</ul>
-</li>
-<li>data label<ul>
-<li>supervised, semi-superivised, unsupervised, reinforcement</li>
-</ul>
-</li>
-<li>protocol f =&gt; (x,y)<ul>
-<li><strong>Batch</strong> Learning 批量学习（大量样本）</li>
-<li><strong>Online</strong> Learning 在线学习（在线 =&gt; 持续学习，不断接收数据（少量），更新模型）<ul>
-<li>Online + Batch，先大批量数据学习一个模型，再持续接收少量数据，更新模型（更新模型部分，并不是完全重新学习，否则就是多次批量学习了）</li>
-<li>垃圾邮件分类，先训练通用的模型，根据用户个性再调整，形成个性化（每次再垃圾箱找到需要的邮件，即分错样本，就会为模型产生少量数据）（是否垃圾邮件，对每个人的意义不一样）</li>
-<li>PLA，Reinforcement Learning</li>
-</ul>
-</li>
-<li><strong>Active</strong> Learing 主动学习<ul>
-<li>属于一种 Online Learning</li>
-<li>同样基于少量样本调整模型，但Active Learning 模型主动向用户获取数据，Online Learning 是被动获得数据</li>
-<li>垃圾邮件分类，若删除多个同用户的邮件，Active Learning会提问是否标记其邮件为垃圾邮件，若是，立即标记该用户为重要特征；而Online Learning则是等待用户标记垃圾邮件，需要多次标记才可以。</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>input space<ul>
-<li><strong>concrete</strong> features 具体特征（物理意义明确）</li>
-<li><strong>Raw</strong> features 原始特征（图片的像素，亮度，黑白）</li>
-<li><strong>Abstract</strong> feature 抽象特征（没用任何物理意义） </li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p><strong>Feasibilityof Learning</strong> 学习的可行性</p>
-<ul>
-<li><p>是否可以学习知识？</p>
-</li>
-<li><p>训练样本是有限的，无法保证能学习到最好的 f()，只能逼近</p>
-</li>
-<li><p>Hoeffding’s Inequality，模型在训练样本的错误率v，模型在整体样本错误率u</p>
-<p><img src="https://github.com/soloistben/images/raw/master/machine_learning_image/hoeffding.png" alt="hoeffding" style="zoom:43%;"></p>
-<ul>
-<li>“v = u” is probably approximately correct (PAC)</li>
-</ul>
-</li>
-<li><p>在训练集效果好，在测试集的效果也会好的概率？</p>
-<ul>
-<li><p>有M个候选函数，则错误率就很大，则过拟合。（前提是数据在候选函数之间相互独立（线性无关））</p>
-</li>
-<li><p>若M个候选函数中存在线性相关的候选函数，即不是<strong>相互独立</strong>，则M不是无穷大，则有希望减少过拟合</p>
-</li>
-<li><p>Ein 测试集错误率，Eout未知数据错误率（机器学习做两件事，模型在训练集使Ein变小，再使Ein和Eout尽可能相等）</p>
-</li>
-<li><p>样本N越大，则结果越可靠</p>
-</li>
-</ul>
-<p><img src="https://github.com/soloistben/images/raw/master/machine_learning_image/pac.png" alt="PAC" style="zoom:43%;"></p>
-<ul>
-<li><p>相同数据（x1 x2）喂入两个候选函数（两条红线），得到结果一样，则两个候选函数<strong>相关</strong></p>
-<p><img src="https://github.com/soloistben/images/raw/master/machine_learning_image/error.png" alt="error" style="zoom:43%;"></p>
-</li>
-<li><p>对PLA而言，分类是候选函数将样本一分为2（则分类相同的候选函数相关，则两个函数视为等价），n个样本，最多也是2^n个<strong>类别</strong>，即<strong>M=2^n</strong>，则<strong>M不是无穷大</strong>的（对所有问题，都不是无穷大的）</p>
-</li>
-<li><p>实际情况是 <strong>M&lt;&lt;2^n</strong></p>
-</li>
-<li><p>growth function 成长函数，给定n个样本，返回实际可分类别数</p>
-<p><img src="https://github.com/soloistben/images/raw/master/machine_learning_image/growth_funtion.png" alt="growth_funtion" style="zoom:43%;"></p>
-</li>
-<li><p>问题不同，成长函数不一样（成长函数上限则为break point突破点）</p>
-<p><img src="https://github.com/soloistben/images/raw/master/machine_learning_image/different.png" alt="different" style="zoom:43%;"></p>
-</li>
-<li><p>机器学习要达到的目标</p>
-<p><img src="https://github.com/soloistben/images/raw/master/machine_learning_image/Ein_Eout.png" alt="Ein_Eout" style="zoom:43%;"></p>
-</li>
-<li><p>参数的个数是决定模型复杂度的核心指标</p>
-</li>
-<li><p>自由度=这个模型的有多少参数，一个参数是一个维度，参数越多，自由度越高</p>
-<ul>
-<li><p>VC维=参数个数</p>
-</li>
-<li><p>VC维 the formal name of maximum non-break point</p>
-</li>
-<li><p>break point是成长函数的上限，k决定了成长函数的最多参数数量，从而决定了vc维</p>
-</li>
-<li><p>dvc = min_k-1</p>
-<p><img src="https://github.com/soloistben/images/raw/master/machine_learning_image/VC_dimension.png" alt="VC_dimension" style="zoom:43%;"></p>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ol>
-<ol start="7">
-<li><p><strong>Regression</strong> 回归</p>
-<ul>
-<li><p>Noise: 样本标记错误（正例标记成反例）</p>
-</li>
-<li><p>Probabilistic 概率函数：对输出不是确定性的，都是概率性的（容忍存在Noise）</p>
-<p><img src="https://github.com/soloistben/images/raw/master/machine_learning_image/different_error.png" alt="different_error" style="zoom:43%;"></p>
-</li>
-<li><p>分类：判断sample是否符合目标f()</p>
-</li>
-<li><p>回归：让sample离目标f()越近（error用平方，是在最低点是可微的，用绝对值是不可微的）</p>
-<ul>
-<li>用回归无法直接做分类，但可以缩小分类的范围，err_0/1 &lt;= err_sqr</li>
-</ul>
-<p><img src="https://github.com/soloistben/images/raw/master/machine_learning_image/logistics_regression.png" alt="logistics_regression" style="zoom:43%;"></p>
-</li>
-<li><p><strong>logistic regression</strong> （非线性回归）</p>
-<ul>
-<li>err 需要计算两个概率分布的差值（KL散度）</li>
-<li>当数据为病人的特征数据，但患病只有0/1（患病与不患病），则需要求出整体患病的概率分布。</li>
-<li>极大似然估计：给定输入输出，确定一个分布。</li>
-<li>用logistics regression 训练一个分布接近极大似然估计的分布</li>
-</ul>
-</li>
-<li><p><strong>Gradient Descent</strong> 梯度下降，用于update weight（随机梯度下降，是随机采样点，大方向和直接梯度下降是一致的，但复杂度翻倍）（步长=学习率）</p>
-<p><img src="https://github.com/soloistben/images/raw/master/machine_learning_image/Gradient Descent.png" alt="Gradient Descent" style="zoom: 50%;"></p>
-</li>
-</ul>
-</li>
-<li><p><strong>Multiclass Classification </strong>多分类问题</p>
-<ul>
-<li><p>四分类拆成多个二分类问题</p>
-<p><img src="https://github.com/soloistben/images/raw/master/machine_learning_image/Multiclass Classification.png" alt="Multiclass Classification" style="zoom:50%;"></p>
-<ul>
-<li><p>正例大大少于负例，样本不平衡</p>
-</li>
-<li><p>四分类分成两类，形成一对一对的分类</p>
-<p><img src="https://github.com/soloistben/images/raw/master/machine_learning_image/pairwise classifier.png" alt="pairwise classifier" style="zoom:43%;"></p>
-</li>
-</ul>
-</li>
-<li><p>Nonlinear Transform 训练分类</p>
-</li>
-<li><p>将非线性转成线性</p>
-<p><img src="https://github.com/soloistben/images/raw/master/machine_learning_image/nonlinear.png" alt="nonlinear" style="zoom:43%;"></p>
-</li>
-</ul>
-</li>
-<li><p><strong>Regularization</strong> 正则化</p>
-<ul>
-<li><p>缩小高次空间，控制在一定区间内，防止过拟合同时仍具有高次空间的能力</p>
-</li>
-<li><p>降低复杂度，减轻过拟合（缩减候选函数的个数M）</p>
-<p><img src="https://github.com/soloistben/images/raw/master/machine_learning_image/regularization coefficient.png" alt="regularization coefficient" style="zoom:43%;"></p>
-</li>
-<li><p>可加入loss function一起训练正则化</p>
-<p><img src="https://github.com/soloistben/images/raw/master/machine_learning_image/Regression.png" alt="Regression" style="zoom:43%;"></p>
-</li>
-<li><p>L1（有一堆特征，但有些是无用的，用L1可去除一些无用特征），L2（常用，比较柔和）</p>
-<p><img src="https://github.com/soloistben/images/raw/master/machine_learning_image/l1_l2.png" alt="l1_l2" style="zoom:43%;"></p>
-</li>
-</ul>
-</li>
-</ol>
-<h4 id="Three-NLP"><a href="#Three-NLP" class="headerlink" title="Three. NLP"></a>Three. NLP</h4><ol>
-<li><p>what is NLP?</p>
-<ul>
-<li><p>Turning Test 基于 NLP</p>
-</li>
-<li><p>感知智能 -&gt; CV</p>
-</li>
-<li><p>认知智能 -&gt; NLP</p>
-<p><img src="https://github.com/soloistben/images/raw/master/machine_learning_image/text_nlp.png" alt="text_nlp" style="zoom:43%;"></p>
-</li>
-<li><p>语义角色标注（施动者，受动者，描述）</p>
-</li>
-<li><p>理解 <strong>NLU: L -&gt; R</strong>;  生成 <strong>NLG: R -&gt; L</strong></p>
-</li>
-<li><p>让机器get到语言中的meaning</p>
-</li>
-<li><p>NLP 中不允许存在歧义（程序语言没有歧义，自然语言是存在歧义的）</p>
-<ul>
-<li>NLP 需要解决语义之间歧义</li>
-</ul>
-</li>
-<li><p>创造一个 <strong>interlingua 中间语</strong>，允许所有自然语言均可以翻译成 interlingua，自然语言是动态的，则 interlingua 几乎不可创造<em>（没有 interlingua，就很难表示 meaning）</em></p>
-<p><img src="https://github.com/soloistben/images/raw/master/machine_learning_image/ml_translate.png" alt="ml_translate" style="zoom:50%;"></p>
-</li>
-<li><p>对自然语言做语法分析，只能越来越逼近 interlingua</p>
-</li>
-<li><p>在深度学习，则用 respentation / embedding 向量来表示语义的 meaning</p>
-</li>
-<li><p>知识图谱 -&gt; 让机器获取先验知识（前期需要NLP处理数据挖掘实体之间的关系）</p>
-</li>
-</ul>
-</li>
-<li><p>NLP’s hard point</p>
-<ul>
-<li><p>“哈士奇”不管在哪都是“哈士奇”；“同志”在不同语境表示不一样</p>
-</li>
-<li><p>歧义 &amp; 动态</p>
-</li>
-<li><p><strong>语言的本质是谎言</strong>。真话：能正确反映真正事实的话，谎言：不能正确表达真正事实的话（同一句话，不同人理解不一样，都带有各自的偏见，所有不能正确表达真正的事实）</p>
-</li>
-<li><p>符号系统：人类创造符号来表达信息，语言是其中一种。</p>
-</li>
-<li><p><strong>所指：meaning；能指：表达meaning的工具</strong></p>
-<ul>
-<li>所指，能指之间规律不可寻，具有任意性，但在特定的时间，地点可以有局部确定的规律（人类可根据古代壁画符号风格判断年份）</li>
-</ul>
-</li>
-<li><p>语言的任意性所导致的歧义性、动态性，乃至非真实性是语言处理的根本性困难（非真实性：描述抽象概念，没有实体对应（白马非马））</p>
-</li>
-<li><p>基本歧义（语法结构、词义、词性…）</p>
-</li>
-<li><p>旧知识 -&gt; 先验知识 -&gt; 先验知识 + 小样本 -&gt; 新知识</p>
-</li>
-<li><p>乔姆斯基：存在一些普遍语法，并非局部的，是所有语言学的共性</p>
-<ul>
-<li>例如小孩子就可以小样本学习语言，但没有先验知识（并非多次听到语言，毕竟是教不会动物说话）</li>
-<li>“递归”，语言存在递归结构</li>
-<li>递归存在（语言/语义）自指结构（是产生悖论的主要原因之一）（“这句话是错的”）</li>
-</ul>
-</li>
-<li><p><img src="https://github.com/soloistben/images/raw/master/machine_learning_image/rule_statistics.png" alt="rule_statistics" style="zoom: 49%;"><img src="https://github.com/soloistben/images/raw/master/machine_learning_image/rule_statistics_2.png" alt="rule_statistics" style="zoom:32%;"></p>
-<ul>
-<li>只需要判断<strong>特定词汇</strong>，就可以使用CNN（只需要判断句子中有“高兴”词语，就可以判定情感），但判断整句话的所有词，则需要使用RNN</li>
-</ul>
-</li>
-<li><p>语言理解的关键：<strong>背景知识</strong>（上下文）</p>
-<ul>
-<li>在NLP中，所有词都是有歧义，必须要有一个固定场景，才能确定一个词的意思</li>
-<li>语用即语义：词是在场景怎么用的，就是语义</li>
-<li>例如描述人，重点在人与其他事物的关系，并不是人体内在结构</li>
-<li>graph 是表示事物之间的关系</li>
-<li>学习基于事物之间关联，相关性</li>
-<li><strong>相关性</strong>恰恰是破解<strong>任意性</strong>（歧义&amp;动态）的钥匙！</li>
-<li>NLP 用上下文约束自然语言的任意性</li>
-</ul>
-</li>
-<li><p>表示学习（利用上下文表示语义）</p>
-<ul>
-<li>基于特征的可解释表示</li>
-<li>基于深度学习编码的不可解释表示</li>
-<li>与其他非语言对象相结合的表示：如网络表示学习</li>
-<li>作为其他学习模型的输入：深度学习模型、线性学习模型</li>
-</ul>
-</li>
-<li><p><strong>word embedding</strong> 词向量表示学习：<strong>基于上下文用向量表示这个词</strong>，向量则可以计算的</p>
-<p> <img src="https://github.com/soloistben/images/raw/master/machine_learning_image/word_embedding.png" alt="word_embedding" style="zoom:43%;"></p>
-<ul>
-<li>坑：不在一个语义空间的词不能像比较；即使向量数值一样，意义不一样，词就是不一样（人名和电影不在一个空间）</li>
-<li>两个word embedding之间差值，可以表示两者的关系</li>
-</ul>
-</li>
-<li><p>预训练模型（通用知识的自动获取）：表示学习、语言模型、针对特定任务的与训练</p>
-<ul>
-<li><p>基于很大数据学习最基本的（几何）元素，作为其他模型的输入</p>
-</li>
-<li><p>属于传统机器学习（已知最基本元素，用于训练提取）</p>
-<p><img src="https://github.com/soloistben/images/raw/master/machine_learning_image/pre_training.png" alt="pre_training" style="zoom:43%;"></p>
-</li>
-<li><p>深度学习（黑盒子，不知道特征是否重要，用深度学习抽取特征）</p>
-<p><img src="https://github.com/soloistben/images/raw/master/machine_learning_image/DL.png" alt="DL" style="zoom:43%;"></p>
-</li>
-</ul>
-</li>
-<li><p>填补先验知识和模型能力（模型搜索空间）</p>
-<p><img src="https://github.com/soloistben/images/raw/master/machine_learning_image/ml_Process.png" alt="ml_Process" style="zoom:43%;"></p>
-</li>
-</ul>
-</li>
-<li><p>NLP基本任务</p>
-<p><img src="https://github.com/soloistben/images/raw/master/machine_learning_image/NLP_task.png" alt="NLP_task" style="zoom:43%;"></p>
-<p><img src="https://github.com/soloistben/images/raw/master/machine_learning_image/essential model.png" alt="essential model" style="zoom:43%;"></p>
-</li>
-<li><p>NLP’s essential models (<strong>Linear Models</strong>)</p>
-<ul>
-<li><p><strong>EM算法</strong>（<strong>Expectation-maximization algorithm</strong> 期望最大化算法）</p>
-<ul>
-<li><p>“猜测隐藏在文字背后的信息”</p>
-</li>
-<li><p>在概率模型中寻找参数<strong>最大似然估计</strong>或者<strong>最大后验估计</strong>的算法, 其中概率模型依赖于无法观测的<strong>隐性变量</strong>。</p>
-<ul>
-<li>观察结果依赖于隐藏状态。只能看到观察结果,看不到隐藏状态。如何知道隐藏状态生成观察结果的概率(模型参数)?</li>
-</ul>
-</li>
-<li><p>知道其中一个，可以互相推导 （有输入输出（观察值是输入），做监督学习）</p>
-<p><img src="https://github.com/soloistben/images/raw/master/machine_learning_image/EM.png" alt="EM" style="zoom:43%;"></p>
-</li>
-<li><p>当两个都不知道（即 只有输入，没有输出，则为无监督学习）</p>
-<p><img src="https://github.com/soloistben/images/raw/master/machine_learning_image/EM algorithm.png" alt="EM algorithm" style="zoom:43%;"></p>
-</li>
-<li><p>EM算法一定能收敛，但只能局部最优，无法全局最优，可通过尝试多个初始值（瞎猜参数）来改进最优效果</p>
-</li>
-</ul>
-</li>
-<li><p><strong>ME (Maximum Entropy) 最大熵模型</strong></p>
-<ul>
-<li><p>“用特征去束缚语言的任意性”</p>
-</li>
-<li><p>信息熵：用来描述信息的不确定性</p>
-<ul>
-<li><p><strong>一个物理系统越无序（无能力流动，则无序），则能量越小，信息熵越大；越有序（能力按有序方向流动），能量越大，信息熵越小</strong></p>
-</li>
-<li><p>一个体系的能量达到完全均匀分布时，这个系统的熵就达到最大值 </p>
-</li>
-<li><p>封闭系统总熵时不断增大的（能量传递完成，达到均衡），局部会出现熵减小的情况</p>
-</li>
-<li><p>能力来自于差异（判读是否有动能/势能/热能，对比其周围是否存在差异，有差异才存在能力流动）</p>
-<p><img src="https://github.com/soloistben/images/raw/master/machine_learning_image/Entropy.png" alt="Entropy" style="zoom:43%;"></p>
-</li>
-</ul>
-</li>
-<li><p><strong>分布均匀 &lt;=&gt; 熵最大 =&gt; 最合理结果</strong></p>
-</li>
-<li><p>信息熵越大信息量越大（信息的不确定性越强）（熵越大的系统承载信息的能力越大）</p>
-</li>
-<li><p>最大熵：保留全部的不确定性,把风险降到最小</p>
-</li>
-<li><p>最大熵原理指出,需要对一个随机事件的概率分布进行预测时,我们的预测应当<strong>满足全部已知的条件</strong>，而<strong>对未知的情况不要做任何主观假设</strong>。在这种情况下,概率分布最均匀，预测的风险最小。因为这时概率分布的信息熵最大，所以人们称这种模型叫“最大熵模型”。</p>
-</li>
-<li><p>条件熵</p>
-<ul>
-<li><p>在给定输入的情况下，计算输出概率，实际上在计算以输入为条件的条件熵</p>
-<p><img src="https://github.com/soloistben/images/raw/master/machine_learning_image/Condition Entropy.png" alt="Condition Entropy" style="zoom:43%;"></p>
-</li>
-</ul>
-</li>
-<li><p>最大熵模型：求解带约束(特征函数)的最优化问题</p>
-<ul>
-<li>引入拉格朗日乘子,定义拉格朗日函数,转化为特征加权和</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p><strong>隐马尔可夫链 HMM</strong></p>
-<ul>
-<li><p>“语言是一个串”</p>
-</li>
-<li><p>一个隐状态序列产生一个观察值序列。每个隐状态依赖于前一个隐状态</p>
-<p><img src="https://github.com/soloistben/images/raw/master/machine_learning_image/HMM.png" alt="HMM" style="zoom:43%;"></p>
-<ul>
-<li>转移概率：隐状态之间转移（转换）的概率</li>
-<li>发射概率：隐状态产生观察值的概率</li>
-</ul>
-</li>
-<li><p>HMM能解决的问题</p>
-</li>
-</ul>
-<p><img src="https://github.com/soloistben/images/raw/master/machine_learning_image/HMM_Model.png" alt="HMM_Model" style="zoom: 33%;"></p>
-<p><img src="https://github.com/soloistben/images/raw/master/machine_learning_image/HMM_Trasfer.png" alt="HMM_Trasfer" style="zoom:43%;"></p>
-<ul>
-<li>有监督的情形：知道观察序列对应的状态值，直接对训练语料进行统计计数即可，即最大似然</li>
-<li>无监督的情形：不知道观察序列对应的状态值，只知道可能的状态集合（用EM）</li>
-</ul>
-</li>
-<li><p><strong>生成与判别</strong></p>
-<ul>
-<li><p>“纵观全局 or 聚焦一处” 分别对应 生成 or 判别</p>
-</li>
-<li><p>机器学习有两大类模型：生成式模型、判别式模型</p>
-</li>
-<li><p>生成模型：学习得到<strong>联合概率分布P(x,y)</strong>，即特征x和标记y共同出现的概率，然后求条件概率分布。能够学习到数据生成的机制。</p>
-</li>
-<li><p>判别模型：学习得到<strong>条件概率分布P(y|x)</strong>，即在特征x出现的情况下标记y出现的概率。</p>
-<p><img src="https://github.com/soloistben/images/raw/master/machine_learning_image/generation and discrimination.png" alt="generation and discrimination" style="zoom:43%;"></p>
-<ul>
-<li>已知生成模型可以得到各个判别模型；已知判别模型无法得到生成模型，除非已知所有可能的判别关系</li>
-<li>判别模型：<ul>
-<li>优点：所需数据量小,计算量小，对单一类别判定准确率高。可随意增加新特征。</li>
-<li>缺点：无法全局优化，只能完成目标任务，没有提供额外信息的潜力，应用范围受限。</li>
-</ul>
-</li>
-<li>生成模型：<ul>
-<li>优点：信息全面，可实现全局优化。</li>
-<li>缺点：所需数据量大，计算量大，增加新特征的计算成本高。</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>为什么HMM是生成式模型? </p>
-<ul>
-<li>建模所有状态之间的转移关系和状态与所有词汇的发射关系</li>
-<li>所有隐状态概率都要计算</li>
-</ul>
-</li>
-<li><p>最大熵是判别式模型</p>
-<ul>
-<li>给定条件，计算结果（计算条件概率）</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p><strong>MEMM 最大熵隐马：最大熵 + HMM</strong> (偏向最大熵)</p>
-<ul>
-<li><p>在解决序列标注问题时，HMM的输入信息只有参数(π, A, B)和观察序列(即每个状态对应的字)，<strong>没有办法接受更丰富的特征</strong>(例如更多的上下文文字等)。为了解决这个问题，提出了MEMM模型。</p>
-<p><img src="https://github.com/soloistben/images/raw/master/machine_learning_image/MEMM.png" alt="MEMM" style="zoom: 33%;"></p>
-</li>
-<li><p>MEMM模型在预测当前状态时,将前一个状态和与当前观察值相关的一组特征一起做为最大熵模型的输入,来预测当前状态。MEMM与HMM不同，是判别式模型。（有点像RNN）</p>
-<p><img src="https://github.com/soloistben/images/raw/master/machine_learning_image/MEMM model.png" alt="MEMM model" style="zoom:43%;"></p>
-</li>
-<li><p>HMM计算产生整个观察序列的最优状态序列，是全局最优。</p>
-</li>
-<li><p>MEMM计算单个观察值判定的单个最优状态，是局部最优。</p>
-</li>
-</ul>
-</li>
-<li><p><strong>CRF (Conditional Random Field) 条件随机场 (域)</strong></p>
-<ul>
-<li><p>“在更加宽广的上下文上进行判别”</p>
-</li>
-<li><p>HMM是特殊的CRF</p>
-</li>
-<li><p>CRF计算由整个观察序列判定的最优状态序列，是<strong>全局最优</strong>。其中，每个可能的状态序列的概率这样计算：对于序列中的每个状态计算一组特征函数值，然后计算所有状态的特征函数值之和并归一化。</p>
-</li>
-<li><p>判别式模型</p>
-<p><img src="https://github.com/soloistben/images/raw/master/machine_learning_image/CRF.png" alt="CRF" style="zoom: 33%;"></p>
-<p><img src="https://github.com/soloistben/images/raw/master/machine_learning_image/HMM_MEMM_CRF.png" alt="HMM_MEMM_CRF" style="zoom:43%;"></p>
-</li>
-</ul>
-</li>
-<li><p><strong>SVM (support vector machine) 支持向量机</strong></p>
-<ul>
-<li><p>“从线性到非线性分类”</p>
-<p><img src="https://github.com/soloistben/images/raw/master/machine_learning_image/SVM.png" alt="SVM" style="zoom: 33%;"></p>
-</li>
-<li><p>支持向量机(SVM)同最大熵一样是一种常用的线性(Log linear)分类器。</p>
-</li>
-<li><p>SVM求使得Margin最大的分类面,并将<strong>Margin上的向量称为支持向量</strong>（绿边上的向量点）。</p>
-</li>
-<li><p>通过计算样本与哪一类支持向量的内积更大来判断样本类别。</p>
-</li>
-<li><p>对于线性不可分的样本集,可以将其投射到高维空间中来分割。</p>
-</li>
-<li><p>SVM用核函数来方便计算高维空间中样本点之间的内积：核函数可以在原空间中计算高位空间中的内积。</p>
-<p><img src="https://github.com/soloistben/images/raw/master/machine_learning_image/SVM model.png" alt="SVM model" style="zoom:43%;"></p>
-</li>
-<li><p><strong>kernel function</strong> （在原维度计算kernel函数就可视为在高维做计算）</p>
-<p><img src="https://github.com/soloistben/images/raw/master/machine_learning_image/kernel function.png" alt="kernel function" style="zoom:43%;"></p>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p><strong>Topic Models</strong> 主题模型</p>
-<ul>
-<li><p>LSA, pLSA, LDA</p>
-</li>
-<li><p>判断图片相似度：匹配像素</p>
-</li>
-<li><p>判断两篇文章相似度：匹配词汇，每篇文章词汇分布</p>
-<ul>
-<li><p>或者匹配词汇出现频率</p>
-</li>
-<li><p>下图有误，行不全是D1，是表示不同文章</p>
-<p><img src="https://github.com/soloistben/images/raw/master/machine_learning_image/word_match.png" alt="word_match" style="zoom:43%;"></p>
-</li>
-<li><p>词汇在文章出现，也相当于文章的上下文</p>
-</li>
-<li><p>避免选择类似冠词the出现频率过高，或者频率过低但又很重要的词汇</p>
-</li>
-<li><p>逆文档频率（term frequency-inverse document frequency, TF-IDF）</p>
-<ul>
-<li><p>TF-IDF 越高，则改词汇就很重要</p>
-<p><img src="https://github.com/soloistben/images/raw/master/machine_learning_image/TF-IDF.png" alt="TF-IDF" style="zoom:43%;"></p>
-</li>
-<li><p>但这个词汇向量只在乎了词语的出现频率（属于基于词袋），忽略了语义，词汇的信息（词汇序列才产生信息，与DNA碱基对序列同理）</p>
-</li>
-</ul>
-</li>
-<li><p>主题模型是基于词袋的模型</p>
-</li>
-<li><p>可用于检索，是否与某个‘词’相关，可以使用，但想知道与这个‘词’更细节的语义则不行</p>
-</li>
-<li><p><strong>潜在语义分析LSA（Latent Semantic Analysis）</strong></p>
-<ul>
-<li><p>主题就是一个潜在语义</p>
-</li>
-<li><p>n个文章 -&gt; k个主题 -&gt; m词汇</p>
-</li>
-<li><p>文章-主题矩阵（文章涉及主题分布），主题-词汇矩阵（主题涉及词汇分布）</p>
-<p><img src="https://github.com/soloistben/images/raw/master/machine_learning_image/LSA.png" alt="LSA" style="zoom: 25%;"></p>
-</li>
-<li><p>拥有右边矩阵，想得到左边两个矩阵</p>
-</li>
-<li><p>SVD 奇异值分解（矩阵分解）（存在负值，负值不符合物理意义的解释）</p>
-</li>
-<li><p>LSA只是形式上拟合了文档-主题-词汇的关系,但并没有真正表达这种关系</p>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p><strong>概率潜在语义分析 pLSA</strong></p>
-<ul>
-<li><p>在LSA基础上，输出概率值，才可赋予物理意义</p>
-<p><img src="https://github.com/soloistben/images/raw/master/machine_learning_image/pLSA.png" alt="pLSA" style="zoom:43%;"></p>
-</li>
-<li><p>箭头表示依赖关系</p>
-</li>
-<li><p>P(d) 文章被抽中的概率（属于先验概率）</p>
-</li>
-<li><p>P(z|d) 给定文章，主题的概率，P(w|z) 给定主题，词汇的概率（两个属于后验概率）</p>
-<p><img src="https://github.com/soloistben/images/raw/master/machine_learning_image/pLSA model.png" alt="pLSA model" style="zoom:43%;"></p>
-</li>
-<li><p>求出所有边的概率，则可以得到 文本-主题矩阵，主题-词汇矩阵</p>
-</li>
-<li><p><strong><em>只知道观察值，想知道内部的两个隐状态，则用 EM算法</em></strong></p>
-</li>
-</ul>
-</li>
-<li><p><strong>潜在狄利克雷分配 LDA</strong>（latent Dirichlet allocation）</p>
-<ul>
-<li><p>pLSA中单词和主题的先验分布都假设是均匀分布的，也就是假设我们对他们的先验分布一无所知。这种假设使得pLSA比较容易出现过拟合。</p>
-</li>
-<li><p>文档生成话题和话题生成单词的过程是典型的多项分布,在贝叶斯学习中，狄利克雷分布常作为多项分布的先验分布使用 LDA 将狄利克雷分布做为话题和单词生成的先验分布</p>
-<p><img src="https://github.com/soloistben/images/raw/master/machine_learning_image/LDA.png" alt="LDA" style="zoom:43%;"></p>
-</li>
-<li><p>给文章根据狄利克雷分布随机分配个主题</p>
-<p><img src="https://github.com/soloistben/images/raw/master/machine_learning_image/LDA model.png" alt="LDA model" style="zoom:43%;"></p>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p><strong>Deep Learning Models</strong> 深度学习模型</p>
-<ul>
-<li><p>属于生成式模型</p>
-</li>
-<li><p>线性模型：所有特征加权求和，通过激活函数，则成为线性感知机</p>
-<ul>
-<li>logistic（缩小输出范围）</li>
-<li>softmax（所有值变为概率分布，总值=1）</li>
-<li>KL散度（交叉熵）评估输出概率分布和真实分布的差距</li>
-</ul>
-</li>
-<li><p>人工神经网络</p>
-<ul>
-<li>神经元激活规则<ul>
-<li>主要是指神经元输入到输出之间的映射关系,一般为非线性函数。</li>
-</ul>
-</li>
-<li>网络的拓扑结构<ul>
-<li>不同神经元之间的连接关系。</li>
-</ul>
-</li>
-<li><p>学习算法</p>
-<ul>
-<li>通过训练数据来学习神经网络的参数。</li>
-</ul>
-</li>
-<li><p>ANN</p>
-<p><img src="https://github.com/soloistben/images/raw/master/machine_learning_image/ANN.png" alt="ANN" style="zoom: 50%;"></p>
-</li>
-<li><p><strong>全连接前馈神经网络</strong></p>
-<ul>
-<li>在前馈神经网络中,各神经元分别属于不同的层。整个网络中无反馈，信号从输入层向输出层单向传 播,可用一个有向无环图表示。</li>
-<li>全连接复杂度高，发挥全部能力</li>
-<li>容易过拟合（使用dropout价格低复杂度，避免过拟合）</li>
-<li>通用近似定理<ul>
-<li>对于具有线性输出层和至少一个使用 “挤压” 性质的激活函数的隐藏层组成的前馈神经网络，只要其隐藏层神经元的数量足够,它可以以任意精度来近似任何从一个定义在实数空间中的有界闭集函数</li>
-<li>“挤压” 性质：将输入数值范围挤压到一定的输出数值范围 </li>
-<li>不是“挤压”性质的就是线性的</li>
-</ul>
-</li>
-<li>反向传播更新参数</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>深度学习三个步骤</p>
-<ul>
-<li>定义网络 -&gt; 损失函数 -&gt; 优化</li>
-</ul>
-</li>
-<li><p>梯度爆炸</p>
-<ul>
-<li>若初始化的w是很大的数，w大到乘以激活函数的导数都大于1，那么连乘后,可能会导致求导的结果很大，形成梯度爆炸</li>
-</ul>
-</li>
-<li><p><strong>梯度消失</strong></p>
-<ul>
-<li><p>若使用标准化初始w，那么各个层次的相乘都是0-1之间的小数,而激活函数f的导数也是0-1之间的数,其连乘后,结果会变的很小，导致梯度消失</p>
-</li>
-<li><p>Activation Function</p>
-<ul>
-<li>sigmoid是非0均值（相当于加了一个偏置），还计算指数（指数计算相对复杂）</li>
-</ul>
-<p><img src="https://github.com/soloistben/images/raw/master/machine_learning_image/activation function.png" alt="activation function"></p>
-</li>
-<li><p><strong>CNN</strong></p>
-<ul>
-<li><p>让每个神经元不代表一个像素，而是代表一个区域，而且，区域更容易捕捉局部特征</p>
-</li>
-<li><p>生物学上局部感受野</p>
-</li>
-<li><p>结构特点：<strong>局部连接，权重共享</strong></p>
-</li>
-<li><p>同时使用多组卷积核,每个负责提取不同特征</p>
-</li>
-<li><p><strong>padding</strong> 在图片外面填充一圈0（在没有padding，则边缘像素被访问概率相对对较低）</p>
-<p><img src="https://github.com/soloistben/images/raw/master/machine_learning_image/conv.png" alt="conv" style="zoom: 33%;"></p>
-</li>
-<li><p><strong>pooling 池化</strong>：卷积层虽然可以显著减少连接的个数，但是每一个特征映射的神经元个数并没有显著减少</p>
-<p><img src="https://github.com/soloistben/images/raw/master/machine_learning_image/CNN.png" alt="CNN" style="zoom:43%;"></p>
-</li>
-<li><p>优点：善于提取特征、适用于分类、可并行、效率高</p>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p><strong>RNN</strong></p>
-<ul>
-<li><p>假设每次输入都是独立的，也就是说每次网络的输出只依赖于当前的输入</p>
-</li>
-<li><p>一个网络的输出做为另一个网络的输入</p>
-<ul>
-<li>y3是取决于前面y1, y2 (但重要程度是不一样的，越近越重要（但不是什么时候都符合这个，在序列较长时，存在远距离相关，则需要LSTM/GRU）)，但没有考虑到后者y4, y5（若需要考虑上下文，则需要双向RNN）</li>
-<li>最后的y则包含所有信息</li>
-<li>马尔科夫链每个状态只由前一个状态影响 而RNN每一个节点由前面所有节点影响</li>
-</ul>
-<p><img src="https://github.com/soloistben/images/raw/master/machine_learning_image/RNN.png" alt="RNN" style="zoom:43%;"></p>
-</li>
-<li><p>LSTM （长短期记忆神经网络）</p>
-<p><img src="https://github.com/soloistben/images/raw/master/machine_learning_image/LSTM.png" alt="LSTM" style="zoom:43%;"></p>
-</li>
-<li><p>GRU （降低复杂度，能达到LSTM的效果）</p>
-<p><img src="https://github.com/soloistben/images/raw/master/machine_learning_image/GRU.png" alt="GRU" style="zoom:43%;"></p>
-</li>
-<li><p>各种类型RNN</p>
-<p><img src="https://github.com/soloistben/images/raw/master/machine_learning_image/RNN model.png" alt="RNN model" style="zoom:43%;"></p>
-</li>
-<li><p>层叠循环神经网络：可以捕捉更加抽象的内涵</p>
-<p><img src="https://github.com/soloistben/images/raw/master/machine_learning_image/deep RNN.png" alt="deep RNN" style="zoom:43%;"></p>
-</li>
-<li><p>双向循环神经网络：可以捕捉两侧的上下文信息</p>
-<p><img src="https://github.com/soloistben/images/raw/master/machine_learning_image/BRNN.png" alt="BRNN" style="zoom:43%;"></p>
-</li>
-<li><p>递归神经网络 Recursive Neural Network</p>
-<ul>
-<li><p>自然语言的句法结构</p>
-<p><img src="https://github.com/soloistben/images/raw/master/machine_learning_image/Recursive NN.png" alt="Recursive NN" style="zoom:43%;"></p>
-</li>
-<li><p>递归神经网络实在一个有向图无循环图上共享一个组合函数</p>
-</li>
-<li><p>叶子节点为输入</p>
-</li>
-<li><p>对于有歧义的句子（句法的歧义，<strong>不知道（形容）词语指向哪个主语</strong>）或者图片（图片中<strong>物品属于哪个主人</strong>），（需要从属关系的时候）可以用递归神经网络，用树的结构区别句法的结构和物品所属</p>
-</li>
-<li><p>可以退化为循环神经网络（属于RNN的特例）</p>
-</li>
-</ul>
-</li>
-<li><p>优点：善于累积序列信息、适用于序列标注或编码、不可并行、效率低</p>
-</li>
-</ul>
-</li>
-<li><p><strong>Attention</strong></p>
-<ul>
-<li><p>基于RNN的机器翻译中的注意力现象：源语言词汇对每个目标语的依赖程度不同</p>
-<p><img src="https://github.com/soloistben/images/raw/master/machine_learning_image/autoenocder.png" alt="autoenocder" style="zoom:43%;"></p>
-</li>
-<li><p><img src="https://github.com/soloistben/images/raw/master/machine_learning_image/attention.png" alt="attention" style="zoom:43%;"></p>
-</li>
-</ul>
-</li>
-<li><p>different network</p>
-<p><img src="https://github.com/soloistben/images/raw/master/machine_learning_image/different network.png" alt="different network" style="zoom:43%;"></p>
-</li>
-<li><p>word embedding</p>
-<ul>
-<li>one-hot(独热)编码<ul>
-<li>向量维度为数据库中总词汇数,每个词向量在其对应词处取值为1，其余处为0</li>
-<li>存在的问题: 维度灾难，语义鸿沟</li>
-</ul>
-</li>
-<li><p>分布式表示 Distributed Representation</p>
-</li>
-<li><p>假设一个单词的语义和这个单词的上下文是相关的，我们可以使用这个单词的上下文来表示这个单词的语义信息</p>
-</li>
-<li><p>延申：语义相似的单词也应该具有相似的上下文。</p>
-<ul>
-<li><p>上下文(context): 在附近出现的所有单词的集合。–&gt; 窗口window</p>
-<p><img src="https://github.com/soloistben/images/raw/master/machine_learning_image/DR.png" alt="DR" style="zoom:43%;"></p>
-</li>
-<li><p>如何训练分布式</p>
-<ul>
-<li><p>共现矩阵 Co-occurrence Matrix</p>
-<p><img src="https://github.com/soloistben/images/raw/master/machine_learning_image/COM.png" alt="COM" style="zoom:43%;"></p>
-</li>
-<li><p>潜在语义分析 LSA (Latent Semantic Analysis)</p>
-</li>
-</ul>
-</li>
-<li><p>奇异值分解 Singular Value Decomposition</p>
-<p><img src="https://github.com/soloistben/images/raw/master/machine_learning_image/SVD.png" alt="SVD" style="zoom:43%;"></p>
-</li>
-<li><p>前馈神经网络语言模型 FNNLM</p>
-<p><img src="https://github.com/soloistben/images/raw/master/machine_learning_image/FNNLM.png" alt="FNNLM" style="zoom:43%;"></p>
-<p><img src="https://github.com/soloistben/images/raw/master/machine_learning_image/FNNLM_2.png" alt="FNNLM_2" style="zoom:43%;"></p>
-</li>
-<li><p>Word2Vec</p>
-<p><img src="https://github.com/soloistben/images/raw/master/machine_learning_image/word2vec.png" alt="word2vec" style="zoom:43%;"></p>
-</li>
-<li><p>CBOW (continuous bag-of-words)</p>
-<p><img src="https://github.com/soloistben/images/raw/master/machine_learning_image/CBOW.png" alt="CBOW" style="zoom:43%;"></p>
-</li>
-<li><p>Skip-Gram</p>
-<p><img src="https://github.com/soloistben/images/raw/master/machine_learning_image/skip-gram.png" alt="skip-gram" style="zoom:43%;"></p>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>Pre-training 预训练 </p>
-<ul>
-<li>先验知识 -&gt; 学习模型 &lt;- 经验数据<ul>
-<li>模型选择</li>
-<li>参数设定</li>
-<li>领域知识</li>
-</ul>
-</li>
-<li>预训练模型提供了先验知识，不需要知道后面的任务目标，获得embedding</li>
-<li>越深层，特征越具体</li>
-<li>小样本学习 = 预训练 + 微调</li>
-<li>目标任务与云训练模型最好是同类型的，效果会更好</li>
-<li>RNN:不能准确捕捉远距离依赖，不能并行<ul>
-<li>解决并行问题:给每个词编码，然后在词编码上用NN输出一个向量，NN可以并行。可以并行的网络可以做的更深</li>
-<li>解决远距离依赖问题：给每个词编码的时候用注意力机制</li>
-</ul>
-</li>
-<li>Transformer是一个典型的Encoder-Decoder模型，最初用于机器翻译。其中间部分(Encoder的输出)，是一个句子的向量表示。因此,Transformer的Encoder部分可以用作句子向量的预训练模型。</li>
-</ul>
-</li>
-<li><p><strong>GNN</strong></p>
-<ul>
-<li><p>卷积模型、序列模型</p>
-</li>
-<li><p>无论卷积还是序列模型，实际上都假定输入对象的结构是一个<strong>均匀</strong>的网络。换言之，就是基本元素(像素、词汇)之间的关系结构是处处相同的。（符合欧式距离）</p>
-</li>
-<li><p>但是，现实中元素之间的结构并不总是均匀的。而任意图才是元素结构的一般化表示,网格与序列都只是一般图的特例</p>
-<p><img src="https://github.com/soloistben/images/raw/master/machine_learning_image/non_eu_and eu.png" alt="non_eu_and eu" style="zoom:43%;"></p>
-</li>
-<li><p>具有一般图结构的对象十分广泛，都无法用普通的CNN和RNN有效处理</p>
-<p> <img src="https://github.com/soloistben/images/raw/master/machine_learning_image/graph_data.png" alt="graph_data" style="zoom:43%;"></p>
-</li>
-<li><p>若使用基于局部特征的方法来处理，一般图，如何定义卷积核的尺寸和方法? (<strong>CNN -&gt; GCN</strong>)</p>
-</li>
-<li><p>若使用序列的方法来处理一般图，如何给出序列的行走路线? (<strong>RNN -&gt; deepwalk</strong>)</p>
-</li>
-<li><p>通过NN获得<strong>embedding</strong>：包含 feature information + structure information</p>
-<p><img src="https://github.com/soloistben/images/raw/master/machine_learning_image/graph_process.png" alt="graph_process" style="zoom:43%;"></p>
-<p><img src="https://github.com/soloistben/images/raw/master/machine_learning_image/gnn_process.png" alt="gnn_process" style="zoom:43%;"></p>
-</li>
-<li><p><strong>SDNE (Structural deep network embedding)</strong></p>
-<ul>
-<li><p>同时优化一阶和二阶相似度</p>
-</li>
-<li><p>每个结点用一个自编码器来重建领域信息,从而建模二阶相似度</p>
-</li>
-<li><p>节点之间使用拉普拉斯特征映射(反映节点之间的距离)来惩罚使得相邻节点距离较远的编码结果</p>
-<p><img src="https://github.com/soloistben/images/raw/master/machine_learning_image/SDNE.png" alt="SDNE" style="zoom: 50%;"></p>
-</li>
-</ul>
-</li>
-<li><p><strong>DeepWalk</strong></p>
-<p><img src="https://github.com/soloistben/images/raw/master/machine_learning_image/deepwalk.png" alt="deepwalk" style="zoom:43%;"></p>
-</li>
-<li><p><strong>Node2Vec</strong></p>
-<ul>
-<li><p>与DeepWalk的最大区别在于，node2vec采用有偏随机游走,在广度优先(bfs)和深度优先(dfs)图搜索之间进行权衡,从而产生比DeepWalk更高质量和更多信息量的嵌入</p>
-<p><img src="https://github.com/soloistben/images/raw/master/machine_learning_image/node2vec.png" alt="node2vec" style="zoom:43%;"></p>
-</li>
-<li><p>通过调整参数可以使得顶点的上下文在远距离邻居(DFS)和近距离邻居(BFS)之间调整</p>
-<p><img src="https://github.com/soloistben/images/raw/master/machine_learning_image/bsf_dsf.png" alt="node2vec_" style="zoom:43%;"></p>
-</li>
-<li><p>通过调整参数可以使得顶点的上下文在远距离邻居(DFS)和近距离邻居(BFS)之间调整</p>
-<p><img src="https://github.com/soloistben/images/raw/master/machine_learning_image/dsf_bsf.png" alt="dsf_bsf" style="zoom:43%;"></p>
-</li>
-</ul>
-</li>
-<li><p><strong>Metapath2vec</strong>: 异质性网络中的顶点表示</p>
-<ul>
-<li><p>随机路径必须符合预设的若干元路径(Metapath)</p>
-<p><img src="https://github.com/soloistben/images/raw/master/machine_learning_image/metapath2vec.png" alt="metapath2vec" style="zoom:43%;"></p>
-</li>
-</ul>
-</li>
-<li><p><strong>LINE</strong>: explicitly preserves both first-order and second-order proximities.</p>
-<p><img src="https://github.com/soloistben/images/raw/master/machine_learning_image/LINE.png" alt="LINE" style="zoom:43%;"></p>
-</li>
-<li><p><strong>PTE</strong>: learn heterogeneous text network embedding via a semi-supervised manner.</p>
-<p><img src="https://github.com/soloistben/images/raw/master/machine_learning_image/PTE.png" alt="{TE" style="zoom:43%;"></p>
-</li>
-<li><p><strong>GCN</strong></p>
-<ul>
-<li><p>以每个节点为核心，将其邻域设为卷积范围，卷积方法是汇聚邻居节点的信息做为核心节点的表示。</p>
-<p><img src="https://github.com/soloistben/images/raw/master/machine_learning_image/GCN.png" alt="GCN" style="zoom:43%;"></p>
-</li>
-</ul>
-</li>
-<li><p><strong>GAT</strong></p>
-<ul>
-<li><p>基本的GCN中邻居节点的权重是平均的。</p>
-</li>
-<li><p>GAT中邻居节点的权重是可以训练的参数。</p>
-<p><img src="https://github.com/soloistben/images/raw/master/machine_learning_image/GAT.png" alt="GAT" style="zoom:43%;"></p>
-</li>
-</ul>
-</li>
-<li><p>GCN和GAT 是Transductive learning: 训练语料包含待标注语料，标注在训练过程中完成。</p>
-<ul>
-<li>优点：质量高</li>
-<li>缺点：扩展性差(标注新样本需要全局重新训练)</li>
-<li>GCN和GAT的缺点：网络的任何变化都要重新进行全局训练 (类似word embedding)</li>
-</ul>
-</li>
-<li><p><strong>GraphSage</strong> 是Inductive learning：训练语料不包含待标注语料，先训练获得模型,然后泛化到测试语料上。</p>
-<ul>
-<li><p>GraphSage学习一个由邻居节点形成中心节点表示的神经网络模型(聚合函数)</p>
-<p> <img src="https://github.com/soloistben/images/raw/master/machine_learning_image/graphsage.png" alt="graphsage" style="zoom:43%;"></p>
-</li>
-<li><p>GraphSage是分层的，类似神经网络的层次。每一层的节点表示由前一层的邻居节点通过聚合函数获得。</p>
-</li>
-<li><p>随着层次的推进，每个结点实际上不仅可以获得邻居结点的信息，还可以获得更远距离的结点的信息。</p>
-<p> <img src="https://github.com/soloistben/images/raw/master/machine_learning_image/graphsage2.png" alt="graphsage2" style="zoom:43%;"></p>
-</li>
-<li><p>GraphSage的参数学习需要设计一个损失函数。（有监督/无监督）</p>
-</li>
-<li><p>对于无监督学习，损失函数应该让临近的节点的拥有相似的表示。</p>
-</li>
-</ul>
-</li>
-<li><p>文本分类: <strong>Text-GCN 2019</strong></p>
-<ul>
-<li><p>以文档和词汇为结点构造异质性网络，训练获得文档的向量表示并分类到类别。</p>
-<p><img src="https://github.com/soloistben/images/raw/master/machine_learning_image/text_gcn.png" alt="text_gcn" style="zoom:43%;"></p>
-</li>
-</ul>
-</li>
-<li><p><strong>关系抽取: 2018</strong></p>
-<ul>
-<li><p>以依存句法树做为GCN的输入图,得到词汇的表示,进而分类词汇是否为关系标记词</p>
-<p> <img src="https://github.com/soloistben/images/raw/master/machine_learning_image/关系抽取.png" alt="关系抽取" style="zoom:43%;"></p>
-</li>
-</ul>
-</li>
-<li><p><strong>个性化推荐: 2018</strong></p>
-<ul>
-<li><p>建立用户-用户-物品关系图</p>
-</li>
-<li><p>在关系图上分别得到用户和物品的表示</p>
-</li>
-<li><p>基于用户和物品的表示建立Rating预测模型</p>
-<p><img src="https://github.com/soloistben/images/raw/master/machine_learning_image/个性化推荐.png" alt="个性化推荐" style="zoom:43%;"></p>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/05/06/machine-learning/" data-id="ckfxfi63t001ccwegtzuvnx6a" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ML/">ML</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-RNN-LSTM" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/05/06/RNN-LSTM/" class="article-date">
-  <time datetime="2020-05-06T12:11:28.000Z" itemprop="datePublished">2020-05-06</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/05/06/RNN-LSTM/">RNN_LSTM</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="RNN"><a href="#RNN" class="headerlink" title="RNN"></a>RNN</h4><ul>
-<li><p><strong>recurrent</strong> (it performs the same function for every input)</p>
-</li>
-<li><p>the output of the current input depends on the <strong>past one</strong> computation </p>
-</li>
-<li><p>RNN can use their <strong>internal state (memory)</strong> to process sequences of inputs</p>
-</li>
-<li><p>In RNN, all the inputs are <strong>related</strong> to each other (In other neural networks, all the inputs are independent of each other)</p>
-<p><img src="https://github.com/soloistben/images/raw/master/rnn_lstm_image/rnn.png" alt="rnn" style="zoom:50%;"></p>
-</li>
-<li><p>activation function is <strong>tanh()</strong></p>
-<p><img src="https://github.com/soloistben/images/raw/master/rnn_lstm_image/tanh.png" alt="tanh" style="zoom:43%;"></p>
-</li>
-<li><p>output</p>
-<p><img src="https://github.com/soloistben/images/raw/master/rnn_lstm_image/yt.png" alt="yt" style="zoom:43%;"></p>
-</li>
-<li><p>Advantages</p>
-<ul>
-<li><strong>RNN</strong> can model sequence of data so that each sample can be assumed to be dependent on previous ones </li>
-<li><strong>RNN</strong> are even used with convolutional layers to extend the effective pixel neighborhood. </li>
-</ul>
-</li>
-<li><p>Disadvantages</p>
-<ul>
-<li>Gradient vanishing and exploding problems </li>
-<li>Training an RNN is a very difficult task </li>
-<li>It cannot process very long sequences if using <em>tanh</em> or <em>relu</em> as an activation function</li>
-</ul>
-</li>
-</ul>
-<h4 id="LSTM-Long-Short-Term-Memory"><a href="#LSTM-Long-Short-Term-Memory" class="headerlink" title="LSTM (Long Short-Term Memory)"></a>LSTM (Long Short-Term Memory)</h4><ul>
-<li><p>LSTM is a modified version of RNN, which makes it easier to <strong>remember</strong> past data in memory </p>
-</li>
-<li><p>The <strong>vanishing gradient</strong> problem of RNN is resolved here </p>
-</li>
-<li><p>LSTM is well-suited to classify, process and predict <strong>time series given time lags of unknown duration</strong></p>
-<p><img src="https://github.com/soloistben/images/raw/master/rnn_lstm_image/LSTM.png" alt="LSTM" style="zoom:43%;"></p>
-</li>
-<li><p><strong>Input gate</strong> — discover which value from input should be used to modify the memory </p>
-<ul>
-<li><strong>Sigmoid</strong> function decides which values to let through <strong>0,1.</strong></li>
-<li><strong>tanh</strong> function gives weightage to the values which are passed deciding their level of importance ranging from<strong>-1</strong> to <strong>1</strong> </li>
-</ul>
-<p><img src="https://github.com/soloistben/images/raw/master/rnn_lstm_image/input_gate.png" alt="input_gate" style="zoom:43%;"></p>
-</li>
-<li><p><strong>Forget gate</strong> — discover what details to be discarded from the block</p>
-<ul>
-<li><strong>sigmoid</strong> function looks at the previous state(<strong>ht-1</strong>) and the content input(<strong>Xt</strong>) and outputs a number between <strong>0</strong> (<em>omit this</em>) and <strong>1</strong>(<em>keep this**</em>)<strong> for each number in the cell state </strong>Ct−1**. </li>
-</ul>
-<p><img src="https://github.com/soloistben/images/raw/master/rnn_lstm_image/forget_gate.png" alt="forget_gate" style="zoom:43%;"></p>
-</li>
-<li><p><strong>Output gate</strong> — the input and the memory of the block is used to decide the output </p>
-<p><img src="https://github.com/soloistben/images/raw/master/rnn_lstm_image/output_gate.png" alt="output_gate" style="zoom: 33%;"></p>
-</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/05/06/RNN-LSTM/" data-id="ckfxfi624000hcweglyu7ric0" class="article-share-link">Share</a>
-      
-      
     </footer>
   </div>
   
@@ -2836,23 +1816,23 @@
       <ul>
         
           <li>
+            <a href="/2020/10/06/EM/">EM</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/06/Hidden-Markov-Model/">Hidden_Markov_Model</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/06/PGM-Inference/">PGM_Inference</a>
+          </li>
+        
+          <li>
             <a href="/2020/10/05/Exponential-Family-Distribution/">Exponential_Family_Distribution</a>
           </li>
         
           <li>
             <a href="/2020/10/02/Dimensionality-Reduction/">Dimensionality_Reduction</a>
-          </li>
-        
-          <li>
-            <a href="/2020/10/02/SVM/">SVM</a>
-          </li>
-        
-          <li>
-            <a href="/2020/10/02/Decision-Tree/">Decision_Tree</a>
-          </li>
-        
-          <li>
-            <a href="/2020/09/11/Statistics/">Statistics</a>
           </li>
         
       </ul>

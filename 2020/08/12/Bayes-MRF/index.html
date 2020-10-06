@@ -7,13 +7,13 @@
   
   <title>Bayes_MRF | MR.C</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Bayes 贝叶斯 &amp;amp; Markov Random Fields 马尔可夫随机场One. 前提 Probabilistic Graphical Model (PGM 概率图模型) （将概率引入图模型，没有图，只能计算，引入图，比较直观，容易观察） Representation 表示 有向图 Bayesian Network (有向无环，则起始结点决定这终止节点的概率) 无向图 Markov">
+  <meta name="description" content="Bayes Network贝叶斯网络 &amp;amp; Markov Random Fields 马尔可夫随机场One. 前提 Probabilistic Graphical Model (PGM 概率图模型) （将概率引入图模型，没有图，只能计算，引入图，比较直观，容易观察） Representation 表示 有向图 Bayesian Network (有向无环，则起始结点决定这终止节点的概率) 无">
 <meta name="keywords" content="ML">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Bayes_MRF">
 <meta property="og:url" content="http://yoursite.com/2020/08/12/Bayes-MRF/index.html">
 <meta property="og:site_name" content="MR.C">
-<meta property="og:description" content="Bayes 贝叶斯 &amp;amp; Markov Random Fields 马尔可夫随机场One. 前提 Probabilistic Graphical Model (PGM 概率图模型) （将概率引入图模型，没有图，只能计算，引入图，比较直观，容易观察） Representation 表示 有向图 Bayesian Network (有向无环，则起始结点决定这终止节点的概率) 无向图 Markov">
+<meta property="og:description" content="Bayes Network贝叶斯网络 &amp;amp; Markov Random Fields 马尔可夫随机场One. 前提 Probabilistic Graphical Model (PGM 概率图模型) （将概率引入图模型，没有图，只能计算，引入图，比较直观，容易观察） Representation 表示 有向图 Bayesian Network (有向无环，则起始结点决定这终止节点的概率) 无">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://github.com/soloistben/images/raw/master/bayes_mrf/bayes_1.png">
 <meta property="og:image" content="https://github.com/soloistben/images/raw/master/bayes_mrf/bayes_2.png">
@@ -29,10 +29,10 @@
 <meta property="og:image" content="https://github.com/soloistben/images/raw/master/bayes_mrf/pair-markov_3.png">
 <meta property="og:image" content="https://github.com/soloistben/images/raw/master/bayes_mrf/pair-markov_4.png">
 <meta property="og:image" content="https://github.com/soloistben/images/raw/master/bayes_mrf/pair-markov_5.png">
-<meta property="og:updated_time" content="2020-10-06T07:07:50.064Z">
+<meta property="og:updated_time" content="2020-10-06T12:25:36.842Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Bayes_MRF">
-<meta name="twitter:description" content="Bayes 贝叶斯 &amp;amp; Markov Random Fields 马尔可夫随机场One. 前提 Probabilistic Graphical Model (PGM 概率图模型) （将概率引入图模型，没有图，只能计算，引入图，比较直观，容易观察） Representation 表示 有向图 Bayesian Network (有向无环，则起始结点决定这终止节点的概率) 无向图 Markov">
+<meta name="twitter:description" content="Bayes Network贝叶斯网络 &amp;amp; Markov Random Fields 马尔可夫随机场One. 前提 Probabilistic Graphical Model (PGM 概率图模型) （将概率引入图模型，没有图，只能计算，引入图，比较直观，容易观察） Representation 表示 有向图 Bayesian Network (有向无环，则起始结点决定这终止节点的概率) 无">
 <meta name="twitter:image" content="https://github.com/soloistben/images/raw/master/bayes_mrf/bayes_1.png">
   
     <link rel="alternate" href="/atom.xml" title="MR.C" type="application/atom+xml">
@@ -102,11 +102,11 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="Bayes-贝叶斯-amp-Markov-Random-Fields-马尔可夫随机场"><a href="#Bayes-贝叶斯-amp-Markov-Random-Fields-马尔可夫随机场" class="headerlink" title="Bayes 贝叶斯 &amp; Markov Random Fields 马尔可夫随机场"></a>Bayes 贝叶斯 &amp; Markov Random Fields 马尔可夫随机场</h4><h5 id="One-前提"><a href="#One-前提" class="headerlink" title="One. 前提"></a>One. 前提</h5><ul>
+        <h4 id="Bayes-Network贝叶斯网络-amp-Markov-Random-Fields-马尔可夫随机场"><a href="#Bayes-Network贝叶斯网络-amp-Markov-Random-Fields-马尔可夫随机场" class="headerlink" title="Bayes Network贝叶斯网络 &amp; Markov Random Fields 马尔可夫随机场"></a>Bayes Network贝叶斯网络 &amp; Markov Random Fields 马尔可夫随机场</h4><h5 id="One-前提"><a href="#One-前提" class="headerlink" title="One. 前提"></a>One. 前提</h5><ul>
 <li><strong>Probabilistic Graphical Model (PGM 概率图模型)</strong> （将概率引入图模型，没有图，只能计算，引入图，比较直观，容易观察）<ul>
 <li>Representation 表示<ul>
 <li>有向图 Bayesian Network (有向无环，则起始结点决定这终止节点的概率)</li>
-<li>无向图 Markov Network (无向，则结点的概率仅取决于1阶邻居)</li>
+<li>无向图 Markov Network (Markov Random Fields) (无向，则结点的概率仅取决于1阶邻居)</li>
 <li>高斯图 （连续）<ul>
 <li>Gassian Bayes Network</li>
 <li>Gassian Markov Network</li>
@@ -115,7 +115,10 @@
 </ul>
 </li>
 <li>Inference 推断<ul>
-<li>精确推断</li>
+<li>精确推断<ul>
+<li>Variable Elimination, Belief Propagation, Junction Tree Algorithm</li>
+</ul>
+</li>
 <li>近似推断<ul>
 <li>确定性近似（变分推断）</li>
 <li>随机性近似（蒙特卡洛，MCMC）</li>
@@ -341,7 +344,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/08/12/Bayes-MRF/" data-id="ckfxfi61e0000cweg6w3btvit" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/08/12/Bayes-MRF/" data-id="ckfxzcll800045qeg9hkt77fx" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ML/">ML</a></li></ul>
@@ -415,23 +418,23 @@
       <ul>
         
           <li>
+            <a href="/2020/10/06/EM/">EM</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/06/Hidden-Markov-Model/">Hidden_Markov_Model</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/06/PGM-Inference/">PGM_Inference</a>
+          </li>
+        
+          <li>
             <a href="/2020/10/05/Exponential-Family-Distribution/">Exponential_Family_Distribution</a>
           </li>
         
           <li>
             <a href="/2020/10/02/Dimensionality-Reduction/">Dimensionality_Reduction</a>
-          </li>
-        
-          <li>
-            <a href="/2020/10/02/SVM/">SVM</a>
-          </li>
-        
-          <li>
-            <a href="/2020/10/02/Decision-Tree/">Decision_Tree</a>
-          </li>
-        
-          <li>
-            <a href="/2020/09/11/Statistics/">Statistics</a>
           </li>
         
       </ul>

@@ -19,7 +19,7 @@
 <meta property="og:image" content="https://github.com/soloistben/images/raw/master/hmm_crf/hmm_function.png">
 <meta property="og:image" content="https://github.com/soloistben/images/raw/master/hmm_crf/FB.png">
 <meta property="og:image" content="https://github.com/soloistben/images/raw/master/hmm_crf/FB_2.png">
-<meta property="og:updated_time" content="2020-08-12T12:11:58.941Z">
+<meta property="og:updated_time" content="2020-10-06T12:56:46.014Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="HMM_CRF">
 <meta name="twitter:description" content="Hidden Markov Model 隐马尔可夫 &amp;amp; Conditional Random Field 条件随机场One. Time Sequence / Series 在时间序列中，起伏状态可以被观测到（股票走势就是一种时间序列，股票中的涨跌） 无法观测到的是时间序列的隐状态（股票中是否处于牛市状态，这类的就是隐状态） 隐状态会有很多 当知道隐状态存在时，每个隐状态被观测时，都是相互独">
@@ -103,8 +103,7 @@
 </ul>
 <h5 id="Two-HMM"><a href="#Two-HMM" class="headerlink" title="Two. HMM"></a>Two. HMM</h5><ul>
 <li>在概率中，隐马尔可夫模型对应所有状态是相互独立的</li>
-<li><p><strong>P(q_t|q_t-1)</strong>  Transition Probability 转移概率</p>
-<ul>
+<li><strong>P(q_t|q_t-1)</strong>  Transition Probability 转移概率<ul>
 <li>P(q_t|q_t-1, q_t-2,…, q_1) = P(q_t|q_t-1)<ul>
 <li>每个状态只取决于前面一个状态，而非前面所有状态</li>
 <li>即当前隐状态到下一个隐状态的概率</li>
@@ -113,8 +112,7 @@
 <li>Discrete 离散的（用矩阵表示 A，维度(k, k)，k是开个隐状态）</li>
 </ul>
 </li>
-<li><p><strong>P(y_t|q_t)</strong>  Emmission/Measurement Probability 发射概率 / 观测概率</p>
-<ul>
+<li><strong>P(y_t|q_t)</strong>  Emmission/Measurement Probability 发射概率 / 观测概率<ul>
 <li>P(y_t|q_1,…, q_t-1, q_t, y_1,…, y_t-1) = P(y_t|q_t)<ul>
 <li>已知当前状态 q_t，得到事实变化 y_t 的概率</li>
 </ul>
@@ -124,13 +122,13 @@
 <li>若是连续的，无法使用矩阵表示，y可能是连续的一个分布</li>
 </ul>
 </li>
-<li><p>两个概率决定了整个隐马尔可夫模型 </p>
+<li>两个概率决定了整个隐马尔可夫模型 </li>
+<li><p>在信号中用HMM也很多，时间轴每段范围的信号就相当与一个y_t<br><img src="https://github.com/soloistben/images/raw/master/hmm_crf/hmm.png" alt="hmm" style="zoom:67%;"></p>
 </li>
-<li>在信号中用HMM也很多，时间轴每段范围的信号就相当与一个y_t<br><img src="https://github.com/soloistben/images/raw/master/hmm_crf/hmm.png" alt="hmm" style="zoom:67%;"></li>
-<li>每个隐状态的概率和为1，则矩阵行和为1</li>
+<li><p>每个隐状态的概率和为1，则矩阵行和为1</p>
+</li>
 <li>P(X) = ∫_y P(X, Y) dy </li>
-<li><p><strong>P(y_1, y_2, y_3)</strong> = Σq_1 Σq_2 Σq_3 P(y_1, y_2, y_3, q_1, q_2, q_3) = Σq_1 Σq_2 Σq_3 <strong>P(y_3|q_3)P(q_3|q_2)*P(y_2|q_2)P(q_2|q_1)*P(y_1|q_1)P(q_1)</strong> </p>
-<ul>
+<li><strong>P(y_1, y_2, y_3)</strong> = Σq_1 Σq_2 Σq_3 P(y_1, y_2, y_3, q_1, q_2, q_3) = Σq_1 Σq_2 Σq_3 <strong>P(y_3|q_3)P(q_3|q_2)*P(y_2|q_2)P(q_2|q_1)*P(y_1|q_1)P(q_1)</strong> <ul>
 <li>P(y_1, y_2, y_3, q_1, q_2, q_3) = P(y_3|y_1, y_2, q_1, q_2, q_3)*P(y_1, y_2, q_1, q_2, q_3)</li>
 <li>利用马尔可夫性质：P(y_1, y_2, y_3, q_1, q_2, q_3) = P(y_3|q_3)*P(q_3|y_1, y_2, q_1, q_2)*P(y_1, y_2, q_1, q_2) = P(y_3|q_3)P(q_3|q_2)*P(y_1, y_2, q_1, q_2)</li>
 <li>P(y_3|q_3), P(q_3|q_2), P(y_2|q_2), P(q_2|q_1), P(y_1|q_1) 在马尔可夫参数A, B矩阵中可得</li>
@@ -138,8 +136,7 @@
 <li>则马尔可夫模型需要三个参数，λ={A, B, P(q_1)} (假设y是离散的)</li>
 </ul>
 </li>
-<li><p>马尔可夫模型有什么用？</p>
-<ul>
+<li>马尔可夫模型有什么用？<ul>
 <li>找50人讲10个单词（动物名字）</li>
 <li><strong>λ_cat = argmax_λ log P(y_1, …, y_50|λ)</strong> <ul>
 <li>当初始条件为λ，最大为说cat的情况</li>
@@ -175,8 +172,7 @@
 </li>
 </ul>
 </li>
-<li><p>如何学习HMM的参数</p>
-<ul>
+<li>如何学习HMM的参数<ul>
 <li>λ = argmax_λ log P(Y|λ) （极大似然估计）</li>
 <li>用EM学习<ul>
 <li>E-step: Σq_1… Σq_t log(P(Y, Q))*P(Q,Y|θ^g) = Σq_1… Σq_t log(P(q_1)*ΠP(q_t|q_t-1)*ΠP(y_t|q_t)) <em> P(Q,Y|θ^g) = Σq_1… Σq_t [log(P(q_1)+Σlog(a_q_t-1,q_t)+Σlog(b_q_t(y_t))] </em> P(Q,Y|θ^g)</li>
@@ -186,13 +182,12 @@
 </ul>
 </li>
 </ul>
-<p><a href="https://www.youtube.com/watch?v=Ji6KbkyNmk8&amp;list=PLFze15KrfxbGPEHyjxddbbxVvLa5kilFf" target="_blank" rel="noopener">source video</a> <a href="https://github.com/roboticcam/machine-learning-notes/blob/master/files/dynamic_model.pdf" target="_blank" rel="noopener">pdf</a></p>
-<h5 id="Three-CRF"><a href="#Three-CRF" class="headerlink" title="Three. CRF"></a>Three. CRF</h5><p>+ </p>
-
+<p><a href="https://www.youtube.com/watch?v=Ji6KbkyNmk8&amp;list=PLFze15KrfxbGPEHyjxddbbxVvLa5kilFf" target="_blank" rel="noopener">徐亦达系列</a> <a href="https://github.com/roboticcam/machine-learning-notes/blob/master/files/dynamic_model.pdf" target="_blank" rel="noopener">pdf</a> <a href="https://www.bilibili.com/video/BV1aE411o7qd?p=82" target="_blank" rel="noopener">白板系列</a></p>
+<h5 id="Three-CRF"><a href="#Three-CRF" class="headerlink" title="Three. CRF"></a>Three. CRF</h5>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/08/09/HMM-CRF/" data-id="ckfxfi61p0005cweg82s1ejvd" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/08/09/HMM-CRF/" data-id="ckfxzcllc00095qegqya52zjp" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ML/">ML</a></li></ul>
@@ -266,23 +261,23 @@
       <ul>
         
           <li>
+            <a href="/2020/10/06/EM/">EM</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/06/Hidden-Markov-Model/">Hidden_Markov_Model</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/06/PGM-Inference/">PGM_Inference</a>
+          </li>
+        
+          <li>
             <a href="/2020/10/05/Exponential-Family-Distribution/">Exponential_Family_Distribution</a>
           </li>
         
           <li>
             <a href="/2020/10/02/Dimensionality-Reduction/">Dimensionality_Reduction</a>
-          </li>
-        
-          <li>
-            <a href="/2020/10/02/SVM/">SVM</a>
-          </li>
-        
-          <li>
-            <a href="/2020/10/02/Decision-Tree/">Decision_Tree</a>
-          </li>
-        
-          <li>
-            <a href="/2020/09/11/Statistics/">Statistics</a>
           </li>
         
       </ul>
