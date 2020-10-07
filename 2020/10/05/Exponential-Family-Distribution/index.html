@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="MR.C">
 <meta property="og:description" content="指数族分布  Gaussian Distribution, Bernoulli Distribution (Categorical Distribution), Binomial Distribution (Multinomial Distribution), Poisson Distribution, Beta Distribution, Dirichlet Distribution, Gamm">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-10-07T05:38:33.503Z">
+<meta property="og:updated_time" content="2020-10-07T05:42:12.269Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Exponential_Family_Distribution">
 <meta name="twitter:description" content="指数族分布  Gaussian Distribution, Bernoulli Distribution (Categorical Distribution), Binomial Distribution (Multinomial Distribution), Poisson Distribution, Beta Distribution, Dirichlet Distribution, Gamm">
@@ -181,7 +181,7 @@
 <ul>
 <li>Data = {x<sub>1</sub>,x<sub>2</sub>,...,x<sub>N</sub>} 通过经验分布（概率分布<span class="math inline">\(\hat{P}(X=x) = \hat{p}(x) = \frac{count(x)}{N}\)</span>）定量描述数据</li>
 <li>需要P分布的<span class="math inline">\(E_{\hat{p}}[x], Var_{\hat{p}}[x]\)</span>，设定f(x)是任意关于x的向量函数（<span class="math inline">\(f=[f_1,f_2,...,f_Q]^T\)</span>），则<span class="math inline">\(E_{\hat{p}}[f(x)]=Δ\)</span>（即是已知事实）</li>
-<li>$P(X) p(x), H[p]=-p(x)log^{p(x)} \ min   p(x)log^{p(x)},s.t. p(x)=1,E_p[f(x)]=p(x)f(x)=E_{}[f(x)]=Δ $</li>
+<li>$P(X) → p(x), H[p]=-p(x)log^{p(x)} \ → min p(x)log^{p(x)},s.t. p(x)=1,E_p[f(x)]=p(x)f(x)=E_{}[f(x)]=Δ $</li>
 <li>拉格朗日：<span class="math inline">\(L(p, λ_0, λ) = \sum p(x)log^{p(x)} - λ_0(1- \sum p(x)) - λ^T(Δ - \sum p(x)f(x))\)</span></li>
 <li>求导：<span class="math inline">\(\frac{dL}{d_{p(x)}} = \sum [log^{p(x)} + 1] - \sum λ_0 - \sum λ^T f(x) = Σ[log^{p(x)}+1-λ_0-λ^T f(x)] = 0 \\ \rightarrow log^{p(x)}+1-λ_0-λ^T f(x)=0 →p(x) = e^{λ^T f(x) - (1-λ_0)}\)</span></li>
 <li>令η=λ<sup>T</sup>，Φ(x)=f(x)，A(η)=(1-λ<sub>0</sub>)</li>
