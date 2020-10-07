@@ -373,7 +373,7 @@
 <li><p><strong>充分统计量Φ(x) 与 极大似然估计</strong></p>
 <ul>
 <li>Data: D = {x<sub>1</sub>,x<sub>2</sub>,...,x<sub>N</sub>} N个样本</li>
-<li>$η_{MLE}=argmax  log^{P(D|η)}=argmax  log<sup>{P(x_i|η)}=argmax log</sup>{P(x_i|η)}\ = argmax  log<sup>{h(x_i)e</sup>{η^T Φ(x_i)-A(η)}} = argmax  $
+<li>$η_{MLE}=argmax  log^{P(D|η)}=argmax  log^{P(x_i|η)}=argmax  log^{P(x_i|η)}\ = argmax  log<sup>{h(x_i)e</sup>{η^T Φ(x_i)-A(η)}} = argmax  $
 <ul>
 <li><span class="math inline">\(→ η_{MLE} ∝argmax \ \sum [η^T Φ(x_i)-A(η)]\)</span></li>
 <li><span class="math inline">\(\frac{d(Σ [η^T Φ(x_i)-A(η)])}{dη} =\sum \frac{d(η^T Φ(x_i)-A(η))}{dη}=\sum[Φ(x_i)-A&#39;(η)] =\sum Φ(x_i)- N*A&#39;(η)=0 \\ → A&#39;(η_{MLE})=\frac{1}{N}\sum Φ(x_i)\)</span></li>
@@ -397,9 +397,9 @@
 <ul>
 <li>Data = {x<sub>1</sub>,x<sub>2</sub>,...,x<sub>N</sub>} 通过经验分布（概率分布<span class="math inline">\(\hat{P}(X=x) = \hat{p}(x) = \frac{count(x)}{N}\)</span>）定量描述数据</li>
 <li>需要P分布的<span class="math inline">\(E_{\hat{p}}[x], Var_{\hat{p}}[x]\)</span>，设定f(x)是任意关于x的向量函数（<span class="math inline">\(f=[f_1,f_2,...,f_Q]^T\)</span>），则<span class="math inline">\(E_{\hat{p}}[f(x)]=Δ\)</span>（即是已知事实）</li>
-<li>$P(X) → p(x), H[p]=-p(x)log^{p(x)} \ → min  p(x)log^{p(x)},s.t. p(x)=1,E_p[f(x)]=p(x)f(x)=E_{}[f(x)]=Δ $</li>
+<li>$P(X) p(x), H[p]=-p(x)log^{p(x)} \ min   p(x)log^{p(x)},s.t. p(x)=1,E_p[f(x)]=p(x)f(x)=E_{}[f(x)]=Δ $</li>
 <li>拉格朗日：<span class="math inline">\(L(p, λ_0, λ) = \sum p(x)log^{p(x)} - λ_0(1- \sum p(x)) - λ^T(Δ - \sum p(x)f(x))\)</span></li>
-<li>求导：<span class="math inline">\(\frac{dL}{d_{p(x)}} = \sum [log^{p(x)} + 1] - \sum λ_0 - \sum λ^T f(x) = Σ[log^{p(x)}+1-λ_0-λ^T f(x)] = 0 \\ → log^{p(x)}+1-λ_0-λ^T f(x)=0 →p(x) = e^{λ^T f(x) - (1-λ_0)}\)</span></li>
+<li>求导：<span class="math inline">\(\frac{dL}{d_{p(x)}} = \sum [log^{p(x)} + 1] - \sum λ_0 - \sum λ^T f(x) = Σ[log^{p(x)}+1-λ_0-λ^T f(x)] = 0 \\ \rightarrow log^{p(x)}+1-λ_0-λ^T f(x)=0 →p(x) = e^{λ^T f(x) - (1-λ_0)}\)</span></li>
 <li>令η=λ<sup>T</sup>，Φ(x)=f(x)，A(η)=(1-λ<sub>0</sub>)</li>
 <li>则用最大熵原理推出，p(x)是指数分布时熵最大</li>
 </ul></li>
