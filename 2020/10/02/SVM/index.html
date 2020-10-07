@@ -7,13 +7,13 @@
   
   <title>SVM | MR.C</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Data : N个p维样本 X（维度N×p），yi = {-1,1} SVM 三宝：间隔，对偶，核技巧  提出SVM是为了解决二分类问题；成功分类的直线（平面）有无数个，SVM就要找到最优的结果（即所有样本距离平面都足够大） hard-margin SVM（硬间隔）  最大间隔分类器 \(= max \ margin(w, b),s.t. y_i(w^T x_i+b) &amp;gt; 0,for i">
+  <meta name="description" content="Data : N个p维样本 X（维度N×p），y~i~ = {-1,1} SVM 三宝：间隔，对偶，核技巧   提出SVM是为了解决二分类问题；成功分类的直线（平面）有无数个，SVM就要找到最优的结果（即所有样本距离平面都足够大）  hard-margin SVM（硬间隔）  最大间隔分类器 $= max \ margin(w, b),s.t. y_i(w^T x_i+b) &amp;gt; 0,for">
 <meta name="keywords" content="ML">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SVM">
 <meta property="og:url" content="http://yoursite.com/2020/10/02/SVM/index.html">
 <meta property="og:site_name" content="MR.C">
-<meta property="og:description" content="Data : N个p维样本 X（维度N×p），yi = {-1,1} SVM 三宝：间隔，对偶，核技巧  提出SVM是为了解决二分类问题；成功分类的直线（平面）有无数个，SVM就要找到最优的结果（即所有样本距离平面都足够大） hard-margin SVM（硬间隔）  最大间隔分类器 \(= max \ margin(w, b),s.t. y_i(w^T x_i+b) &amp;gt; 0,for i">
+<meta property="og:description" content="Data : N个p维样本 X（维度N×p），y~i~ = {-1,1} SVM 三宝：间隔，对偶，核技巧   提出SVM是为了解决二分类问题；成功分类的直线（平面）有无数个，SVM就要找到最优的结果（即所有样本距离平面都足够大）  hard-margin SVM（硬间隔）  最大间隔分类器 $= max \ margin(w, b),s.t. y_i(w^T x_i+b) &amp;gt; 0,for">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://github.com/soloistben/images/raw/master/statistics/SVM/SVM1.png">
 <meta property="og:image" content="https://github.com/soloistben/images/raw/master/statistics/SVM/SVM2.png">
@@ -25,10 +25,10 @@
 <meta property="og:image" content="https://github.com/soloistben/images/raw/master/statistics/SVM/SVM7.png">
 <meta property="og:image" content="https://github.com/soloistben/images/raw/master/statistics/SVM/SVM8.png">
 <meta property="og:image" content="https://github.com/soloistben/images/raw/master/statistics/FNN/FNN1.png">
-<meta property="og:updated_time" content="2020-10-07T10:23:13.160Z">
+<meta property="og:updated_time" content="2020-10-07T10:24:54.762Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SVM">
-<meta name="twitter:description" content="Data : N个p维样本 X（维度N×p），yi = {-1,1} SVM 三宝：间隔，对偶，核技巧  提出SVM是为了解决二分类问题；成功分类的直线（平面）有无数个，SVM就要找到最优的结果（即所有样本距离平面都足够大） hard-margin SVM（硬间隔）  最大间隔分类器 \(= max \ margin(w, b),s.t. y_i(w^T x_i+b) &amp;gt; 0,for i">
+<meta name="twitter:description" content="Data : N个p维样本 X（维度N×p），y~i~ = {-1,1} SVM 三宝：间隔，对偶，核技巧   提出SVM是为了解决二分类问题；成功分类的直线（平面）有无数个，SVM就要找到最优的结果（即所有样本距离平面都足够大）  hard-margin SVM（硬间隔）  最大间隔分类器 $= max \ margin(w, b),s.t. y_i(w^T x_i+b) &amp;gt; 0,for">
 <meta name="twitter:image" content="https://github.com/soloistben/images/raw/master/statistics/SVM/SVM1.png">
   
     <link rel="alternate" href="/atom.xml" title="MR.C" type="application/atom+xml">
@@ -99,68 +99,77 @@
     <div class="article-entry" itemprop="articleBody">
       
         <ul>
-<li>Data : N个p维样本 X（维度N×p），y<sub>i</sub> = {-1,1}</li>
+<li>Data : N个p维样本 X（维度N×p），y~i~ = {-1,1}</li>
 <li><p>SVM 三宝：间隔，对偶，核技巧</p>
-<p><img src="https://github.com/soloistben/images/raw/master/statistics/SVM/SVM1.png" alt="SVM1" style="zoom:50%;"></p></li>
-<li>提出SVM是为了解决二分类问题；成功分类的直线（平面）有无数个，SVM就要找到最优的结果（即<strong>所有样本距离平面都足够大</strong>）</li>
-<li><strong>hard-margin SVM</strong>（硬间隔）
+<p><img src="https://github.com/soloistben/images/raw/master/statistics/SVM/SVM1.png" alt="SVM1" style="zoom:50%;"></p>
+</li>
+<li><p>提出SVM是为了解决二分类问题；成功分类的直线（平面）有无数个，SVM就要找到最优的结果（即<strong>所有样本距离平面都足够大</strong>）</p>
+</li>
+<li><p><strong>hard-margin SVM</strong>（硬间隔）</p>
 <ul>
-<li>最大间隔分类器 <span class="math inline">\(= max \ margin(w, b),s.t. y_i(w^T x_i+b) &gt; 0,for i = 1,...,N\)</span></li>
+<li>最大间隔分类器 $= max \ margin(w, b),s.t. y_i(w^T x_i+b) &gt; 0,for i = 1,…,N$</li>
 <li>点到直线距离，垂直线最短</li>
-<li><span class="math inline">\(margin(w, b) = min \ distance(w, b, x_i) = min \ \frac{1}{||w||} |w^T x_i + b|\)</span></li>
-<li><span class="math inline">\(→ max_{w,b} \ min_x \ \frac{1}{||w||} |w^T x_i + b|,(s.t. y_i(w^T x_i+b) &gt; 0) = max_{w,b} \frac{1}{||w||} min_x y_i(w^T x_i + b)\)</span> (存在<span class="math inline">\(r&gt;0\)</span>，使<span class="math inline">\(y_i(w^T x_i + b) =r\)</span>，可以设置<span class="math inline">\(r=1\)</span>)</li>
-<li><span class="math inline">\(→ max \ \frac{1}{||w||} ,s.t. min \ y_i(w^T x_i + b) = 1 → min \ \frac{1}{2} w^T w , s.t. y_i(w^T x_i + b)\geqslant 1\)</span>(convex optimization 二次凸优化问题)(primal problem原问题)</li>
-<li>拉格朗日：<span class="math inline">\(L(w, b, λ) = \frac{1}{2} w^T w + \sum λ_i(1-y_i(w^T x_i + b)) (λ_i \geqslant 0, (1-y_i(w^T x_i + b)) \leqslant 0\)</span>；若<span class="math inline">\((1-y_i(w^T x_i + b))&gt;0\)</span>，L为正无穷，无解；仅在 <span class="math inline">\(λ_i=0， (1-y_i(w^T x_i + b)) =0\)</span>，达到最大L)</li>
-<li><strong>primal problem 原问题</strong>&lt;=&gt; <span class="math inline">\(min_{w,b} max_λ L(w, b, λ),s.t. λ_i \geqslant 0\)</span> （对w，b没有限制）<span class="math inline">\(→ min \ \frac{1}{2} w^T w\)</span></li>
-<li><p><strong>dual problem 对偶问题</strong>：<span class="math inline">\(max_λ min_{w,b} L(w, b, λ),s.t. λ_i \geqslant 0\)</span></p>
-<ul>
+<li>$margin(w, b) = min \ distance(w, b, x_i) = min \ \frac{1}{||w||} |w^T x_i + b|$</li>
+<li>$→ max<em>{w,b} \ min_x \ \frac{1}{||w||} |w^T x_i + b|,(s.t. y_i(w^T x_i+b) &gt; 0) = max</em>{w,b} \frac{1}{||w||} min_x y_i(w^T x_i + b)$ (存在$r&gt;0$，使$y_i(w^T x_i + b) =r$，可以设置$r=1$)</li>
+<li>$→ max \ \frac{1}{||w||} ,s.t. min \ y_i(w^T x_i + b) = 1 → min \ \frac{1}{2} w^T w , s.t. y_i(w^T x_i + b)\geqslant 1$(convex optimization 二次凸优化问题)(primal problem原问题)</li>
+<li>拉格朗日：$L(w, b, λ) = \frac{1}{2} w^T w + \sum λ_i(1-y_i(w^T x_i + b)) (λ_i \geqslant  0, (1-y_i(w^T x_i + b)) \leqslant 0$；若$(1-y_i(w^T x_i + b))&gt;0$，L为正无穷，无解；仅在 $λ_i=0， (1-y_i(w^T x_i + b)) =0$，达到最大L)</li>
+<li><strong>primal problem 原问题</strong>&lt;=&gt; $min<em>{w,b} max</em>λ L(w, b, λ),s.t. λ_i \geqslant 0$ （对w，b没有限制）$→ min \ \frac{1}{2} w^T w$</li>
+<li><strong>dual problem 对偶问题</strong>：$max<em>λ min</em>{w,b} L(w, b, λ),s.t. λ_i \geqslant 0$<ul>
 <li>min max L &gt;= max min L 弱对偶关系（鸡头凤尾），若直接相等，则为强对偶关系</li>
 <li>（若L问题是二次凸优化问题，则min max L = max min L为强对偶关系）</li>
-<li><span class="math inline">\(\frac{dL}{db} = \frac{d[\sum λ_i(1-y_i(w^T x_i + b))]}{db} = \frac{d[- Σ λ_i y_i b]}{db} = -\sum λ_i y_i =0\)</span>，带入原式<span class="math inline">\(L = \frac{1}{2} w^T w + \sum λ_i - \sum λ_i y_i w^T x_i\)</span></li>
-<li><span class="math inline">\(\frac{dL}{dw} = w - \sum λ_i y_i x_i = 0 → w = \sum λ_i y_i x_i\)</span>，带入原式$L =  w^T w + λ_i - w^T w = λ_i - w^T w $</li>
-<li><font color="red"><span class="math inline">\(→ min \ \frac{1}{2} w^T w - \sum λ_i,s.t. λ_i\geqslant0, \sum λ_i y_i =0\)</span></font> （此处不能求λ偏导）</li>
-<li><span class="math inline">\(→ min \ \frac{1}{2} \sum_i \sum_j λ_i λ_j y_i y_j x_i^T x_j - \sum_i λ_i,s.t. λ_i\geqslant 0, \sum λ_i y_i =0\)</span></li>
-<li><strong>KKT条件</strong>：参数偏导为0（<span class="math inline">\(\frac{dL}{db}=0，\frac{dL}{dw}=0，\frac{dL}{dλ}=0\)</span>），<span class="math inline">\(λ_i(1-y_i(w^T x_i + b))=0， λ_i\geqslant0，(1-y_i(w^T x_i + b)\leqslant0\)</span></li>
+<li>$\frac{dL}{db} = \frac{d[\sum λ_i(1-y_i(w^T x_i + b))]}{db} = \frac{d[- Σ λ_i y_i b]}{db} = -\sum λ_i y_i =0$，带入原式$L = \frac{1}{2} w^T w + \sum λ_i - \sum λ_i y_i w^T x_i$</li>
+<li>$\frac{dL}{dw} = w - \sum λ_i y_i x_i = 0  → w = \sum λ_i y_i x_i$，带入原式$L = \frac{1}{2} w^T w + \sum λ_i - w^T w  = \sum λ_i - \frac{1}{2}w^T w $</li>
+<li><font color="red">$→ min \ \frac{1}{2} w^T w - \sum λ_i,s.t. λ_i\geqslant0, \sum λ_i y_i =0$</font>  （此处不能求λ偏导）</li>
+<li>$→ min \ \frac{1}{2} \sum_i \sum_j λ_i λ_j y_i y_j x_i^T x_j - \sum_i λ_i,s.t. λ_i\geqslant 0, \sum λ_i y_i =0$</li>
+<li><strong>KKT条件</strong>：参数偏导为0（$\frac{dL}{db}=0，\frac{dL}{dw}=0，\frac{dL}{dλ}=0$），$λ_i(1-y_i(w^T x_i + b))=0， λ_i\geqslant0，(1-y_i(w^T x_i + b)\leqslant0$</li>
 <li>原问题和对偶问题具有强对偶关系&lt;=&gt;满足KKT条件</li>
-<li><span class="math inline">\(\hat{w} = \sum λ_i y_i x_i\)</span>, （存在<span class="math inline">\(x_k,y_k,1-y_k(w^T x_k + b)=0\)</span>）<span class="math inline">\(\hat{b} = y_k - w^T x_k = y_k - (\sum λ_i y_i x_i^T) x_k\)</span></li>
-</ul></li>
-<li><p><span class="math inline">\(f(x) = sign(\hat{w}^T x + \hat{b})\)</span></p>
+<li>$\hat{w} = \sum λ_i y_i x_i$, （存在$x_k,y_k,1-y_k(w^T x_k + b)=0$）$\hat{b} = y_k - w^T x_k = y_k - (\sum λ_i y_i x_i^T) x_k$</li>
+</ul>
+</li>
+<li><p>$f(x) = sign(\hat{w}^T x + \hat{b})$</p>
 <p><img src="https://github.com/soloistben/images/raw/master/statistics/SVM/SVM2.png" alt="SVM2" style="zoom:50%;"></p>
 <ul>
-<li>落在虚线的样本点就是<span class="math inline">\(x_k（y_k(w^T x_k + b)=1\)</span>），就称为support vector支持向量，只有支持向量对求解有意义，其他的样本点对应的λ均为0</li>
-</ul></li>
-</ul></li>
-<li><strong>soft-margin SVM</strong>（软间隔）
+<li>落在虚线的样本点就是$x_k（y_k(w^T x_k + b)=1$），就称为support vector支持向量，只有支持向量对求解有意义，其他的样本点对应的λ均为0</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>soft-margin SVM</strong>（软间隔）</p>
 <ul>
 <li>hard-margin SVM是基于样本属于可分的，但是实际数据是存在噪声，可能导致分不好，甚至不可分</li>
-<li>soft-margin SVM在hard-margin SVM基础上允许一点点错误，$min   w^T w + loss $
+<li><p>soft-margin SVM在hard-margin SVM基础上允许一点点错误，$min \ \frac{1}{2} w^T w + loss $</p>
 <ul>
-<li>分错点的个数：<span class="math inline">\(loss = \sum I\{y_i(w^T x_i + b)&lt;1\}\)</span> （关于w是不连续的，无法求导，因此不采取）</li>
-<li><p>hinge 距离：<span class="math inline">\(hinge \ loss = max\{0, 1-y_i(w^T x_i + b)\}\)</span></p>
-<p><img src="https://github.com/soloistben/images/raw/master/statistics/SVM/SVM3.png" alt="SVM3" style="zoom: 67%;"></p></li>
-<li><span class="math inline">\(min \ \frac{1}{2} w^T w + C \sum max{0, 1-y_i(w^T x_i + b)},s.t. y_i(w^T x_i + b)\geqslant 1\)</span> （超参数C）</li>
-<li><p>→ 设定<span class="math inline">\(ξ_i = y_i(w^T x_i + b)，min \ \frac{1}{2} w^T w + C \sum ξ_i,s.t. y_i(w^T x_i + b)\geqslant 1-ξ_i, ξ_i\geqslant 0\)</span>（同样用对偶问题方式来求解）</p>
-<p><img src="https://github.com/soloistben/images/raw/master/statistics/SVM/SVM4.png" alt="SVM4" style="zoom: 50%;"></p></li>
-</ul></li>
-</ul></li>
-<li>约束优化问题
+<li>分错点的个数：$loss = \sum I{y_i(w^T x_i + b)&lt;1}$ （关于w是不连续的，无法求导，因此不采取）</li>
+<li><p>hinge 距离：$hinge \ loss = max{0, 1-y_i(w^T x_i + b)}$</p>
+<p><img src="https://github.com/soloistben/images/raw/master/statistics/SVM/SVM3.png" alt="SVM3" style="zoom: 67%;"></p>
+</li>
+<li><p>$min \ \frac{1}{2} w^T w + C \sum max{0, 1-y_i(w^T x_i + b)},s.t. y_i(w^T x_i + b)\geqslant 1$ （超参数C）</p>
+</li>
+<li><p>→ 设定$ξ_i = y_i(w^T x_i + b)，min \ \frac{1}{2} w^T w + C \sum ξ_i,s.t. y_i(w^T x_i + b)\geqslant 1-ξ_i, ξ_i\geqslant 0$（同样用对偶问题方式来求解）</p>
+<p><img src="https://github.com/soloistben/images/raw/master/statistics/SVM/SVM4.png" alt="SVM4" style="zoom: 50%;"></p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>约束优化问题</p>
 <ul>
-<li>primal problem 原问题：<span class="math inline">\(min \ f(x),s.t. m_i(x) \leqslant 0, n_j(x)=0 (i=1,...,M, j=1,...,N)\)</span></li>
-<li>原问题的无约束形式（关于x的函数）：拉格朗日：<font color="red"><span class="math inline">\(L(x, λ, η) = f(x) + \sum λ_i m_i(x) + \sum η_i n_i(x) → min_x \ max_{λ,η} \ L(x, λ, η),s.t. λ_i\geqslant 0\)</span></font></li>
-<li>证明两者等价：如果违法约束<span class="math inline">\(m_i(x)&gt;0，max_λ \ L → ∞\)</span>；反之，<span class="math inline">\(max_λ \ L\)</span> 必有最大值（<span class="math inline">\(λ_i=0\)</span>时）（即排除了<span class="math inline">\(m_i(x)&gt;0\)</span>情况，过滤掉违反约束的情况）</li>
-<li>dual problem 对偶问题（关于λ,η的函数）：<font color="red"><span class="math inline">\(max_{λ,η} \ min_x \ L(x, λ, η),s.t. λ_i\geqslant 0\)</span></font>
-<ul>
-<li><strong>弱对偶性：对偶问题&lt;=原问题</strong> （<span class="math inline">\(max_{λ,η} \ min_x \ L(x, λ, η) \leqslant min_x \ max_{λ,η} \ L(x, λ, η)\)</span>）</li>
-<li>证明：<span class="math inline">\(min_x \ L \leqslant L \leqslant max_{λ,η} \ L → A(λ,η) \leqslant L \leqslant B(x) → A(λ,η) \leqslant B(x) → max \ A(λ,η) \leqslant min \ B(x)\)</span></li>
-<li><span class="math inline">\(→ max_{λ,η} \ min_x \ L(x, λ, η) \leqslant min_x \ max_{λ,η} \ L(x, λ, η)\)</span></li>
-<li>（在<span class="math inline">\(min_x \ L\)</span>已经确定x，则只剩下关于 λ,η的函数A，函数B同理）</li>
+<li>primal problem 原问题：$min \ f(x),s.t. m_i(x) \leqslant 0, n_j(x)=0 (i=1,…,M, j=1,…,N)$</li>
+<li>原问题的无约束形式（关于x的函数）：拉格朗日：<font color="red">$L(x, λ, η) = f(x) + \sum λ<em>i m_i(x) + \sum η_i n_i(x)  → min_x \ max</em>{λ,η} \ L(x, λ, η),s.t. λ_i\geqslant 0$</font></li>
+<li>证明两者等价：如果违法约束$m<em>i(x)&gt;0，max</em>λ \ L → ∞$；反之，$max_λ \ L$ 必有最大值（$λ_i=0$时）（即排除了$m_i(x)&gt;0$情况，过滤掉违反约束的情况）</li>
+<li>dual problem 对偶问题（关于λ,η的函数）：<font color="red">$max_{λ,η} \ min_x \ L(x, λ, η),s.t. λ_i\geqslant 0$</font><ul>
+<li><strong>弱对偶性：对偶问题&lt;=原问题</strong> （$max<em>{λ,η} \ min_x \ L(x, λ, η)  \leqslant  min_x \ max</em>{λ,η} \ L(x, λ, η)$）</li>
+<li>证明：$min<em>x \ L \leqslant L \leqslant max</em>{λ,η} \ L  →  A(λ,η) \leqslant L \leqslant B(x)  →  A(λ,η) \leqslant B(x)  →  max \ A(λ,η) \leqslant min \ B(x)$</li>
+<li>$→ max<em>{λ,η} \ min_x \ L(x, λ, η) \leqslant min_x \ max</em>{λ,η} \ L(x, λ, η)$</li>
+<li>（在$min_x \ L$已经确定x，则只剩下关于 λ,η的函数A，函数B同理）</li>
 <li>强对偶性：对偶问题=原问题</li>
-</ul></li>
-<li>几何解释
+</ul>
+</li>
+<li><p>几何解释</p>
 <ul>
-<li>primal problem: <span class="math inline">\(min \ f(x),s.t. m_1(x)\leqslant 0\)</span> (D定义域，D=dom<sub>f</sub> ∩ dom<sub>m1</sub>)， <font color="red">原问题最优解：<span class="math inline">\(p^* = min f(x)\)</span></font></li>
-<li><span class="math inline">\(L(x, λ) = f(x) + λ m_1(x),s.t. λ\geqslant 0\)</span> <font color="red">对偶最优解：<span class="math inline">\(d^* = max_λ \ min_x \ L(x, λ)\)</span></font></li>
-<li>将问题投影入二维空间：引入集合(区域) <span class="math inline">\(G = \{(m_1(x), f(x))|x∈D\}\)</span>
+<li>primal problem: $min \ f(x),s.t. m_1(x)\leqslant 0$ (D定义域，D=dom~f~ ∩ dom~m1~)， <font color="red">原问题最优解：$p^* = min f(x)$</font></li>
+<li>$L(x, λ) = f(x) + λ m<em>1(x),s.t. λ\geqslant 0$ <font color="red">对偶最优解：$d^* = max</font></em>λ \ min_x \ L(x, λ)$&lt;/font&gt;</li>
+<li><p>将问题投影入二维空间：引入集合(区域) $G = {(m_1(x), f(x))|x∈D}$</p>
 <ul>
 <li>不知道G是凸还是非凸，非凸具有一般性，则画个非凸的图像</li>
 <li>凸集是指集合内任意两点的连线都在集合内</li>
@@ -172,112 +181,123 @@
 </ul>
 <p><img src="https://github.com/soloistben/images/raw/master/statistics/SVM/SVM5.png" alt="SVM5" style="zoom: 67%;"></p>
 <ul>
-<li><p><span class="math inline">\(p^* = inf \{f(x)|(m_1(x), f(x))∈G, m_1(x) \leqslant 0\}\)</span>（集合中没有最小值概念，对应的是下确界）</p>
+<li>$p^* = inf {f(x)|(m_1(x), f(x))∈G, m_1(x) \leqslant 0}$（集合中没有最小值概念，对应的是下确界）<ul>
+<li>$P*$ 对应图中蓝色部分（左半边区域对纵轴的映射），下确界则为左半边区域最低点在纵轴的映射</li>
+</ul>
+</li>
+<li><p>$d^* = max_λ \ g(λ) , g(λ) = min_x \  f(x) + λ m_1(x) , g(λ) = inf {f(x) + λ_i m_1(x)|(m_1(x), f(x))∈G}$</p>
 <ul>
-<li><span class="math inline">\(P*\)</span> 对应图中蓝色部分（左半边区域对纵轴的映射），下确界则为左半边区域最低点在纵轴的映射</li>
-</ul></li>
-<li><span class="math inline">\(d^* = max_λ \ g(λ) , g(λ) = min_x \  f(x) + λ m_1(x) , g(λ) = inf \{f(x) + λ_i m_1(x)|(m_1(x), f(x))∈G\}\)</span>
-<ul>
-<li>一条过原点直线 $f(x) + λ m_1(x) = 0 <span class="math inline">\((斜率λ可变)，g(λ)范围可以从直线开始与G相切到离开G相切的地方（红线范围）\)</span>g(λ)p^*$</li>
-<li>当调整斜率<span class="math inline">\(λ^*\)</span>，得到一个 <span class="math inline">\(g(λ^*) = f(x) + λ^* m_1(x)\)</span> 同时与G的俩角相切，此时，直线与纵轴的交点为d*（绿线）</li>
-<li><p><span class="math inline">\(d^* \leqslant p^*\)</span> （凸优化+slater条件 → <span class="math inline">\(d^* = p^*\)</span>）（SVM是二次规划问题，符合slater条件）</p>
-<p><img src="https://github.com/soloistben/images/raw/master/statistics/SVM/SVM6.png" alt="SVM6" style="zoom: 67%;"></p></li>
-</ul></li>
-</ul></li>
-</ul></li>
-<li>slater条件
+<li>一条过原点直线 $f(x) + λ m_1(x) = 0 $(斜率λ可变)，g(λ)范围可以从直线开始与G相切到离开G相切的地方（红线范围）$g(λ)\leqslant p^*$ </li>
+<li>当调整斜率$λ^<em>$，得到一个 $g(λ^</em>) = f(x) + λ^<em> m_1(x)$ 同时与G的俩角相切，此时，直线与纵轴的交点为d\</em>（绿线）</li>
+<li><p>$d^<em> \leqslant p^</em>$ （凸优化+slater条件 → $d^<em> = p^</em>$）（SVM是二次规划问题，符合slater条件）</p>
+<p><img src="https://github.com/soloistben/images/raw/master/statistics/SVM/SVM6.png" alt="SVM6" style="zoom: 67%;"></p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>slater条件</p>
 <ul>
 <li>Convex + Slater → Strong Duality （充分不必要条件）</li>
-<li>定义：存在<span class="math inline">\(\hat{x}\)</span>在relint，使<span class="math inline">\(m_i(x)&lt;0 (i=1,...,M)\)</span>
-<ul>
+<li>定义：存在$\hat{x}$在relint，使$m_i(x)&lt;0 (i=1,…,M)$<ul>
 <li>relative interior（relint）：在一个有边界的区域，relint对应其无边界的内部区域</li>
-<li>仿射函数即由由1阶多项式构成的函数，一般形式为 <span class="math inline">\(f (x) = Ax + b\)</span>（A 是一个 m×k 矩阵，反映了一种从 k 维到 m 维的空间映射关系，称f是仿射函数；A、x、b都是标量且b=0，f才是线性函数）</li>
-</ul></li>
+<li>仿射函数即由由1阶多项式构成的函数，一般形式为 $f (x) = Ax + b$（A 是一个 m×k 矩阵，反映了一种从 k 维到 m 维的空间映射关系，称f是仿射函数；A、x、b都是标量且b=0，f才是线性函数）</li>
+</ul>
+</li>
 <li>对于大多数凸优化，slater是成立的（存在一些凸优化问题是不符合slater条件，没有强对偶关系的）</li>
-<li>放松的slater条件：在<span class="math inline">\(m_i(x)\)</span>中，若M中有k个仿射函数，则仅需校验剩余M-k个是否满足<span class="math inline">\(m_i(x)&lt;0\)</span> （凸二次规划问题：目标函数f是凸的，不等式约束<span class="math inline">\(m_i\)</span>是仿射函数，等式约束<span class="math inline">\(n_j\)</span>也是仿射函数；所以凸二次规划问题符合放松的slater条件，SVM属于凸二次规划问题，则可以直接使用KKT条件求解）</li>
-</ul></li>
-<li>KKT条件
-<ul>
-<li>KKT &lt;=&gt; Strong Duality (<span class="math inline">\(d^* = p^*\)</span>)（充要条件）</li>
-<li>从<span class="math inline">\(p^*\)</span>得到最优<span class="math inline">\(x^*\)</span>，从<span class="math inline">\(d^*\)</span>得到<span class="math inline">\(λ^*\)</span>、<span class="math inline">\(η^*\)</span></li>
-<li>可行域（可行条件）：<span class="math inline">\(m_i(x^*) \leqslant 0, n_j(x^*)=0, λ^*\geqslant 0\)</span></li>
-<li>互补松弛
-<ul>
-<li><span class="math inline">\(d^* = max_{λ,η} \ g(λ,η) = g(λ^*, η^*) = min_x \ L(x, λ^*, η^*) \leqslant L(x^*, λ^*, η^*) \\ = f(x^*) + \sum λ_im_i(x^*) + \sum η_in_i(x^*) = f(x^*) + \sum λ_im_i(x^*) \leqslant f(x^*) = p^*\)</span></li>
-<li>（<span class="math inline">\(λ_i\geqslant 0，m_i \leqslant 0，则 λ_i m_i \leqslant 0\)</span>）</li>
-<li><font color="red">互补松弛条件 ：$λ_i m_i(x^<em>) = 0 → λ_i<sup>* m_i(x</sup></em>) $</font></li>
-</ul></li>
-<li>梯度为0
-<ul>
-<li><span class="math inline">\(min_x \ L(x, λ^*, η^*) &lt;= L(x^*, λ^*, η^*)\)</span></li>
-<li><span class="math inline">\(x^*\)</span>是对应x最小值，则 <span class="math inline">\(\frac{dL}{dx} = 0\)</span></li>
-</ul></li>
-</ul></li>
-</ul></li>
-<li><strong>kernel SVM</strong>
+<li>放松的slater条件：在$m_i(x)$中，若M中有k个仿射函数，则仅需校验剩余M-k个是否满足$m_i(x)&lt;0$ （凸二次规划问题：目标函数f是凸的，不等式约束$m_i$是仿射函数，等式约束$n_j$也是仿射函数；所以凸二次规划问题符合放松的slater条件，SVM属于凸二次规划问题，则可以直接使用KKT条件求解）</li>
+</ul>
+</li>
+<li>KKT条件<ul>
+<li>KKT  &lt;=&gt; Strong Duality ($d^<em> = p^</em>$)（充要条件）</li>
+<li>从$p^<em>$得到最优$x^</em>$，从$d^<em>$得到$λ^</em>$、$η^*$</li>
+<li>可行域（可行条件）：$m_i(x^<em>) \leqslant 0, n_j(x^</em>)=0, λ^*\geqslant 0$</li>
+<li>互补松弛<ul>
+<li>$d^<em> = max_{λ,η} \ g(λ,η) = g(λ^</em>, η^<em>) = min_x \ L(x, λ^</em>, η^<em>) \leqslant L(x^</em>, λ^<em>, η^</em>) \ = f(x^<em>) + \sum λ_im_i(x^</em>) + \sum η_in_i(x^<em>) = f(x^</em>) + \sum λ_im_i(x^<em>) \leqslant f(x^</em>) = p^*$</li>
+<li>（$λ_i\geqslant 0，m_i \leqslant 0，则 λ_i m_i \leqslant 0$）</li>
+<li><font color="red">互补松弛条件 ：$\sum λ_i m_i(x^*)  = 0 → λ_i^* m_i(x^*) $</font></li>
+</ul>
+</li>
+<li>梯度为0<ul>
+<li>$min_x \ L(x, λ^<em>, η^</em>) &lt;= L(x^<em>, λ^</em>, η^*)$</li>
+<li>$x^*$是对应x最小值，则 $\frac{dL}{dx} = 0$</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>kernel SVM</strong></p>
 <ul>
 <li>Kernel Method（思想角度）</li>
 <li>Kernel Trick（计算角度）</li>
 <li><p>Kernel function</p>
 <p><img src="https://github.com/soloistben/images/raw/master/statistics/SVM/SVM9.png" alt="SVM9"></p>
 <ul>
-<li><strong>非线性带来高维转换（从模型角度）</strong>
+<li><p><strong>非线性带来高维转换（从模型角度）</strong></p>
 <ul>
 <li>PLA (Perceptron Learning Algorithm)通过初始化不同w、b，求得不同超平面；Hard-Margin SVM找到最好的超平面</li>
-<li>但对数据而言是往往是包含噪声，因此需要对严格线性可分的条件放松，允许放一点点错误，获得更好的范化性能（如左图）</li>
-</ul>
+<li><p>但对数据而言是往往是包含噪声，因此需要对严格线性可分的条件放松，允许放一点点错误，获得更好的范化性能（如左图）</p>
 <p><img src="https://github.com/soloistben/images/raw/master/statistics/SVM/SVM7.png" alt="SVM7" style="zoom: 50%;"></p>
-<ul>
-<li>但面对右图的情况，非线性可分问题，即使允许放一点点错误，也是无法分类的。</li>
-<li>对于PLA，则有多层感知机（神经网络）→深度学习 （多一层感知机，就可以更逼近一个连续函数，则可以解决非线性问题）<br>
 </li>
-<li><font color="red">非线性可分问题 → Φ(x) 非线性转换到高维空间 → 线性可分问题</font></li>
-</ul>
+<li><p>但面对右图的情况，非线性可分问题，即使允许放一点点错误，也是无法分类的。</p>
+</li>
+<li>对于PLA，则有多层感知机（神经网络）→深度学习 （多一层感知机，就可以更逼近一个连续函数，则可以解决非线性问题）     </li>
+<li><font color="red">非线性可分问题 → Φ(x) 非线性转换到高维空间 → 线性可分问题</font>
+
 <p><img src="https://github.com/soloistben/images/raw/master/statistics/SVM/SVM8.png" alt="SVM8" style="zoom: 67%;"></p>
-<ul>
-<li>面对典型异或问题，PLA是无法解决该问题（深度学习可以），将二维空间转换为三维空间，即可用红色超平面划分（Cover Theorem：高维空间比低维更易线性可分）</li>
-<li>三种方法转高维：1、类似MLP直接转高维；2、Kernel方法转高维；3、深度学习运用与或非构建有向无环图（神经网络）（与或非（三种基础运算均可用PLA表示）解决异或问题（复合运算）），神经网络：复合表达式、复合函数、MLP（FeedForward Neural Network）
+</li>
+<li><p>面对典型异或问题，PLA是无法解决该问题（深度学习可以），将二维空间转换为三维空间，即可用红色超平面划分（Cover Theorem：高维空间比低维更易线性可分）</p>
+</li>
+<li><p>三种方法转高维：1、类似MLP直接转高维；2、Kernel方法转高维；3、深度学习运用与或非构建有向无环图（神经网络）（与或非（三种基础运算均可用PLA表示）解决异或问题（复合运算）），神经网络：复合表达式、复合函数、MLP（FeedForward Neural Network）</p>
 <ul>
 <li><p>XOR：x_1⊕x_2 = (¬x_1∧x_2)∨(x_1∧¬x_2)</p>
-<p><img src="https://github.com/soloistben/images/raw/master/statistics/FNN/FNN1.png" alt="FNN1" style="zoom: 67%;"></p></li>
-</ul></li>
-</ul></li>
-</ul></li>
-<li><strong>对偶表示带来内积（从优化角度）</strong>
+<p><img src="https://github.com/soloistben/images/raw/master/statistics/FNN/FNN1.png" alt="FNN1" style="zoom: 67%;"></p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>对偶表示带来内积（从优化角度）</strong></p>
 <ul>
 <li>从频率视角归化到优化问题</li>
-<li>Hard-Margin SVM 将最大间隔分类思想，转换为凸优化问题，通过拉格朗日的对偶性简化原问题为对偶问题
-<ul>
-<li>Doul Problem: <span class="math inline">\(min \ \frac{1}{2} \sum_i \sum_j λ_i λ_j y_i y_j x_i^T x_j - \sum_i λ_i s.t. λ_i\ geqslant 0, \sum_i λ_i y_i =0\)</span></li>
-<li>内积：<span class="math inline">\(x_i^T x_j\)</span></li>
-<li>非线性转换：<span class="math inline">\(Φ(x_i)^T Φ(x_j)\)</span> （高维空间的内积形式）（现实数据很复杂，并且Φ(x)可以是无限维，因此很<span class="math inline">\(Φ(x_i)^T Φ(x_j)\)</span>难i求解和计算量很大）</li>
-<li>Kernel Trick: <strong>Kernel function的引入，就是为了解决计算问题，直接得到<span class="math inline">\(Φ(x_i)^T Φ(x_j)\)</span> 结果</strong>（不需要先求Φ(x)再求内积）</li>
-</ul></li>
-<li><strong>Kernel function : <span class="math inline">\(K(x, x&#39;) = Φ(x)^T Φ(x&#39;) = &lt;Φ(x), Φ(x&#39;)&gt;\)</span></strong>
-<ul>
-<li>存在<span class="math inline">\(x, x&#39;∈X\)</span>，使<span class="math inline">\(K(x, x&#39;) = Φ(x)^T Φ(x&#39;)\)</span>，则K就是一个核函数（如<span class="math inline">\(K(x, x&#39;)=e^{\frac{-(x-x&#39;)^2}{2σ^2}}\)</span>）</li>
-<li>蕴含了非线性转换+内积</li>
-</ul></li>
-</ul></li>
-<li>一般核函数指<strong>正定核函数</strong> <a href="https://www.bilibili.com/video/BV1aE411o7qd?p=37" target="_blank" rel="noopener">详解</a>
-<ul>
-<li>更精确定义：K可以将任意输入空间X映射到高维空间，则K(x, x')为核函数</li>
-<li>正定核函数：K可以将任意输入空间X映射到高维空间，有K(x, x')，存在Φ（Φ∈Hilbert Space）可以输入空间X映射到高维空间，且使<span class="math inline">\(K(x, x&#39;) = &lt;Φ(x), Φ(x&#39;)&gt;\)</span>，则K(x, x')为正定核函数</li>
-<li>正定核函数（另一个定义）：K可以将任意输入空间X映射到高维空间，有K(x, x')，若满足两个条件（对称性、正定性）则为正定和函数
-<ul>
-<li>对称性：<span class="math inline">\(K(x, x&#39;) = K(x&#39;, x)\)</span></li>
-<li>正定性：任取N个元素，x<sub>1</sub>,x<sub>2</sub>,...,x<sub>N</sub>∈X，对应的Gram矩阵是半正定的（K=[K(x<sub>i</sub>, x<sub>j</sub>)]）（两个定义等价，即证明：<strong>K(x, x') = &lt;Φ(x), Φ(x')&gt; &lt;=&gt; Gram matrix 半正定且对称</strong>）</li>
-<li>Hilbert Space: 完备的、可能是无限维的、被赋予内积的，线性空间（向量空间，满足加法和数乘等条件）（完备是对极限是封闭的，即无论如何操作，仍然属于该空间内）（内积：对称性（&lt;f, g&gt; = &lt;g, f&gt;）、正定性（内积大于等于0，&lt;f, f&gt; &gt;= 0）、线性性（&lt;r<sub>1</sub> f<sub>1</sub> + r<sub>2</sub> f<sub>2</sub> , g&gt; = r<sub>1</sub> &lt;f<sub>1</sub>, g&gt; + r<sub>2</sub> &lt;f<sub>2</sub>, g&gt;））<br>
+<li>Hard-Margin SVM 将最大间隔分类思想，转换为凸优化问题，通过拉格朗日的对偶性简化原问题为对偶问题<ul>
+<li>Doul Problem: $min \ \frac{1}{2} \sum_i \sum_j λ_i λ_j y_i y_j x_i^T x_j - \sum_i λ_i  s.t. λ_i\ geqslant 0, \sum_i  λ_i y_i =0$</li>
+<li>内积：$x_i^T x_j$</li>
+<li>非线性转换：$Φ(x_i)^T Φ(x_j)$ （高维空间的内积形式）（现实数据很复杂，并且Φ(x)可以是无限维，因此很$Φ(x_i)^T Φ(x_j)$难i求解和计算量很大）</li>
+<li>Kernel Trick: <strong>Kernel function的引入，就是为了解决计算问题，直接得到$Φ(x_i)^T Φ(x_j)$ 结果</strong>（不需要先求Φ(x)再求内积）</li>
+</ul>
 </li>
-</ul></li>
-<li>必要性证明
-<ul>
-<li>在Hilbert Space中的Φ(x)具有对称性性质，<span class="math inline">\(K(x, x&#39;) = &lt;Φ(x), Φ(x&#39;)&gt; = &lt;Φ(x&#39;), Φ(x)&gt; = K(x&#39;, x)\)</span></li>
-<li>K=[K(x<sub>i</sub>, x<sub>j</sub>)]（维度N×N）（半正定：任意a列向量，<span class="math inline">\(a^T K a \geqslant 0\)</span>）</li>
-<li><span class="math inline">\(a^T K a = \sum_i \sum_j a_i a_j K_{ij} = \sum_i \sum_j a_i a_j K(x_i, x_j) = \sum_i \sum_j a_i a_j &lt;Φ(x_i), Φ(x_j)&gt; → 线性性\\ → \sum_i \sum_j a_i a_j Φ(x_i)^T Φ(x_j) = \sum_i a_i Φ(x_i)^T \sum_j a_j Φ(x_j) = [\sum_i a_i Φ(x_i)]^T \sum_j a_j Φ(x_j) \\ = \ &lt;\sum_i a_i Φ(x_i), \sum_j a_j Φ(x_j)&gt; \ = ||\sum_i a_i Φ(x_i)||^2 &gt;= 0，半正定性\)</span></li>
-</ul></li>
-</ul></li>
-</ul></li>
+<li><strong>Kernel function : $K(x, x’) =  Φ(x)^T Φ(x’) = &lt;Φ(x), Φ(x’)&gt;$</strong> <ul>
+<li>存在$x, x’∈X$，使$K(x, x’) =  Φ(x)^T Φ(x’)$，则K就是一个核函数（如$K(x, x’)=e^{\frac{-(x-x’)^2}{2σ^2}}$）</li>
+<li>蕴含了非线性转换+内积</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>一般核函数指<strong>正定核函数</strong> <a href="https://www.bilibili.com/video/BV1aE411o7qd?p=37" target="_blank" rel="noopener">详解</a><ul>
+<li>更精确定义：K可以将任意输入空间X映射到高维空间，则K(x, x’)为核函数</li>
+<li>正定核函数：K可以将任意输入空间X映射到高维空间，有K(x, x’)，存在Φ（Φ∈Hilbert Space）可以输入空间X映射到高维空间，且使$K(x, x’) = &lt;Φ(x), Φ(x’)&gt;$，则K(x, x’)为正定核函数</li>
+<li>正定核函数（另一个定义）：K可以将任意输入空间X映射到高维空间，有K(x, x’)，若满足两个条件（对称性、正定性）则为正定和函数<ul>
+<li>对称性：$K(x, x’) = K(x’, x)$</li>
+<li>正定性：任取N个元素，x~1~,x~2~,…,x~N~∈X，对应的Gram矩阵是半正定的（K=[K(x~i~, x~j~)]）（两个定义等价，即证明：<strong>K(x, x’) = &lt;Φ(x), Φ(x’)&gt; &lt;=&gt; Gram matrix 半正定且对称</strong>）</li>
+<li>Hilbert Space: 完备的、可能是无限维的、被赋予内积的，线性空间（向量空间，满足加法和数乘等条件）（完备是对极限是封闭的，即无论如何操作，仍然属于该空间内）（内积：对称性（<f, g=""> = <g, f="">）、正定性（内积大于等于0，<f, f=""> &gt;= 0）、线性性（<r~1~ f~1~="" +="" r~2~="" f~2~="" ,="" g=""> = r~1~ <f~1~, g=""> + r~2~ <f~2~, g="">））  </f~2~,></f~1~,></r~1~></f,></g,></f,></li>
+</ul>
+</li>
+<li>必要性证明<ul>
+<li>在Hilbert Space中的Φ(x)具有对称性性质，$K(x, x’) = &lt;Φ(x), Φ(x’)&gt; = &lt;Φ(x’), Φ(x)&gt; = K(x’, x)$</li>
+<li>K=[K(x~i~, x~j~)]（维度N×N）（半正定：任意a列向量，$a^T K a \geqslant 0$）</li>
+<li>$a^T K a = \sum<em>i \sum_j a_i a_j K</em>{ij} = \sum_i \sum_j a_i a_j K(x_i, x_j) = \sum_i \sum_j a_i a_j &lt;Φ(x_i), Φ(x_j)&gt; → 线性性\ → \sum_i \sum_j a_i a_j Φ(x_i)^T Φ(x_j) = \sum_i a_i Φ(x_i)^T \sum_j a_j Φ(x_j) = [\sum_i a_i Φ(x_i)]^T \sum_j a_j Φ(x_j) \ = \ &lt;\sum_i a_i Φ(x_i), \sum_j a_j Φ(x_j)&gt; \ =  ||\sum_i a_i Φ(x_i)||^2 &gt;= 0，半正定性$</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 
       
