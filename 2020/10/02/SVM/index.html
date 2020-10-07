@@ -25,7 +25,7 @@
 <meta property="og:image" content="https://github.com/soloistben/images/raw/master/statistics/SVM/SVM7.png">
 <meta property="og:image" content="https://github.com/soloistben/images/raw/master/statistics/SVM/SVM8.png">
 <meta property="og:image" content="https://github.com/soloistben/images/raw/master/statistics/FNN/FNN1.png">
-<meta property="og:updated_time" content="2020-10-07T10:27:36.249Z">
+<meta property="og:updated_time" content="2020-10-07T12:56:49.623Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SVM">
 <meta name="twitter:description" content="Data : N个p维样本 X（维度N×p），yi = {-1,1} SVM 三宝：间隔，对偶，核技巧  提出SVM是为了解决二分类问题；成功分类的直线（平面）有无数个，SVM就要找到最优的结果（即所有样本距离平面都足够大） hard-margin SVM（硬间隔）  最大间隔分类器 \(= max \ margin(w, b),s.t. y_i(w^T x_i+b) &amp;gt; 0,for i">
@@ -117,7 +117,7 @@
 <li>min max L &gt;= max min L 弱对偶关系（鸡头凤尾），若直接相等，则为强对偶关系</li>
 <li>（若L问题是二次凸优化问题，则min max L = max min L为强对偶关系）</li>
 <li><span class="math inline">\(\frac{dL}{db} = \frac{d[\sum λ_i(1-y_i(w^T x_i + b))]}{db} = \frac{d[- Σ λ_i y_i b]}{db} = -\sum λ_i y_i =0\)</span>，带入原式<span class="math inline">\(L = \frac{1}{2} w^T w + \sum λ_i - \sum λ_i y_i w^T x_i\)</span></li>
-<li><span class="math inline">\(\frac{dL}{dw} = w - \sum λ_i y_i x_i = 0 → w = \sum λ_i y_i x_i\)</span>，带入原式$L =  w^T w + λ_i - w^T w = λ_i - w^T w $</li>
+<li><span class="math inline">\(\frac{dL}{dw} = w - \sum λ_i y_i x_i = 0 → w = \sum λ_i y_i x_i\)</span>，带入原式<span class="math inline">\(L=\frac{1}{2} w^T w + \sum λ_i - w^T w = \sum λ_i - \frac{1}{2}w^T w\)</span></li>
 <li><font color="red"><span class="math inline">\(→ min \ \frac{1}{2} w^T w - \sum λ_i,s.t. λ_i\geqslant0, \sum λ_i y_i =0\)</span></font> （此处不能求λ偏导）</li>
 <li><span class="math inline">\(→ min \ \frac{1}{2} \sum_i \sum_j λ_i λ_j y_i y_j x_i^T x_j - \sum_i λ_i,s.t. λ_i\geqslant 0, \sum λ_i y_i =0\)</span></li>
 <li><strong>KKT条件</strong>：参数偏导为0（<span class="math inline">\(\frac{dL}{db}=0，\frac{dL}{dw}=0，\frac{dL}{dλ}=0\)</span>），<span class="math inline">\(λ_i(1-y_i(w^T x_i + b))=0， λ_i\geqslant0，(1-y_i(w^T x_i + b)\leqslant0\)</span></li>
