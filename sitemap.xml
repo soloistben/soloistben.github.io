@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2020/10/02/SVM/</loc>
+    
+    <lastmod>2020-10-07T10:23:13.160Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2020/10/05/Exponential-Family-Distribution/</loc>
     
     <lastmod>2020-10-07T09:18:04.126Z</lastmod>
@@ -61,13 +68,6 @@
     <loc>http://yoursite.com/2020/10/06/EM/</loc>
     
     <lastmod>2020-10-06T13:07:10.975Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2020/10/02/SVM/</loc>
-    
-    <lastmod>2020-10-05T05:12:03.923Z</lastmod>
     
   </url>
   
