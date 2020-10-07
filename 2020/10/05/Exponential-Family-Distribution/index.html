@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="MR.C">
 <meta property="og:description" content="指数族分布  Gaussian Distribution, Bernoulli Distribution (Categorical Distribution), Binomial Distribution (Multinomial Distribution), Poisson Distribution, Beta Distribution, Dirichlet Distribution, Gamm">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-10-07T09:09:16.973Z">
+<meta property="og:updated_time" content="2020-10-07T09:10:03.397Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Exponential_Family_Distribution">
 <meta name="twitter:description" content="指数族分布  Gaussian Distribution, Bernoulli Distribution (Categorical Distribution), Binomial Distribution (Multinomial Distribution), Poisson Distribution, Beta Distribution, Dirichlet Distribution, Gamm">
@@ -139,7 +139,7 @@
 <li><span class="math inline">\(P(x|θ) = \frac{1}{\sqrt{2\pi}σ} e^{\frac{(x-μ)^2}{-2σ^2}},θ=(μ,σ^2)\)</span> 一维高斯分布
 <ul>
 <li>η = η(θ)，A(η) = A(η(θ))，将θ映射成η​</li>
-<li><span class="math inline">\(P(x|\theta) = \frac{1}{\sqrt{2\pi}\sigma} e^{-\frac{1}{2\sigma^2}(x^2-2\mu x+\mu ^2)} = e^{-\frac{1}{2}log^{2\pi \sigma^2}} e^{-\frac{1}{2\sigma^2} {\begin{bmatrix} -2\mu \ 1 \end{bmatrix}}{\begin{bmatrix}x \\ x^2 \end{bmatrix}} -\frac{\mu^2}{2\sigma^2}} \\ = {\begin{bmatrix} \frac{\mu}{\sigma^2} \ \frac{-1}{2\sigma^2} \end{bmatrix}}{\begin{bmatrix}x \\ x^2 \end{bmatrix}} - (\frac{\mu^2}{2\sigma^2} + \frac{1}{2} log^{2\pi \sigma^2})\)</span>
+<li><span class="math inline">\(P(x|\theta) = \frac{1}{\sqrt{2\pi}\sigma} e^{-\frac{1}{2\sigma^2}(x^2-2\mu x+\mu ^2)} = e^{-\frac{1}{2}log^{2\pi \sigma^2}} e^{-\frac{1}{2\sigma^2} {\begin{bmatrix} -2\mu \ 1 \end{bmatrix}}{\begin{bmatrix}x \\ x^2 \end{bmatrix}} -\frac{\mu^2}{2\sigma^2}} \\ = exp({\begin{bmatrix} \frac{\mu}{\sigma^2} \ \frac{-1}{2\sigma^2} \end{bmatrix}}{\begin{bmatrix}x \\ x^2 \end{bmatrix}} - (\frac{\mu^2}{2\sigma^2} + \frac{1}{2} log^{2\pi \sigma^2}))\)</span>
 <ul>
 <li><span class="math inline">\(η^T = {\begin{bmatrix}\frac{μ}{σ^2}\ \frac{-1}{2σ^2} \end{bmatrix}}, Φ(x) = {\begin{bmatrix}x \\ x^2 \end{bmatrix}}, A(η)=\frac{μ^2}{2σ^2}+ \frac{1}{2} log^{2\piσ^2}\)</span></li>
 <li>设定<span class="math inline">\(η={\begin{bmatrix}η \\ η^2 \end{bmatrix}}\)</span>，则<span class="math inline">\(A(η) = -\frac{η_1^2}{4η_2}+\frac{1}{2}log^{-\frac{\pi}{η_2}}\)</span></li>
