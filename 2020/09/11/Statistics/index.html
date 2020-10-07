@@ -19,7 +19,7 @@
 <meta property="og:image" content="https://github.com/soloistben/images/raw/master/statistics/Linear_Regression/LR2.png">
 <meta property="og:image" content="https://github.com/soloistben/images/raw/master/statistics/Linear_Classification/LC1.png">
 <meta property="og:image" content="https://github.com/soloistben/images/raw/master/statistics/Linear_Classification/LC2.png">
-<meta property="og:updated_time" content="2020-10-07T08:21:37.055Z">
+<meta property="og:updated_time" content="2020-10-07T08:29:16.898Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Statistics">
 <meta name="twitter:description" content="Statistics for Machine Learning One. 两大派系  频率派：统计机器学习（model (\(f(x)=w^T x+b\)), strategy (loss function), algorithm (GD, SGD, 牛顿法、拟牛顿法)，本质为优化问题）  正则化（L1,L2） 核化（Kernel SVM） 集成化（AdaBoost，RandForest） 层次化">
@@ -214,9 +214,9 @@
 </ul></li>
 <li>定义log-likelihood：
 <ul>
-<li><span class="math inline">\(L_{MLE} (w) = log^{P(y|x,w)} = log^{\prod P(y_i|x_i,w)} = \sum log^{P(y_i|x_i,w)} = \sum [log^{\frac{1}{\sqrt{2\pi}σ}} + log^{e^{-\frac{(y - w^T x)^2}{2*σ^2}}}] = \sum [log^{\frac{1}{\sqrt{2\pi}σ}} -\frac{(y - w^T x)^2}{2*σ^2}]\)</span></li>
+<li><span class="math inline">\(L_{MLE} (w) = log^{P(y|x,w)} = log^{\prod P(y_i|x_i,w)} = \sum log^{P(y_i|x_i,w)} \\ = \sum [log^{\frac{1}{\sqrt{2\pi}σ}} + log^{e^{-\frac{(y - w^T x)^2}{2σ^2}}}] = \sum [log^{\frac{1}{\sqrt{2\pi}σ}} -\frac{(y - w^T x)^2}{2σ^2}]\)</span></li>
 <li>样本之间独立同分布</li>
-<li><span class="math inline">\(\hat{w} = argmax \ L_{MLE} (w) = argmax \ \frac{(y - w^T x)^2}{2*σ^2} = argmin \ (y_i - w^T x_i)^2\)</span></li>
+<li><span class="math inline">\(\hat{w} = argmax \ L_{MLE} (w) = argmax \ \frac{(y - w^T x)^2}{2σ^2} = argmin \ (y_i - w^T x_i)^2\)</span></li>
 <li>则与最小二乘法定义一样 (<strong>LSE &lt;=&gt; MLE with Gaussian noise</strong>)</li>
 </ul></li>
 </ul></li>
@@ -276,7 +276,7 @@
 <li>策略：loss function（被错误分类的样本个数）
 <ul>
 <li><span class="math inline">\(L(w) = \sum I\{y_i * (w^T x_i) &lt; 0\}\)</span> （非连续函数，不可导）</li>
-<li><span class="math inline">\(L(w) = \sum-y_i w^T x_i, dL = -y_i x_i\)</span></li>
+<li><span class="math inline">\(L(w) = \sum-y_i w^T x_i,\frac{dL}{dw} = -y_i x_i\)</span></li>
 </ul></li>
 <li>若是非线性可分，可是使用pocket algorithm</li>
 <li>从感知机到深度学习（发展历程）
@@ -321,7 +321,7 @@
 <li>分子 =$ [w^T ( x_i -  x_i)]^2= [w^T (X_{c1} - X_{c2})]^2 = w^T (X_{c1} - X_{c2})(X_{c1} - X_{c2})^T w$</li>
 <li>分母 = <span class="math inline">\(w^T S_{c1} w + w^T S_{c2} w = w^T (S_{c1}+ S_{c2}) w\)</span>
 <ul>
-<li><span class="math inline">\(S_1 = \frac{1}{N_1} \sum (w^T x_i - \frac{1}{N_1} \sum w^T x_j)(w^T x_i - \frac{1}{N_1} \sum w^T x_j)^T=w^T [\frac{1}{N_1}\sum(x_i - X_{c1})(x_i - X_{c1})^T] w = w^T S_{c1} w\)</span></li>
+<li><span class="math inline">\(S_1 = \frac{1}{N_1} \sum (w^T x_i - \frac{1}{N_1} \sum w^T x_j)(w^T x_i - \frac{1}{N_1} \sum w^T x_j)^T \\ = w^T [\frac{1}{N_1}\sum(x_i - X_{c1})(x_i - X_{c1})^T] w = w^T S_{c1} w\)</span></li>
 </ul></li>
 <li>定义S_b类内方差（between-class），S_w类间方差（with-class）</li>
 <li><span class="math inline">\(L(w) = \frac{w^T S_b w}{w^T S_w w}, \hat{w} = argmax \ L(w)\)</span>
@@ -346,7 +346,7 @@
 <li><span class="math inline">\(p_0 = P(y=0|x) = sigmoid(w^T x) = \frac{e^{w^T x}}{1+e^{w^T x}}\)</span></li>
 <li>综合表达：<span class="math inline">\(P(y|x) = p_1^y * p_0^{1-y}\)</span></li>
 </ul></li>
-<li><span class="math inline">\(\hat{w} = argmax \ P(Y|X) = argmax \ log^{\prod P(y_i|x_i)} = argmax \ \sum log^{P(y_i|x_i)} \\= argmax \ \sum[y_i*log^{p_1} + (1-y_i)*log^{p_0}] （-cross entropy）\)</span>
+<li><span class="math inline">\(\hat{w} = argmax \ P(Y|X) = argmax \ log^{\prod P(y_i|x_i)} = argmax \ \sum log^{P(y_i|x_i)} \\= argmax \ \sum[y_i*log^{p_1} + (1-y_i)*log^{p_0}] \Leftrightarrow (-cross entropy)\)</span>
 <ul>
 <li>MLE &lt;=&gt; loss function (min cross entropy)</li>
 </ul></li>
@@ -390,7 +390,7 @@
 <li><span class="math inline">\(u_1\)</span> （同理 <span class="math inline">\(u_2\)</span>）
 <ul>
 <li>相关部分 <span class="math inline">\(L = \sum y_ilog^{N(u_1, σ^2)} = \sum y_ilog^{\frac{1}{(2\pi)^{\frac{d}{2}}σ^{\frac{1}{2}}} e^{\frac{(x_i-u_1)^T(x_i-u_1)}{-2σ}}}\)</span></li>
-<li>$ u_1 = argmax  L = argmax  y_i = argmax  y_i[(x_i-u_1)<sup>T(x_i-u_1)σ</sup>{-1}] \= argmax  y_i[x_i^T σ^{-1} x_i - 2u_1^T σ^{-1} x_i + u_1^T σ^{-1} u_1] $</li>
+<li>$ u_1 = argmax L = argmax y_i = argmax  y_i[(x_i-u_1)<sup>T(x_i-u_1)σ</sup>{-1}] \ = argmax  y_i[x_i^T σ^{-1} x_i - 2u_1^T σ^{-1} x_i + u_1^T σ^{-1} u_1]$</li>
 <li><span class="math inline">\(\frac{dL}{du_1} = \frac{-1}{2}\sum y_i[-2σ^{-1} x_i + 2σ^{-1} u_1] = 0 → \sum y_i(u_1 - x_i) = 0\)</span></li>
 <li><span class="math inline">\(u_1 = \frac{\sum y_i x_i}{\sum y_i} = \frac{\sum y_i x_i}{N_1}\)</span></li>
 </ul></li>
