@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2020/10/05/Exponential-Family-Distribution/</loc>
+    
+    <lastmod>2020-10-07T08:43:25.037Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2020/09/11/Statistics/</loc>
     
-    <lastmod>2020-10-07T08:40:37.242Z</lastmod>
+    <lastmod>2020-10-07T08:42:58.650Z</lastmod>
     
   </url>
   
@@ -12,13 +19,6 @@
     <loc>http://yoursite.com/2020/10/02/Decision-Tree/</loc>
     
     <lastmod>2020-10-07T06:14:10.687Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2020/10/05/Exponential-Family-Distribution/</loc>
-    
-    <lastmod>2020-10-07T06:12:55.897Z</lastmod>
     
   </url>
   

@@ -397,7 +397,7 @@
 <ul>
 <li>Data = {x<sub>1</sub>,x<sub>2</sub>,...,x<sub>N</sub>} 通过经验分布（概率分布<span class="math inline">\(\hat{P}(X=x) = \hat{p}(x) = \frac{count(x)}{N}\)</span>）定量描述数据</li>
 <li>需要P分布的<span class="math inline">\(E_{\hat{p}}[x], Var_{\hat{p}}[x]\)</span>，设定f(x)是任意关于x的向量函数（<span class="math inline">\(f=[f_1,f_2,...,f_Q]^T\)</span>），则<span class="math inline">\(E_{\hat{p}}[f(x)]=Δ\)</span>（即是已知事实）</li>
-<li>$P(X) → p(x), H[p]=- p(x)log^{p(x)} \ → min  p(x)log^{p(x)},s.t. p(x)=1,E_p[f(x)]=p(x)f(x)=E_{}[f(x)]=Δ $</li>
+<li>$P(X)→p(x), H[p]=-p(x)log^{p(x)} \ → min p(x)log^{p(x)},s.t.p(x)=1,E_p[f(x)]=p(x)f(x)=E_{}[f(x)]=Δ $</li>
 <li>拉格朗日：<span class="math inline">\(L(p, λ_0, λ) = \sum p(x)log^{p(x)} - λ_0(1- \sum p(x)) - λ^T(Δ - \sum p(x)f(x))\)</span></li>
 <li>求导：<span class="math inline">\(\frac{dL}{d_{p(x)}} = \sum [log^{p(x)} + 1] - \sum λ_0 - \sum λ^T f(x) = Σ[log^{p(x)}+1-λ_0-λ^T f(x)] = 0 \\ \rightarrow log^{p(x)}+1-λ_0-λ^T f(x)=0 →p(x) = e^{λ^T f(x) - (1-λ_0)}\)</span></li>
 <li>令η=λ<sup>T</sup>，Φ(x)=f(x)，A(η)=(1-λ<sub>0</sub>)</li>
@@ -1020,7 +1020,7 @@
 <ul>
 <li>Least Squares 最小二乘估计法（最小平方法）
 <ul>
-<li><span class="math inline">\(\mathbf{L(w) = \sum ||w^T x_i - y_i||^2} = \sum (w^T x_i - y_i)^2 = (w^T X^T - Y^T) (Xw - Y) = w^T X^T X w - 2 w^T X^T Y + Y^T Y\)</span></li>
+<li><span class="math inline">\(\mathbf{L(w) = \sum ||w^T x_i - y_i||^2} = \sum (w^T x_i - y_i)^2 \\ = (w^T X^T - Y^T) (Xw - Y) = w^T X^T X w - 2 w^T X^T Y + Y^T Y\)</span></li>
 </ul></li>
 <li><span class="math inline">\(\mathbf{\hat{w} = argmin \ L(w)}\)</span></li>
 <li>求导$  = 2 X^T X w - 2 X^T Y=0 → X^T X w = X^T Y$
@@ -1228,7 +1228,7 @@
 <ul>
 <li>相关部分 <span class="math inline">\(L = \sum y_ilog^{N(u_1, σ^2)} = \sum y_ilog^{\frac{1}{(2\pi)^{\frac{d}{2}}σ^{\frac{1}{2}}} e^{\frac{(x_i-u_1)^T(x_i-u_1)}{-2σ}}}\)</span></li>
 <li><span class="math inline">\(u_1 = argmax L = argmax \sum y_i\frac{(x_i-u_1)^T(x_i-u_1)}{-2σ} = argmax \frac{-1}{2} \sum y_i[(x_i-u_1)^T(x_i-u_1)σ^{-1}] \\ = argmax \frac{-1}{2} \sum y_i[x_i^Tσ^{-1}x_i-2u_1^Tσ^{-1}x_i+u_1^Tσ^{-1}u_1]\)</span></li>
-<li><span class="math inline">\(\frac{dL}{du_1} = \frac{-1}{2}\sum y_i[-2σ^{-1} x_i + 2σ^{-1} u_1] = 0 \\ → \sum y_i(u_1 - x_i) = 0\)</span></li>
+<li><span class="math inline">\(\frac{dL}{du_1} = \frac{-1}{2}\sum y_i[-2σ^{-1} x_i + 2σ^{-1} u_1] = 0 → \sum y_i(u_1 - x_i) = 0\)</span></li>
 <li><span class="math inline">\(u_1 = \frac{\sum y_i x_i}{\sum y_i} = \frac{\sum y_i x_i}{N_1}\)</span></li>
 </ul></li>
 <li>σ
