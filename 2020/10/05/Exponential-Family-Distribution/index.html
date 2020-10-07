@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="MR.C">
 <meta property="og:description" content="指数族分布  Gaussian Distribution, Bernoulli Distribution (Categorical Distribution), Binomial Distribution (Multinomial Distribution), Poisson Distribution, Beta Distribution, Dirichlet Distribution, Gamm">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-10-07T05:25:44.355Z">
+<meta property="og:updated_time" content="2020-10-07T05:30:42.655Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Exponential_Family_Distribution">
 <meta name="twitter:description" content="指数族分布  Gaussian Distribution, Bernoulli Distribution (Categorical Distribution), Binomial Distribution (Multinomial Distribution), Poisson Distribution, Beta Distribution, Dirichlet Distribution, Gamm">
@@ -139,13 +139,14 @@
 <li><span class="math inline">\(P(x|θ) = \frac{1}{\sqrt{2\pi}σ} e^{\frac{(x-μ)^2}{-2σ^2}},θ=(μ,σ^2)\)</span> 一维高斯分布
 <ul>
 <li>η = η(θ)，A(η) = A(η(θ))，将θ映射成η​</li>
-<li><span class="math inline">\(η^T = {\begin{bmatrix}\frac{μ}{σ^2}\ -\frac{1}{2σ^2} \end{bmatrix}}, Φ(x) = {\begin{bmatrix}x\\x^2 \end{bmatrix}}, A(η)=\frac{μ^2}{2σ^2}+ \frac{1}{2} log^{2\piσ^2}\)</span>
+<li>$P(x|) =  e<sup>{-(x</sup>2-2x+^2)} $
 <ul>
+<li><span class="math inline">\(η^T = {\begin{bmatrix}\frac{μ}{σ^2}\ -\frac{1}{2σ^2} \end{bmatrix}}, Φ(x) = {\begin{bmatrix}x\\x^2 \end{bmatrix}}, A(η)=\frac{μ^2}{2σ^2}+ \frac{1}{2} log^{2\piσ^2}\)</span></li>
 <li>设定<span class="math inline">\(η={\begin{bmatrix}η \\η^2 \end{bmatrix}}\)</span>，则<span class="math inline">\(A(η) = -\frac{η_1^2}{4η_2}+\frac{1}{2}log^{-\frac{\pi}{η_2}}\)</span></li>
 </ul></li>
 </ul></li>
 </ul></li>
-<li><p><strong>充分统计量Φ(x) 与 对数配分函数A(η)</strong></p>
+<li><strong>充分统计量Φ(x) 与 对数配分函数A(η)</strong>
 <ul>
 <li>P(x|η) 概率积分为1</li>
 <li><span class="math inline">\(P(x|η) = \frac{1}{e^{A(η)}}h(x)e^{η^T Φ(x)}→e^{A(η)}=\int h(x)e^{η^TΦ(x)}d_x\)</span></li>
