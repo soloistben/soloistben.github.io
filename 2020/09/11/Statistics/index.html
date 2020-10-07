@@ -19,7 +19,7 @@
 <meta property="og:image" content="https://github.com/soloistben/images/raw/master/statistics/Linear_Regression/LR2.png">
 <meta property="og:image" content="https://github.com/soloistben/images/raw/master/statistics/Linear_Classification/LC1.png">
 <meta property="og:image" content="https://github.com/soloistben/images/raw/master/statistics/Linear_Classification/LC2.png">
-<meta property="og:updated_time" content="2020-10-07T08:42:58.650Z">
+<meta property="og:updated_time" content="2020-10-07T08:44:08.984Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Statistics">
 <meta name="twitter:description" content="Statistics for Machine Learning One. 两大派系  频率派：统计机器学习（model (\(f(x)=w^T x+b\)), strategy (loss function), algorithm (GD, SGD, 牛顿法、拟牛顿法)，本质为优化问题）  正则化（L1,L2） 核化（Kernel SVM） 集成化（AdaBoost，RandForest） 层次化">
@@ -390,7 +390,7 @@
 <li><span class="math inline">\(u_1\)</span> （同理 <span class="math inline">\(u_2\)</span>）
 <ul>
 <li>相关部分 <span class="math inline">\(L = \sum y_ilog^{N(u_1, σ^2)} = \sum y_ilog^{\frac{1}{(2\pi)^{\frac{d}{2}}σ^{\frac{1}{2}}} e^{\frac{(x_i-u_1)^T(x_i-u_1)}{-2σ}}}\)</span></li>
-<li><span class="math inline">\(u_1 = argmax L = argmax \sum y_i\frac{(x_i-u_1)^T(x_i-u_1)}{-2σ} = argmax \frac{-1}{2} \sum y_i[(x_i-u_1)^T(x_i-u_1)σ^{-1}] \\ = argmax \frac{-1}{2} \sum y_i[x_i^Tσ^{-1}x_i-2u_1^Tσ^{-1}x_i+u_1^Tσ^{-1}u_1]\)</span></li>
+<li><span class="math inline">\(u_1 = argmax L ∝ argmax \sum y_i\frac{(x_i-u_1)^T(x_i-u_1)}{-2σ} = argmax \frac{-1}{2} \sum y_i[(x_i-u_1)^T(x_i-u_1)σ^{-1}] \\ = argmax \frac{-1}{2} \sum y_i[x_i^Tσ^{-1}x_i-2u_1^Tσ^{-1}x_i+u_1^Tσ^{-1}u_1]\)</span></li>
 <li><span class="math inline">\(\frac{dL}{du_1} = \frac{-1}{2}\sum y_i[-2σ^{-1} x_i + 2σ^{-1} u_1] = 0 → \sum y_i(u_1 - x_i) = 0\)</span></li>
 <li><span class="math inline">\(u_1 = \frac{\sum y_i x_i}{\sum y_i} = \frac{\sum y_i x_i}{N_1}\)</span></li>
 </ul></li>
