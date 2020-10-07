@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="MR.C">
 <meta property="og:description" content="指数族分布  Gaussian Distribution, Bernoulli Distribution (Categorical Distribution), Binomial Distribution (Multinomial Distribution), Poisson Distribution, Beta Distribution, Dirichlet Distribution, Gamm">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-10-07T05:03:54.342Z">
+<meta property="og:updated_time" content="2020-10-07T05:20:58.960Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Exponential_Family_Distribution">
 <meta name="twitter:description" content="指数族分布  Gaussian Distribution, Bernoulli Distribution (Categorical Distribution), Binomial Distribution (Multinomial Distribution), Poisson Distribution, Beta Distribution, Dirichlet Distribution, Gamm">
@@ -138,11 +138,12 @@
 <ul>
 <li><span class="math inline">\(P(x|θ) = \frac{1}{\sqrt{2\pi}σ} e^{\frac{(x-μ)^2}{-2σ^2}},θ=(μ,σ^2)\)</span> 一维高斯分布
 <ul>
-<li><p>η = η(θ)，A(η) = A(η(θ))，将θ映射成η</p></li>
-<li><p>$$</p>
-<p>$$</p></li>
-<li><p><span class="math inline">\(η^T = {\begin{bmatrix}\frac{μ}{σ^2}\ -\frac{1}{2σ^2} \end{bmatrix}}, Φ(x) = {\begin{bmatrix}x\\x^2 \end{bmatrix}}, A(η)=\frac{μ^2}{2σ^2}+ \frac{1}{2} log^{2\piσ^2}\)</span></p></li>
-<li><p>设定<span class="math inline">\(η={\begin{bmatrix}η \\η^2 \end{bmatrix}}\)</span>，则<span class="math inline">\(A(η) = -\frac{η_1^2}{4η_2}+\frac{1}{2}log^{-\frac{\pi}{η_2}}\)</span></p></li>
+<li>η = η(θ)，A(η) = A(η(θ))，将θ映射成η</li>
+<li>$$
+<ul>
+<li><span class="math inline">\(η^T = {\begin{bmatrix}\frac{μ}{σ^2}\ -\frac{1}{2σ^2} \end{bmatrix}}, Φ(x) = {\begin{bmatrix}x\\x^2 \end{bmatrix}}, A(η)=\frac{μ^2}{2σ^2}+ \frac{1}{2} log^{2\piσ^2}\)</span></li>
+<li>设定<span class="math inline">\(η={\begin{bmatrix}η \\η^2 \end{bmatrix}}\)</span>，则<span class="math inline">\(A(η) = -\frac{η_1^2}{4η_2}+\frac{1}{2}log^{-\frac{\pi}{η_2}}\)</span></li>
+</ul></li>
 </ul></li>
 </ul></li>
 <li><p><strong>充分统计量Φ(x) 与 对数配分函数A(η)</strong></p>
@@ -156,10 +157,10 @@
 <li><p><strong>充分统计量Φ(x) 与 极大似然估计</strong></p>
 <ul>
 <li>Data: D = {x<sub>1</sub>,x<sub>2</sub>,...,x<sub>N</sub>} N个样本</li>
-<li>$η_{MLE}=argmax  log^{P(D|η)}=argmax  log<sup>{P(x_i|η)}=argmax log</sup>{P(x_i|η)}\=argmax  log<sup>{h(x_i)e</sup>{η^T Φ(x_i)-A(η)}} = argmax  $
+<li>$η_{MLE}=argmax  log^{P(D|η)}=argmax  log<sup>{P(x_i|η)}=argmax log</sup>{P(x_i|η)}\ = argmax  log<sup>{h(x_i)e</sup>{η^T Φ(x_i)-A(η)}} = argmax  $
 <ul>
 <li><span class="math inline">\(→ η_{MLE} ∝argmax \ \sum [η^T Φ(x_i)-A(η)]\)</span></li>
-<li><span class="math inline">\(\frac{d(Σ [η^T Φ(x_i)-A(η)])}{dη} =\sum \frac{d(η^T Φ(x_i)-A(η))}{dη}=\sum[Φ(x_i)-A&#39;(η)] \\=\sum Φ(x_i)- N*A&#39;(η)=0 → A&#39;(η_{MLE})=\frac{1}{N}\sum Φ(x_i)\)</span></li>
+<li><span class="math inline">\(\frac{d(Σ [η^T Φ(x_i)-A(η)])}{dη} =\sum \frac{d(η^T Φ(x_i)-A(η))}{dη}=\sum[Φ(x_i)-A&#39;(η)] =\sum Φ(x_i)- N*A&#39;(η)=0 \\ → A&#39;(η_{MLE})=\frac{1}{N}\sum Φ(x_i)\)</span></li>
 <li><span class="math inline">\(η_{MLE} = A&#39;^{(-1)}(η_{MLE})\)</span>（反函数） → 则η<sub>MLE</sub>是可求解的，只需要记录即<span class="math inline">\(\frac{1}{N}\sum Φ(x_i)\)</span>可，不需要记录所有样本</li>
 </ul></li>
 </ul></li>
@@ -180,7 +181,7 @@
 <ul>
 <li>Data = {x<sub>1</sub>,x<sub>2</sub>,...,x<sub>N</sub>} 通过经验分布（概率分布<span class="math inline">\(\hat{P}(X=x) = \hat{p}(x) = \frac{count(x)}{N}\)</span>）定量描述数据</li>
 <li>需要P分布的<span class="math inline">\(E_{\hat{p}}[x], Var_{\hat{p}}[x]\)</span>，设定f(x)是任意关于x的向量函数（<span class="math inline">\(f=[f_1,f_2,...,f_Q]^T\)</span>），则<span class="math inline">\(E_{\hat{p}}[f(x)]=Δ\)</span>（即是已知事实）</li>
-<li>$P(X) → p(x), H[p]=-p(x)log^{p(x)} \→ min  p(x)log^{p(x)},s.t. p(x)=1,E_p[f(x)]=p(x)f(x)=E_{}[f(x)]=Δ $</li>
+<li>$P(X) → p(x), H[p]=-p(x)log^{p(x)} \ → min  p(x)log^{p(x)},s.t. p(x)=1,E_p[f(x)]=p(x)f(x)=E_{}[f(x)]=Δ $</li>
 <li>拉格朗日：<span class="math inline">\(L(p, λ_0, λ) = \sum p(x)log^{p(x)} - λ_0(1- \sum p(x)) - λ^T(Δ - \sum p(x)f(x))\)</span></li>
 <li>求导：<span class="math inline">\(\frac{dL}{d_{p(x)}} = \sum [log^{p(x)} + 1] - \sum λ_0 - \sum λ^T f(x) = Σ[log^{p(x)}+1-λ_0-λ^T f(x)] = 0 \\→ log^{p(x)}+1-λ_0-λ^T f(x)=0 →p(x) = e^{λ^T f(x) - (1-λ_0)}\)</span></li>
 <li>令η=λ<sup>T</sup>，Φ(x)=f(x)，A(η)=(1-λ<sub>0</sub>)</li>
