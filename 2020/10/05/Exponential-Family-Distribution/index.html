@@ -7,18 +7,18 @@
   
   <title>Exponential_Family_Distribution | MR.C</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="指数族分布  Gaussian Distribution, Bernoulli Distribution (Categorical Distribution), Binomial Distribution (Multinomial Distribution), Poisson Distribution, Beta Distribution, Dirichlet Distribution, Gamm">
+  <meta name="description" content="指数族分布 Gaussian Distribution, Bernoulli Distribution (Categorical Distribution), Binomial Distribution (Multinomial Distribution), Poisson Distribution, Beta Distribution, Dirichlet Distribution, Gamma">
 <meta name="keywords" content="ML">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Exponential_Family_Distribution">
 <meta property="og:url" content="http://yoursite.com/2020/10/05/Exponential-Family-Distribution/index.html">
 <meta property="og:site_name" content="MR.C">
-<meta property="og:description" content="指数族分布  Gaussian Distribution, Bernoulli Distribution (Categorical Distribution), Binomial Distribution (Multinomial Distribution), Poisson Distribution, Beta Distribution, Dirichlet Distribution, Gamm">
+<meta property="og:description" content="指数族分布 Gaussian Distribution, Bernoulli Distribution (Categorical Distribution), Binomial Distribution (Multinomial Distribution), Poisson Distribution, Beta Distribution, Dirichlet Distribution, Gamma">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-10-07T05:30:42.655Z">
+<meta property="og:updated_time" content="2020-10-07T05:31:09.371Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Exponential_Family_Distribution">
-<meta name="twitter:description" content="指数族分布  Gaussian Distribution, Bernoulli Distribution (Categorical Distribution), Binomial Distribution (Multinomial Distribution), Poisson Distribution, Beta Distribution, Dirichlet Distribution, Gamm">
+<meta name="twitter:description" content="指数族分布 Gaussian Distribution, Bernoulli Distribution (Categorical Distribution), Binomial Distribution (Multinomial Distribution), Poisson Distribution, Beta Distribution, Dirichlet Distribution, Gamma">
   
     <link rel="alternate" href="/atom.xml" title="MR.C" type="application/atom+xml">
   
@@ -87,107 +87,114 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="指数族分布">指数族分布</h4>
-<ul>
-<li><p>Gaussian Distribution, Bernoulli Distribution (Categorical Distribution), Binomial Distribution (Multinomial Distribution), Poisson Distribution, Beta Distribution, Dirichlet Distribution, Gamma Distribution</p></li>
-<li><p><font color="red"><span class="math inline">\(P(x|η) = h(x) e^{η^{T} Φ(x) - A(η)}\)</span></font> （分为三部分）</p>
+        <h4 id="指数族分布"><a href="#指数族分布" class="headerlink" title="指数族分布"></a>指数族分布</h4><ul>
+<li><p>Gaussian Distribution, Bernoulli Distribution (Categorical Distribution), Binomial Distribution (Multinomial Distribution), Poisson Distribution, Beta Distribution, Dirichlet Distribution, Gamma Distribution</p>
+</li>
+<li><p><font color="red">$P(x|η) = h(x) e^{η^{T} Φ(x) - A(η)}$</font> （分为三部分）</p>
 <ul>
 <li>η属于参数、p维向量；A(η): log partition function（配分函数）；h(x)与η无关，往往设置为1</li>
-<li>partition function（源自于统计物理学）：<span class="math inline">\(P(x|θ) = \frac {1}{Z} \hat{P}(x|θ)\)</span> （Z为归一化因子，<span class="math inline">\(Z=\int \hat{P}(x|θ) d_{x}\)</span>）</li>
-<li><span class="math inline">\(P(x|η) = \frac {1}{e^{A(η)}} h(x) e^{η^{T} Φ(x)} → e^{A(η)} = Z → A(η) = log Z\)</span>，所以A(η)是log partition function</li>
-</ul></li>
-<li>特点
+<li>partition function（源自于统计物理学）：$P(x|θ) = \frac {1}{Z} \hat{P}(x|θ)$ （Z为归一化因子，$Z=\int \hat{P}(x|θ) d_{x}$）</li>
+<li>$P(x|η) = \frac {1}{e^{A(η)}} h(x) e^{η^{T} Φ(x)} → e^{A(η)} = Z → A(η) = log Z$，所以A(η)是log partition function</li>
+</ul>
+</li>
+<li><p>特点</p>
 <ul>
-<li><strong>充分统计量 sufficient statistics</strong>：Φ(x)
-<ul>
+<li><strong>充分统计量 sufficient statistics</strong>：Φ(x)<ul>
 <li>统计量：对样本的加工，关于样本的一个函数，均值、方差等</li>
 <li>充分：统计量就可以完整表达样本特征信息了</li>
 <li>Online Learning （可以仅存储样本统计量信息，就不需要存储大量样本，起到压缩数据的效果）</li>
-</ul></li>
-<li><strong>共轭</strong>
-<ul>
-<li><span class="math inline">\(P(Y|X) = \frac{P(X|Y)P(Y)}{\int P(X|Y)P(Y) d_{Y}}\)</span>（后验概率是求不出来，或者积分难问题，太复杂，难以求解）</li>
+</ul>
+</li>
+<li><strong>共轭</strong><ul>
+<li>$P(Y|X) = \frac{P(X|Y)P(Y)}{\int P(X|Y)P(Y) d_{Y}}$（后验概率是求不出来，或者积分难问题，太复杂，难以求解）</li>
 <li>计算f(Y)后验分布的期望：近似推断（变分推断、MCMC）</li>
 <li>若似然P(X|Y)与先验P(Y)共轭（如二项分布和Beta分布），则后验与先验同分布，则仅需算后验分布的参数即可，就可以不用计算积分</li>
-</ul></li>
-<li><strong>最大熵</strong>（无信息先验）
-<ul>
+</ul>
+</li>
+<li><strong>最大熵</strong>（无信息先验）<ul>
 <li>没有先验，则认为是所有样本等概率，但无法定量分析，则引入最大熵</li>
 <li>赋予先验：共轭（为了计算方便）；最大熵（无信息先验）</li>
-</ul></li>
-</ul></li>
-<li>模型和推断
+</ul>
+</li>
+</ul>
+</li>
+<li><p>模型和推断</p>
 <ul>
-<li><strong>广义线性模型</strong>
-<ul>
+<li><strong>广义线性模型</strong><ul>
 <li>目标：解决分类、回归问题</li>
-<li>线性组合（w<sup>T</sup>x）</li>
+<li>线性组合（w^T^x）</li>
 <li>link function（激活函数的反函数）</li>
-<li>指数族分布（y|x ~ 指数族分布）（如线性回归：y|x ~ N(μ,σ<sup>2</sup>)；线性分类：y|x ~ 0/1分布（Bernoulli））</li>
-</ul></li>
-<li><strong>概率图模型</strong>
-<ul>
+<li>指数族分布（y|x ~ 指数族分布）（如线性回归：y|x ~ N(μ,σ^2^)；线性分类：y|x ~ 0/1分布（Bernoulli））</li>
+</ul>
+</li>
+<li><strong>概率图模型</strong><ul>
 <li>无向图：RBM 波尔兹曼机</li>
-</ul></li>
-<li><strong>变分推断</strong>
-<ul>
+</ul>
+</li>
+<li><strong>变分推断</strong><ul>
 <li>指数族分布可以简化变分推断</li>
-</ul></li>
-</ul></li>
-<li>Gaussian Distribution
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Gaussian Distribution</p>
 <ul>
-<li><span class="math inline">\(P(x|θ) = \frac{1}{\sqrt{2\pi}σ} e^{\frac{(x-μ)^2}{-2σ^2}},θ=(μ,σ^2)\)</span> 一维高斯分布
-<ul>
+<li>$P(x|θ) = \frac{1}{\sqrt{2\pi}σ} e^{\frac{(x-μ)^2}{-2σ^2}},θ=(μ,σ^2)$  一维高斯分布<ul>
 <li>η = η(θ)，A(η) = A(η(θ))，将θ映射成η​</li>
-<li>$P(x|) =  e<sup>{-(x</sup>2-2x+^2)} $
-<ul>
-<li><span class="math inline">\(η^T = {\begin{bmatrix}\frac{μ}{σ^2}\ -\frac{1}{2σ^2} \end{bmatrix}}, Φ(x) = {\begin{bmatrix}x\\x^2 \end{bmatrix}}, A(η)=\frac{μ^2}{2σ^2}+ \frac{1}{2} log^{2\piσ^2}\)</span></li>
-<li>设定<span class="math inline">\(η={\begin{bmatrix}η \\η^2 \end{bmatrix}}\)</span>，则<span class="math inline">\(A(η) = -\frac{η_1^2}{4η_2}+\frac{1}{2}log^{-\frac{\pi}{η_2}}\)</span></li>
-</ul></li>
-</ul></li>
-</ul></li>
-<li><strong>充分统计量Φ(x) 与 对数配分函数A(η)</strong>
+<li>$P(x|\theta) = \frac{1}{\sqrt{2\pi}\sigma} e^{-\frac{1}{2\sigma^2}(x^2-2\mu x+\mu ^2)} = e^{-\frac{1}{2}log^{2\pi \sigma^2}} e^{-\frac{1}{2\sigma^2} {\begin{bmatrix} -2\mu \ 1 \end{bmatrix}}{\begin{bmatrix}x \ x^2 \end{bmatrix}} -\frac{\mu^2}{2\sigma^2}} $<ul>
+<li>$η^T = {\begin{bmatrix}\frac{μ}{σ^2}\ -\frac{1}{2σ^2} \end{bmatrix}}, Φ(x) = {\begin{bmatrix}x\x^2 \end{bmatrix}}, A(η)=\frac{μ^2}{2σ^2}+ \frac{1}{2} log^{2\piσ^2}$</li>
+<li>设定$η={\begin{bmatrix}η \η^2 \end{bmatrix}}$，则$A(η) = -\frac{η_1^2}{4η_2}+\frac{1}{2}log^{-\frac{\pi}{η_2}}$</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>充分统计量Φ(x) 与 对数配分函数A(η)</strong> </p>
 <ul>
 <li>P(x|η) 概率积分为1</li>
-<li><span class="math inline">\(P(x|η) = \frac{1}{e^{A(η)}}h(x)e^{η^T Φ(x)}→e^{A(η)}=\int h(x)e^{η^TΦ(x)}d_x\)</span></li>
-<li>两边对η求导：<span class="math inline">\(e^{A(η)}*A&#39;(η) = \frac{d(\int h(x)e^{η^TΦ(x)}d_{x})}{dη}=\int h(x) Φ(x)e^{η^TΦ(x)}d_{x}\)</span></li>
-<li><span class="math inline">\(A&#39;(η) =\int h(x) Φ(x)e^{η^T Φ(x)-A(η)}d_{x}=\int Φ(x)P(x|η)d_{x} = E_{P(x|η)}[Φ(x)]\)</span></li>
-<li><span class="math inline">\(A&#39;&#39;(η)=Var_{P(x|η)} [Φ(x)]\)</span>，则A(η)是一个凸函数</li>
-</ul></li>
+<li>$P(x|η) = \frac{1}{e^{A(η)}}h(x)e^{η^T Φ(x)}→e^{A(η)}=\int h(x)e^{η^TΦ(x)}d_x$</li>
+<li>两边对η求导：$e^{A(η)}*A’(η) = \frac{d(\int h(x)e^{η^TΦ(x)}d<em>{x})}{dη}=\int h(x) Φ(x)e^{η^TΦ(x)}d</em>{x}$</li>
+<li>$A’(η) =\int h(x) Φ(x)e^{η^T Φ(x)-A(η)}d<em>{x}=\int Φ(x)P(x|η)d</em>{x} = E_{P(x|η)}[Φ(x)]$</li>
+<li>$A’’(η)=Var_{P(x|η)} [Φ(x)]$，则A(η)是一个凸函数</li>
+</ul>
+</li>
 <li><p><strong>充分统计量Φ(x) 与 极大似然估计</strong></p>
 <ul>
-<li>Data: D = {x<sub>1</sub>,x<sub>2</sub>,...,x<sub>N</sub>} N个样本</li>
-<li>$η_{MLE}=argmax  log^{P(D|η)}=argmax  log<sup>{P(x_i|η)}=argmax log</sup>{P(x_i|η)}\ = argmax  log<sup>{h(x_i)e</sup>{η^T Φ(x_i)-A(η)}} = argmax  $
-<ul>
-<li><span class="math inline">\(→ η_{MLE} ∝argmax \ \sum [η^T Φ(x_i)-A(η)]\)</span></li>
-<li><span class="math inline">\(\frac{d(Σ [η^T Φ(x_i)-A(η)])}{dη} =\sum \frac{d(η^T Φ(x_i)-A(η))}{dη}=\sum[Φ(x_i)-A&#39;(η)] =\sum Φ(x_i)- N*A&#39;(η)=0 \\ → A&#39;(η_{MLE})=\frac{1}{N}\sum Φ(x_i)\)</span></li>
-<li><span class="math inline">\(η_{MLE} = A&#39;^{(-1)}(η_{MLE})\)</span>（反函数） → 则η<sub>MLE</sub>是可求解的，只需要记录即<span class="math inline">\(\frac{1}{N}\sum Φ(x_i)\)</span>可，不需要记录所有样本</li>
-</ul></li>
-</ul></li>
+<li>Data: D = {x~1~,x~2~,…,x~N~} N个样本</li>
+<li>$η_{MLE}=argmax \ log^{P(D|η)}=argmax \ log^{\prod P(x_i|η)}=argmax\ \sum log^{P(x_i|η)}\ = argmax \ \sum log^{h(x_i)e^{η^T Φ(x_i)-A(η)}} = argmax \ \sum [log^{h(x_i)}+η^TΦ(x_i)-A(η)] $<ul>
+<li>$→ η_{MLE} ∝argmax \ \sum [η^T Φ(x_i)-A(η)]$</li>
+<li>$\frac{d(Σ [η^T Φ(x<em>i)-A(η)])}{dη} =\sum \frac{d(η^T Φ(x_i)-A(η))}{dη}=\sum[Φ(x_i)-A’(η)] =\sum Φ(x_i)- N*A’(η)=0 \ → A’(η</em>{MLE})=\frac{1}{N}\sum Φ(x_i)$</li>
+<li>$η<em>{MLE} = A’^{(-1)}(η</em>{MLE})$（反函数） → 则η~MLE~是可求解的，只需要记录即$\frac{1}{N}\sum Φ(x_i)$可，不需要记录所有样本</li>
+</ul>
+</li>
+</ul>
+</li>
 <li><p><strong>最大熵角度</strong></p>
 <ul>
 <li>若一个事件发生概率为p，其信息量为-log p （若p=1,信息量就为0；一个确定的事件没有信息量）</li>
-<li>熵：<span class="math inline">\(E[-log p]=\int -p(x)log^{p(x)} d_{x}=-\sum p(x)log^{p(x)}\)</span> （对信息的衡量，对信息可能性的衡量）（熵只与x的分布有关，与取值无关）</li>
-<li>最大熵&lt;=&gt;等可能（利用最大熵对等可能定量分析）（最大熵，对未知的分布进行猜测，因为不知道，所以认为都是等可能的）（<strong>要想熵最大，未知的分布必须是等可能</strong>）
-<ul>
-<li><span class="math inline">\(H[p]=-\sum p(x)log^{p(x)}\)</span></li>
-<li>假设x是离散的，P(x=1) = p<sub>1</sub>，P(x=2) = p<sub>2</sub>，...，P(x=k) = p<sub>k</sub>，Σp<sub>i</sub> = 1</li>
-<li>则 <span class="math inline">\(max \ H[P] = max[-\sum p_i log^{p_i}],s.t.\sum p_i=1\)</span></li>
-<li><span class="math inline">\(\hat{p_i} = argmax \ H[P] = argmin \ \sum p_i log^{p_i}\)</span> （优化问题）</li>
-<li>拉格朗日：<span class="math inline">\(L(p, λ) = \sum p_i log^{p_i} - λ(1- \sum p_i)，\frac{dL}{dp_i} = log^{p_i} + 1 - λ = 0 → p_i = e^{λ-1}\)</span> (常数)</li>
-<li>则 p<sub>1</sub> = p<sub>2</sub> = ... p<sub>k</sub> = 1/k，p(x)是了离散型均匀分布</li>
-</ul></li>
-<li>最大熵原理：<strong>在满足已知事实（约束条件）（已知数据）下，什么分布是具有最大熵的分布</strong>
-<ul>
-<li>Data = {x<sub>1</sub>,x<sub>2</sub>,...,x<sub>N</sub>} 通过经验分布（概率分布<span class="math inline">\(\hat{P}(X=x) = \hat{p}(x) = \frac{count(x)}{N}\)</span>）定量描述数据</li>
-<li>需要P分布的<span class="math inline">\(E_{\hat{p}}[x], Var_{\hat{p}}[x]\)</span>，设定f(x)是任意关于x的向量函数（<span class="math inline">\(f=[f_1,f_2,...,f_Q]^T\)</span>），则<span class="math inline">\(E_{\hat{p}}[f(x)]=Δ\)</span>（即是已知事实）</li>
-<li>$P(X) → p(x), H[p]=-p(x)log^{p(x)} \ → min  p(x)log^{p(x)},s.t. p(x)=1,E_p[f(x)]=p(x)f(x)=E_{}[f(x)]=Δ $</li>
-<li>拉格朗日：<span class="math inline">\(L(p, λ_0, λ) = \sum p(x)log^{p(x)} - λ_0(1- \sum p(x)) - λ^T(Δ - \sum p(x)f(x))\)</span></li>
-<li>求导：<span class="math inline">\(\frac{dL}{d_{p(x)}} = \sum [log^{p(x)} + 1] - \sum λ_0 - \sum λ^T f(x) = Σ[log^{p(x)}+1-λ_0-λ^T f(x)] = 0 \\→ log^{p(x)}+1-λ_0-λ^T f(x)=0 →p(x) = e^{λ^T f(x) - (1-λ_0)}\)</span></li>
-<li>令η=λ<sup>T</sup>，Φ(x)=f(x)，A(η)=(1-λ<sub>0</sub>)</li>
+<li>熵：$E[-log p]=\int -p(x)log^{p(x)} d_{x}=-\sum p(x)log^{p(x)}$ （对信息的衡量，对信息可能性的衡量）（熵只与x的分布有关，与取值无关）</li>
+<li>最大熵&lt;=&gt;等可能（利用最大熵对等可能定量分析）（最大熵，对未知的分布进行猜测，因为不知道，所以认为都是等可能的）（<strong>要想熵最大，未知的分布必须是等可能</strong>）<ul>
+<li>$H[p]=-\sum p(x)log^{p(x)}$</li>
+<li>假设x是离散的，P(x=1) = p~1~，P(x=2) = p~2~，…，P(x=k) = p~k~，Σp~i~ = 1</li>
+<li>则 $max \ H[P] = max[-\sum p_i log^{p_i}],s.t.\sum p_i=1$</li>
+<li>$\hat{p_i} = argmax \ H[P] = argmin \ \sum p_i log^{p_i}$ （优化问题）</li>
+<li>拉格朗日：$L(p, λ) = \sum p_i log^{p_i} - λ(1- \sum p_i)，\frac{dL}{dp_i} = log^{p_i} + 1 - λ = 0 → p_i = e^{λ-1}$ (常数)</li>
+<li>则 p~1~ = p~2~ = … p~k~ = 1/k，p(x)是了离散型均匀分布</li>
+</ul>
+</li>
+<li>最大熵原理：<strong>在满足已知事实（约束条件）（已知数据）下，什么分布是具有最大熵的分布</strong><ul>
+<li>Data = {x~1~,x~2~,…,x~N~} 通过经验分布（概率分布$\hat{P}(X=x) = \hat{p}(x) = \frac{count(x)}{N}$）定量描述数据</li>
+<li>需要P分布的$E<em>{\hat{p}}[x], Var</em>{\hat{p}}[x]$，设定f(x)是任意关于x的向量函数（$f=[f<em>1,f_2,…,f_Q]^T$），则$E</em>{\hat{p}}[f(x)]=Δ$（即是已知事实）</li>
+<li>$P(X) → p(x), H[p]=-\sum p(x)log^{p(x)} \ → min \ \sum p(x)log^{p(x)},s.t. \sum p(x)=1,E<em>p[f(x)]=\sum p(x)f(x)=E</em>{\hat{p}}[f(x)]=Δ $</li>
+<li>拉格朗日：$L(p, λ_0, λ) = \sum p(x)log^{p(x)} - λ_0(1- \sum p(x)) - λ^T(Δ - \sum p(x)f(x))$</li>
+<li>求导：$\frac{dL}{d_{p(x)}} = \sum [log^{p(x)} + 1] - \sum λ_0 - \sum λ^T f(x) = Σ[log^{p(x)}+1-λ_0-λ^T f(x)] = 0 \→ log^{p(x)}+1-λ_0-λ^T f(x)=0 →p(x) = e^{λ^T f(x) - (1-λ_0)}$</li>
+<li>令η=λ^T^，Φ(x)=f(x)，A(η)=(1-λ~0~)</li>
 <li>则用最大熵原理推出，p(x)是指数分布时熵最大</li>
-</ul></li>
-</ul></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 
       
