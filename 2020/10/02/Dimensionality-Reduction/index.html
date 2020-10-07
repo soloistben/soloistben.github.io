@@ -93,10 +93,10 @@
     <div class="article-entry" itemprop="articleBody">
       
         <ul>
-<li>过拟合
+<li><p>过拟合</p>
 <ul>
 <li>解决方法：增加数据、正则化、降维</li>
-<li>原因：<strong>维度灾难</strong>
+<li><p>原因：<strong>维度灾难</strong></p>
 <ul>
 <li>在没有很多数据集时，只能降维</li>
 <li>每增加一维，二值的特征，都是2的指数倍增长，要想覆盖所有样本空间，则需要2的指数倍数据才可以（而且往往不只是二值）</li>
@@ -107,97 +107,110 @@
 <li>3维正方体体积：1，球体体积：4/3*pi*(0.5)^3 = K*(0.5)^3</li>
 <li>D维超立方体体积：1，超球体体积： K*(0.5)^D</li>
 <li><p>D趋向无穷大之后，超球体体积约等于0，则为空心的，则数据分布在超立方体的四角，造成了样本数据十分稀疏且分布不均匀，因此很难分类</p>
-<p><img src="https://github.com/soloistben/images/raw/master/statistics/Dimensionality_Reduction/DR2.png" alt="DR2" style="zoom:33%;"></p></li>
-<li>D维外超球体体积：K*1^D = K，环形体积：外超球体体积 - 内超球体体积 = K - K(1-e)^D
+<p><img src="https://github.com/soloistben/images/raw/master/statistics/Dimensionality_Reduction/DR2.png" alt="DR2" style="zoom:33%;"></p>
+</li>
+<li><p>D维外超球体体积：K*1^D = K，环形体积：外超球体体积 - 内超球体体积 = K - K(1-e)^D</p>
 <ul>
-<li>V外/V内 = 1-(1-e)^D =1（0&lt;e&lt;1，D趋向无穷大之后，(1-e)^D趋向于0）</li>
+<li>V外/V内 = 1-(1-e)^D  =1（0&lt;e&lt;1，D趋向无穷大之后，(1-e)^D趋向于0）</li>
 <li>则无论e多小，在高维空间，环形体积约等于1，内超球体为空心，数据分布在外超球体壳上</li>
-</ul></li>
-</ul></li>
-</ul></li>
-</ul></li>
-<li>Data
-<ul>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Data<ul>
 <li>N个p维样本 X（维度N×p）（设I为N维全1列向量）</li>
 <li>样本均值 X～=1/N Σ x_i = 1/N X^T I（维度p×1）</li>
-<li>方差 S = 1/N Σ (x_i - X~)(x_i - X~)^T = 1/N X^T (I - 1/N I I^T) (1-1/N I I<sup>T)</sup>T X = 1/N X^T H H^T X = 1/N X^T H X
-<ul>
+<li>方差 S = 1/N Σ (x_i - X~)(x_i - X~)^T = 1/N X^T (I - 1/N I I^T) (1-1/N I I^T)^T X = 1/N X^T H H^T X = 1/N X^T H X<ul>
 <li>（维度p×p）</li>
-<li>H = I-1/N I I^T centering matrix（将数据平移转换，数据分布在坐标中心）（维度N×N）</li>
-<li>H^T = H, H^2 = H H^T = (I-1/N I I^T) (I-1/N I I<sup>T)</sup>T = I-1/N I I^T = H</li>
+<li>H =  I-1/N I I^T  centering matrix（将数据平移转换，数据分布在坐标中心）（维度N×N）</li>
+<li>H^T = H, H^2 = H H^T = (I-1/N I I^T) (I-1/N I I^T)^T = I-1/N I I^T = H</li>
 <li>H^n = H</li>
-</ul></li>
-</ul></li>
-<li>降维方法
+</ul>
+</li>
+</ul>
+</li>
+<li><p>降维方法</p>
 <ul>
 <li>直接降维 （特征选择：人工选取重要特征 ）</li>
-<li>线性降维
+<li><p>线性降维</p>
 <ul>
-<li><strong>Principal Components Analysis PCA 主成分分析</strong>
+<li><p><strong>Principal Components Analysis PCA 主成分分析</strong></p>
 <ul>
 <li><p>将线性相关的特征通过正交变换为线性无关（对原始特征空间的重构）（线性相关（存在2个以上特征之间联系））</p>
-<p><img src="https://github.com/soloistben/images/raw/master/statistics/Dimensionality_Reduction/DR3.png" alt="DR3" style="zoom: 67%;"></p></li>
-<li>最大投影方差
+<p><img src="https://github.com/soloistben/images/raw/master/statistics/Dimensionality_Reduction/DR3.png" alt="DR3" style="zoom: 67%;"></p>
+</li>
+<li><p>最大投影方差</p>
 <ul>
-<li>找到一个u_1平面，使投影间距达到最大（投影到u_2平面，距离太小，没有意义）</li>
+<li>找到一个u_1平面，使投影间距达到最大（投影到u_2平面，距离太小，没有意义）<ul>
 <li>这个平面就是主成分（线性无关的基(特征向量)为数据中的主要成分，降到k维，则选取第k大的特征值所对应的特征向量）</li>
 <li>第1步：中心化：先将所有数据平移，利于计算，即 x_i - X～</li>
 <li>第2步：投影到u_1平面：(x_i - X～)^T u_1（设定 |u_1|=1，即u_1^T u_1=1）</li>
-<li>第3步：投影方差 J = 1/N Σ [(x_i - X~)^T u_1]^2 = 1/N Σ [u_1^T (x_i - X~) (x_i - X~)^T u_1] = u_1^T S u_1
-<ul>
-<li>u_1~ = argmax u_1^T S u_1 s.t. u_1^T u_1=1
-<ul>
+<li>第3步：投影方差 J = 1/N Σ [(x_i - X~)^T u_1]^2 = 1/N Σ [u_1^T (x_i - X~) (x_i - X~)^T u_1] = u_1^T S u_1</li>
+</ul>
+</li>
+<li>u_1~ = argmax u_1^T S u_1  s.t. u_1^T u_1=1<ul>
 <li>使用拉格朗日求解</li>
 <li>L(u_1, λ) = u_1^T S u_1 + λ(1-u_1^T u_1)</li>
-<li>dL/du_1 = 2 S u_1 - 2λ u_1 = 0 ==&gt; <strong>S u_1 = λ u_1</strong></li>
+<li>dL/du_1 = 2 S u_1 - 2λ u_1 = 0  ==&gt; <strong>S u_1 = λ u_1</strong> </li>
 <li><strong>u_1为eigen-vector特征向量，λ为eigen-value特征值</strong></li>
 <li>解法1：对方差矩阵特征分解，即可求解PCA</li>
-<li>解法2：直接对原始数据进行操作：中心化后的 HX = UΣV^T 进行奇异值分解（U和V均为正交矩阵），S = X^T H X = X^T H^T H X = (VΣU<sup>T)(UΣV</sup>T) = V Σ^2 V^T（可先忽略1/N常数）（维度p×p），因此直接求解HX奇异值分解，也就是求解了S的特征分解</li>
-<li>假设 B = H X X^T H = (UΣV<sup>T)(VΣU</sup>T) = U Σ^2 U^T（维度N×N），则B与S有一样的eigenvalue，（S特征分解得到方向V（主成分）然后通过HX V得到新坐标）（B特征分解直接得到坐标U，称为主坐标分析 <strong>principal coordinate analysis PCoA</strong>）</li>
+<li>解法2：直接对原始数据进行操作：中心化后的 HX = UΣV^T 进行奇异值分解（U和V均为正交矩阵），S = X^T H X = X^T H^T H X = (VΣU^T)(UΣV^T) = V Σ^2 V^T（可先忽略1/N常数）（维度p×p），因此直接求解HX奇异值分解，也就是求解了S的特征分解</li>
+<li>假设 B = H X X^T H = (UΣV^T)(VΣU^T) = U Σ^2 U^T（维度N×N），则B与S有一样的eigenvalue，（S特征分解得到方向V（主成分）然后通过HX V得到新坐标）（B特征分解直接得到坐标U，称为主坐标分析 <strong>principal coordinate analysis PCoA</strong>）</li>
 <li>HX V = UΣV^T V = UΣ（UΣ是坐标矩阵），BUΣ = U Σ^2 U^T UΣ = UΣ Σ^2（UΣ是特征向量组成的矩阵）</li>
-</ul></li>
-</ul></li>
-</ul></li>
-<li>最小重构代价
-<ul>
+</ul>
+</li>
+</ul>
+</li>
+<li>最小重构代价<ul>
 <li>投影在u_1平面的点恢复到原来样子的代价</li>
-<li>设从原p维降到q维（下面u代表特征）
+<li>设从原p维降到q维（下面u代表特征）<ul>
+<li>x_i = Σ_k^p (x_i^T u_k) u_k, x_i ~ = Σ_k^q (x_i^T u_k) u_k  (用特征u_k描述样本x_i，(x_i^T u_k)为距离大小，u_k为单位大小，则第k维描述为(x_i^T u_k) u_k)</li>
+<li>代价函数 L = 1/N Σ||x_i - x_i ~||^2 = Σ_(k=q+1)^p u_k T S u_k  = Σ_(k=q+1)^p λ_k (s.t. u_k^T u_k=1)</li>
+<li>u_k = argmin L </li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>概率角度</p>
 <ul>
-<li>x_i = Σ_k^p (x_i^T u_k) u_k, x_i ~ = Σ_k^q (x_i^T u_k) u_k (用特征u_k描述样本x_i，(x_i^T u_k)为距离大小，u_k为单位大小，则第k维描述为(x_i^T u_k) u_k)</li>
-<li>代价函数 L = 1/N Σ||x_i - x_i ~||^2 = Σ_(k=q+1)^p u_k T S u_k = Σ_(k=q+1)^p λ_k (s.t. u_k^T u_k=1)</li>
-<li>u_k = argmin L</li>
-</ul></li>
-</ul></li>
-<li>概率角度
-<ul>
-<li>P-PCA
-<ul>
+<li>P-PCA<ul>
 <li>设定observed data X为p维（特征为连续型数据），latent variable Z为q维（q&lt;p）</li>
 <li>设定Z～N(0, I)（服从高斯分布，q维）</li>
-<li>X = WZ + u + ε（X是Z的一个线性变换加噪声），X|Z~N(WZ + u, σ^2 I)，X~N(u, WW<sup>T+σ</sup>2 I)</li>
+<li>X = WZ + u + ε（X是Z的一个线性变换加噪声），X|Z~N(WZ + u, σ^2 I)，X~N(u, WW^T+σ^2 I)</li>
 <li>噪声ε~N(0, σ^2 I)（p维）</li>
 <li>这也是一种Linear Gaussian Model（称该模型各向同性，对各方向影响是一样的）</li>
-</ul></li>
+</ul>
+</li>
 <li><p>求P(Z), P(X|Z), P(X), 最后求后验P(Z|X)、用EM求参数W, u, σ</p>
-<p><img src="https://github.com/soloistben/images/raw/master/statistics/Dimensionality_Reduction/DR4.png" alt="DR4" style="zoom:75%;"></p></li>
-<li>从服从高斯分布的Z中，投影点在方向W，进行线性变换得到X，也得到服从高斯分布的X|Z，方向W上有很多的高斯分布（各向同性）；X的分布不在方向W上，且中间很宽（因为高斯分布中间高两边低）<a href="https://www.bilibili.com/video/BV1aE411o7qd?p=27" target="_blank" rel="noopener">详情</a></li>
-</ul></li>
-</ul></li>
+<p><img src="https://github.com/soloistben/images/raw/master/statistics/Dimensionality_Reduction/DR4.png" alt="DR4" style="zoom:75%;"></p>
+</li>
+<li><p>从服从高斯分布的Z中，投影点在方向W，进行线性变换得到X，也得到服从高斯分布的X|Z，方向W上有很多的高斯分布（各向同性）；X的分布不在方向W上，且中间很宽（因为高斯分布中间高两边低）<a href="https://www.bilibili.com/video/BV1aE411o7qd?p=27" target="_blank" rel="noopener">详情</a></p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
 <li>MDS</li>
-</ul></li>
-<li>非线性降维
-<ul>
+</ul>
+</li>
+<li>非线性降维<ul>
 <li>流型</li>
 <li>Isomap</li>
 <li>LLE</li>
-</ul></li>
-</ul></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/10/02/Dimensionality-Reduction/" data-id="ckfyyj1ka0008ceegqrgn15u0" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/10/02/Dimensionality-Reduction/" data-id="ckfyyvrs7000569eg97gpg8o6" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ML/">ML</a></li></ul>

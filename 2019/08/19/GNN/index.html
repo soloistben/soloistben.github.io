@@ -7,12 +7,12 @@
   
   <title>GNN | MR.C</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="NOTE of Graph Neural Networks: A Review of Methods and Applications  As a unique non-Euclidean data structure for machine learning, graph analysis focuses on node classification, link prediction, and">
+  <meta name="description" content="NOTE of Graph Neural Networks: A Review of Methods and Applications As a unique non-Euclidean data structure for machine learning, graph analysis focuses on node classification, link prediction, and c">
 <meta property="og:type" content="article">
 <meta property="og:title" content="GNN">
 <meta property="og:url" content="http://yoursite.com/2019/08/19/GNN/index.html">
 <meta property="og:site_name" content="MR.C">
-<meta property="og:description" content="NOTE of Graph Neural Networks: A Review of Methods and Applications  As a unique non-Euclidean data structure for machine learning, graph analysis focuses on node classification, link prediction, and">
+<meta property="og:description" content="NOTE of Graph Neural Networks: A Review of Methods and Applications As a unique non-Euclidean data structure for machine learning, graph analysis focuses on node classification, link prediction, and c">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://github.com/soloistben/images/raw/master/gnn_image/1.jpg">
 <meta property="og:image" content="https://github.com/soloistben/images/raw/master/gnn_image/2.png">
@@ -21,7 +21,7 @@
 <meta property="og:updated_time" content="2019-08-20T01:40:45.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="GNN">
-<meta name="twitter:description" content="NOTE of Graph Neural Networks: A Review of Methods and Applications  As a unique non-Euclidean data structure for machine learning, graph analysis focuses on node classification, link prediction, and">
+<meta name="twitter:description" content="NOTE of Graph Neural Networks: A Review of Methods and Applications As a unique non-Euclidean data structure for machine learning, graph analysis focuses on node classification, link prediction, and c">
 <meta name="twitter:image" content="https://github.com/soloistben/images/raw/master/gnn_image/1.jpg">
   
     <link rel="alternate" href="/atom.xml" title="MR.C" type="application/atom+xml">
@@ -91,8 +91,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="note-of-graph-neural-networks-a-review-of-methods-and-applications">NOTE of Graph Neural Networks: A Review of Methods and Applications</h4>
-<ol type="1">
+        <h4 id="NOTE-of-Graph-Neural-Networks-A-Review-of-Methods-and-Applications"><a href="#NOTE-of-Graph-Neural-Networks-A-Review-of-Methods-and-Applications" class="headerlink" title="NOTE of Graph Neural Networks: A Review of Methods and Applications"></a>NOTE of Graph Neural Networks: A Review of Methods and Applications</h4><ol>
 <li>As a unique non-Euclidean data structure for machine learning, graph analysis focuses on node classification, link prediction, and clustering.</li>
 <li>Why GNN?</li>
 </ol>
@@ -100,21 +99,21 @@
 <li>Composed to CNN, GNN is highly expressive representations</li>
 <li>shared weights reduce the computational cost compared with traditional spectral graph theory; multi-layer structure is the key to deal with hierarchical patterns, which captures the features of various sizes.</li>
 <li>CNN can only operate on regular Euclidean data like images (2D grid) and text (1D sequence), GNN can.</li>
-<li>graph embedding learns to represent graph nodes, edges or sub-graphs in low-dimensional vectors.</li>
-<li>Deep-Walk, which is first graph embedding, is based on representation learning, word embedding and Skip-Gram model. Just like node2vec. However,
-<ul>
-<li>no parameters are shared between nodes, so it means the number of parameters grows linearly with the number of nodes.</li>
+<li>graph embedding learns to represent graph nodes, edges or sub-graphs in low-dimensional vectors. </li>
+<li>Deep-Walk, which is first graph embedding, is based on representation learning, word embedding and Skip-Gram model. Just like node2vec. However, <ul>
+<li>no parameters are shared between nodes, so it means the number of parameters grows linearly with the number of nodes. </li>
 <li>The direct embedding methods lack the ability of generalization, which means they cannot deal with dynamic graphs or generalize to new graphs</li>
-</ul></li>
 </ul>
-<ol start="3" type="1">
+</li>
+</ul>
+<ol>
 <li>GNN model input and/or output consisting of elements and their dependency.</li>
 <li>There isn’t a natural order of nodes in the graph. (CNN &amp; RNN can’t input node of no special order)</li>
 <li>In the standard neural networks, the dependency information is just regarded as the feature of nodes, not edge which represents the information of dependency between two nodes in a graph!</li>
 <li>GNN update the hidden state of nodes by a weighted sum of the states of their neighborhood.</li>
-<li>Human brain is almost based on the graph which is extracted from daily experience.</li>
+<li>Human brain is almost based on the graph which is extracted from daily experience. </li>
 <li>GNN can learn the <em>reasoning</em> graph from large experimental data.</li>
-<li><strong>Message Passing Neural Network (MPNN)</strong> could generalize several graph neural network and graph convolutional network approaches.</li>
+<li><strong>Message Passing Neural Network (MPNN)</strong> could generalize several graph neural network and graph convolutional network approaches. </li>
 <li><strong>Non-local Neural Network (NLNN)</strong> unifies several “self-attention”-style methods.</li>
 <li>Both of MPNN&amp;NLNN focus on specific application domains and can’t provide a review over other graph attention models.</li>
 <li><strong>Graph Network (GN) </strong>has strong capability to generalize other models. However, the graph network model is highly abstract and only gives a rough classification of the applications.</li>
@@ -122,173 +121,170 @@
 <li>Original framework:</li>
 </ol>
 <ul>
-<li>Notations <img src="https://github.com/soloistben/images/raw/master/gnn_image/1.jpg" alt="chinese"> <img src="https://github.com/soloistben/images/raw/master/gnn_image/2.png" alt="eng"></li>
+<li>Notations<br><img src="https://github.com/soloistben/images/raw/master/gnn_image/1.jpg" alt="chinese"><br><img src="https://github.com/soloistben/images/raw/master/gnn_image/2.png" alt="eng"></li>
 <li>The target of GNN is to learn a state embedding <strong>h_v ∈ Rs </strong>which contains the information of neighborhood for each node.</li>
 <li>Let <strong>f</strong> be a parametric function, called local transition function, that is shared among all nodes and updates the node state according to the input neighborhood.</li>
 <li>Let <strong>g</strong> be the local output function that describes how the output is produced.</li>
-<li><strong>h_v = f (x_v, x_co[v], h_ne[v], x_ne[v]) o_v = g (h_v, x_v)</strong> (x is the features of v)</li>
-<li><strong>Vectorize: H = F (H, X) O = G (H, XN)</strong> (F is global translation function, G is global output function)</li>
+<li><strong>h_v = f (x_v, x_co[v], h_ne[v], x_ne[v])  o_v = g (h_v, x_v)</strong>  (x is the features of v)</li>
+<li><strong>Vectorize: H = F (H, X)  O = G (H, XN)</strong>  (F is global translation function, G is global output function)</li>
 <li>The value of H is the fixed point of Eq.3 and is uniquely defined with the assumption that F is a contraction map.</li>
-<li>GNN uses the following classic iterative scheme for computing the state. <strong>Ht+1 = F(Ht, X)</strong></li>
+<li>GNN uses the following classic iterative scheme for computing the state.     <strong>Ht+1 = F(Ht, X)</strong></li>
 <li>With the target information (t_v for a specific node) for the supervision. <strong>loss = ⅀ (t_i − o_i)</strong></li>
 </ul>
-<ol start="15" type="1">
+<ol>
 <li>Limitations:</li>
 </ol>
 <ul>
 <li>GNN is inefficient to update the hidden states of nodes iteratively for the fixed point.</li>
-<li>There are also some informative features on the edges which cannot be effectively modeled in the original GNN.</li>
+<li>There are also some informative features on the edges which cannot be effectively modeled in the original GNN. </li>
 <li>It’s unsuitable to use the fixed points if we focus on the representation of nodes instead of graphs because the distribution of representation in the fixed point will be much smooth in value and less informative for distinguishing each node.</li>
 </ul>
-<ol start="16" type="1">
+<ol>
 <li><strong>Variants of Graph Neural Networks</strong> to release the limitations:</li>
 </ol>
 <ul>
-<li>different graph types:
-<ul>
+<li>different graph types:<ul>
 <li>Directed Graphs. Directed edges can bring more information than undirected edges.</li>
-<li>Heterogeneous Graphs.
-<ul>
+<li>Heterogeneous Graphs. <ul>
 <li>The simplest way to process heterogeneous graph is to convert the type of each node to a one-hot feature vector which is concatenated with the original feature.</li>
 <li>For each neighbor group, GraphInception treats it as a sub-graph in a homogeneous graph to do propagation and concatenates the propagation results from different homogeneous graphs to do a collective node representation. (heterogeneous graph attention network, <strong>HAN</strong>)</li>
-<li>[https://zhuanlan.zhihu.com/p/47040007]</li>
-</ul></li>
-<li>Graphs with Edge Information.
-<ul>
+<li>[<a href="https://zhuanlan.zhihu.com/p/47040007" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/47040007</a>]</li>
+</ul>
+</li>
+<li>Graphs with Edge Information.<ul>
 <li>Converting the graph to a bipartite graph where the original edges also become nodes and one original edge is split into two new edges which means there are two new edges between the edge node and begin/end nodes. (The encoder of <strong>G2S</strong> uses the following aggregation function for neighbors).</li>
 <li>Adapting different weight matrices for the propagation on different kinds of edges. When the number of relations is very large, r-GCN introduces two kinds of regularization to reduce the number of parameters for modeling amounts of relations: basis and block diagonal-decomposition</li>
-</ul></li>
+</ul>
+</li>
 <li>Dynamic Graphs. It has static graph structure and dynamic input signals.</li>
-</ul></li>
-<li>several modifications:
-<ul>
-<li><strong>Graph Convolutional Network (GCN)</strong>: convolutions to the graph domain
-<ul>
-<li>spectral approaches,使用谱分解的方法，应用图的拉普拉斯矩阵分解进行节点的信息收集<br>
+</ul>
 </li>
+<li>several modifications:<ul>
+<li><strong>Graph Convolutional Network (GCN)</strong>: convolutions to the graph domain<ul>
+<li>spectral approaches,使用谱分解的方法，应用图的拉普拉斯矩阵分解进行节点的信息收集     </li>
 <li>non-spectral (spatial) approaches,直接使用图的拓扑结构，根据图的邻居信息进行信息收集</li>
-</ul></li>
-<li><strong>Gated graph neural network (GGNN)</strong>: using the gate mechanism like GRU or LSTM in the propagation step to diminish the restrictions in the former GNN models and improve the long-term propagation of information across the graph structure. Tree LSTM、Graph LSTM and Sentence LSTM</li>
-<li><strong>Graph Attention Network (GAT)</strong> : incorporates the attention mechanism into the propagation step.
-<ul>
-<li>GAT computes the hidden states of each node by attending over its neighbors, following a self-attention strategy.<br>
+</ul>
 </li>
+<li><strong>Gated graph neural network (GGNN)</strong>: using the gate mechanism like GRU or LSTM in the propagation step to diminish the restrictions in the former GNN models and improve the long-term propagation of information across the graph structure. Tree LSTM、Graph LSTM and Sentence LSTM</li>
+<li><strong>Graph Attention Network (GAT)</strong> : incorporates the attention mechanism into the propagation step. <ul>
+<li>GAT computes the hidden states of each node by attending over its neighbors, following a self-attention strategy.     </li>
 <li>Gated Attention Network (GAAN) also uses the multi-head attention mechanism. However, it uses a self-attention mechanism to gather information from different heads to replace the average operation of GAT.</li>
-</ul></li>
-<li><strong>Residual connection</strong>: aiming to achieve better results as more layers make each node aggregate more information from neighbors, because more layers could also propagate the noisy information from an exponentially increasing number of expanded neighborhood members.
-<ul>
+</ul>
+</li>
+<li><strong>Residual connection</strong>: aiming to achieve better results as more layers make each node aggregate more information from neighbors, because more layers could also propagate the noisy information from an exponentially increasing number of expanded neighborhood members.<ul>
 <li>Highway GCN</li>
 <li>Jump Knowledge Network, selects from all of the intermediate representations (which ”jump” to the last layer) for each node at the last layer, which makes the model adapt the effective neighborhood size for each node as needed. uses three approaches of concatenation, max-pooling and LSTM-attention in the experiments to aggregate information. (The Jump Knowledge Network performs well on the experiments in social, bioinformatics and citation networks. It could also be combined with models like Graph Convolutional Networks, GraphSAGE and Graph Attention Networks to improve their performance.)</li>
-</ul></li>
-<li><strong>Hierarchical Pooling</strong>, Complicated and large-scale graphs usually carry rich hierarchical structures which are of great importance for node-level and graph-level classification tasks</li>
-</ul></li>
 </ul>
-<ol start="17" type="1">
+</li>
+<li><strong>Hierarchical Pooling</strong>, Complicated and large-scale graphs usually carry rich hierarchical structures which are of great importance for node-level and graph-level classification tasks</li>
+</ul>
+</li>
+</ul>
+<ol>
 <li>Training Method:</li>
 </ol>
 <ul>
-<li>Sampling
-<ul>
-<li>GraphSAGE replaced full graph Laplacian in GCN with learnable aggregation functions, which are key to perform message passing and generalize to unseen nodes. With learned aggregation and propagation functions, GraphSAGE could generate embeddings for unseen nodes.</li>
+<li>Sampling<ul>
+<li>GraphSAGE replaced full graph Laplacian in GCN with learnable aggregation functions, which are key to perform message passing and generalize to unseen nodes.  With learned aggregation and propagation functions, GraphSAGE could generate embeddings for unseen nodes.</li>
 <li>PinSage, By simulating random walks starting from target nodes, this approach chooses the top T nodes with the highest normalized visit counts.</li>
-<li>FastGCN, Instead of sampling neighbors for each node, FastGCN directly samples the receptive field for each layer.<br>
-</li>
+<li>FastGCN, Instead of sampling neighbors for each node, FastGCN directly samples the receptive field for each layer.  </li>
 <li>adaptive sampler could find optimal sampling importance and reduce variance simultaneously</li>
-</ul></li>
-<li>Receptive Field Control, a control-variate based stochastic approximation algorithms for GCN by utilizing the historical activations of nodes as a control variate.</li>
-<li>Data Augmentation, To solve the limitations, the authors proposed Co-Training GCN and Self-Training GCN to enlarge the training dataset.</li>
+</ul>
+</li>
+<li>Receptive Field Control, a control-variate based stochastic approximation algorithms for GCN by utilizing the historical activations of nodes as a control variate. </li>
+<li>Data Augmentation, To solve the limitations, the authors proposed Co-Training GCN and Self-Training GCN to enlarge the training dataset. </li>
 <li>Unsupervised Training, Graph auto-encoders (GAE) aim at representing nodes into low-dimensional vectors by an unsupervised training manner.</li>
 </ul>
-<ol start="18" type="1">
+<ol>
 <li>Frameworks:</li>
 </ol>
 <ul>
-<li><strong>Message Passing Neural Networks (MPNN)</strong> unified GNN &amp; GCN. It abstracts the commonalities between several of the most popular models for graph-structured data.
-<ul>
-<li>message passing</li>
+<li><strong>Message Passing Neural Networks (MPNN)</strong> unified GNN &amp; GCN. It abstracts the commonalities between several of the most popular models for graph-structured data.<ul>
+<li>message passing </li>
 <li>Readout computes a feature vector for the whole graph</li>
-</ul></li>
-<li><strong>Non-local Neural Networks (NLNN)</strong> unified several self-attention for capturing long-range dependencies with deep neural networks. It computes the response at a position as a weighted sum of the features at all positions. List the choices for f function:
-<ul>
-<li>Gaussian (natural choice)</li>
-<li>Embedded Gaussian</li>
-<li>Dot product</li>
+</ul>
+</li>
+<li><strong>Non-local Neural Networks (NLNN)</strong> unified several self-attention for capturing long-range dependencies with deep neural networks. It computes the response at a position as a weighted sum of the features at all positions. List the choices for f function:<ul>
+<li>Gaussian (natural choice) </li>
+<li>Embedded Gaussian </li>
+<li>Dot product </li>
 <li>Concatenation.</li>
-</ul></li>
-<li><span style="border-bottom:2px dashed red;"><strong>Graph Networks (GN) </strong>unified MPNN &amp; NLNN and so on.</span>
-<ul>
+</ul>
+</li>
+<li><span style="border-bottom:2px dashed red;"><strong>Graph Networks (GN) </strong>unified MPNN &amp; NLNN and so on.</span><ul>
 <li>Graph definition</li>
-<li>GN block contains
-<ul>
-<li>three “update” functions, φ_e, φ_h &amp; φ_u,</li>
-<li>three “aggregation” functions, ρ ( The ρ functions must be invariant to permutations of their inputs and should take variable numbers of arguments) <img src="https://github.com/soloistben/images/raw/master/gnn_image/3.png" alt="func"></li>
-</ul></li>
-<li>Computation steps <img src="https://github.com/soloistben/images/raw/master/gnn_image/4.png" alt="steps"></li>
-<li>Design Principles
-<ul>
-<li><strong>Flexible representations</strong>
-<ul>
-<li>One can simply tailor the output of a GN block according to specific demands of tasks</li>
+<li>GN block contains<ul>
+<li>three “update” functions, φ_e, φ_h &amp; φ_u, </li>
+<li>three “aggregation” functions, ρ ( The ρ functions must be invariant to permutations of their inputs and should take variable numbers of arguments)<br><img src="https://github.com/soloistben/images/raw/master/gnn_image/3.png" alt="func"></li>
+</ul>
+</li>
+<li>Computation steps<br><img src="https://github.com/soloistben/images/raw/master/gnn_image/4.png" alt="steps"></li>
+<li>Design Principles<ul>
+<li><strong>Flexible representations</strong><ul>
+<li>One can simply tailor the output of a GN block according to specific demands of tasks </li>
 <li>be applied to both structural scenarios where the graph structure is explicit and non structural scenarios where the relational structure should be inferred or assumed.</li>
-</ul></li>
+</ul>
+</li>
 <li><strong>Configurable within-block structure</strong>. Based on different structure and functions settings, a variety of models (such as MPNN, NLNN and other variants) could be expressed by the GN framework.</li>
-<li><strong>Composable multi-block architectures.</strong>
-<ul>
+<li><strong>Composable multi-block architectures.</strong><ul>
 <li>Arbitrary numbers of GN blocks could be composed in sequence with shared or unshared parameters.</li>
 <li>utilizes GN blocks to construct an encode process decode architecture and a recurrent GN-based architecture.</li>
 <li>Other techniques for building GN based architectures could also be useful, such as skip connections, LSTM- or GRU-style gating schemes and so on.</li>
-</ul></li>
-</ul></li>
-</ul></li>
 </ul>
-<ol start="19" type="1">
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ol>
 <li>Applications of GNN:</li>
 </ol>
 <ul>
 <li>supervised, semi-supervised, unsupervised and reinforcement learning</li>
-<li>Structural Scenarios
-<ul>
+<li>Structural Scenarios<ul>
 <li>Physics</li>
 <li>Chemistry and Biology</li>
 <li>Knowledge graph</li>
-</ul></li>
-<li>Non-Structural Scenarios
-<ul>
-<li>Image
-<ul>
+</ul>
+</li>
+<li>Non-Structural Scenarios<ul>
+<li>Image<ul>
 <li>Visual Reasoning</li>
 <li>Semantic Segmentation</li>
-</ul></li>
-<li>Text
-<ul>
+</ul>
+</li>
+<li>Text<ul>
 <li>Text classification</li>
 <li>Sequence labeling</li>
 <li>Neural machine translation</li>
 <li>Relation extraction</li>
 <li>Event extraction</li>
 <li>Other applications</li>
-</ul></li>
-</ul></li>
-<li>Other Scenarios
-<ul>
+</ul>
+</li>
+</ul>
+</li>
+<li>Other Scenarios<ul>
 <li>Generative Models</li>
 <li>Combinatorial Optimization</li>
-</ul></li>
 </ul>
-<ol start="20" type="1">
+</li>
+</ul>
+<ol>
 <li>Problems</li>
 </ol>
 <ul>
 <li>Shallow Structure</li>
 <li>Dynamic Graphs</li>
 <li>Non-Structural Scenarios</li>
-<li>Scalability</li>
+<li>Scalability </li>
 </ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/08/19/GNN/" data-id="ckfyyj1kj000gceegt3ub7rxi" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/08/19/GNN/" data-id="ckfyyvrsf000d69ego4cvk438" class="article-share-link">Share</a>
       
       
     </footer>

@@ -7,13 +7,13 @@
   
   <title>HMM_CRF | MR.C</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Hidden Markov Model 隐马尔可夫 &amp;amp; Conditional Random Field 条件随机场 One. Time Sequence / Series  在时间序列中，起伏状态可以被观测到（股票走势就是一种时间序列，股票中的涨跌） 无法观测到的是时间序列的隐状态（股票中是否处于牛市状态，这类的就是隐状态）  隐状态会有很多 当知道隐状态存在时，每个隐状态被观测时，都是">
+  <meta name="description" content="Hidden Markov Model 隐马尔可夫 &amp;amp; Conditional Random Field 条件随机场One. Time Sequence / Series 在时间序列中，起伏状态可以被观测到（股票走势就是一种时间序列，股票中的涨跌） 无法观测到的是时间序列的隐状态（股票中是否处于牛市状态，这类的就是隐状态） 隐状态会有很多 当知道隐状态存在时，每个隐状态被观测时，都是相互独">
 <meta name="keywords" content="ML">
 <meta property="og:type" content="article">
 <meta property="og:title" content="HMM_CRF">
 <meta property="og:url" content="http://yoursite.com/2020/08/09/HMM-CRF/index.html">
 <meta property="og:site_name" content="MR.C">
-<meta property="og:description" content="Hidden Markov Model 隐马尔可夫 &amp;amp; Conditional Random Field 条件随机场 One. Time Sequence / Series  在时间序列中，起伏状态可以被观测到（股票走势就是一种时间序列，股票中的涨跌） 无法观测到的是时间序列的隐状态（股票中是否处于牛市状态，这类的就是隐状态）  隐状态会有很多 当知道隐状态存在时，每个隐状态被观测时，都是">
+<meta property="og:description" content="Hidden Markov Model 隐马尔可夫 &amp;amp; Conditional Random Field 条件随机场One. Time Sequence / Series 在时间序列中，起伏状态可以被观测到（股票走势就是一种时间序列，股票中的涨跌） 无法观测到的是时间序列的隐状态（股票中是否处于牛市状态，这类的就是隐状态） 隐状态会有很多 当知道隐状态存在时，每个隐状态被观测时，都是相互独">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://github.com/soloistben/images/raw/master/hmm_crf/hmm.png">
 <meta property="og:image" content="https://github.com/soloistben/images/raw/master/hmm_crf/hmm_function.png">
@@ -22,7 +22,7 @@
 <meta property="og:updated_time" content="2020-10-06T13:11:42.336Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="HMM_CRF">
-<meta name="twitter:description" content="Hidden Markov Model 隐马尔可夫 &amp;amp; Conditional Random Field 条件随机场 One. Time Sequence / Series  在时间序列中，起伏状态可以被观测到（股票走势就是一种时间序列，股票中的涨跌） 无法观测到的是时间序列的隐状态（股票中是否处于牛市状态，这类的就是隐状态）  隐状态会有很多 当知道隐状态存在时，每个隐状态被观测时，都是">
+<meta name="twitter:description" content="Hidden Markov Model 隐马尔可夫 &amp;amp; Conditional Random Field 条件随机场One. Time Sequence / Series 在时间序列中，起伏状态可以被观测到（股票走势就是一种时间序列，股票中的涨跌） 无法观测到的是时间序列的隐状态（股票中是否处于牛市状态，这类的就是隐状态） 隐状态会有很多 当知道隐状态存在时，每个隐状态被观测时，都是相互独">
 <meta name="twitter:image" content="https://github.com/soloistben/images/raw/master/hmm_crf/hmm.png">
   
     <link rel="alternate" href="/atom.xml" title="MR.C" type="application/atom+xml">
@@ -92,101 +92,102 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="hidden-markov-model-隐马尔可夫-conditional-random-field-条件随机场">Hidden Markov Model 隐马尔可夫 &amp; Conditional Random Field 条件随机场</h4>
-<h5 id="one.-time-sequence-series">One. Time Sequence / Series</h5>
-<ul>
+        <h4 id="Hidden-Markov-Model-隐马尔可夫-amp-Conditional-Random-Field-条件随机场"><a href="#Hidden-Markov-Model-隐马尔可夫-amp-Conditional-Random-Field-条件随机场" class="headerlink" title="Hidden Markov Model 隐马尔可夫 &amp; Conditional Random Field 条件随机场"></a>Hidden Markov Model 隐马尔可夫 &amp; Conditional Random Field 条件随机场</h4><h5 id="One-Time-Sequence-Series"><a href="#One-Time-Sequence-Series" class="headerlink" title="One. Time Sequence / Series"></a>One. Time Sequence / Series</h5><ul>
 <li>在时间序列中，起伏状态可以被观测到（股票走势就是一种时间序列，股票中的涨跌）</li>
-<li>无法观测到的是时间序列的<strong>隐状态</strong>（股票中是否处于牛市状态，这类的就是隐状态）
-<ul>
+<li>无法观测到的是时间序列的<strong>隐状态</strong>（股票中是否处于牛市状态，这类的就是隐状态）<ul>
 <li>隐状态会有很多</li>
 <li>当知道隐状态存在时，每个隐状态被观测时，都是相互独立（互不干扰）</li>
 <li>隐状态之间是离散的</li>
-</ul></li>
 </ul>
-<h5 id="two.-hmm">Two. HMM</h5>
-<ul>
+</li>
+</ul>
+<h5 id="Two-HMM"><a href="#Two-HMM" class="headerlink" title="Two. HMM"></a>Two. HMM</h5><ul>
 <li>在概率中，隐马尔可夫模型对应所有状态是相互独立的</li>
-<li><strong>P(q_t|q_t-1)</strong> Transition Probability 转移概率
-<ul>
-<li>P(q_t|q_t-1, q_t-2,..., q_1) = P(q_t|q_t-1)
-<ul>
+<li><strong>P(q_t|q_t-1)</strong>  Transition Probability 转移概率<ul>
+<li>P(q_t|q_t-1, q_t-2,…, q_1) = P(q_t|q_t-1)<ul>
 <li>每个状态只取决于前面一个状态，而非前面所有状态</li>
 <li>即当前隐状态到下一个隐状态的概率</li>
-</ul></li>
+</ul>
+</li>
 <li>Discrete 离散的（用矩阵表示 A，维度(k, k)，k是开个隐状态）</li>
-</ul></li>
-<li><strong>P(y_t|q_t)</strong> Emmission/Measurement Probability 发射概率 / 观测概率
-<ul>
-<li>P(y_t|q_1,..., q_t-1, q_t, y_1,..., y_t-1) = P(y_t|q_t)
-<ul>
+</ul>
+</li>
+<li><strong>P(y_t|q_t)</strong>  Emmission/Measurement Probability 发射概率 / 观测概率<ul>
+<li>P(y_t|q_1,…, q_t-1, q_t, y_1,…, y_t-1) = P(y_t|q_t)<ul>
 <li>已知当前状态 q_t，得到事实变化 y_t 的概率</li>
-</ul></li>
+</ul>
+</li>
 <li>Discrete or Continuous</li>
 <li>若是离散时，可以用矩阵表示 B，维度(k, L)，L是y的取值范围（也是离散的）</li>
 <li>若是连续的，无法使用矩阵表示，y可能是连续的一个分布</li>
-</ul></li>
-<li>两个概率决定了整个隐马尔可夫模型</li>
-<li><p>在信号中用HMM也很多，时间轴每段范围的信号就相当与一个y_t <img src="https://github.com/soloistben/images/raw/master/hmm_crf/hmm.png" alt="hmm" style="zoom:67%;"></p></li>
-<li>每个隐状态的概率和为1，则矩阵行和为1</li>
-<li>P(X) = ∫_y P(X, Y) dy</li>
-<li><strong>P(y_1, y_2, y_3)</strong> = Σq_1 Σq_2 Σq_3 P(y_1, y_2, y_3, q_1, q_2, q_3) = Σq_1 Σq_2 Σq_3 <strong>P(y_3|q_3)P(q_3|q_2)*P(y_2|q_2)P(q_2|q_1)*P(y_1|q_1)P(q_1)</strong>
-<ul>
+</ul>
+</li>
+<li>两个概率决定了整个隐马尔可夫模型 </li>
+<li><p>在信号中用HMM也很多，时间轴每段范围的信号就相当与一个y_t<br><img src="https://github.com/soloistben/images/raw/master/hmm_crf/hmm.png" alt="hmm" style="zoom:67%;"></p>
+</li>
+<li><p>每个隐状态的概率和为1，则矩阵行和为1</p>
+</li>
+<li>P(X) = ∫_y P(X, Y) dy </li>
+<li><strong>P(y_1, y_2, y_3)</strong> = Σq_1 Σq_2 Σq_3 P(y_1, y_2, y_3, q_1, q_2, q_3) = Σq_1 Σq_2 Σq_3 <strong>P(y_3|q_3)P(q_3|q_2)*P(y_2|q_2)P(q_2|q_1)*P(y_1|q_1)P(q_1)</strong> <ul>
 <li>P(y_1, y_2, y_3, q_1, q_2, q_3) = P(y_3|y_1, y_2, q_1, q_2, q_3)*P(y_1, y_2, q_1, q_2, q_3)</li>
 <li>利用马尔可夫性质：P(y_1, y_2, y_3, q_1, q_2, q_3) = P(y_3|q_3)*P(q_3|y_1, y_2, q_1, q_2)*P(y_1, y_2, q_1, q_2) = P(y_3|q_3)P(q_3|q_2)*P(y_1, y_2, q_1, q_2)</li>
 <li>P(y_3|q_3), P(q_3|q_2), P(y_2|q_2), P(q_2|q_1), P(y_1|q_1) 在马尔可夫参数A, B矩阵中可得</li>
 <li><strong>P(q_1) 是初始状态</strong>，这需要问题给出</li>
 <li>则马尔可夫模型需要三个参数，λ={A, B, P(q_1)} (假设y是离散的)</li>
-</ul></li>
-<li>马尔可夫模型有什么用？
-<ul>
+</ul>
+</li>
+<li>马尔可夫模型有什么用？<ul>
 <li>找50人讲10个单词（动物名字）</li>
-<li><strong>λ_cat = argmax_λ log P(y_1, ..., y_50|λ)</strong>
-<ul>
+<li><strong>λ_cat = argmax_λ log P(y_1, …, y_50|λ)</strong> <ul>
 <li>当初始条件为λ，最大为说cat的情况</li>
 <li>记录所有单词的λ</li>
 <li>用高斯或者高斯混合模型计算λ</li>
-</ul></li>
-<li>当来了个新人，说其中一个单词，那么他说哪个单词概率最大？
-<ul>
-<li><strong>P(y_new|λ_cat)</strong>, ... 概率最大为结果</li>
+</ul>
+</li>
+<li>当来了个新人，说其中一个单词，那么他说哪个单词概率最大？<ul>
+<li><strong>P(y_new|λ_cat)</strong>, … 概率最大为结果</li>
 <li>若所有该概率计算结果很小时，说明新人说的不是原10个单词</li>
-</ul></li>
-</ul></li>
-<li>公式范化（计算量较大） <img src="https://github.com/soloistben/images/raw/master/hmm_crf/hmm_function.png" alt="hmm_function" style="zoom: 67%;">
+</ul>
+</li>
+</ul>
+</li>
+<li><p>公式范化（计算量较大）<br><img src="https://github.com/soloistben/images/raw/master/hmm_crf/hmm_function.png" alt="hmm_function" style="zoom: 67%;"></p>
 <ul>
-<li><p>一个定义 <img src="https://github.com/soloistben/images/raw/master/hmm_crf/FB.png" alt="FB" style="zoom:67%;"></p></li>
-<li>优化计算量
+<li><p>一个定义<br><img src="https://github.com/soloistben/images/raw/master/hmm_crf/FB.png" alt="FB" style="zoom:67%;"></p>
+</li>
+<li><p>优化计算量</p>
 <ul>
-<li>alpha_i(t) = P(y_1, ..., y_t, q_t=i)</li>
-<li>alpha_i(1) = P(y_1, q_1=i) = P(y_i|q_1=i)P(q1) = b_i(y_1) P(q_1)</li>
+<li>alpha_i(t) = P(y_1, …, y_t, q_t=i)</li>
+<li>alpha_i(1) = P(y_1, q_1=i) = P(y_i|q_1=i)P(q1) = b_i(y_1) P(q_1) </li>
 <li>alpha_j(2) = P(y_1, y_2, q_2=j) = Σq_1P(y_1, y_2, q_1=i, q_2=j) = Σq_1 P(y_2|q_2=j)P(q_2=j|q_1=i)*P(y_1, q_1=i) = P(y_2|q_2=j) Σq_1 P(q_2=j|q_1=i)*alpha_i(1) = b_j(y_1) Σq_1 a_ij*alpha_i(1)</li>
-<li>开始递归 alpha_j(t) = b_j(y_t) Σq_1 a_ij*alpha_i(t-1) = P(y_1, ..., y_t, q_t=j)
-<ul>
-<li><strong>P(y_1, ..., y_t) = Σj P(y_1, ..., y_t, q_t=j) = Σj alpha_j(t)</strong></li>
-</ul></li>
-<li>通过贝叶斯公式 <img src="https://github.com/soloistben/images/raw/master/hmm_crf/FB_2.png" alt="FB_2" style="zoom:67%;">
-<ul>
-<li>P(Y, q_t=i|λ) = P(Y, q_t=i)P(q_t=i) = P(y_1, ..., y_t|q_t=i)P(y_t+1, ..., y_T|q_t=i)P(q_t=i) = P(y_1, ..., y_t, q_t=i)P(y_t+1, ..., y_T|q_t=i) = alpha_i(t) beta_i(t)</li>
-</ul></li>
-</ul></li>
-</ul></li>
-<li>如何学习HMM的参数
-<ul>
+<li>开始递归 alpha_j(t) = b_j(y_t) Σq_1 a_ij*alpha_i(t-1) = P(y_1, …, y_t, q_t=j) <ul>
+<li><strong>P(y_1, …, y_t) = Σj P(y_1, …, y_t, q_t=j) = Σj alpha_j(t)</strong></li>
+</ul>
+</li>
+<li>通过贝叶斯公式<br><img src="https://github.com/soloistben/images/raw/master/hmm_crf/FB_2.png" alt="FB_2" style="zoom:67%;"><ul>
+<li>P(Y, q_t=i|λ) = P(Y, q_t=i)P(q_t=i) = P(y_1, …, y_t|q_t=i)P(y_t+1, …, y_T|q_t=i)P(q_t=i) =  P(y_1, …, y_t, q_t=i)P(y_t+1, …, y_T|q_t=i) = alpha_i(t) beta_i(t)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>如何学习HMM的参数<ul>
 <li>λ = argmax_λ log P(Y|λ) （极大似然估计）</li>
-<li>用EM学习
-<ul>
-<li>E-step: Σq_1... Σq_t log(P(Y, Q))*P(Q,Y|θ^g) = Σq_1... Σq_t log(P(q_1)*ΠP(q_t|q_t-1)*ΠP(y_t|q_t)) * P(Q,Y|θ^g) = Σq_1... Σq_t [log(P(q_1)+Σlog(a_q_t-1,q_t)+Σlog(b_q_t(y_t))] * P(Q,Y|θ^g)</li>
+<li>用EM学习<ul>
+<li>E-step: Σq_1… Σq_t log(P(Y, Q))*P(Q,Y|θ^g) = Σq_1… Σq_t log(P(q_1)*ΠP(q_t|q_t-1)*ΠP(y_t|q_t)) <em> P(Q,Y|θ^g) = Σq_1… Σq_t [log(P(q_1)+Σlog(a_q_t-1,q_t)+Σlog(b_q_t(y_t))] </em> P(Q,Y|θ^g)</li>
 <li>part 5,6还没看完(需要EM基础)</li>
-</ul></li>
-</ul></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 <p><a href="https://www.youtube.com/watch?v=Ji6KbkyNmk8&amp;list=PLFze15KrfxbGPEHyjxddbbxVvLa5kilFf" target="_blank" rel="noopener">徐亦达系列</a> <a href="https://github.com/roboticcam/machine-learning-notes/blob/master/files/dynamic_model.pdf" target="_blank" rel="noopener">pdf</a></p>
-<h5 id="three.-crf">Three. CRF</h5>
-
+<h5 id="Three-CRF"><a href="#Three-CRF" class="headerlink" title="Three. CRF"></a>Three. CRF</h5>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/08/09/HMM-CRF/" data-id="ckfyyj1kb0009ceeg06art2ac" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/08/09/HMM-CRF/" data-id="ckfyyvrsk000i69eg4ktyi3ug" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ML/">ML</a></li></ul>
