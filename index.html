@@ -303,107 +303,114 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="指数族分布">指数族分布</h4>
-<ul>
-<li><p>Gaussian Distribution, Bernoulli Distribution (Categorical Distribution), Binomial Distribution (Multinomial Distribution), Poisson Distribution, Beta Distribution, Dirichlet Distribution, Gamma Distribution</p></li>
-<li><p><font color="red"><span class="math inline">\(P(x|η) = h(x) e^{η^{T} Φ(x) - A(η)}\)</span></font> （分为三部分）</p>
+        <h4 id="指数族分布"><a href="#指数族分布" class="headerlink" title="指数族分布"></a>指数族分布</h4><ul>
+<li><p>Gaussian Distribution, Bernoulli Distribution (Categorical Distribution), Binomial Distribution (Multinomial Distribution), Poisson Distribution, Beta Distribution, Dirichlet Distribution, Gamma Distribution</p>
+</li>
+<li><p><font color="red">$P(x|η) = h(x) e^{η^{T} Φ(x) - A(η)}$</font> （分为三部分）</p>
 <ul>
 <li>η属于参数、p维向量；A(η): log partition function（配分函数）；h(x)与η无关，往往设置为1</li>
-<li>partition function（源自于统计物理学）：<span class="math inline">\(P(x|θ) = \frac {1}{Z} \hat{P}(x|θ)\)</span> （Z为归一化因子，<span class="math inline">\(Z=\int \hat{P}(x|θ) d_{x}\)</span>）</li>
-<li><span class="math inline">\(P(x|η) = \frac {1}{e^{A(η)}} h(x) e^{η^{T} Φ(x)} → e^{A(η)} = Z → A(η) = log Z\)</span>，所以A(η)是log partition function</li>
-</ul></li>
-<li>特点
+<li>partition function（源自于统计物理学）：$P(x|θ) = \frac {1}{Z} \hat{P}(x|θ)$ （Z为归一化因子，$Z=\int \hat{P}(x|θ) d_{x}$）</li>
+<li>$P(x|η) = \frac {1}{e^{A(η)}} h(x) e^{η^{T} Φ(x)} → e^{A(η)} = Z → A(η) = log Z$，所以A(η)是log partition function</li>
+</ul>
+</li>
+<li><p>特点</p>
 <ul>
-<li><strong>充分统计量 sufficient statistics</strong>：Φ(x)
-<ul>
+<li><strong>充分统计量 sufficient statistics</strong>：Φ(x)<ul>
 <li>统计量：对样本的加工，关于样本的一个函数，均值、方差等</li>
 <li>充分：统计量就可以完整表达样本特征信息了</li>
 <li>Online Learning （可以仅存储样本统计量信息，就不需要存储大量样本，起到压缩数据的效果）</li>
-</ul></li>
-<li><strong>共轭</strong>
-<ul>
-<li><span class="math inline">\(P(Y|X) = \frac{P(X|Y)P(Y)}{\int P(X|Y)P(Y) d_{Y}}\)</span>（后验概率是求不出来，或者积分难问题，太复杂，难以求解）</li>
+</ul>
+</li>
+<li><strong>共轭</strong><ul>
+<li>$P(Y|X) = \frac{P(X|Y)P(Y)}{\int P(X|Y)P(Y) d_{Y}}$（后验概率是求不出来，或者积分难问题，太复杂，难以求解）</li>
 <li>计算f(Y)后验分布的期望：近似推断（变分推断、MCMC）</li>
 <li>若似然P(X|Y)与先验P(Y)共轭（如二项分布和Beta分布），则后验与先验同分布，则仅需算后验分布的参数即可，就可以不用计算积分</li>
-</ul></li>
-<li><strong>最大熵</strong>（无信息先验）
-<ul>
+</ul>
+</li>
+<li><strong>最大熵</strong>（无信息先验）<ul>
 <li>没有先验，则认为是所有样本等概率，但无法定量分析，则引入最大熵</li>
 <li>赋予先验：共轭（为了计算方便）；最大熵（无信息先验）</li>
-</ul></li>
-</ul></li>
-<li>模型和推断
+</ul>
+</li>
+</ul>
+</li>
+<li><p>模型和推断</p>
 <ul>
-<li><strong>广义线性模型</strong>
-<ul>
+<li><strong>广义线性模型</strong><ul>
 <li>目标：解决分类、回归问题</li>
-<li>线性组合（w<sup>T</sup>x）</li>
+<li>线性组合（w^T^x）</li>
 <li>link function（激活函数的反函数）</li>
-<li>指数族分布（y|x ~ 指数族分布）（如线性回归：y|x ~ N(μ,σ<sup>2</sup>)；线性分类：y|x ~ 0/1分布（Bernoulli））</li>
-</ul></li>
-<li><strong>概率图模型</strong>
-<ul>
+<li>指数族分布（y|x ~ 指数族分布）（如线性回归：y|x ~ N(μ,σ^2^)；线性分类：y|x ~ 0/1分布（Bernoulli））</li>
+</ul>
+</li>
+<li><strong>概率图模型</strong><ul>
 <li>无向图：RBM 波尔兹曼机</li>
-</ul></li>
-<li><strong>变分推断</strong>
-<ul>
+</ul>
+</li>
+<li><strong>变分推断</strong><ul>
 <li>指数族分布可以简化变分推断</li>
-</ul></li>
-</ul></li>
-<li>Gaussian Distribution
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Gaussian Distribution</p>
 <ul>
-<li><span class="math inline">\(P(x|θ) = \frac{1}{\sqrt{2\pi}σ} e^{\frac{(x-μ)^2}{-2σ^2}},θ=(μ,σ^2)\)</span> 一维高斯分布
-<ul>
+<li>$P(x|θ) = \frac{1}{\sqrt{2\pi}σ} e^{\frac{(x-μ)^2}{-2σ^2}},θ=(μ,σ^2)$  一维高斯分布<ul>
 <li>η = η(θ)，A(η) = A(η(θ))，将θ映射成η​</li>
-<li><span class="math inline">\(P(x|\theta) = \frac{1}{\sqrt{2\pi}\sigma} e^{-\frac{1}{2\sigma^2}(x^2-2\mu x+\mu ^2)} = e^{-\frac{1}{2}log^{2\pi \sigma^2}} e^{-\frac{1}{2\sigma^2} {\begin{bmatrix} -2\mu \ 1 \end{bmatrix}}{\begin{bmatrix}x \\ x^2 \end{bmatrix}} -\frac{\mu^2}{2\sigma^2}}\)</span>
-<ul>
-<li><span class="math inline">\(η^T = {\begin{bmatrix}\frac{μ}{σ^2}\ \frac{-1}{2σ^2} \end{bmatrix}}, Φ(x) = {\begin{bmatrix}x \\ x^2 \end{bmatrix}}, A(η)=\frac{μ^2}{2σ^2}+ \frac{1}{2} log^{2\piσ^2}\)</span></li>
-<li>设定<span class="math inline">\(η={\begin{bmatrix}η \\ η^2 \end{bmatrix}}\)</span>，则<span class="math inline">\(A(η) = -\frac{η_1^2}{4η_2}+\frac{1}{2}log^{-\frac{\pi}{η_2}}\)</span></li>
-</ul></li>
-</ul></li>
-</ul></li>
-<li><strong>充分统计量Φ(x) 与 对数配分函数A(η)</strong>
+<li>$P(x|\theta) = \frac{1}{\sqrt{2\pi}\sigma} e^{-\frac{1}{2\sigma^2}(x^2-2\mu x+\mu ^2)} = e^{-\frac{1}{2}log^{2\pi \sigma^2}} e^{-\frac{1}{2\sigma^2} {\begin{bmatrix} -2\mu \ 1 \end{bmatrix}}{\begin{bmatrix}x \ x^2 \end{bmatrix}} -\frac{\mu^2}{2\sigma^2}}$<ul>
+<li>$η^T = {\begin{bmatrix}\frac{μ}{σ^2}\ \frac{-1}{2σ^2} \end{bmatrix}}, Φ(x) = {\begin{bmatrix}x \ x^2 \end{bmatrix}}, A(η)=\frac{μ^2}{2σ^2}+ \frac{1}{2} log^{2\piσ^2}$</li>
+<li>设定$η={\begin{bmatrix}η \ η^2 \end{bmatrix}}$，则$A(η) = -\frac{η_1^2}{4η_2}+\frac{1}{2}log^{-\frac{\pi}{η_2}}$</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>充分统计量Φ(x) 与 对数配分函数A(η)</strong> </p>
 <ul>
 <li>P(x|η) 概率积分为1</li>
-<li><span class="math inline">\(P(x|η) = \frac{1}{e^{A(η)}}h(x)e^{η^T Φ(x)}→e^{A(η)}=\int h(x)e^{η^TΦ(x)}d_x\)</span></li>
-<li>两边对η求导：<span class="math inline">\(e^{A(η)}*A&#39;(η) = \frac{d(\int h(x)e^{η^TΦ(x)}d_{x})}{dη}=\int h(x) Φ(x)e^{η^TΦ(x)}d_{x}\)</span></li>
-<li><span class="math inline">\(A&#39;(η) =\int h(x) Φ(x)e^{η^T Φ(x)-A(η)}d_{x}=\int Φ(x)P(x|η)d_{x} = E_{P(x|η)}[Φ(x)]\)</span></li>
-<li><span class="math inline">\(A&#39;&#39;(η)=Var_{P(x|η)} [Φ(x)]\)</span>，则A(η)是一个凸函数</li>
-</ul></li>
+<li>$P(x|η) = \frac{1}{e^{A(η)}}h(x)e^{η^T Φ(x)}→e^{A(η)}=\int h(x)e^{η^TΦ(x)}d_x$</li>
+<li>两边对η求导：$e^{A(η)}*A’(η) = \frac{d(\int h(x)e^{η^TΦ(x)}d<em>{x})}{dη}=\int h(x) Φ(x)e^{η^TΦ(x)}d</em>{x}$</li>
+<li>$A’(η) =\int h(x) Φ(x)e^{η^T Φ(x)-A(η)}d<em>{x}=\int Φ(x)P(x|η)d</em>{x} = E_{P(x|η)}[Φ(x)]$</li>
+<li>$A’’(η)=Var_{P(x|η)} [Φ(x)]$，则A(η)是一个凸函数</li>
+</ul>
+</li>
 <li><p><strong>充分统计量Φ(x) 与 极大似然估计</strong></p>
 <ul>
-<li>Data: D = {x<sub>1</sub>,x<sub>2</sub>,...,x<sub>N</sub>} N个样本</li>
-<li>$η_{MLE}=argmax  log^{P(D|η)}=argmax  log^{P(x_i|η)}=argmax  log^{P(x_i|η)}\ = argmax  log<sup>{h(x_i)e</sup>{η^T Φ(x_i)-A(η)}} = argmax  $
-<ul>
-<li><span class="math inline">\(→ η_{MLE} ∝argmax \ \sum [η^T Φ(x_i)-A(η)]\)</span></li>
-<li><span class="math inline">\(\frac{d(Σ [η^T Φ(x_i)-A(η)])}{dη} =\sum \frac{d(η^T Φ(x_i)-A(η))}{dη}=\sum[Φ(x_i)-A&#39;(η)] =\sum Φ(x_i)- N*A&#39;(η)=0 \\ → A&#39;(η_{MLE})=\frac{1}{N}\sum Φ(x_i)\)</span></li>
-<li><span class="math inline">\(η_{MLE} = A&#39;^{(-1)}(η_{MLE})\)</span>（反函数） → 则η<sub>MLE</sub>是可求解的，只需要记录即<span class="math inline">\(\frac{1}{N}\sum Φ(x_i)\)</span>可，不需要记录所有样本</li>
-</ul></li>
-</ul></li>
+<li>Data: D = {x~1~,x~2~,…,x~N~} N个样本</li>
+<li>$η_{MLE}=argmax log^{P(D|η)}=argmax log^{\prod P(x_i|η)}=argmax\  \sum log^{P(x_i|η)}\ = argmax \sum log^{h(x_i)e^{η^T Φ(x_i)-A(η)}} = argmax \sum [log^{h(x_i)}+η^T Φ(x_i)-A(η)] $<ul>
+<li>$→ η_{MLE} ∝argmax \ \sum [η^T Φ(x_i)-A(η)]$</li>
+<li>$\frac{d(Σ [η^T Φ(x<em>i)-A(η)])}{dη} =\sum \frac{d(η^T Φ(x_i)-A(η))}{dη}=\sum[Φ(x_i)-A’(η)] =\sum Φ(x_i)- N*A’(η)=0 \ → A’(η</em>{MLE})=\frac{1}{N}\sum Φ(x_i)$</li>
+<li>$η<em>{MLE} = A’^{(-1)}(η</em>{MLE})$（反函数） → 则η~MLE~是可求解的，只需要记录即$\frac{1}{N}\sum Φ(x_i)$可，不需要记录所有样本</li>
+</ul>
+</li>
+</ul>
+</li>
 <li><p><strong>最大熵角度</strong></p>
 <ul>
 <li>若一个事件发生概率为p，其信息量为-log p （若p=1,信息量就为0；一个确定的事件没有信息量）</li>
-<li>熵：<span class="math inline">\(E[-log^p]=\int -p(x)log^{p(x)} d_{x}=-\sum p(x)log^{p(x)}\)</span> （对信息的衡量，对信息可能性的衡量）（熵只与x的分布有关，与取值无关）</li>
-<li>最大熵&lt;=&gt;等可能（利用最大熵对等可能定量分析）（最大熵，对未知的分布进行猜测，因为不知道，所以认为都是等可能的）（<strong>要想熵最大，未知的分布必须是等可能</strong>）
-<ul>
-<li><span class="math inline">\(H[p]=-\sum p(x)log^{p(x)}\)</span></li>
-<li>假设x是离散的，P(x=1) = p<sub>1</sub>，P(x=2) = p<sub>2</sub>，...，P(x=k) = p<sub>k</sub>，Σp<sub>i</sub> = 1</li>
-<li>则 <span class="math inline">\(max \ H[P] = max[-\sum p_i log^{p_i}],s.t.\sum p_i=1\)</span></li>
-<li><span class="math inline">\(\hat{p_i} = argmax \ H[P] = argmin \ \sum p_i log^{p_i}\)</span> （优化问题）</li>
-<li>拉格朗日：<span class="math inline">\(L(p, λ) = \sum p_i log^{p_i} - λ(1- \sum p_i)，\frac{dL}{dp_i} = log^{p_i} + 1 - λ = 0 → p_i = e^{λ-1}\)</span> (常数)</li>
-<li>则 p<sub>1</sub> = p<sub>2</sub> = ... p<sub>k</sub> = 1/k，p(x)是了离散型均匀分布</li>
-</ul></li>
-<li>最大熵原理：<strong>在满足已知事实（约束条件）（已知数据）下，什么分布是具有最大熵的分布</strong>
-<ul>
-<li>Data = {x<sub>1</sub>,x<sub>2</sub>,...,x<sub>N</sub>} 通过经验分布（概率分布<span class="math inline">\(\hat{P}(X=x) = \hat{p}(x) = \frac{count(x)}{N}\)</span>）定量描述数据</li>
-<li>需要P分布的<span class="math inline">\(E_{\hat{p}}[x], Var_{\hat{p}}[x]\)</span>，设定f(x)是任意关于x的向量函数（<span class="math inline">\(f=[f_1,f_2,...,f_Q]^T\)</span>），则<span class="math inline">\(E_{\hat{p}}[f(x)]=Δ\)</span>（即是已知事实）</li>
-<li>$P(X) → p(x), H[p]=-p(x)log^{p(x)} \ → min p(x)log^{p(x)},s.t. p(x)=1,E_p[f(x)]=p(x)f(x)=E_{}[f(x)]=Δ $</li>
-<li>拉格朗日：<span class="math inline">\(L(p, λ_0, λ) = \sum p(x)log^{p(x)} - λ_0(1- \sum p(x)) - λ^T(Δ - \sum p(x)f(x))\)</span></li>
-<li>求导：<span class="math inline">\(\frac{dL}{d_{p(x)}} = \sum [log^{p(x)} + 1] - \sum λ_0 - \sum λ^T f(x) = Σ[log^{p(x)}+1-λ_0-λ^T f(x)] = 0 \\ \rightarrow log^{p(x)}+1-λ_0-λ^T f(x)=0 →p(x) = e^{λ^T f(x) - (1-λ_0)}\)</span></li>
-<li>令η=λ<sup>T</sup>，Φ(x)=f(x)，A(η)=(1-λ<sub>0</sub>)</li>
+<li>熵：$E[-log^p]=\int -p(x)log^{p(x)} d_{x}=-\sum p(x)log^{p(x)}$ （对信息的衡量，对信息可能性的衡量）（熵只与x的分布有关，与取值无关）</li>
+<li>最大熵&lt;=&gt;等可能（利用最大熵对等可能定量分析）（最大熵，对未知的分布进行猜测，因为不知道，所以认为都是等可能的）（<strong>要想熵最大，未知的分布必须是等可能</strong>）<ul>
+<li>$H[p]=-\sum p(x)log^{p(x)}$</li>
+<li>假设x是离散的，P(x=1) = p~1~，P(x=2) = p~2~，…，P(x=k) = p~k~，Σp~i~ = 1</li>
+<li>则 $max \ H[P] = max[-\sum p_i log^{p_i}],s.t.\sum p_i=1$</li>
+<li>$\hat{p_i} = argmax \ H[P] = argmin \ \sum p_i log^{p_i}$ （优化问题）</li>
+<li>拉格朗日：$L(p, λ) = \sum p_i log^{p_i} - λ(1- \sum p_i)，\frac{dL}{dp_i} = log^{p_i} + 1 - λ = 0 → p_i = e^{λ-1}$ (常数)</li>
+<li>则 p~1~ = p~2~ = … p~k~ = 1/k，p(x)是了离散型均匀分布</li>
+</ul>
+</li>
+<li>最大熵原理：<strong>在满足已知事实（约束条件）（已知数据）下，什么分布是具有最大熵的分布</strong><ul>
+<li>Data = {x~1~,x~2~,…,x~N~} 通过经验分布（概率分布$\hat{P}(X=x) = \hat{p}(x) = \frac{count(x)}{N}$）定量描述数据</li>
+<li>需要P分布的$E<em>{\hat{p}}[x], Var</em>{\hat{p}}[x]$，设定f(x)是任意关于x的向量函数（$f=[f<em>1,f_2,…,f_Q]^T$），则$E</em>{\hat{p}}[f(x)]=Δ$（即是已知事实）</li>
+<li>$P(X) → p(x), H[p]=- \sum p(x)log^{p(x)} \ → min \ \sum p(x)log^{p(x)},s.t. \sum p(x)=1,E<em>p[f(x)]=\sum p(x)f(x)=E</em>{\hat{p}}[f(x)]=Δ $</li>
+<li>拉格朗日：$L(p, λ_0, λ) = \sum p(x)log^{p(x)} - λ_0(1- \sum p(x)) - λ^T(Δ - \sum p(x)f(x))$</li>
+<li>求导：$\frac{dL}{d_{p(x)}} = \sum [log^{p(x)} + 1] - \sum λ_0 - \sum λ^T f(x) = Σ[log^{p(x)}+1-λ_0-λ^T f(x)] = 0 \ \rightarrow log^{p(x)}+1-λ_0-λ^T f(x)=0 →p(x) = e^{λ^T f(x) - (1-λ_0)}$</li>
+<li>令η=λ^T^，Φ(x)=f(x)，A(η)=(1-λ~0~)</li>
 <li>则用最大熵原理推出，p(x)是指数分布时熵最大</li>
-</ul></li>
-</ul></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 
       
@@ -444,105 +451,119 @@
     <div class="article-entry" itemprop="articleBody">
       
         <ul>
-<li>过拟合
+<li><p>过拟合</p>
 <ul>
 <li>解决方法：增加数据、正则化、降维</li>
-<li>原因：<strong>维度灾难</strong>
+<li><p>原因：<strong>维度灾难</strong></p>
 <ul>
 <li>在没有很多数据集时，只能降维</li>
 <li>每增加一维，二值的特征，都是2的指数倍增长，要想覆盖所有样本空间，则需要2的指数倍数据才可以（而且往往不只是二值）</li>
 <li><p>从几何层面看：</p>
 <p><img src="https://github.com/soloistben/images/raw/master/statistics/Dimensionality_Reduction/DR1.png" alt="DR1" style="zoom: 33%;"></p>
 <ul>
-<li>2维正方形面积：1，圆形：<span class="math inline">\(\pi*(0.5)^2\)</span></li>
-<li>3维正方体体积：1，球体体积：<span class="math inline">\(\frac{4}{3}*\pi*(0.5)^3 = K*(0.5)^3\)</span></li>
-<li>D维超立方体体积：1，超球体体积： <span class="math inline">\(K*(0.5)^D\)</span></li>
+<li>2维正方形面积：1，圆形：$\pi*(0.5)^2$</li>
+<li>3维正方体体积：1，球体体积：$\frac{4}{3}<em>\pi</em>(0.5)^3 = K*(0.5)^3$</li>
+<li>D维超立方体体积：1，超球体体积： $K*(0.5)^D$</li>
 <li><p>D趋向无穷大之后，超球体体积约等于0，则为空心的，则数据分布在超立方体的四角，造成了样本数据十分稀疏且分布不均匀，因此很难分类</p>
-<p><img src="https://github.com/soloistben/images/raw/master/statistics/Dimensionality_Reduction/DR2.png" alt="DR2" style="zoom:33%;"></p></li>
-<li>D维外超球体体积：<span class="math inline">\(K*1^D = K\)</span>，环形体积：外超球体体积 - 内超球体体积 = <span class="math inline">\(K - K(1-e)^D\)</span>
+<p><img src="https://github.com/soloistben/images/raw/master/statistics/Dimensionality_Reduction/DR2.png" alt="DR2" style="zoom:33%;"></p>
+</li>
+<li><p>D维外超球体体积：$K*1^D = K$，环形体积：外超球体体积 - 内超球体体积 = $K - K(1-e)^D$</p>
 <ul>
-<li>V外/V内 <span class="math inline">\(=1-(1-e)^D =1\)</span>（<span class="math inline">\(0&lt;e&lt;1\)</span>，D趋向无穷大之后，<span class="math inline">\((1-e)^D\)</span>趋向于0）</li>
+<li>V外/V内  $=1-(1-e)^D  =1$（$0&lt;e&lt;1$，D趋向无穷大之后，$(1-e)^D$趋向于0）</li>
 <li>则无论e多小，在高维空间，环形体积约等于1，内超球体为空心，数据分布在外超球体壳上</li>
-</ul></li>
-</ul></li>
-</ul></li>
-</ul></li>
-<li>Data
-<ul>
-<li>N个p维样本 X（维度N×p）（设<span class="math inline">\(I\)</span>为N维全1列向量）</li>
-<li>样本均值 <span class="math inline">\(\hat{X}=\frac{1}{N} \sum x_i = \frac{1}{N} X^T I\)</span>（维度p×1）</li>
-<li>方差 <span class="math inline">\(S = \frac{1}{N} \sum (x_i - \hat{X})(x_i - \hat{X})^T = \frac{1}{N} X^T (I - \frac{1}{N} I I^T) (1-\frac{1}{N} I I^T)^T X = \frac{1}{N} X^T H H^T X = \frac{1}{N} X^T H X\)</span>
-<ul>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Data<ul>
+<li>N个p维样本 X（维度N×p）（设$I$为N维全1列向量）</li>
+<li>样本均值 $\hat{X}=\frac{1}{N} \sum x_i = \frac{1}{N} X^T I$（维度p×1）</li>
+<li>方差 $S = \frac{1}{N} \sum (x_i - \hat{X})(x_i - \hat{X})^T = \frac{1}{N} X^T (I - \frac{1}{N} I I^T) (1-\frac{1}{N} I I^T)^T X = \frac{1}{N} X^T H H^T X = \frac{1}{N} X^T H X$<ul>
 <li>（维度p×p）</li>
-<li><span class="math inline">\(H = I-\frac{1}{N} I I^T\)</span> centering matrix（将数据平移转换，数据分布在坐标中心）（维度N×N）</li>
-<li><span class="math inline">\(H^T = H, H^2 = H H^T = (I-\frac{1}{N}I I^T) (I-\frac{1}{N} I I^T)^T = I-\frac{1}{N} I I^T = H\)</span></li>
-<li><span class="math inline">\(H^n = H\)</span></li>
-</ul></li>
-</ul></li>
-<li>降维方法
+<li>$H =  I-\frac{1}{N} I I^T$  centering matrix（将数据平移转换，数据分布在坐标中心）（维度N×N）</li>
+<li>$H^T = H, H^2 = H H^T = (I-\frac{1}{N}I I^T) (I-\frac{1}{N} I I^T)^T = I-\frac{1}{N} I I^T = H$</li>
+<li>$H^n = H$</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>降维方法</p>
 <ul>
 <li>直接降维 （特征选择：人工选取重要特征 ）</li>
-<li>线性降维
+<li><p>线性降维</p>
 <ul>
-<li><strong>Principal Components Analysis PCA 主成分分析</strong>
+<li><p><strong>Principal Components Analysis PCA 主成分分析</strong></p>
 <ul>
 <li><p>将线性相关的特征通过正交变换为线性无关（对原始特征空间的重构）（线性相关（存在2个以上特征之间联系））</p>
-<p><img src="https://github.com/soloistben/images/raw/master/statistics/Dimensionality_Reduction/DR3.png" alt="DR3" style="zoom: 67%;"></p></li>
-<li>最大投影方差
+<p><img src="https://github.com/soloistben/images/raw/master/statistics/Dimensionality_Reduction/DR3.png" alt="DR3" style="zoom: 67%;"></p>
+</li>
+<li><p>最大投影方差</p>
 <ul>
-<li>找到一个u<sub>1</sub>平面，使投影间距达到最大（投影到u<sub>2</sub>平面，距离太小，没有意义）</li>
+<li>找到一个u~1~平面，使投影间距达到最大（投影到u~2~平面，距离太小，没有意义）<ul>
 <li>这个平面就是主成分（线性无关的基(特征向量)为数据中的主要成分，降到k维，则选取第k大的特征值所对应的特征向量）</li>
-<li>第1步：中心化：先将所有数据平移，利于计算，即 <span class="math inline">\(x_i - \hat{X}\)</span></li>
-<li>第2步：投影到u_1平面：<span class="math inline">\((x_i - \hat{X})^T u_1\)</span>（设定 <span class="math inline">\(|u_1|=1\)</span>，即<span class="math inline">\(u_1^T u_1=1\)</span>）</li>
-<li>第3步：投影方差$ J =  ^2 =  = u_1^T S u_1$
-<ul>
-<li><span class="math inline">\(\hat{u_1} = argmax \ u_1^T S u_1,s.t. u_1^T u_1=1\)</span>
-<ul>
+<li>第1步：中心化：先将所有数据平移，利于计算，即 $x_i - \hat{X}$</li>
+<li>第2步：投影到u~1~平面：$(x_i - \hat{X})^T u_1$（设定 $|u_1|=1$，即$u_1^T u_1=1$）</li>
+<li>第3步：投影方差$ J = \frac{1}{N} \sum [(x_i - \hat{X}^T u_1]^2 = \frac{1}{N} \sum [u_1^T (x_i - \hat{X}) (x_i - \hat{X})^T u_1] = u_1^T S u_1$</li>
+</ul>
+</li>
+<li>$\hat{u_1} = argmax \ u_1^T S u_1,s.t. u_1^T u_1=1$<ul>
 <li>使用拉格朗日求解</li>
-<li><span class="math inline">\(L(u_1, λ) = u_1^T S u_1 + λ(1-u_1^T u_1)\)</span></li>
-<li><span class="math inline">\(\frac{dL}{du_1} = 2 S u_1 - 2λ u_1 = 0 → S u_1 = λ u_1\)</span></li>
-<li><strong>u<sub>1</sub>为eigen-vector特征向量，λ为eigen-value特征值</strong></li>
+<li>$L(u_1, λ) = u_1^T S u_1 + λ(1-u_1^T u_1)$</li>
+<li>$\frac{dL}{du_1} = 2 S u_1 - 2λ u_1 = 0 → S u_1 = λ u_1$ </li>
+<li><strong>u~1~为eigen-vector特征向量，λ为eigen-value特征值</strong></li>
 <li>解法1：对方差矩阵特征分解，即可求解PCA</li>
-<li>解法2：直接对原始数据进行操作：中心化后的 <span class="math inline">\(HX = UΣV^T\)</span> 进行奇异值分解（U和V均为正交矩阵），<span class="math inline">\(S = X^T H X = X^T H^T H X = (VΣU^T)(UΣV^T) = V Σ^2 V^T\)</span>（可先忽略1/N常数）（维度p×p），因此直接求解HX奇异值分解，也就是求解了S的特征分解</li>
-<li>假设 <span class="math inline">\(B = H X X^T H = (UΣV^T)(VΣU^T) = U Σ^2 U^T\)</span>（维度N×N），则B与S有一样的eigenvalue，（S特征分解得到方向V（主成分）然后通过<span class="math inline">\(HX V\)</span>得到新坐标）（B特征分解直接得到坐标U，称为主坐标分析 <strong>principal coordinate analysis PCoA</strong>）</li>
-<li><span class="math inline">\(HX V = UΣV^T V = UΣ\)</span>（UΣ是坐标矩阵），<span class="math inline">\(BUΣ = U Σ^2 U^T UΣ = UΣ Σ^2\)</span>（UΣ是特征向量组成的矩阵）</li>
-</ul></li>
-</ul></li>
-</ul></li>
-<li>最小重构代价
-<ul>
-<li>投影在u_1平面的点恢复到原来样子的代价</li>
-<li>设从原p维降到q维（下面u代表特征）
-<ul>
-<li><span class="math inline">\(x_i = \sum_k^p (x_i^T u_k) u_k, \hat{x_i} = \sum_k^q (x_i^T u_k) u_k\)</span> (用特征<span class="math inline">\(u_k\)</span>描述样本<span class="math inline">\(x_i\)</span>，<span class="math inline">\(x_i^T u_k\)</span>为距离大小，<span class="math inline">\(u_k\)</span>为单位大小，则第k维描述为<span class="math inline">\((x_i^T u_k) u_k\)</span>)</li>
-<li>代价函数 <span class="math inline">\(L =\frac{1}{N} \sum||x_i - \hat{x_i}||^2 = \sum_{k=q+1}^p u_k^T S u_k = \sum_{k=q+1}^p λ_k, s.t. u_k^T u_k=1\)</span></li>
-<li><span class="math inline">\(u_k = argmin \ L\)</span></li>
-</ul></li>
-</ul></li>
-<li>概率角度
-<ul>
-<li>P-PCA
-<ul>
+<li>解法2：直接对原始数据进行操作：中心化后的 $HX = UΣV^T$ 进行奇异值分解（U和V均为正交矩阵），$S = X^T H X = X^T H^T H X = (VΣU^T)(UΣV^T) = V Σ^2 V^T$（可先忽略1/N常数）（维度p×p），因此直接求解HX奇异值分解，也就是求解了S的特征分解</li>
+<li>假设 $B = H X X^T H = (UΣV^T)(VΣU^T) = U Σ^2 U^T$（维度N×N），则B与S有一样的eigenvalue，（S特征分解得到方向V（主成分）然后通过$HX V$得到新坐标）（B特征分解直接得到坐标U，称为主坐标分析 <strong>principal coordinate analysis PCoA</strong>）</li>
+<li>$HX V = UΣV^T V = UΣ$（UΣ是坐标矩阵），$BUΣ = U Σ^2 U^T UΣ = UΣ Σ^2$（UΣ是特征向量组成的矩阵）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>最小重构代价<ul>
+<li>投影在u~1~平面的点恢复到原来样子的代价</li>
+<li>设从原p维降到q维（下面u代表特征）<ul>
+<li>$x_i = \sum_k^p (x_i^T u_k) u_k, \hat{x_i} =  \sum_k^q (x_i^T u_k) u_k$  (用特征$u_k$描述样本$x_i$，$x_i^T u_k$为距离大小，$u_k$为单位大小，则第k维描述为$(x_i^T u_k) u_k$)</li>
+<li>代价函数 $L =\frac{1}{N} \sum||x<em>i - \hat{x_i}||^2 = \sum</em>{k=q+1}^p u<em>k^T S u_k  = \sum</em>{k=q+1}^p λ_k, s.t. u_k^T u_k=1$</li>
+<li>$u_k = argmin \ L$ </li>
+</ul>
+</li>
+</ul>
+</li>
+<li>概率角度<ul>
+<li>P-PCA<ul>
 <li>设定observed data X为p维（特征为连续型数据），latent variable Z为q维（q&lt;p）</li>
-<li>设定<span class="math inline">\(Z\)</span>~<span class="math inline">\(N(0, I)\)</span>（服从高斯分布，q维）</li>
-<li><span class="math inline">\(X = WZ + u + ε\)</span>​（X是Z的一个线性变换加噪声），<span class="math inline">\(X|Z\)</span>~<span class="math inline">\(N(WZ + u, σ^2 I)，X~N(u, WW^T+σ^2 I)\)</span></li>
-<li>噪声<span class="math inline">\(ε\)</span>~<span class="math inline">\(N(0, σ^2 I)\)</span>（p维）</li>
+<li>设定$Z$~$N(0, I)$（服从高斯分布，q维）</li>
+<li>$X = WZ + u + ε$​（X是Z的一个线性变换加噪声）</li>
+<li>$X|Z$~$N(WZ + u, σ^2 I)，X~N(u, WW^T+σ^2 I)$</li>
+<li>噪声$ε$~$N(0, σ^2 I)$（p维）</li>
 <li>这也是一种Linear Gaussian Model（称该模型各向同性，对各方向影响是一样的）</li>
-</ul></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
 <li><p>求P(Z), P(X|Z), P(X), 最后求后验P(Z|X)、用EM求参数W, u, σ</p>
-<p><img src="https://github.com/soloistben/images/raw/master/statistics/Dimensionality_Reduction/DR4.png" alt="DR4" style="zoom:75%;"></p></li>
-<li>从服从高斯分布的Z中，投影点在方向W，进行线性变换得到X，也得到服从高斯分布的X|Z，方向W上有很多的高斯分布（各向同性）；X的分布不在方向W上，且中间很宽（因为高斯分布中间高两边低）<a href="https://www.bilibili.com/video/BV1aE411o7qd?p=27" target="_blank" rel="noopener">详情</a></li>
-</ul></li>
-</ul></li>
-<li>MDS</li>
-</ul></li>
-<li>非线性降维
-<ul>
+<p><img src="https://github.com/soloistben/images/raw/master/statistics/Dimensionality_Reduction/DR4.png" alt="DR4" style="zoom:75%;"></p>
+<pre><code>  + 从服从高斯分布的Z中，投影点在方向W，进行线性变换得到X，也得到服从高斯分布的X|Z，方向W上有很多的高斯分布（各向同性）；X的分布不在方向W上，且中间很宽（因为高斯分布中间高两边低）[详情](https://www.bilibili.com/video/BV1aE411o7qd?p=27)
+</code></pre><ul>
+<li>MDS<ul>
+<li>非线性降维</li>
+</ul>
+</li>
 <li>流型</li>
 <li>Isomap</li>
 <li>LLE</li>
-</ul></li>
-</ul></li>
+</ul>
+</li>
 </ul>
 
       
