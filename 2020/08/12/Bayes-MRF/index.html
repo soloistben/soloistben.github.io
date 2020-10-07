@@ -7,13 +7,13 @@
   
   <title>Bayes_MRF | MR.C</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Bayes Network贝叶斯网络 &amp;amp; Markov Random Fields 马尔可夫随机场One. 前提 Probabilistic Graphical Model (PGM 概率图模型) （将概率引入图模型，没有图，只能计算，引入图，比较直观，容易观察） Representation 表示 有向图 Bayesian Network (有向无环，则起始结点决定这终止节点的概率) 无">
+  <meta name="description" content="Bayes Network贝叶斯网络 &amp;amp; Markov Random Fields 马尔可夫随机场 One. 前提  Probabilistic Graphical Model (PGM 概率图模型) （将概率引入图模型，没有图，只能计算，引入图，比较直观，容易观察）  Representation 表示  有向图 Bayesian Network (有向无环，则起始结点决定这终止节点的概">
 <meta name="keywords" content="ML">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Bayes_MRF">
 <meta property="og:url" content="http://yoursite.com/2020/08/12/Bayes-MRF/index.html">
 <meta property="og:site_name" content="MR.C">
-<meta property="og:description" content="Bayes Network贝叶斯网络 &amp;amp; Markov Random Fields 马尔可夫随机场One. 前提 Probabilistic Graphical Model (PGM 概率图模型) （将概率引入图模型，没有图，只能计算，引入图，比较直观，容易观察） Representation 表示 有向图 Bayesian Network (有向无环，则起始结点决定这终止节点的概率) 无">
+<meta property="og:description" content="Bayes Network贝叶斯网络 &amp;amp; Markov Random Fields 马尔可夫随机场 One. 前提  Probabilistic Graphical Model (PGM 概率图模型) （将概率引入图模型，没有图，只能计算，引入图，比较直观，容易观察）  Representation 表示  有向图 Bayesian Network (有向无环，则起始结点决定这终止节点的概">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://github.com/soloistben/images/raw/master/bayes_mrf/bayes_1.png">
 <meta property="og:image" content="https://github.com/soloistben/images/raw/master/bayes_mrf/bayes_2.png">
@@ -32,7 +32,7 @@
 <meta property="og:updated_time" content="2020-10-07T02:51:13.878Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Bayes_MRF">
-<meta name="twitter:description" content="Bayes Network贝叶斯网络 &amp;amp; Markov Random Fields 马尔可夫随机场One. 前提 Probabilistic Graphical Model (PGM 概率图模型) （将概率引入图模型，没有图，只能计算，引入图，比较直观，容易观察） Representation 表示 有向图 Bayesian Network (有向无环，则起始结点决定这终止节点的概率) 无">
+<meta name="twitter:description" content="Bayes Network贝叶斯网络 &amp;amp; Markov Random Fields 马尔可夫随机场 One. 前提  Probabilistic Graphical Model (PGM 概率图模型) （将概率引入图模型，没有图，只能计算，引入图，比较直观，容易观察）  Representation 表示  有向图 Bayesian Network (有向无环，则起始结点决定这终止节点的概">
 <meta name="twitter:image" content="https://github.com/soloistben/images/raw/master/bayes_mrf/bayes_1.png">
   
     <link rel="alternate" href="/atom.xml" title="MR.C" type="application/atom+xml">
@@ -102,251 +102,236 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="Bayes-Network贝叶斯网络-amp-Markov-Random-Fields-马尔可夫随机场"><a href="#Bayes-Network贝叶斯网络-amp-Markov-Random-Fields-马尔可夫随机场" class="headerlink" title="Bayes Network贝叶斯网络 &amp; Markov Random Fields 马尔可夫随机场"></a>Bayes Network贝叶斯网络 &amp; Markov Random Fields 马尔可夫随机场</h4><h5 id="One-前提"><a href="#One-前提" class="headerlink" title="One. 前提"></a>One. 前提</h5><ul>
-<li><strong>Probabilistic Graphical Model (PGM 概率图模型)</strong> （将概率引入图模型，没有图，只能计算，引入图，比较直观，容易观察）<ul>
-<li>Representation 表示<ul>
+        <h4 id="bayes-network贝叶斯网络-markov-random-fields-马尔可夫随机场">Bayes Network贝叶斯网络 &amp; Markov Random Fields 马尔可夫随机场</h4>
+<h5 id="one.-前提">One. 前提</h5>
+<ul>
+<li><strong>Probabilistic Graphical Model (PGM 概率图模型)</strong> （将概率引入图模型，没有图，只能计算，引入图，比较直观，容易观察）
+<ul>
+<li>Representation 表示
+<ul>
 <li>有向图 Bayesian Network (有向无环，则起始结点决定这终止节点的概率)</li>
 <li>无向图 Markov Network (Markov Random Fields) (无向，则结点的概率仅取决于1阶邻居)</li>
-<li>高斯图 （连续）<ul>
+<li>高斯图 （连续）
+<ul>
 <li>Gassian Bayes Network</li>
 <li>Gassian Markov Network</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Inference 推断<ul>
-<li>精确推断<ul>
+</ul></li>
+</ul></li>
+<li>Inference 推断
+<ul>
+<li>精确推断
+<ul>
 <li>Variable Elimination, Belief Propagation, Junction Tree Algorithm</li>
-</ul>
-</li>
-<li>近似推断<ul>
+</ul></li>
+<li>近似推断
+<ul>
 <li>确定性近似（变分推断）</li>
 <li>随机性近似（蒙特卡洛，MCMC）</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Learning 学习<ul>
-<li>参数学习<ul>
+</ul></li>
+</ul></li>
+<li>Learning 学习
+<ul>
+<li>参数学习
+<ul>
 <li>完备数据（非隐变量）（有向，无向）</li>
 <li>隐变量（EM）</li>
-</ul>
-</li>
+</ul></li>
 <li>结构学习 (学习更好的图结构，参数)</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><strong>高维随机变量</strong> P(x~1~, x~2~, …, x~p~) 计算量太大<ul>
-<li>边缘概率 P(x~i~)</li>
-<li>条件概率 P(x~j~|x~i~)</li>
-</ul>
-</li>
-<li><strong>运算原则</strong><ul>
-<li>sum rule: $P(x<em>{1}) = \int</em>{x<em>{2}} P(x</em>{1}, x<em>{2}) d</em>{x_{2}}$ (边缘概率)</li>
-<li>poduct rule: $P(x<em>{1}, x</em>{2}) = P(x<em>{1})*P(x</em>{2}|x<em>{1}) = P(x</em>{2})*P(x<em>{1}|x</em>{2})$</li>
-<li>chain rule: $P(x<em>{1}, x</em>{2}, …, x<em>{p}) = \prod</em>{i=1} P(x<em>{i}|x</em>{1}, x<em>{2}, …, x</em>{i-1})$</li>
-<li>bayesian rule: $P(x<em>{2}|x</em>{1}) = \frac{P(x<em>{1}, x</em>{2})}{P(x<em>{1}) }= \frac{P(x</em>{2})*P(x<em>{1}|x</em>{2}) }{\int P(x<em>{1}, x</em>{2}) d{x_{2}}}$</li>
-</ul>
-</li>
-<li><strong>缺点</strong><ul>
-<li><font color="red">高维复杂 P(x~1~, x~2~, ..., x~p~) 计算量太大</font></li>
-<li>简化 <ul>
-<li>每个<strong>维度之间相互独立</strong>    (特性太强了)<ul>
-<li>$P(x<em>{1}, x</em>{2}, …, x<em>{p}) = \prod</em>{i=1} P(x_{i})$</li>
-<li>Naive Bayes 朴素贝叶斯 $P(x|y) = \prod<em>{i} P(x</em>{i}|y)$</li>
-</ul>
-</li>
-<li>Markov Property 马尔可夫特性<ul>
-<li><strong>将来独立于过去</strong>（相关性太单调了，不是很符合现实，现实往往跟几个相关）</li>
-<li>x~i+1~ 只与 x~i~相关，与其他 x~i-1~,…,x~1~无关</li>
-</ul>
-</li>
-<li><strong>条件独立性</strong>（可降低计算复杂度）<ul>
-<li>给定x~B~情况下，集合x~A~与集合x~C~无关 （x~A~，x~B~，x~C~无交集）</li>
-<li>x~B~ 只与x~C~相关<br><a href="https://www.bilibili.com/video/BV1BW41117xo?p=1" target="_blank" rel="noopener">video</a>    <a href="https://www.bilibili.com/s/video/BV1Dk4y1q78a" target="_blank" rel="noopener">MRF video</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h5 id="Two-Bayes"><a href="#Two-Bayes" class="headerlink" title="Two. Bayes"></a>Two. Bayes</h5><ul>
-<li>链式法则 $P(x<em>{1}, x</em>{2}, …, x<em>{p}) = \prod</em>{i=1} P(x<em>{i}|x</em>{1}, x<em>{2}, …, x</em>{i-1})$</li>
-<li><p>因子分解 $P(x<em>{1}, x</em>{2}, …, x<em>{p}) = \prod</em>{i=1} P(x<em>{i}|x</em>{p(i)})$（x~p(i)~为x~i~父亲集合，即指向x~i~的结点）（条件独立性）<br><img src="https://github.com/soloistben/images/raw/master/bayes_mrf/bayes_1.png" alt="bayes_1" style="zoom: 80%;"></p>
-</li>
-<li><p><strong>tail to tail</strong></p>
+</ul></li>
+</ul></li>
+<li><strong>高维随机变量</strong> P(x<sub>1</sub>, x<sub>2</sub>, ..., x<sub>p</sub>) 计算量太大
 <ul>
-<li>因子分解 -&gt; $P(A,B,C) = P(A)P(B|A)P(C|A)$</li>
-<li>链式法则 -&gt; $P(A,B,C) = P(A)P(B|A)P(C|A,B)$<ul>
-<li>则 $P(C|A) = P(C|A,B)$（A，B同时发生时，不影响C），则在发生A时，B,C相互独立（<font color="red">若A被观测，则路径被阻塞，B,C相互独立，“倒V路径”</font>）</li>
+<li>边缘概率 P(x<sub>i</sub>)</li>
+<li>条件概率 P(x<sub>j</sub>|x<sub>i</sub>)</li>
+</ul></li>
+<li><strong>运算原则</strong>
+<ul>
+<li>sum rule: <span class="math inline">\(P(x_{1}) = \int_{x_{2}} P(x_{1}, x_{2}) d_{x_{2}}\)</span> (边缘概率)</li>
+<li>poduct rule: <span class="math inline">\(P(x_{1}, x_{2}) = P(x_{1})*P(x_{2}|x_{1}) = P(x_{2})*P(x_{1}|x_{2})\)</span></li>
+<li>chain rule: <span class="math inline">\(P(x_{1}, x_{2}, ..., x_{p}) = \prod_{i=1} P(x_{i}|x_{1}, x_{2}, ..., x_{i-1})\)</span></li>
+<li>bayesian rule: <span class="math inline">\(P(x_{2}|x_{1}) = \frac{P(x_{1}, x_{2})}{P(x_{1}) }= \frac{P(x_{2})*P(x_{1}|x_{2}) }{\int P(x_{1}, x_{2}) d{x_{2}}}\)</span></li>
+</ul></li>
+<li><strong>缺点</strong>
+<ul>
+<li><font color="red">高维复杂 P(x<sub>1</sub>, x<sub>2</sub>, ..., x<sub>p</sub>) 计算量太大</font></li>
+<li>简化
+<ul>
+<li>每个<strong>维度之间相互独立</strong> (特性太强了)
+<ul>
+<li><span class="math inline">\(P(x_{1}, x_{2}, ..., x_{p}) = \prod_{i=1} P(x_{i})\)</span></li>
+<li>Naive Bayes 朴素贝叶斯 <span class="math inline">\(P(x|y) = \prod_{i} P(x_{i}|y)\)</span></li>
+</ul></li>
+<li>Markov Property 马尔可夫特性
+<ul>
+<li><strong>将来独立于过去</strong>（相关性太单调了，不是很符合现实，现实往往跟几个相关）</li>
+<li>x<sub>i+1</sub> 只与 x<sub>i</sub>相关，与其他 x<sub>i-1</sub>,...,x<sub>1</sub>无关</li>
+</ul></li>
+<li><strong>条件独立性</strong>（可降低计算复杂度）
+<ul>
+<li>给定x<sub>B</sub>情况下，集合x<sub>A</sub>与集合x<sub>C</sub>无关 （x<sub>A</sub>，x<sub>B</sub>，x<sub>C</sub>无交集）</li>
+<li>x<sub>B</sub> 只与x<sub>C</sub>相关 <a href="https://www.bilibili.com/video/BV1BW41117xo?p=1" target="_blank" rel="noopener">video</a> <a href="https://www.bilibili.com/s/video/BV1Dk4y1q78a" target="_blank" rel="noopener">MRF video</a></li>
+</ul></li>
+</ul></li>
+</ul></li>
 </ul>
-</li>
-<li>条件独立性：$P(B|A)P(C|A) = P(B|A)P(C|A,B) = P(B,C|A)$</li>
-</ul>
-</li>
+<h5 id="two.-bayes">Two. Bayes</h5>
+<ul>
+<li>链式法则 <span class="math inline">\(P(x_{1}, x_{2}, ..., x_{p}) = \prod_{i=1} P(x_{i}|x_{1}, x_{2}, ..., x_{i-1})\)</span></li>
+<li><p>因子分解 <span class="math inline">\(P(x_{1}, x_{2}, ..., x_{p}) = \prod_{i=1} P(x_{i}|x_{p(i)})\)</span>（x<sub>p(i)</sub>为x<sub>i</sub>父亲集合，即指向x<sub>i</sub>的结点）（条件独立性） <img src="https://github.com/soloistben/images/raw/master/bayes_mrf/bayes_1.png" alt="bayes_1" style="zoom: 80%;"></p></li>
+<li><strong>tail to tail</strong>
+<ul>
+<li>因子分解 -&gt; <span class="math inline">\(P(A,B,C) = P(A)P(B|A)P(C|A)\)</span></li>
+<li>链式法则 -&gt; <span class="math inline">\(P(A,B,C) = P(A)P(B|A)P(C|A,B)\)</span>
+<ul>
+<li>则 <span class="math inline">\(P(C|A) = P(C|A,B)\)</span>（A，B同时发生时，不影响C），则在发生A时，B,C相互独立（<font color="red">若A被观测，则路径被阻塞，B,C相互独立，“倒V路径”</font>）</li>
+</ul></li>
+<li>条件独立性：<span class="math inline">\(P(B|A)P(C|A) = P(B|A)P(C|A,B) = P(B,C|A)\)</span></li>
+</ul></li>
 </ul>
 <p><img src="https://github.com/soloistben/images/raw/master/bayes_mrf/bayes_2.png" alt="bayes_2" style="zoom:75%;"></p>
 <ul>
-<li><p><strong>head to tail</strong></p>
+<li><strong>head to tail</strong>
 <ul>
-<li>因子分解 -&gt; $P(A,B,C) = P(A)P(B|A)P(C|B)$</li>
-<li>链式法则 -&gt; $P(A,B,C) = P(A)P(B|A)P(C|A,B)$</li>
+<li>因子分解 -&gt; <span class="math inline">\(P(A,B,C) = P(A)P(B|A)P(C|B)\)</span></li>
+<li>链式法则 -&gt; <span class="math inline">\(P(A,B,C) = P(A)P(B|A)P(C|A,B)\)</span></li>
 <li>发生B时，A,C相互独立（<font color="red">若B被观测，则路径被阻塞，A,C相互独立</font>）</li>
 </ul>
-<p><img src="https://github.com/soloistben/images/raw/master/bayes_mrf/bayes_3.png" alt="bayes_3" style="zoom:80%;"></p>
-</li>
-<li><p><strong>head to head</strong></p>
+<p><img src="https://github.com/soloistben/images/raw/master/bayes_mrf/bayes_3.png" alt="bayes_3" style="zoom:80%;"></p></li>
+<li><strong>head to head</strong>
 <ul>
 <li>默认情况下（C还没被观察）A,B相互独立，路径被阻塞（<font color="red">若C被观测，路径是连通，A、B有关系，不独立则难以分解</font>）</li>
-<li>因子分解 -&gt; $P(A,B,C) = P(A)P(B)P(C|A,B)$ （父亲结点先于子结点）</li>
-<li>链式法则 -&gt; $P(A,B,C) = P(A)P(B|A)P(C|A,B)$<ul>
-<li>$P(B) = P(B|A)$，则默认情况下，C还没被观察，A,B相互独立</li>
-</ul>
-</li>
-<li>这个模式是想判断 $P(A|C) == P(A|C,B)$，在没有B条件时，直接基于C判断A，概率会更大（最初A,B相互独立）</li>
+<li>因子分解 -&gt; <span class="math inline">\(P(A,B,C) = P(A)P(B)P(C|A,B)\)</span> （父亲结点先于子结点）</li>
+<li>链式法则 -&gt; <span class="math inline">\(P(A,B,C) = P(A)P(B|A)P(C|A,B)\)</span>
+<ul>
+<li><span class="math inline">\(P(B) = P(B|A)\)</span>，则默认情况下，C还没被观察，A,B相互独立</li>
+</ul></li>
+<li>这个模式是想判断 <span class="math inline">\(P(A|C) == P(A|C,B)\)</span>，在没有B条件时，直接基于C判断A，概率会更大（最初A,B相互独立）</li>
 </ul>
 <p><img src="https://github.com/soloistben/images/raw/master/bayes_mrf/bayes_4.png" alt="bayes_4" style="zoom:75%;"></p>
 <ul>
 <li>（<font color="red">若D被观测，路径也是是连通，A、B有关系</font>）</li>
-</ul>
-</li>
-<li><p>有向图是的条件独立性（证明发生x~B~, x~A~, x~C~相互独立）</p>
+</ul></li>
+<li>有向图是的条件独立性（证明发生x<sub>B</sub>, x<sub>A</sub>, x<sub>C</sub>相互独立）
 <ul>
-<li><p>D-separation</p>
+<li>D-separation
 <ul>
-<li><p>x~A~, x~B~, x~C~ 三个集合两两无交集<br><img src="https://github.com/soloistben/images/raw/master/bayes_mrf/bayes_5.png" alt="bayes_5"></p>
-</li>
-<li><p>若A与C，存在B~1~，B~2~关系，且属于x~B~集合；存在B~3~，B~4~关系，且不属于x~B~集合</p>
-</li>
-<li>则符合：发生x~B~时，存在上述情况， x~A~, x~C~相互独立 （<strong>全局马尔可夫性</strong>）</li>
-<li><p>$P(x<em>{i}|x</em>{-i}) = \frac{P(x<em>{i}, x</em>{-i})}{P(x<em>{-i})} = \frac{p(x)}{\int P(x</em>{i}) d{x<em>{i}}} = \frac{\prod</em>{j} P(x<em>{j}|x</em>{p(j)})}{\int \prod<em>{j} P(x</em>{j}|x<em>{p(j)})d</em>{x_{i}}}$</p>
+<li><p>x<sub>A</sub>, x<sub>B</sub>, x<sub>C</sub> 三个集合两两无交集 <img src="https://github.com/soloistben/images/raw/master/bayes_mrf/bayes_5.png" alt="bayes_5"></p></li>
+<li>若A与C，存在B<sub>1</sub>，B<sub>2</sub>关系，且属于x<sub>B</sub>集合；存在B<sub>3</sub>，B<sub>4</sub>关系，且不属于x<sub>B</sub>集合</li>
+<li>则符合：发生x<sub>B</sub>时，存在上述情况， x<sub>A</sub>, x<sub>C</sub>相互独立 （<strong>全局马尔可夫性</strong>）</li>
+<li><span class="math inline">\(P(x_{i}|x_{-i}) = \frac{P(x_{i}, x_{-i})}{P(x_{-i})} = \frac{p(x)}{\int P(x_{i}) d{x_{i}}} = \frac{\prod_{j} P(x_{j}|x_{p(j)})}{\int \prod_{j} P(x_{j}|x_{p(j)})d_{x_{i}}}\)</span>
 <ul>
-<li>x~-i~表示集合{x~1~,…x~p~}中去除x~i~, <strong>x/x~i~</strong></li>
-<li>$\prod<em>{j} P(x</em>{j}|x_{p(j)})$ 分为与x~i~有关和无关两部分</li>
-<li><p>则 $\frac{\prod<em>{j} P(x</em>{j}|x<em>{p(j)})}{\int \prod</em>{j} P(x<em>{j}|x</em>{p(j)})d<em>{x</em>{i}}}$无关部分则可以约去</p>
-<p><img src="https://github.com/soloistben/images/raw/master/bayes_mrf/bayes_6.png" alt="bayes_6"></p>
-</li>
-<li><p>$P(x<em>{i}, x</em>{-i}) = \prod<em>{j} P(x</em>{j}|x_{p(j)})$，即 x_i只与x_i相关的有联系(红点)，与无关的相互独立，也称为Markov Blanket</p>
-</li>
+<li>x<sub>-i</sub>表示集合{x<sub>1</sub>,...x<sub>p</sub>}中去除x<sub>i</sub>, <strong>x/x<sub>i</sub></strong></li>
+<li><span class="math inline">\(\prod_{j} P(x_{j}|x_{p(j)})\)</span> 分为与x<sub>i</sub>有关和无关两部分</li>
+<li><p>则 <span class="math inline">\(\frac{\prod_{j} P(x_{j}|x_{p(j)})}{\int \prod_{j} P(x_{j}|x_{p(j)})d_{x_{i}}}\)</span>无关部分则可以约去</p>
+<figure>
+<img src="https://github.com/soloistben/images/raw/master/bayes_mrf/bayes_6.png" alt="bayes_6"><figcaption>bayes_6</figcaption>
+</figure></li>
+<li><span class="math inline">\(P(x_{i}, x_{-i}) = \prod_{j} P(x_{j}|x_{p(j)})\)</span>，即 x_i只与x_i相关的有联系(红点)，与无关的相互独立，也称为Markov Blanket</li>
 <li>一个人与全世界的关系=一个人与身边人的关系</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>Bayes Network 模型 （<font color="red">从单一到混合，有限到无限，空间到时间，离散到连续</font>）</p>
+</ul></li>
+</ul></li>
+</ul></li>
+<li>Bayes Network 模型 （<font color="red">从单一到混合，有限到无限，空间到时间，离散到连续</font>）
 <ul>
-<li><p>离散</p>
+<li>离散
 <ul>
-<li><p>单一</p>
+<li>单一
 <ul>
-<li><p><strong>Naive Bayes</strong> 朴素贝叶斯 -&gt; 做分类 -&gt; $P(x|y) = \prod<em>{i} P(x</em>{i}|y=1)$  (x 是p维， 当y被观测时，x各维度相互独立)</p>
-<p><img src="https://github.com/soloistben/images/raw/master/bayes_mrf/Naive_Bayes.png" alt="Naive_Bayes" style="zoom:67%;"></p>
-</li>
-</ul>
-</li>
-<li><p>混合</p>
+<li><p><strong>Naive Bayes</strong> 朴素贝叶斯 -&gt; 做分类 -&gt; <span class="math inline">\(P(x|y) = \prod_{i} P(x_{i}|y=1)\)</span> (x 是p维， 当y被观测时，x各维度相互独立)</p>
+<p><img src="https://github.com/soloistben/images/raw/master/bayes_mrf/Naive_Bayes.png" alt="Naive_Bayes" style="zoom:67%;"></p></li>
+</ul></li>
+<li>混合
 <ul>
 <li><p><strong>GMM</strong> 高斯混合模型（多个高斯分布） -&gt; 做聚类</p>
-<p><img src="https://github.com/soloistben/images/raw/master/bayes_mrf/GMM.png" alt="GMM" style="zoom:75%;"></p>
-</li>
-</ul>
-</li>
-<li>时间<ul>
+<img src="https://github.com/soloistben/images/raw/master/bayes_mrf/GMM.png" alt="GMM" style="zoom:75%;"></li>
+</ul></li>
+<li>时间
+<ul>
 <li><strong>Markov Chain</strong> 马尔可夫链</li>
 <li><strong>Gaussian Process</strong> 无限维高斯分布</li>
-</ul>
-</li>
-<li>动态模型 = 混合 + 时间<ul>
+</ul></li>
+<li>动态模型 = 混合 + 时间
+<ul>
 <li><strong>HMM</strong> 隐马尔可夫 (隐状态离散)</li>
 <li><strong>LDS</strong> 线性动态系统 <strong>Kalmm Filter</strong> 卡尔曼滤波器（连续，高斯，线性）</li>
 <li><strong>Partide Filter</strong> （非连续，非高斯）</li>
-</ul>
-</li>
-</ul>
-</li>
+</ul></li>
+</ul></li>
 <li><p>连续</p>
 <ul>
 <li><strong>Gaussian Bayes Network</strong> 高斯图</li>
+</ul></li>
+</ul></li>
 </ul>
-</li>
-</ul>
-</li>
-</ul>
-<h5 id="Three-MRF"><a href="#Three-MRF" class="headerlink" title="Three. MRF"></a>Three. MRF</h5><ul>
-<li>无向图</li>
-<li><p>条件独立性，发生x~B~时，x~A~与x~C~无关 （<strong>global markov</strong> 全局马尔可夫）</p>
+<h5 id="three.-mrf">Three. MRF</h5>
 <ul>
-<li>存在集合x~A~, x~C~被x~B~分割（对应 bayes D-separation）， 那么发生x~B~时，x~A~与x~C~无关 </li>
-</ul>
-</li>
-<li><p><strong>local markov</strong> 局部马尔可夫</p>
+<li>无向图</li>
+<li><p>条件独立性，发生x<sub>B</sub>时，x<sub>A</sub>与x<sub>C</sub>无关 （<strong>global markov</strong> 全局马尔可夫）</p>
+<ul>
+<li>存在集合x<sub>A</sub>, x<sub>C</sub>被x<sub>B</sub>分割（对应 bayes D-separation）， 那么发生x<sub>B</sub>时，x<sub>A</sub>与x<sub>C</sub>无关</li>
+</ul></li>
+<li><strong>local markov</strong> 局部马尔可夫
 <ul>
 <li><p>结点(蓝点)与邻居以外结点(白点)相互独立，仅与邻居(红点) 相关</p>
-<p><img src="https://github.com/soloistben/images/raw/master/bayes_mrf/markov_1.png" alt="markov_1" style="zoom:75%;"></p>
-</li>
-</ul>
-</li>
+<p><img src="https://github.com/soloistben/images/raw/master/bayes_mrf/markov_1.png" alt="markov_1" style="zoom:75%;"></p></li>
+</ul></li>
 <li><p><strong>pair markov</strong>（应用图像领域，图像-&gt;成对马尔可夫随机场-&gt;网格状马尔可夫随机场）</p>
 <ul>
-<li>在集合x~-i,-j~(集合没有i，j结点), 对于任意两个点x~i~, x~j~没有直接连接，则相互独立, (i ≠ j)</li>
-</ul>
-</li>
-<li>条件独立性体现的三个方面，并且相互等价，可以互推 global markov &lt;=&gt; local markov &lt;=&gt; pair markov &lt;=&gt;  基于最大团的因子分解<ul>
-<li>clique团，最大团<ul>
+<li>在集合x<sub>-i,-j</sub>(集合没有i，j结点), 对于任意两个点x<sub>i</sub>, x<sub>j</sub>没有直接连接，则相互独立, (i ≠ j)</li>
+</ul></li>
+<li>条件独立性体现的三个方面，并且相互等价，可以互推 global markov &lt;=&gt; local markov &lt;=&gt; pair markov &lt;=&gt; 基于最大团的因子分解
+<ul>
+<li>clique团，最大团
+<ul>
 <li>集合间的结点相互联通</li>
 <li>在一个团无法添加结点，则是最大团</li>
-<li>(c~1~, c~2~,…表示团)</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>因子分解 $P(x) = \frac{1}{Z} \prod<em>{i}^{p} Φ(x</em>{c<em>{i}}),Z = Σ</em>{x<em>{1}}…Σ</em>{x<em>{p}}\prod</em>{i}^{p}Φ(x<em>{c</em>{i}})$ （用因子分解证明条件独立性）</p>
+<li>(c<sub>1</sub>, c<sub>2</sub>,...表示团)</li>
+</ul></li>
+</ul></li>
+<li>因子分解 <span class="math inline">\(P(x) = \frac{1}{Z} \prod_{i}^{p} Φ(x_{c_{i}}),Z = Σ_{x_{1}}...Σ_{x_{p}}\prod_{i}^{p}Φ(x_{c_{i}})\)</span> （用因子分解证明条件独立性）
 <ul>
-<li>Φ 势函数， 必须为正（大于0）<ul>
-<li>$Φ (x<em>{c</em>{i}}) = e^{-E(x<em>{c</em>{i}})}$   (E为能量函数，也叫势函数)</li>
-<li>Φ (x~ci~)  &lt;-&gt; P(x) 称为 Gibbs Distribution (Boltzmann Distribution 玻尔兹曼分布)</li>
-<li>$P(x) = \frac{1}{Z} \prod<em>{i}^{p} Φ(x</em>{c<em>{i}}) = \frac{1}{Z} \prod</em>{i}^{p} e^{-E(x<em>{c</em>{i}})} = \frac{1}{Z} e^{-\sum E(x<em>{c</em>{i}})}$ </li>
+<li>Φ 势函数， 必须为正（大于0）
+<ul>
+<li><span class="math inline">\(Φ (x_{c_{i}}) = e^{-E(x_{c_{i}})}\)</span> (E为能量函数，也叫势函数)</li>
+<li>Φ (x<sub>ci</sub>) &lt;-&gt; P(x) 称为 Gibbs Distribution (Boltzmann Distribution 玻尔兹曼分布)</li>
+<li><span class="math inline">\(P(x) = \frac{1}{Z} \prod_{i}^{p} Φ(x_{c_{i}}) = \frac{1}{Z} \prod_{i}^{p} e^{-E(x_{c_{i}})} = \frac{1}{Z} e^{-\sum E(x_{c_{i}})}\)</span></li>
 <li>Gibbs Distribution是统计物理的名称，与指数族分布形式一样（俩个等价）</li>
-<li>最大熵原理：在满足已知事实，最终推出分布属于指数族分布 </li>
+<li>最大熵原理：在满足已知事实，最终推出分布属于指数族分布</li>
 <li>结论：Gibbs Distribution &lt;=&gt; Markov Random Field</li>
-</ul>
-</li>
-<li>c~i~最大团，x~ci~最大团随机变量集合</li>
+</ul></li>
+<li>c<sub>i</sub>最大团，x<sub>ci</sub>最大团随机变量集合</li>
 <li>Z 为联合概率分布的归一化因子</li>
 <li>基于最大团的因子分解，则可以证明为马尔可夫随机场 (Hammesley-clifford定理)</li>
 <li>局部势函数：只考虑局部变量；边缘概率：考虑全局变量</li>
-<li>Pair-MRF 因子分解：$P(x) = \frac{1}{Z} \prod<em>{i} Φ(x</em>{i}) \prod<em>{j} Φ(x</em>{i}, x_{j})$   (考虑边)</li>
-<li><p>最大后验概率推理（图像分割问题）：max~x~ P(x)</p>
+<li>Pair-MRF 因子分解：<span class="math inline">\(P(x) = \frac{1}{Z} \prod_{i} Φ(x_{i}) \prod_{j} Φ(x_{i}, x_{j})\)</span> (考虑边)</li>
+<li>最大后验概率推理（图像分割问题）：max<sub>x</sub> P(x)
 <ul>
 <li><p>找到一个x分布，使P(x)最大（则找到图像分割在结果）</p>
-<p><img src="https://github.com/soloistben/images/raw/master/bayes_mrf/pair-markov.png" alt="pair-markov"></p>
-</li>
-<li><p>假设$θ(x<em>{i}) = -logΦ(x</em>{i}),θ(x<em>{i}, x</em>{j}) = -logΦ(x<em>{i},x</em>{j})$</p>
-</li>
-<li><p>$max<em>{x} P(x)$ -&gt; 能量最小化 -&gt; $min</em>{x} E(x) = \sum θ(x<em>{i})  + \sum θ(x</em>{i}, x_{j})$</p>
-<p><img src="https://github.com/soloistben/images/raw/master/bayes_mrf/pair-markov_2.png" alt="pair-markov_2"></p>
-<p><img src="https://github.com/soloistben/images/raw/master/bayes_mrf/pair-markov_3.png" alt="pair-markov_3" style="zoom:75%;"></p>
-</li>
+<figure>
+<img src="https://github.com/soloistben/images/raw/master/bayes_mrf/pair-markov.png" alt="pair-markov"><figcaption>pair-markov</figcaption>
+</figure></li>
+<li>假设<span class="math inline">\(θ(x_{i}) = -logΦ(x_{i}),θ(x_{i}, x_{j}) = -logΦ(x_{i},x_{j})\)</span></li>
+<li><p><span class="math inline">\(max_{x} P(x)\)</span> -&gt; 能量最小化 -&gt; <span class="math inline">\(min_{x} E(x) = \sum θ(x_{i}) + \sum θ(x_{i}, x_{j})\)</span></p>
+<figure>
+<img src="https://github.com/soloistben/images/raw/master/bayes_mrf/pair-markov_2.png" alt="pair-markov_2"><figcaption>pair-markov_2</figcaption>
+</figure>
+<p><img src="https://github.com/soloistben/images/raw/master/bayes_mrf/pair-markov_3.png" alt="pair-markov_3" style="zoom:75%;"></p></li>
 <li><p>假设图像具有连续性，相邻结点没有突变（则对角线为0，要没都属于前景要么都是背景），边的势函数可以设置为（斜对角线，为大于0的值，若当前俩点，一个前景一个背景，则惩罚它）</p>
-<p><img src="https://github.com/soloistben/images/raw/master/bayes_mrf/pair-markov_4.png" alt="pair-markov_4"></p>
-</li>
+<figure>
+<img src="https://github.com/soloistben/images/raw/master/bayes_mrf/pair-markov_4.png" alt="pair-markov_4"><figcaption>pair-markov_4</figcaption>
+</figure></li>
 <li><p>结点的设置势函数，一个前景一个背景</p>
-<p><img src="https://github.com/soloistben/images/raw/master/bayes_mrf/pair-markov_5.png" alt="pair-markov_5"></p>
-</li>
-</ul>
-</li>
-</ul>
-</li>
+<figure>
+<img src="https://github.com/soloistben/images/raw/master/bayes_mrf/pair-markov_5.png" alt="pair-markov_5"><figcaption>pair-markov_5</figcaption>
+</figure></li>
+</ul></li>
+</ul></li>
 </ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/08/12/Bayes-MRF/" data-id="ckfyyvrs0000269egkybd28d8" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/08/12/Bayes-MRF/" data-id="ckfyznog30008f5eg23lwmw99" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ML/">ML</a></li></ul>
