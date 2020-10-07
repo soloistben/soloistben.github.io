@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="MR.C">
 <meta property="og:description" content="指数族分布  Gaussian Distribution, Bernoulli Distribution (Categorical Distribution), Binomial Distribution (Multinomial Distribution), Poisson Distribution, Beta Distribution, Dirichlet Distribution, Gamm">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-10-07T09:18:04.126Z">
+<meta property="og:updated_time" content="2020-10-07T13:13:35.336Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Exponential_Family_Distribution">
 <meta name="twitter:description" content="指数族分布  Gaussian Distribution, Bernoulli Distribution (Categorical Distribution), Binomial Distribution (Multinomial Distribution), Poisson Distribution, Beta Distribution, Dirichlet Distribution, Gamm">
@@ -157,7 +157,7 @@
 <li><strong>充分统计量Φ(x) 与 极大似然估计</strong>
 <ul>
 <li>Data: D = {x<sub>1</sub>,x<sub>2</sub>,...,x<sub>N</sub>} N个样本</li>
-<li>$η_{MLE}=argmax log^{P(D|η)}=argmax log^{P(x_i|η)}=argmax  log^{P(x_i|η)} \ = argmax log<sup>{h(x_i)e</sup>{η^T Φ(x_i)-A(η)}} = argmax $
+<li><span class="math inline">\(η_{MLE}=argmax \ log^{P(D|η)}=argmax \ log^{\prod P(x_i|η)}=argmax \sum log^{P(x_i|η)} \\ = argmax \sum log^{h(x_i)e^{η^T Φ(x_i)-A(η)}} = argmax \sum [log^{h(x_i)}+η^T Φ(x_i)-A(η)]\)</span>
 <ul>
 <li><span class="math inline">\(→ η_{MLE} ∝argmax \ \sum [η^T Φ(x_i)-A(η)]\)</span></li>
 <li><span class="math inline">\(\frac{d(Σ [η^T Φ(x_i)-A(η)])}{dη} =\sum \frac{d(η^T Φ(x_i)-A(η))}{dη}=\sum[Φ(x_i)-A&#39;(η)] =\sum Φ(x_i)- N*A&#39;(η)=0 \\ → A&#39;(η_{MLE})=\frac{1}{N}\sum Φ(x_i)\)</span></li>
