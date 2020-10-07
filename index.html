@@ -590,7 +590,7 @@
 <li><p>SVM 三宝：间隔，对偶，核技巧</p>
 <p><img src="https://github.com/soloistben/images/raw/master/statistics/SVM/SVM1.png" alt="SVM1" style="zoom:50%;"></p></li>
 <li>提出SVM是为了解决二分类问题；成功分类的直线（平面）有无数个，SVM就要找到最优的结果（即<strong>所有样本距离平面都足够大</strong>）</li>
-<li><strong>hard-margin SVM</strong>（硬间隔）
+<li><p><strong>hard-margin SVM</strong>（硬间隔）</p>
 <ul>
 <li>最大间隔分类器 <span class="math inline">\(= max \ margin(w, b),s.t. y_i(w^T x_i+b) &gt; 0,for i = 1,...,N\)</span></li>
 <li>点到直线距离，垂直线最短</li>
@@ -665,8 +665,8 @@
 </ul></li>
 <li><span class="math inline">\(d^* = max_λ \ g(λ) , g(λ) = min_x \  f(x) + λ m_1(x) , g(λ) = inf \{f(x) + λ_i m_1(x)|(m_1(x), f(x))∈G\}\)</span>
 <ul>
-<li>一条过原点直线 $f(x) + λ m_1(x) = 0 <span class="math inline">\((斜率λ可变)，g(λ)范围可以从直线开始与G相切到离开G相切的地方（红线范围）\)</span>g(λ)p^*$</li>
-<li>当调整斜率<span class="math inline">\(λ^*\)</span>，得到一个 <span class="math inline">\(g(λ^*) = f(x) + λ^* m_1(x)\)</span> 同时与G的俩角相切，此时，直线与纵轴的交点为d*（绿线）</li>
+<li>一条过原点直线 <span class="math inline">\(f(x)+λm_1(x)= 0\)</span>(斜率λ可变)，g(λ)范围可以从直线开始与G相切到离开G相切的地方（红线范围）<span class="math inline">\(g(λ)\leqslant p^*\)</span></li>
+<li>当调整斜率<span class="math inline">\(λ^*\)</span>，得到一个 <span class="math inline">\(g(λ^*) = f(x) + λ^* m_1(x)\)</span> 同时与G的俩角相切，此时，直线与纵轴的交点为<span class="math inline">\(d^*\)</span>（绿线）</li>
 <li><p><span class="math inline">\(d^* \leqslant p^*\)</span> （凸优化+slater条件 → <span class="math inline">\(d^* = p^*\)</span>）（SVM是二次规划问题，符合slater条件）</p>
 <p><img src="https://github.com/soloistben/images/raw/master/statistics/SVM/SVM6.png" alt="SVM6" style="zoom: 67%;"></p></li>
 </ul></li>
