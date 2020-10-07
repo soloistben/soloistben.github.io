@@ -29,7 +29,7 @@
 <meta property="og:image" content="https://github.com/soloistben/images/raw/master/bayes_mrf/pair-markov_3.png">
 <meta property="og:image" content="https://github.com/soloistben/images/raw/master/bayes_mrf/pair-markov_4.png">
 <meta property="og:image" content="https://github.com/soloistben/images/raw/master/bayes_mrf/pair-markov_5.png">
-<meta property="og:updated_time" content="2020-10-07T02:39:57.802Z">
+<meta property="og:updated_time" content="2020-10-07T02:51:13.878Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Bayes_MRF">
 <meta name="twitter:description" content="Bayes Network贝叶斯网络 &amp;amp; Markov Random Fields 马尔可夫随机场 One. 前提  Probabilistic Graphical Model (PGM 概率图模型) （将概率引入图模型，没有图，只能计算，引入图，比较直观，容易观察）  Representation 表示  有向图 Bayesian Network (有向无环，则起始结点决定这终止节点的概">
@@ -149,7 +149,7 @@
 <li>sum rule: <span class="math inline">\(P(x_{1}) = \int_{x_{2}} P(x_{1}, x_{2}) d_{x_{2}}\)</span> (边缘概率)</li>
 <li>poduct rule: <span class="math inline">\(P(x_{1}, x_{2}) = P(x_{1})*P(x_{2}|x_{1}) = P(x_{2})*P(x_{1}|x_{2})\)</span></li>
 <li>chain rule: <span class="math inline">\(P(x_{1}, x_{2}, ..., x_{p}) = \prod_{i=1} P(x_{i}|x_{1}, x_{2}, ..., x_{i-1})\)</span></li>
-<li>bayesian rule: <span class="math inline">\(P(x_{2}|x_{1}) = P(x_{1}, x_{2}) / P(x_{1}) = P(x_{2})*P(x_{1}|x_{2}) / ∫ P(x_{1}, x_{2}) d{x_{2}}\)</span></li>
+<li>bayesian rule: <span class="math inline">\(P(x_{2}|x_{1}) = \frac{P(x_{1}, x_{2})}{P(x_{1}) }= \frac{P(x_{2})*P(x_{1}|x_{2}) }{\int P(x_{1}, x_{2}) d{x_{2}}}\)</span></li>
 </ul></li>
 <li><strong>缺点</strong>
 <ul>
@@ -178,7 +178,7 @@
 <ul>
 <li>链式法则 <span class="math inline">\(P(x_{1}, x_{2}, ..., x_{p}) = \prod_{i=1} P(x_{i}|x_{1}, x_{2}, ..., x_{i-1})\)</span></li>
 <li><p>因子分解 <span class="math inline">\(P(x_{1}, x_{2}, ..., x_{p}) = \prod_{i=1} P(x_{i}|x_{p(i)})\)</span>（x<sub>p(i)</sub>为x<sub>i</sub>父亲集合，即指向x<sub>i</sub>的结点）（条件独立性） <img src="https://github.com/soloistben/images/raw/master/bayes_mrf/bayes_1.png" alt="bayes_1" style="zoom: 80%;"></p></li>
-<li><p><strong>tail to tail</strong></p>
+<li><strong>tail to tail</strong>
 <ul>
 <li>因子分解 -&gt; <span class="math inline">\(P(A,B,C) = P(A)P(B|A)P(C|A)\)</span></li>
 <li>链式法则 -&gt; <span class="math inline">\(P(A,B,C) = P(A)P(B|A)P(C|A,B)\)</span>
@@ -190,7 +190,7 @@
 </ul>
 <p><img src="https://github.com/soloistben/images/raw/master/bayes_mrf/bayes_2.png" alt="bayes_2" style="zoom:75%;"></p>
 <ul>
-<li><p><strong>head to tail</strong></p>
+<li><strong>head to tail</strong>
 <ul>
 <li>因子分解 -&gt; <span class="math inline">\(P(A,B,C) = P(A)P(B|A)P(C|B)\)</span></li>
 <li>链式法则 -&gt; <span class="math inline">\(P(A,B,C) = P(A)P(B|A)P(C|A,B)\)</span></li>
@@ -218,11 +218,11 @@
 <li><p>x<sub>A</sub>, x<sub>B</sub>, x<sub>C</sub> 三个集合两两无交集 <img src="https://github.com/soloistben/images/raw/master/bayes_mrf/bayes_5.png" alt="bayes_5"></p></li>
 <li>若A与C，存在B<sub>1</sub>，B<sub>2</sub>关系，且属于x<sub>B</sub>集合；存在B<sub>3</sub>，B<sub>4</sub>关系，且不属于x<sub>B</sub>集合</li>
 <li>则符合：发生x<sub>B</sub>时，存在上述情况， x<sub>A</sub>, x<sub>C</sub>相互独立 （<strong>全局马尔可夫性</strong>）</li>
-<li><span class="math inline">\(P(x_{i}|x_{-i}) = P(x_{i}, x_{-i}) / P(x_{-i}) = p(x) / \int P(x_{i}) d{x_{i}} = \prod_{j} P(x_{j}|x_{p(j)}) / \int \prod_{j} P(x_{j}|x_{p(j)})d_{x_{i}}\)</span>
+<li><span class="math inline">\(P(x_{i}|x_{-i}) = \frac{P(x_{i}, x_{-i})}{P(x_{-i})} = \frac{p(x)}{\int P(x_{i}) d{x_{i}}} = \frac{\prod_{j} P(x_{j}|x_{p(j)})}{\int \prod_{j} P(x_{j}|x_{p(j)})d_{x_{i}}}\)</span>
 <ul>
 <li>x<sub>-i</sub>表示集合{x<sub>1</sub>,...x<sub>p</sub>}中去除x<sub>i</sub>, <strong>x/x<sub>i</sub></strong></li>
 <li><span class="math inline">\(\prod_{j} P(x_{j}|x_{p(j)})\)</span> 分为与x<sub>i</sub>有关和无关两部分</li>
-<li><p>则 <span class="math inline">\(\prod_{j} P(x_{j}|x_{p(j)}) / \int \prod_{j} P(x_{j}|x_{p(j)}) d_{x_{i}}\)</span>无关部分则可以约去</p>
+<li><p>则 <span class="math inline">\(\frac{\prod_{j} P(x_{j}|x_{p(j)})}{\int \prod_{j} P(x_{j}|x_{p(j)})d_{x_{i}}}\)</span>无关部分则可以约去</p>
 <figure>
 <img src="https://github.com/soloistben/images/raw/master/bayes_mrf/bayes_6.png" alt="bayes_6"><figcaption>bayes_6</figcaption>
 </figure></li>
@@ -240,7 +240,7 @@
 <li><p><strong>Naive Bayes</strong> 朴素贝叶斯 -&gt; 做分类 -&gt; <span class="math inline">\(P(x|y) = \prod_{i} P(x_{i}|y=1)\)</span> (x 是p维， 当y被观测时，x各维度相互独立)</p>
 <p><img src="https://github.com/soloistben/images/raw/master/bayes_mrf/Naive_Bayes.png" alt="Naive_Bayes" style="zoom:67%;"></p></li>
 </ul></li>
-<li><p>混合</p>
+<li>混合
 <ul>
 <li><p><strong>GMM</strong> 高斯混合模型（多个高斯分布） -&gt; 做聚类</p>
 <img src="https://github.com/soloistben/images/raw/master/bayes_mrf/GMM.png" alt="GMM" style="zoom:75%;"></li>
@@ -304,7 +304,7 @@
 <li>基于最大团的因子分解，则可以证明为马尔可夫随机场 (Hammesley-clifford定理)</li>
 <li>局部势函数：只考虑局部变量；边缘概率：考虑全局变量</li>
 <li>Pair-MRF 因子分解：<span class="math inline">\(P(x) = \frac{1}{Z} \prod_{i} Φ(x_{i}) \prod_{j} Φ(x_{i}, x_{j})\)</span> (考虑边)</li>
-<li>最大后验概率推理（图像分割问题）：max_x P(x)
+<li>最大后验概率推理（图像分割问题）：max<sub>x</sub> P(x)
 <ul>
 <li><p>找到一个x分布，使P(x)最大（则找到图像分割在结果）</p>
 <figure>
