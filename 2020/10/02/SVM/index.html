@@ -7,13 +7,13 @@
   
   <title>SVM | MR.C</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Data : N个p维样本 X（维度N×p），y~i~ = {-1,1} SVM 三宝：间隔，对偶，核技巧   提出SVM是为了解决二分类问题；成功分类的直线（平面）有无数个，SVM就要找到最优的结果（即所有样本距离平面都足够大）  hard-margin SVM（硬间隔）  最大间隔分类器 $= max \ margin(w, b),s.t. y_i(w^T x_i+b) &amp;gt; 0,for">
+  <meta name="description" content="Data : N个p维样本 X（维度N×p），y = {-1,1} SVM 三宝：间隔，对偶，核技巧   提出SVM是为了解决二分类问题；成功分类的直线（平面）有无数个，SVM就要找到最优的结果（即所有样本距离平面都足够大）  hard-margin SVM（硬间隔）  最大间隔分类器 $= max \ margin(w, b),s.t. y_i(w^T x_i+b) &amp;gt; 0,for i">
 <meta name="keywords" content="ML">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SVM">
 <meta property="og:url" content="http://yoursite.com/2020/10/02/SVM/index.html">
 <meta property="og:site_name" content="MR.C">
-<meta property="og:description" content="Data : N个p维样本 X（维度N×p），y~i~ = {-1,1} SVM 三宝：间隔，对偶，核技巧   提出SVM是为了解决二分类问题；成功分类的直线（平面）有无数个，SVM就要找到最优的结果（即所有样本距离平面都足够大）  hard-margin SVM（硬间隔）  最大间隔分类器 $= max \ margin(w, b),s.t. y_i(w^T x_i+b) &amp;gt; 0,for">
+<meta property="og:description" content="Data : N个p维样本 X（维度N×p），y = {-1,1} SVM 三宝：间隔，对偶，核技巧   提出SVM是为了解决二分类问题；成功分类的直线（平面）有无数个，SVM就要找到最优的结果（即所有样本距离平面都足够大）  hard-margin SVM（硬间隔）  最大间隔分类器 $= max \ margin(w, b),s.t. y_i(w^T x_i+b) &amp;gt; 0,for i">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://github.com/soloistben/images/raw/master/statistics/SVM/SVM1.png">
 <meta property="og:image" content="https://github.com/soloistben/images/raw/master/statistics/SVM/SVM2.png">
@@ -25,10 +25,10 @@
 <meta property="og:image" content="https://github.com/soloistben/images/raw/master/statistics/SVM/SVM7.png">
 <meta property="og:image" content="https://github.com/soloistben/images/raw/master/statistics/SVM/SVM8.png">
 <meta property="og:image" content="https://github.com/soloistben/images/raw/master/statistics/FNN/FNN1.png">
-<meta property="og:updated_time" content="2020-10-07T13:11:12.956Z">
+<meta property="og:updated_time" content="2020-10-09T10:18:47.259Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SVM">
-<meta name="twitter:description" content="Data : N个p维样本 X（维度N×p），y~i~ = {-1,1} SVM 三宝：间隔，对偶，核技巧   提出SVM是为了解决二分类问题；成功分类的直线（平面）有无数个，SVM就要找到最优的结果（即所有样本距离平面都足够大）  hard-margin SVM（硬间隔）  最大间隔分类器 $= max \ margin(w, b),s.t. y_i(w^T x_i+b) &amp;gt; 0,for">
+<meta name="twitter:description" content="Data : N个p维样本 X（维度N×p），y = {-1,1} SVM 三宝：间隔，对偶，核技巧   提出SVM是为了解决二分类问题；成功分类的直线（平面）有无数个，SVM就要找到最优的结果（即所有样本距离平面都足够大）  hard-margin SVM（硬间隔）  最大间隔分类器 $= max \ margin(w, b),s.t. y_i(w^T x_i+b) &amp;gt; 0,for i">
 <meta name="twitter:image" content="https://github.com/soloistben/images/raw/master/statistics/SVM/SVM1.png">
   
     <link rel="alternate" href="/atom.xml" title="MR.C" type="application/atom+xml">
@@ -99,7 +99,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <ul>
-<li>Data : N个p维样本 X（维度N×p），y~i~ = {-1,1}</li>
+<li>Data : N个p维样本 X（维度N×p），y = {-1,1}</li>
 <li><p>SVM 三宝：间隔，对偶，核技巧</p>
 <p><img src="https://github.com/soloistben/images/raw/master/statistics/SVM/SVM1.png" alt="SVM1" style="zoom:50%;"></p>
 </li>
