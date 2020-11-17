@@ -65,6 +65,89 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-C-plus-note" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/11/17/C-plus-note/" class="article-date">
+  <time datetime="2020-11-17T08:15:24.000Z" itemprop="datePublished">2020-11-17</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/11/17/C-plus-note/">C_plus_note</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="one.-definition-of-class">One. Definition of Class</h4>
+<ul>
+<li><p>防止重复引用头文件（e.g. complex.h 对应 __COMPLEX__）</p></li>
+<li><p>public（定义提供外部调用函数），private （数据放入private，仅限类内用）</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> __COMPLEX__</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> __COMPLEX__</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">complex</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    ...</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure></li>
+<li>Constructor Function 构造函数
+<ul>
+<li>Overloading 重载（一个类可以重载多个构造函数，下面特例不允许）</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> __COMPLEX__</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> __COMPLEX__</span></span><br><span class="line">  </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">complex</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="comment">// constructor function </span></span><br><span class="line">    <span class="comment">// (default argument 默认实参，构造函数不需要写返回类型，默认为类)</span></span><br><span class="line">    <span class="keyword">complex</span>(<span class="keyword">double</span> r=<span class="number">0</span>, <span class="keyword">double</span> i=<span class="number">0</span>)   </span><br><span class="line">        : re(r), im(i)      <span class="comment">// initialization list 初始化列表（仅构造函数有）</span></span><br><span class="line">        &#123;...&#125;               <span class="comment">// r, i 也可以在函数体内是assignments赋值</span></span><br><span class="line">    						<span class="comment">// （但是比初始化列表慢一点）</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">complex</span>() 				<span class="comment">// 与上面构造函数冲突，不允许这么设置</span></span><br><span class="line">        : re(<span class="number">0</span>), im(<span class="number">0</span>)</span><br><span class="line">        &#123;...&#125; </span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">double</span> <span class="title">real</span><span class="params">()</span> <span class="keyword">const</span> </span>&#123;<span class="keyword">return</span> re;&#125; <span class="comment">// 不会改变数据内容的函数，必须加const</span></span><br><span class="line">    <span class="function"><span class="keyword">double</span> <span class="title">imag</span><span class="params">()</span> <span class="keyword">const</span> </span>&#123;<span class="keyword">return</span> im;&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="comment">// 数据放入private，仅限类内用</span></span><br><span class="line">    <span class="keyword">double</span> re, im;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>Destructor Function 析构函数（不带指针的类，一般不用写析构函数）</p></li>
+<li><p>Initialization list 初始化列表（仅构造函数有），<strong>优先考虑使用初始化列表</strong></p></li>
+<li><p>构造函数一般写在public，也可以写在private中，但仅限类内调用，外部可用singleton调用，但只能调用一个</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 定义</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span>&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">static</span> A&amp; <span class="title">getInstance</span><span class="params">()</span></span>;</span><br><span class="line">    setup() &#123;...&#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    A();</span><br><span class="line">    A(<span class="keyword">const</span> A&amp; rhs);</span><br><span class="line">    ...</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">A&amp; A::getInstance()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">static</span> A a;</span><br><span class="line">    <span class="keyword">return</span> a;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 调用</span></span><br><span class="line">A::getInstance().setup();</span><br></pre></td></tr></table></figure></li>
+</ul></li>
+<li>Template 模板
+<ul>
+<li><p>当未最终确定数据变量的类型时，或者需要多种数据类型，可以<strong>使用Template</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> __COMPLEX__</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> __COMPLEX__</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">complex</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="comment">// constructor function </span></span><br><span class="line">    <span class="keyword">complex</span>(T r=<span class="number">0</span>, T i=<span class="number">0</span>)   </span><br><span class="line">        : re(r), im(i)</span><br><span class="line">    &#123;...&#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function">T <span class="title">real</span><span class="params">()</span> <span class="keyword">const</span> </span>&#123;<span class="keyword">return</span> re;&#125; <span class="comment">// 不会改变数据内容的函数，必须加const</span></span><br><span class="line">    <span class="function">T <span class="title">imag</span><span class="params">()</span> <span class="keyword">const</span> </span>&#123;<span class="keyword">return</span> im;&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="comment">// 数据放入private，仅限类内用</span></span><br><span class="line">    T re, im;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"complex.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">complex</span>&lt;<span class="keyword">double</span>&gt; c1(<span class="number">2.0</span>, <span class="number">1.0</span>);   <span class="comment">// &lt;double&gt; 确定变量类型</span></span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;c1.real();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul></li>
+<li><p>Inline Function 内联函数</p>
+<ul>
+<li>在类内定义的函数，且不是复杂函数，都可以编译为inline函数</li>
+<li>在类外定义的函数，需要在函数钱设定特有字符 <strong>inline</strong></li>
+<li>优点是执行得快</li>
+<li>是否变成inline，由编译器决定</li>
+</ul></li>
+<li><p>pass Value &amp; pass Reference 传递参数：传值与传引用</p>
+<ul>
+<li><p>直接pass value会因为值大小影响函数速度</p></li>
+<li><p>引用本质也是指针，指针4个字节，速度快</p></li>
+<li><p><strong>建议所有参数均传引用，return也尽量返回引用</strong>（在变量生命周期外（局部变量）返回引用是错误的，其余情况都可以返回引用）</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> __COMPLEX__</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> __COMPLEX__</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">complex</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="comment">// constructor function </span></span><br><span class="line">    <span class="keyword">complex</span>(T r=<span class="number">0</span>, T i=<span class="number">0</span>)   </span><br><span class="line">        : re(r), im(i)</span><br><span class="line">    &#123;...&#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// inline function，在类内定义的函数，且不是复杂函数</span></span><br><span class="line">    <span class="function">T <span class="title">real</span><span class="params">()</span> <span class="keyword">const</span> </span>&#123;<span class="keyword">return</span> re;&#125; <span class="comment">// 不会改变数据内容的函数，必须加const</span></span><br><span class="line">    <span class="function">T <span class="title">imag</span><span class="params">()</span> <span class="keyword">const</span> </span>&#123;<span class="keyword">return</span> im;&#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">complex</span>&amp; <span class="keyword">operator</span> += (<span class="keyword">const</span> <span class="keyword">complex</span>&amp;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    T re, im;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 参数1会被改动，参数2不会被改动（ths是已创建变量，可以当成引用返回）</span></span><br><span class="line"><span class="keyword">inline</span> <span class="keyword">complex</span>&amp; __doapl(<span class="keyword">complex</span>* ths, <span class="keyword">const</span> <span class="keyword">complex</span>&amp; r)</span><br><span class="line">&#123;</span><br><span class="line">    ths-&gt;re += r.re;</span><br><span class="line">    ths-&gt;im += r.im;</span><br><span class="line">    <span class="keyword">return</span> *ths;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// inline function</span></span><br><span class="line"><span class="keyword">inline</span> <span class="keyword">complex</span>&amp; <span class="keyword">complex</span>::<span class="keyword">operator</span> += (<span class="keyword">const</span> <span class="keyword">complex</span>&amp; r)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> __doapl(<span class="keyword">this</span>, r);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure></li>
+</ul></li>
+<li><p>Friend Function 友元函数</p>
+<ul>
+<li><p>可以直接访问private数据，比函数读取private数据更快（用来做特例，破坏类的整体封装性）</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> __COMPLEX__</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> __COMPLEX__</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">complex</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="comment">// constructor function </span></span><br><span class="line">    <span class="keyword">complex</span>(T r=<span class="number">0</span>, T i=<span class="number">0</span>)   </span><br><span class="line">        : re(r), im(i)</span><br><span class="line">    &#123;...&#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// inline function，在类内定义的函数，且不是复杂函数</span></span><br><span class="line">    <span class="function">T <span class="title">real</span><span class="params">()</span> <span class="keyword">const</span> </span>&#123;<span class="keyword">return</span> re;&#125; <span class="comment">// 不会改变数据内容的函数，必须加const</span></span><br><span class="line">    <span class="function">T <span class="title">imag</span><span class="params">()</span> <span class="keyword">const</span> </span>&#123;<span class="keyword">return</span> im;&#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">complex</span>&amp; <span class="keyword">operator</span> += (<span class="keyword">const</span> <span class="keyword">complex</span>&amp;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    T re, im;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// friend function</span></span><br><span class="line">    <span class="keyword">friend</span> <span class="keyword">complex</span>&amp; __doapl (<span class="keyword">complex</span>*, <span class="keyword">const</span> <span class="keyword">complex</span>&amp;);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 参数1会被改动，参数2不会被改动（ths是已创建变量，可以当成引用返回）</span></span><br><span class="line"><span class="keyword">inline</span> <span class="keyword">complex</span>&amp; __doapl(<span class="keyword">complex</span>* ths, <span class="keyword">const</span> <span class="keyword">complex</span>&amp; r)</span><br><span class="line">&#123;</span><br><span class="line">    ths-&gt;re += r.re;	# 直接读取<span class="keyword">private</span>变量</span><br><span class="line">    ths-&gt;im += r.im;</span><br><span class="line">    <span class="keyword">return</span> *ths;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// inline function</span></span><br><span class="line"><span class="keyword">inline</span> <span class="keyword">complex</span>&amp; <span class="keyword">complex</span>::<span class="keyword">operator</span> += (<span class="keyword">const</span> <span class="keyword">complex</span>&amp; r)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> __doapl(<span class="keyword">this</span>, r);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure></li>
+<li><p><strong>相同class的各个object互为friend</strong>，可以直接获取private数据</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> __COMPLEX__</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> __COMPLEX__</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">complex</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="comment">// constructor function </span></span><br><span class="line">    <span class="keyword">complex</span>(T r=<span class="number">0</span>, T i=<span class="number">0</span>)   </span><br><span class="line">        : re(r), im(i)</span><br><span class="line">    &#123;...&#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// inline function</span></span><br><span class="line">    <span class="function">T <span class="title">real</span><span class="params">()</span> <span class="keyword">const</span> </span>&#123;<span class="keyword">return</span> re;&#125;</span><br><span class="line">    <span class="function">T <span class="title">imag</span><span class="params">()</span> <span class="keyword">const</span> </span>&#123;<span class="keyword">return</span> im;&#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">complex</span>&amp; <span class="keyword">operator</span> += (<span class="keyword">const</span> <span class="keyword">complex</span>&amp;);</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">func</span><span class="params">(<span class="keyword">const</span> <span class="keyword">complex</span>&amp; param)</span></span></span><br><span class="line"><span class="function">    </span>&#123; </span><br><span class="line">        <span class="keyword">return</span> param.re+param.im; # 直接读取<span class="keyword">private</span>变量</span><br><span class="line">    &#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    T re, im;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure></li>
+</ul></li>
+<li></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/11/17/C-plus-note/" data-id="ckhlr6dh800040jeg937bfbp5" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C++</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-EM" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/10/06/EM/" class="article-date">
@@ -92,7 +175,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/10/06/EM/" data-id="ckgnbnb07000479egtfi10004" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/10/06/EM/" data-id="ckhlr6dhy000d0jegi6xek7e9" class="article-share-link">Share</a>
       
       
     </footer>
@@ -170,7 +253,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/10/06/Hidden-Markov-Model/" data-id="ckgnbnb0n000c79eg2wsa8pdg" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/10/06/Hidden-Markov-Model/" data-id="ckhlr6dif000q0jegedztm7d4" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ML/">ML</a></li></ul>
@@ -269,7 +352,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/10/06/PGM-Inference/" data-id="ckgnbnb0v000g79eg02ev1sni" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/10/06/PGM-Inference/" data-id="ckhlr6di9000l0jegeumyh3qn" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ML/">ML</a></li></ul>
@@ -409,7 +492,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/10/05/Exponential-Family-Distribution/" data-id="ckgnbnb0h000979eghqgmozyz" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/10/05/Exponential-Family-Distribution/" data-id="ckhlr6di2000f0jegjrw2ia12" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ML/">ML</a></li></ul>
@@ -551,7 +634,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/10/02/Dimensionality-Reduction/" data-id="ckgnbnb0a000579egn8oizlv5" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/10/02/Dimensionality-Reduction/" data-id="ckhlr6di0000e0jegq54p9jec" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ML/">ML</a></li></ul>
@@ -770,7 +853,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/10/02/SVM/" data-id="ckgnbnb1b000q79eg2ueqisid" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/10/02/SVM/" data-id="ckhlr6dig000s0jeg8tpjrqrl" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ML/">ML</a></li></ul>
@@ -883,7 +966,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/10/02/Decision-Tree/" data-id="ckgnbnb02000379egs7rkzsc9" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/10/02/Decision-Tree/" data-id="ckhlr6dh900050jegakm2kc5t" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ML/">ML</a></li></ul>
@@ -1302,7 +1385,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/11/Statistics/" data-id="ckgnbnb1r000z79eg2i5gt3u1" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/11/Statistics/" data-id="ckhlr6dim000z0jega6t37xoy" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ML/">ML</a></li></ul>
@@ -1565,135 +1648,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/08/12/Bayes-MRF/" data-id="ckgnbnb0e000879eghawlv0ef" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ML/">ML</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-HMM-CRF" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/08/09/HMM-CRF/" class="article-date">
-  <time datetime="2020-08-09T12:29:28.000Z" itemprop="datePublished">2020-08-09</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/08/09/HMM-CRF/">HMM_CRF</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="hidden-markov-model-隐马尔可夫-conditional-random-field-条件随机场">Hidden Markov Model 隐马尔可夫 &amp; Conditional Random Field 条件随机场</h4>
-<h5 id="one.-time-sequence-series">One. Time Sequence / Series</h5>
-<ul>
-<li>在时间序列中，起伏状态可以被观测到（股票走势就是一种时间序列，股票中的涨跌）</li>
-<li>无法观测到的是时间序列的<strong>隐状态</strong>（股票中是否处于牛市状态，这类的就是隐状态）
-<ul>
-<li>隐状态会有很多</li>
-<li>当知道隐状态存在时，每个隐状态被观测时，都是相互独立（互不干扰）</li>
-<li>隐状态之间是离散的</li>
-</ul></li>
-</ul>
-<h5 id="two.-hmm">Two. HMM</h5>
-<ul>
-<li>在概率中，隐马尔可夫模型对应所有状态是相互独立的</li>
-<li><strong>P(q_t|q_t-1)</strong> Transition Probability 转移概率
-<ul>
-<li>P(q_t|q_t-1, q_t-2,..., q_1) = P(q_t|q_t-1)
-<ul>
-<li>每个状态只取决于前面一个状态，而非前面所有状态</li>
-<li>即当前隐状态到下一个隐状态的概率</li>
-</ul></li>
-<li>Discrete 离散的（用矩阵表示 A，维度(k, k)，k是开个隐状态）</li>
-</ul></li>
-<li><strong>P(y_t|q_t)</strong> Emmission/Measurement Probability 发射概率 / 观测概率
-<ul>
-<li>P(y_t|q_1,..., q_t-1, q_t, y_1,..., y_t-1) = P(y_t|q_t)
-<ul>
-<li>已知当前状态 q_t，得到事实变化 y_t 的概率</li>
-</ul></li>
-<li>Discrete or Continuous</li>
-<li>若是离散时，可以用矩阵表示 B，维度(k, L)，L是y的取值范围（也是离散的）</li>
-<li>若是连续的，无法使用矩阵表示，y可能是连续的一个分布</li>
-</ul></li>
-<li>两个概率决定了整个隐马尔可夫模型</li>
-<li><p>在信号中用HMM也很多，时间轴每段范围的信号就相当与一个y_t <img src="https://github.com/soloistben/images/raw/master/hmm_crf/hmm.png" alt="hmm" style="zoom:67%;"></p></li>
-<li>每个隐状态的概率和为1，则矩阵行和为1</li>
-<li>P(X) = ∫_y P(X, Y) dy</li>
-<li><strong>P(y_1, y_2, y_3)</strong> = Σq_1 Σq_2 Σq_3 P(y_1, y_2, y_3, q_1, q_2, q_3) = Σq_1 Σq_2 Σq_3 <strong>P(y_3|q_3)P(q_3|q_2)*P(y_2|q_2)P(q_2|q_1)*P(y_1|q_1)P(q_1)</strong>
-<ul>
-<li>P(y_1, y_2, y_3, q_1, q_2, q_3) = P(y_3|y_1, y_2, q_1, q_2, q_3)*P(y_1, y_2, q_1, q_2, q_3)</li>
-<li>利用马尔可夫性质：P(y_1, y_2, y_3, q_1, q_2, q_3) = P(y_3|q_3)*P(q_3|y_1, y_2, q_1, q_2)*P(y_1, y_2, q_1, q_2) = P(y_3|q_3)P(q_3|q_2)*P(y_1, y_2, q_1, q_2)</li>
-<li>P(y_3|q_3), P(q_3|q_2), P(y_2|q_2), P(q_2|q_1), P(y_1|q_1) 在马尔可夫参数A, B矩阵中可得</li>
-<li><strong>P(q_1) 是初始状态</strong>，这需要问题给出</li>
-<li>则马尔可夫模型需要三个参数，λ={A, B, P(q_1)} (假设y是离散的)</li>
-</ul></li>
-<li>马尔可夫模型有什么用？
-<ul>
-<li>找50人讲10个单词（动物名字）</li>
-<li><strong>λ_cat = argmax_λ log P(y_1, ..., y_50|λ)</strong>
-<ul>
-<li>当初始条件为λ，最大为说cat的情况</li>
-<li>记录所有单词的λ</li>
-<li>用高斯或者高斯混合模型计算λ</li>
-</ul></li>
-<li>当来了个新人，说其中一个单词，那么他说哪个单词概率最大？
-<ul>
-<li><strong>P(y_new|λ_cat)</strong>, ... 概率最大为结果</li>
-<li>若所有该概率计算结果很小时，说明新人说的不是原10个单词</li>
-</ul></li>
-</ul></li>
-<li>公式范化（计算量较大） <img src="https://github.com/soloistben/images/raw/master/hmm_crf/hmm_function.png" alt="hmm_function" style="zoom: 67%;">
-<ul>
-<li><p>一个定义 <img src="https://github.com/soloistben/images/raw/master/hmm_crf/FB.png" alt="FB" style="zoom:67%;"></p></li>
-<li>优化计算量
-<ul>
-<li>alpha_i(t) = P(y_1, ..., y_t, q_t=i)</li>
-<li>alpha_i(1) = P(y_1, q_1=i) = P(y_i|q_1=i)P(q1) = b_i(y_1) P(q_1)</li>
-<li>alpha_j(2) = P(y_1, y_2, q_2=j) = Σq_1P(y_1, y_2, q_1=i, q_2=j) = Σq_1 P(y_2|q_2=j)P(q_2=j|q_1=i)*P(y_1, q_1=i) = P(y_2|q_2=j) Σq_1 P(q_2=j|q_1=i)*alpha_i(1) = b_j(y_1) Σq_1 a_ij*alpha_i(1)</li>
-<li>开始递归 alpha_j(t) = b_j(y_t) Σq_1 a_ij*alpha_i(t-1) = P(y_1, ..., y_t, q_t=j)
-<ul>
-<li><strong>P(y_1, ..., y_t) = Σj P(y_1, ..., y_t, q_t=j) = Σj alpha_j(t)</strong></li>
-</ul></li>
-<li>通过贝叶斯公式 <img src="https://github.com/soloistben/images/raw/master/hmm_crf/FB_2.png" alt="FB_2" style="zoom:67%;">
-<ul>
-<li>P(Y, q_t=i|λ) = P(Y, q_t=i)P(q_t=i) = P(y_1, ..., y_t|q_t=i)P(y_t+1, ..., y_T|q_t=i)P(q_t=i) = P(y_1, ..., y_t, q_t=i)P(y_t+1, ..., y_T|q_t=i) = alpha_i(t) beta_i(t)</li>
-</ul></li>
-</ul></li>
-</ul></li>
-<li>如何学习HMM的参数
-<ul>
-<li>λ = argmax_λ log P(Y|λ) （极大似然估计）</li>
-<li>用EM学习
-<ul>
-<li>E-step: Σq_1... Σq_t log(P(Y, Q))*P(Q,Y|θ^g) = Σq_1... Σq_t log(P(q_1)*ΠP(q_t|q_t-1)*ΠP(y_t|q_t)) * P(Q,Y|θ^g) = Σq_1... Σq_t [log(P(q_1)+Σlog(a_q_t-1,q_t)+Σlog(b_q_t(y_t))] * P(Q,Y|θ^g)</li>
-<li>part 5,6还没看完(需要EM基础)</li>
-</ul></li>
-</ul></li>
-</ul>
-<p><a href="https://www.youtube.com/watch?v=Ji6KbkyNmk8&amp;list=PLFze15KrfxbGPEHyjxddbbxVvLa5kilFf" target="_blank" rel="noopener">徐亦达系列</a> <a href="https://github.com/roboticcam/machine-learning-notes/blob/master/files/dynamic_model.pdf" target="_blank" rel="noopener">pdf</a></p>
-<h5 id="three.-crf">Three. CRF</h5>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/08/09/HMM-CRF/" data-id="ckgnbnb0y000i79egcd8ivbdx" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/08/12/Bayes-MRF/" data-id="ckhlr6dh300010jegcrxcv6lf" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ML/">ML</a></li></ul>
@@ -1723,7 +1678,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ML/">ML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/basic-protein/">basic protein</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cluster/">cluster</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ML/">ML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/basic-protein/">basic protein</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cluster/">cluster</a></li></ul>
     </div>
   </div>
 
@@ -1733,7 +1688,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/ML/" style="font-size: 20px;">ML</a> <a href="/tags/basic-protein/" style="font-size: 10px;">basic protein</a> <a href="/tags/cluster/" style="font-size: 10px;">cluster</a>
+      <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/ML/" style="font-size: 20px;">ML</a> <a href="/tags/basic-protein/" style="font-size: 10px;">basic protein</a> <a href="/tags/cluster/" style="font-size: 10px;">cluster</a>
     </div>
   </div>
 
@@ -1742,7 +1697,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">十月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">九月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">八月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">十一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">十月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">九月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">八月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a></li></ul>
     </div>
   </div>
 
@@ -1753,6 +1708,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2020/11/17/C-plus-note/">C_plus_note</a>
+          </li>
         
           <li>
             <a href="/2020/10/06/EM/">EM</a>
@@ -1768,10 +1727,6 @@
         
           <li>
             <a href="/2020/10/05/Exponential-Family-Distribution/">Exponential_Family_Distribution</a>
-          </li>
-        
-          <li>
-            <a href="/2020/10/02/Dimensionality-Reduction/">Dimensionality_Reduction</a>
           </li>
         
       </ul>
