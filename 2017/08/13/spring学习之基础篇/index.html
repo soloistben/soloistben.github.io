@@ -7,17 +7,17 @@
   
   <title>spring学习之基础篇（一） | MR.C</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="## Spring学习 之 Bean、IOC、AOP Spring 学习需掌握的基础:  IOC (配置与注解) Bean (配置与注解) AOP (配置 注解 AspectJ 与 API)  ＊Spring 是什么?  Spring 是一个开源框架,为了解决企业应用开发的复杂性而创建的. 轻量 ------ (对于大小与开销都是轻量级的) 轻量级的 IOC 控制反转 ------ (降低类之间的">
+  <meta name="description" content="Spring学习 之 Bean、IOC、AOP Spring 学习需掌握的基础: IOC (配置与注解) Bean (配置与注解) AOP (配置 注解 AspectJ 与 API)  ＊Spring 是什么? Spring 是一个开源框架,为了解决企业应用开发的复杂性而创建的. 轻量 ——— (对于大小与开销都是轻量级的) 轻量级的 IOC 控制反转 ——— (降低类之间的耦合,面向接口编程)">
 <meta property="og:type" content="article">
 <meta property="og:title" content="spring学习之基础篇（一）">
 <meta property="og:url" content="http://yoursite.com/2017/08/13/spring学习之基础篇/index.html">
 <meta property="og:site_name" content="MR.C">
-<meta property="og:description" content="## Spring学习 之 Bean、IOC、AOP Spring 学习需掌握的基础:  IOC (配置与注解) Bean (配置与注解) AOP (配置 注解 AspectJ 与 API)  ＊Spring 是什么?  Spring 是一个开源框架,为了解决企业应用开发的复杂性而创建的. 轻量 ------ (对于大小与开销都是轻量级的) 轻量级的 IOC 控制反转 ------ (降低类之间的">
+<meta property="og:description" content="Spring学习 之 Bean、IOC、AOP Spring 学习需掌握的基础: IOC (配置与注解) Bean (配置与注解) AOP (配置 注解 AspectJ 与 API)  ＊Spring 是什么? Spring 是一个开源框架,为了解决企业应用开发的复杂性而创建的. 轻量 ——— (对于大小与开销都是轻量级的) 轻量级的 IOC 控制反转 ——— (降低类之间的耦合,面向接口编程)">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2017-08-24T15:12:23.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="spring学习之基础篇（一）">
-<meta name="twitter:description" content="## Spring学习 之 Bean、IOC、AOP Spring 学习需掌握的基础:  IOC (配置与注解) Bean (配置与注解) AOP (配置 注解 AspectJ 与 API)  ＊Spring 是什么?  Spring 是一个开源框架,为了解决企业应用开发的复杂性而创建的. 轻量 ------ (对于大小与开销都是轻量级的) 轻量级的 IOC 控制反转 ------ (降低类之间的">
+<meta name="twitter:description" content="Spring学习 之 Bean、IOC、AOP Spring 学习需掌握的基础: IOC (配置与注解) Bean (配置与注解) AOP (配置 注解 AspectJ 与 API)  ＊Spring 是什么? Spring 是一个开源框架,为了解决企业应用开发的复杂性而创建的. 轻量 ——— (对于大小与开销都是轻量级的) 轻量级的 IOC 控制反转 ——— (降低类之间的耦合,面向接口编程)">
   
     <link rel="alternate" href="/atom.xml" title="MR.C" type="application/atom+xml">
   
@@ -86,155 +86,167 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="spring学习-之-beaniocaop">## Spring学习 之 Bean、IOC、AOP</h2>
-<h3 id="spring-学习需掌握的基础">Spring 学习需掌握的基础:</h3>
-<ul>
+        <h2 id="Spring学习-之-Bean、IOC、AOP"><a href="#Spring学习-之-Bean、IOC、AOP" class="headerlink" title="Spring学习 之 Bean、IOC、AOP"></a>Spring学习 之 Bean、IOC、AOP</h2><hr>
+<h3 id="Spring-学习需掌握的基础"><a href="#Spring-学习需掌握的基础" class="headerlink" title="Spring 学习需掌握的基础:"></a>Spring 学习需掌握的基础:</h3><ul>
 <li>IOC (配置与注解)</li>
 <li>Bean (配置与注解)</li>
 <li>AOP (配置 注解 AspectJ 与 API)</li>
 </ul>
-<h4 id="spring-是什么">＊Spring 是什么?</h4>
-<ol type="1">
+<h4 id="＊Spring-是什么"><a href="#＊Spring-是什么" class="headerlink" title="＊Spring 是什么?"></a>＊Spring 是什么?</h4><ol>
 <li>Spring 是一个开源框架,为了解决企业应用开发的复杂性而创建的.</li>
-<li>轻量 ------ (对于大小与开销都是轻量级的)</li>
-<li>轻量级的 IOC 控制反转 ------ (降低类之间的耦合,面向接口编程)</li>
-<li>面向切面的 AOP ------ (分离应用的业务逻辑 与 系统级服务进行内聚性 的开发)</li>
-<li>容器 ------ (包含并管理应用对象的配置和生命周期)</li>
+<li>轻量 ——— (对于大小与开销都是轻量级的)</li>
+<li>轻量级的 IOC 控制反转 ——— (降低类之间的耦合,面向接口编程)</li>
+<li>面向切面的 AOP ——— (分离应用的业务逻辑 与 系统级服务进行内聚性 的开发)</li>
+<li>容器 ——— (包含并管理应用对象的配置和生命周期)</li>
 </ol>
-<h4 id="ioc">＊IOC</h4>
-<ul>
-<li>控制反转（IOC）与依赖注入（DI）是同一个概念
-<ul>
+<h4 id="＊IOC"><a href="#＊IOC" class="headerlink" title="＊IOC"></a>＊IOC</h4><ul>
+<li>控制反转（IOC）与依赖注入（DI）是同一个概念<ul>
 <li>接口注入 (interface接口)</li>
 <li>构造注入 (Construct构造函数)</li>
 <li>设置注入 (setter方法)</li>
-</ul></li>
+</ul>
+</li>
 <li>IOC：控制反转 控制权的转移，应用程序本身不负责以来对象的创建和维护，而是由外部容器负责创建和维护</li>
 <li>一个对象依赖的其它对象会通过被动的方式传递进来，而不是这个对象自己创建或者查找依赖对象.</li>
 <li>通过 <a href="http://www.cnblogs.com/leoo2sk/archive/2008/04/10/1146447.html" target="_blank" rel="noopener">面向接口编程</a> 来降低类之间的耦合,提高系统可插入、可测试、可修改等特性.</li>
-<li><a href="http://www.cnblogs.com/leoo2sk/archive/2008/04/10/1146447.html" target="_blank" rel="noopener">面向接口编程</a> 可分清层次结构,每层只向上层提供接口,各层次之间仅仅以来接口,不是实现类.当下层需要改变时，只要接口及接口功能不变，则上层不用做任何修改.</li>
+<li><a href="http://www.cnblogs.com/leoo2sk/archive/2008/04/10/1146447.html" target="_blank" rel="noopener">面向接口编程</a>  可分清层次结构,每层只向上层提供接口,各层次之间仅仅以来接口,不是实现类.当下层需要改变时，只要接口及接口功能不变，则上层不用做任何修改.</li>
 </ul>
-<h4 id="bean">＊Bean</h4>
-<ul>
+<h4 id="＊Bean"><a href="#＊Bean" class="headerlink" title="＊Bean"></a>＊Bean</h4><ul>
 <li>IOC 容器可以看成是 Beans 关系的一个集合,Context 作用就是为 Bean 提供一个运行时环境.</li>
 <li>Bean 的定义(由使用者完成)</li>
 <li>Bean 的创建 和 Bean 的解析(Spring完成)</li>
 </ul>
-<h4 id="你的第一个-bean">＊你的第一个 bean</h4>
-<ol type="1">
+<h4 id="＊你的第一个-bean"><a href="#＊你的第一个-bean" class="headerlink" title="＊你的第一个 bean"></a>＊你的第一个 bean</h4><ol>
 <li>打开IDE -&gt; 创建 java 项目 -&gt; 导入spring基本的jar包(spring学习之工具篇有说明)</li>
-<li><p>新建一个 Helloworld 类 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.soloist.spring.hello;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Helloworld</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> String name;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.name = name;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">hello</span><span class="params">()</span></span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"hello:"</span>+name);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p></li>
-<li><p>新建xml配置文件 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span></span></span><br><span class="line"><span class="tag">	<span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span></span><br><span class="line"><span class="tag">	<span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">	<span class="attr">xmlns:p</span>=<span class="string">"http://www.springframework.org/schema/p"</span></span></span><br><span class="line"><span class="tag">	<span class="attr">xsi:schemaLocation</span>=<span class="string">"http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd"</span>&gt;</span></span><br><span class="line">	<span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">		配置bean</span></span><br><span class="line"><span class="comment">		class:全类名，通过反射的方式在ioc容器中创建bean，所以类中要有无参数的构造方法</span></span><br><span class="line"><span class="comment">		id:标识，在ioc容器中唯一</span></span><br><span class="line"><span class="comment">	 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"helloworld"</span> <span class="attr">class</span>=<span class="string">"com.soloist.spring.hello.Helloworld"</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"name"</span> <span class="attr">value</span>=<span class="string">"Spring"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"oneInterface"</span> <span class="attr">class</span>=<span class="string">"com.soloist.spring.ioc.OneInterfaceImpl"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure></p></li>
-<li><p>新建一个测试类 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.soloist.spring.hello;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.ApplicationContext;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.support.ClassPathXmlApplicationContext;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="comment">/**</span></span><br><span class="line"><span class="comment">		 * 没用spring框架之前的写法</span></span><br><span class="line"><span class="comment">		 */</span></span><br><span class="line">		<span class="comment">//1、实例化一个类</span></span><br><span class="line">		Helloworld hw = <span class="keyword">new</span> Helloworld();</span><br><span class="line">		<span class="comment">//2、设置类的属性</span></span><br><span class="line">		hw.setName(<span class="string">"chen"</span>);</span><br><span class="line">		<span class="comment">//3、调用类方法</span></span><br><span class="line">		hw.hello();</span><br><span class="line"></span><br><span class="line">		<span class="comment">/**</span></span><br><span class="line"><span class="comment">		 * 用了spring框架之后写法</span></span><br><span class="line"><span class="comment">		 * spring架构会在调用类方法前将 类的构造函数(无参) 和 设置属性值(setter方法) 预先在beans中完成</span></span><br><span class="line"><span class="comment">		 * 则省去了 实现类 和 设置属性 步骤</span></span><br><span class="line"><span class="comment">		 */</span></span><br><span class="line">		<span class="comment">//1、创建ioc容器</span></span><br><span class="line">		ApplicationContext ac = <span class="keyword">new</span> ClassPathXmlApplicationContext(<span class="string">"applicationContext.xml"</span>);</span><br><span class="line">		<span class="comment">//2、从ioc容器获取bean实例</span></span><br><span class="line">		Helloworld hw1 = (Helloworld) ac.getBean(<span class="string">"helloworld"</span>);</span><br><span class="line">		hw1.hello();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p></li>
+<li><p>新建一个 Helloworld 类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.soloist.spring.hello;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Helloworld</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> String name;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.name = name;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">hello</span><span class="params">()</span></span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"hello:"</span>+name);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>新建xml配置文件</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span></span></span><br><span class="line"><span class="tag">	<span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span></span><br><span class="line"><span class="tag">	<span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">	<span class="attr">xmlns:p</span>=<span class="string">"http://www.springframework.org/schema/p"</span></span></span><br><span class="line"><span class="tag">	<span class="attr">xsi:schemaLocation</span>=<span class="string">"http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd"</span>&gt;</span></span><br><span class="line">	<span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">		配置bean</span></span><br><span class="line"><span class="comment">		class:全类名，通过反射的方式在ioc容器中创建bean，所以类中要有无参数的构造方法</span></span><br><span class="line"><span class="comment">		id:标识，在ioc容器中唯一</span></span><br><span class="line"><span class="comment">	 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"helloworld"</span> <span class="attr">class</span>=<span class="string">"com.soloist.spring.hello.Helloworld"</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"name"</span> <span class="attr">value</span>=<span class="string">"Spring"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"oneInterface"</span> <span class="attr">class</span>=<span class="string">"com.soloist.spring.ioc.OneInterfaceImpl"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>新建一个测试类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.soloist.spring.hello;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.ApplicationContext;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.support.ClassPathXmlApplicationContext;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="comment">/**</span></span><br><span class="line"><span class="comment">		 * 没用spring框架之前的写法</span></span><br><span class="line"><span class="comment">		 */</span></span><br><span class="line">		<span class="comment">//1、实例化一个类</span></span><br><span class="line">		Helloworld hw = <span class="keyword">new</span> Helloworld();</span><br><span class="line">		<span class="comment">//2、设置类的属性</span></span><br><span class="line">		hw.setName(<span class="string">"chen"</span>);</span><br><span class="line">		<span class="comment">//3、调用类方法</span></span><br><span class="line">		hw.hello();</span><br><span class="line"></span><br><span class="line">		<span class="comment">/**</span></span><br><span class="line"><span class="comment">		 * 用了spring框架之后写法</span></span><br><span class="line"><span class="comment">		 * spring架构会在调用类方法前将 类的构造函数(无参) 和 设置属性值(setter方法) 预先在beans中完成</span></span><br><span class="line"><span class="comment">		 * 则省去了 实现类 和 设置属性 步骤</span></span><br><span class="line"><span class="comment">		 */</span></span><br><span class="line">		<span class="comment">//1、创建ioc容器</span></span><br><span class="line">		ApplicationContext ac = <span class="keyword">new</span> ClassPathXmlApplicationContext(<span class="string">"applicationContext.xml"</span>);</span><br><span class="line">		<span class="comment">//2、从ioc容器获取bean实例</span></span><br><span class="line">		Helloworld hw1 = (Helloworld) ac.getBean(<span class="string">"helloworld"</span>);</span><br><span class="line">		hw1.hello();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
 </ol>
-<h4 id="aop">＊AOP</h4>
-<ul>
-<li><p>Aspect Oriented Programming 的缩写，表示<a href="https://www.zhihu.com/question/24863332" target="_blank" rel="noopener">面向切面编程</a>，通过预编译方式（AspectJ）和运行期动态代理（方式有 SpringAOP、JbossAOP，代理有 JDK动态代理、CGLib动态代理）实现程序功能的统一维护的一种技术</p></li>
-<li><p>主要功能是：日志记录，性能统计，安全控制，事务处理，异常处理等</p></li>
-<li><p>须了解几个相关概念：</p></li>
+<h4 id="＊AOP"><a href="#＊AOP" class="headerlink" title="＊AOP"></a>＊AOP</h4><ul>
+<li><p>Aspect Oriented Programming 的缩写，表示<a href="https://www.zhihu.com/question/24863332" target="_blank" rel="noopener">面向切面编程</a>，通过预编译方式（AspectJ）和运行期动态代理（方式有 SpringAOP、JbossAOP，代理有 JDK动态代理、CGLib动态代理）实现程序功能的统一维护的一种技术</p>
+</li>
+<li><p>主要功能是：日志记录，性能统计，安全控制，事务处理，异常处理等</p>
+</li>
+<li><p>须了解几个相关概念：</p>
+</li>
 </ul>
+<div class="table-container">
 <table>
 <thead>
-<tr class="header">
-<th style="text-align: center;">名称</th>
-<th style="text-align: center;">英文名称</th>
-<th style="text-align: left;">说明</th>
+<tr>
+<th style="text-align:center">名称</th>
+<th style="text-align:center">英文名称</th>
+<th style="text-align:left">说明</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td style="text-align: center;">切面</td>
-<td style="text-align: center;">Aspect</td>
-<td style="text-align: left;">一个关注点的模块化，这个关注点可能会横切多个对象</td>
+<tr>
+<td style="text-align:center">切面</td>
+<td style="text-align:center">Aspect</td>
+<td style="text-align:left">一个关注点的模块化，这个关注点可能会横切多个对象</td>
 </tr>
-<tr class="even">
-<td style="text-align: center;">连接点</td>
-<td style="text-align: center;">Joinpoint</td>
-<td style="text-align: left;">程序执行过程中的某个特定点</td>
+<tr>
+<td style="text-align:center">连接点</td>
+<td style="text-align:center">Joinpoint</td>
+<td style="text-align:left">程序执行过程中的某个特定点</td>
 </tr>
-<tr class="odd">
-<td style="text-align: center;">通知</td>
-<td style="text-align: center;">Advice</td>
-<td style="text-align: left;">在切面的某个特定的连接点上执行的动作</td>
+<tr>
+<td style="text-align:center">通知</td>
+<td style="text-align:center">Advice</td>
+<td style="text-align:left">在切面的某个特定的连接点上执行的动作</td>
 </tr>
-<tr class="even">
-<td style="text-align: center;">切入点</td>
-<td style="text-align: center;">Pointcut</td>
-<td style="text-align: left;">匹配连接点的断言，在AOP中通知和一个切入点表达式关联</td>
+<tr>
+<td style="text-align:center">切入点</td>
+<td style="text-align:center">Pointcut</td>
+<td style="text-align:left">匹配连接点的断言，在AOP中通知和一个切入点表达式关联</td>
 </tr>
-<tr class="odd">
-<td style="text-align: center;">引入</td>
-<td style="text-align: center;">Introduction</td>
-<td style="text-align: left;">在不修改类代码的前提下，为类添加新的方法和属性</td>
+<tr>
+<td style="text-align:center">引入</td>
+<td style="text-align:center">Introduction</td>
+<td style="text-align:left">在不修改类代码的前提下，为类添加新的方法和属性</td>
 </tr>
-<tr class="even">
-<td style="text-align: center;">目标对象</td>
-<td style="text-align: center;">Target Object</td>
-<td style="text-align: left;">被一个或者多个切面所通知的对象</td>
+<tr>
+<td style="text-align:center">目标对象</td>
+<td style="text-align:center">Target Object</td>
+<td style="text-align:left">被一个或者多个切面所通知的对象</td>
 </tr>
-<tr class="odd">
-<td style="text-align: center;">AOP代理</td>
-<td style="text-align: center;">AOP Proxy</td>
-<td style="text-align: left;">AOP框架创建的对象，用来实现切面契约（Aspect Contract）（包括通知方法执行等功能）</td>
+<tr>
+<td style="text-align:center">AOP代理</td>
+<td style="text-align:center">AOP Proxy</td>
+<td style="text-align:left">AOP框架创建的对象，用来实现切面契约（Aspect Contract）（包括通知方法执行等功能）</td>
 </tr>
-<tr class="even">
-<td style="text-align: center;">织入</td>
-<td style="text-align: center;">Weaving</td>
-<td style="text-align: left;">把切面连接到其他的应用程序类型或者对象上，并创建一个被通知的对象，分为：编译时织入、类加载时织入、执行时织入</td>
+<tr>
+<td style="text-align:center">织入</td>
+<td style="text-align:center">Weaving</td>
+<td style="text-align:left">把切面连接到其他的应用程序类型或者对象上，并创建一个被通知的对象，分为：编译时织入、类加载时织入、执行时织入</td>
 </tr>
 </tbody>
 </table>
+</div>
 <ul>
 <li>Advice通知类型</li>
 </ul>
+<div class="table-container">
 <table>
 <thead>
-<tr class="header">
-<th style="text-align: center;">名称</th>
-<th style="text-align: center;">英文名称</th>
-<th style="text-align: left;">说明</th>
+<tr>
+<th style="text-align:center">名称</th>
+<th style="text-align:center">英文名称</th>
+<th style="text-align:left">说明</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td style="text-align: center;">前置通知</td>
-<td style="text-align: center;">Before advice</td>
-<td style="text-align: left;">在某连接点(Join Point)之前执行的通知，但不能阻止连接点前的执行（除非它抛出一个异常）</td>
+<tr>
+<td style="text-align:center">前置通知</td>
+<td style="text-align:center">Before advice</td>
+<td style="text-align:left">在某连接点(Join Point)之前执行的通知，但不能阻止连接点前的执行（除非它抛出一个异常）</td>
 </tr>
-<tr class="even">
-<td style="text-align: center;">返回后通知</td>
-<td style="text-align: center;">After Returning advice</td>
-<td style="text-align: left;">在某连接点(Join Point)正常完成后执行的通知</td>
+<tr>
+<td style="text-align:center">返回后通知</td>
+<td style="text-align:center">After Returning advice</td>
+<td style="text-align:left">在某连接点(Join Point)正常完成后执行的通知</td>
 </tr>
-<tr class="odd">
-<td style="text-align: center;">抛出异常后通知</td>
-<td style="text-align: center;">After throwing advice</td>
-<td style="text-align: left;">在方法抛出异常退出时执行的通知</td>
+<tr>
+<td style="text-align:center">抛出异常后通知</td>
+<td style="text-align:center">After throwing advice</td>
+<td style="text-align:left">在方法抛出异常退出时执行的通知</td>
 </tr>
-<tr class="even">
-<td style="text-align: center;">后通知</td>
-<td style="text-align: center;">After advice</td>
-<td style="text-align: left;">在某连接点(Join Point)退出的时候执行，无论是否抛出异常</td>
+<tr>
+<td style="text-align:center">后通知</td>
+<td style="text-align:center">After advice</td>
+<td style="text-align:left">在某连接点(Join Point)退出的时候执行，无论是否抛出异常</td>
 </tr>
-<tr class="odd">
-<td style="text-align: center;">环绕通知</td>
-<td style="text-align: center;">Around advice</td>
-<td style="text-align: left;">包围一个连接点(Join Point)的通知</td>
+<tr>
+<td style="text-align:center">环绕通知</td>
+<td style="text-align:center">Around advice</td>
+<td style="text-align:left">包围一个连接点(Join Point)的通知</td>
 </tr>
 </tbody>
 </table>
+</div>
 <ul>
-<li><p>SpringAOP：纯Java实现，无需特殊的编译过程，不需要控制类加载层次；目前只支持方法执行连接点（通知Spring Bean的方法执行）；侧重于提供一种AOP实现与Spring IOC容器之间的整合，用于帮助解决企业应用中常见的问题</p></li>
-<li><p>SpringAOP 不是一个完整的AOP，只立足于Spring</p></li>
-<li><p>AspectJ 是综合全面的AOP</p></li>
-<li><p>有接口：SpringAOP 默认使用标准的的 Java SE 动态代理作为AOP代理，这使得任何接口都可以被代理</p></li>
-<li><p>无接口：SpringAOP 中也可以使用CGLIB代理（如果一个业务对象并没有实现一个接口）</p></li>
+<li><p>SpringAOP：纯Java实现，无需特殊的编译过程，不需要控制类加载层次；目前只支持方法执行连接点（通知Spring Bean的方法执行）；侧重于提供一种AOP实现与Spring IOC容器之间的整合，用于帮助解决企业应用中常见的问题</p>
+</li>
+<li><p>SpringAOP 不是一个完整的AOP，只立足于Spring</p>
+</li>
+<li><p>AspectJ 是综合全面的AOP</p>
+</li>
+<li><p>有接口：SpringAOP 默认使用标准的的 Java SE 动态代理作为AOP代理，这使得任何接口都可以被代理</p>
+</li>
+<li><p>无接口：SpringAOP 中也可以使用CGLIB代理（如果一个业务对象并没有实现一个接口）</p>
+</li>
 </ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/08/13/spring学习之基础篇/" data-id="ckhlr6dio00120jegbhg5nycj" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/08/13/spring学习之基础篇/" data-id="ckng18equ0014uvego2186v7n" class="article-share-link">Share</a>
       
       
     </footer>
@@ -295,7 +307,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">十一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">十月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">九月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">八月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">四月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">十一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">十月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">九月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">八月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a></li></ul>
     </div>
   </div>
 
@@ -306,6 +318,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2021/04/09/Interview/">Interview</a>
+          </li>
         
           <li>
             <a href="/2020/11/17/C-plus-note/">C_plus_note</a>
@@ -321,10 +337,6 @@
         
           <li>
             <a href="/2020/10/06/PGM-Inference/">PGM_Inference</a>
-          </li>
-        
-          <li>
-            <a href="/2020/10/05/Exponential-Family-Distribution/">Exponential_Family_Distribution</a>
           </li>
         
       </ul>
