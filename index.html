@@ -87,182 +87,184 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h5 id="Natural-Language-Processing"><a href="#Natural-Language-Processing" class="headerlink" title="Natural Language Processing"></a>Natural Language Processing</h5><ul>
-<li><p>word embedding 发展历程</p>
+        <h5 id="natural-language-processing">Natural Language Processing</h5>
 <ul>
-<li>基于字典组成one-hot模型<ul>
+<li>word embedding 发展历程
+<ul>
+<li>基于字典组成one-hot模型
+<ul>
 <li>一方面词典的数目一般都是上万数量级的，造成对于单个词而言，向量表示过于稀疏</li>
 <li>另一方面由于仅仅存储0、1数据，没有办法保存对应的<strong>语序信息</strong>，也就无法通过one-hot编码挖掘词与词之间的语义关系</li>
-</ul>
-</li>
-<li>tf-idf<ul>
+</ul></li>
+<li>tf-idf
+<ul>
 <li>tf是词频，也就是当前词在文档中出现的次数</li>
 <li>idf的计算方法是log(语料库中总文档数 / 包含当前词的文档数)</li>
 <li>tf-idf就是one-hot的一种优化</li>
-<li>文档比较有<strong>代表性的词</strong>发挥更大的作用，规避常见词（the, I, is, …）</li>
+<li>文档比较有<strong>代表性的词</strong>发挥更大的作用，规避常见词（the, I, is, ...）</li>
 <li>无法考虑词的位置信息，上下文信息以及一些分布特征</li>
-</ul>
-</li>
-<li>Encoder-Decoder（少用）<ul>
+</ul></li>
+<li>Encoder-Decoder（少用）
+<ul>
 <li>encoder输入onehot，deocder输出</li>
-</ul>
-</li>
-<li>NNLM（Nerual Network Language Model）<ul>
+</ul></li>
+<li>NNLM（Nerual Network Language Model）
+<ul>
 <li>基于上下文，上文预测下文</li>
 <li>词向量只是副产物</li>
-</ul>
-</li>
-<li><font color="red">word2vec</font><ul>
-<li>Continuous Bag-of-Word CBOW 上下文来预测当前词（用得更多，bert也类似）<ul>
+</ul></li>
+<li><font color="red">word2vec</font>
+<ul>
+<li>Continuous Bag-of-Word CBOW 上下文来预测当前词（用得更多，bert也类似）
+<ul>
 <li>计算量大（利用huffman结构，词频高的在树的浅层、词频低的在深层，减少softmax计算量）</li>
 <li>负采样：找些错误样本，在正确样本学习时排斥错误样本</li>
-</ul>
-</li>
+</ul></li>
 <li>Continuous Skip-gram 当前词来预测上下文（太难了）</li>
 <li>缺点：没有解决一词多义的问题</li>
-</ul>
-</li>
-<li>Glove (Global Vectors for Word Representation)<ul>
+</ul></li>
+<li>Glove (Global Vectors for Word Representation)
+<ul>
 <li>类似word2vec，但是上下文的范围更广，是全局的句子单词</li>
 <li>因为要全部文本，所以无法online training，因此用的比较少，效果并没有比word2vec太好</li>
 <li>缺点：没有解决一词多义的问题</li>
-</ul>
-</li>
-<li>Fasttext<ul>
+</ul></li>
+<li>Fasttext
+<ul>
 <li>将单词拆成字符作为输入，并且利用n-gram（apple -&gt; app, ppl, ple），学习到一个embedding（embedding最终做个分类任务）</li>
 <li>对于低频词生成的词向量效果会更好</li>
 <li>缺点：没有解决一词多义的问题</li>
-</ul>
-</li>
-<li>为了解决<font color="red">一词多义</font>的问题才有后面预训练模型的学习<ul>
-<li>ELMO、BERT</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>Model</p>
+</ul></li>
+<li>为了解决<font color="red">一词多义</font>的问题才有后面预训练模型的学习
 <ul>
-<li>seq-to-class<ul>
+<li>ELMO、BERT</li>
+</ul></li>
+</ul></li>
+<li>Model
+<ul>
+<li>seq-to-class
+<ul>
 <li>输入所有token，输出一个class</li>
 <li>输入所有token，对应token各输出一个class（识别句子中所有词汇的词性，word segmentation）（bert里面可以学习该两项特性，未必需要模型预先学习这些处理）</li>
-</ul>
-</li>
-<li>seq-to-seq<ul>
+</ul></li>
+<li>seq-to-seq
+<ul>
 <li>autoencoder+attention</li>
-</ul>
-</li>
-<li>multiple sequences<ul>
+</ul></li>
+<li>multiple sequences
+<ul>
 <li>两个句子分别输入同一模型，再拼接结果</li>
 <li>类似bert，用特定符号连接句子，作为一个输入</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>Task</p>
+</ul></li>
+</ul></li>
+<li>Task
 <ul>
-<li>word segmentation 断词<ul>
+<li>word segmentation 断词
+<ul>
 <li>对于英文，word之间用空格分开</li>
 <li>对于中文，台湾大学简陈台大 -&gt; (台湾大学)(简陈)(台大) （具体如何划分，看任务）</li>
-</ul>
-</li>
-<li>coreference resolution 指代消解<ul>
+</ul></li>
+<li>coreference resolution 指代消解
+<ul>
 <li>哪些词汇指向相同的东西（主语&lt;-&gt;代词）</li>
-</ul>
-</li>
-<li>summarization 总结文本<ul>
+</ul></li>
+<li>summarization 总结文本
+<ul>
 <li>extractive summarization 提取摘要，每个句子都需要个label，模型识别哪些句子应当放入摘要（原句），作为总结整个文本</li>
 <li>abstractive summarization 模型输出语句总结文本，seq-to-seq模型，并非输出原句，但会有共有的词汇（需要模型对输入词汇有拷贝作用，拷贝重要词汇作用于输入）</li>
-</ul>
-</li>
-<li>machine translation 机器翻译<ul>
+</ul></li>
+<li>machine translation 机器翻译
+<ul>
 <li>seq-to-seq模型（输入语言，输出另外语言）（输入语音，输出文字）（输入一种语言的语音，输出另外语言的语音）</li>
-</ul>
-</li>
-<li>grammar error correction 语法错误纠正<ul>
+</ul></li>
+<li>grammar error correction 语法错误纠正
+<ul>
 <li>seq-to-seq模型（修改语法）</li>
-</ul>
-</li>
-<li>sentiment classification 情感分析<ul>
+</ul></li>
+<li>sentiment classification 情感分析
+<ul>
 <li>seq-to-class模型（输入评论，输出正负情感）</li>
-</ul>
-</li>
-<li>veracity prediction 立场预测<ul>
+</ul></li>
+<li>veracity prediction 立场预测
+<ul>
 <li>seq-to-class模型（输入post文、评论回应等，输入正反立场）</li>
-</ul>
-</li>
-<li>natural language inference (NLI) 自然语言推理<ul>
+</ul></li>
+<li>natural language inference (NLI) 自然语言推理
+<ul>
 <li>seq-to-class模型（输入premise、hypothesis句子，输出三个类别:contradiction、entailment、neutral）</li>
 <li>两个句子的关系</li>
-</ul>
-</li>
-<li>search engine 搜索引擎<ul>
+</ul></li>
+<li>search engine 搜索引擎
+<ul>
 <li>seq-to-class模型（匹配问题答案的相关性，relevant）</li>
-</ul>
-</li>
-<li><strong>QA问答</strong><ul>
+</ul></li>
+<li><strong>QA问答</strong>
+<ul>
 <li>（Watson模型）问题处理 - 生成候选答案 - 候选答案评分 - 排序</li>
 <li>阅读理解：输入question和knowledge source（unstructured documents，可以来源于搜索引擎），过滤掉不相关的documents， 输出答案</li>
-</ul>
-</li>
-<li><strong>dialogue 对话模型</strong><ul>
+</ul></li>
+<li><strong>dialogue 对话模型</strong>
+<ul>
 <li>chatting 尬聊，需要输入历史对话，得到下一次的回复（模型应当加入更多特性：personality个性化、empathy同理心、knowledge知识丰富的）</li>
 <li>task-oriented 任务导向：引导用于完成一个任务（拆分模型：natural language generation (NLG) 提前设定好可以问的问题，需要输入历史对话 -&gt; NLG -&gt; 得到下一次的回复）</li>
 <li>natural language understanding (NLU) -&gt; state tracker -&gt; state -&gt; policy -&gt; NLG -&gt; answer</li>
 <li>NLU: intent classification + slot filling（内容识别，提取内容）</li>
-</ul>
-</li>
-<li><strong>knowledge graph 知识图谱</strong><ul>
+</ul></li>
+<li><strong>knowledge graph 知识图谱</strong>
+<ul>
 <li>node 为 entity 实体， edge 为 node之间的关系</li>
 <li><font color="red">从文字抽取实体、实体关系</font></li>
-<li>name entity recognition (NER)<ul>
+<li>name entity recognition (NER)
+<ul>
 <li>根据任务确定实体范围，一般为人名、组织、地名、时间</li>
 <li>seq-to-class</li>
 <li>多个名字指向同一个东西，多个东西指向同一个名字，name entity linking</li>
-</ul>
-</li>
-<li>relation extraction<ul>
-<li>若relation是有限的，那么可以看成分类任务</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>pretrain + fine-tune (用大量预料做预训练，再针对特定任务的数据微调模型)</p>
+</ul></li>
+<li>relation extraction
 <ul>
-<li>What is pretrian model?<ul>
-<li>each token -&gt; embedding <ul>
-<li><font color="red">(old method (**word2vec and Glove**): same token -> same embedding, exclude context)</font></li>
+<li>若relation是有限的，那么可以看成分类任务</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li>pretrain + fine-tune (用大量预料做预训练，再针对特定任务的数据微调模型)
+<ul>
+<li>What is pretrian model?
+<ul>
+<li>each token -&gt; embedding
+<ul>
+<li><font color="red">(old method (<strong>word2vec and Glove</strong>): same token -&gt; same embedding, exclude context)</font></li>
 <li>english word -&gt; token : too much words (FastText: 将单词拆成字符作为输入，学习到一个embedding)</li>
 <li>chinese character -&gt; token (EMNLP: 将汉字看为图片，用CNN学习汉字各个部位，得到embedding)</li>
-</ul>
-</li>
-<li><font color="red">Contextualized Word Emnedding </font>(基于上下文来学习单词的embedding) (学习token到一词多义)<ul>
+</ul></li>
+<li><font color="red">Contextualized Word Emnedding </font>(基于上下文来学习单词的embedding) (学习token到一词多义)
+<ul>
 <li>LSTM, self-attention, tree-base (少用，没有LSTM厉害)</li>
 <li>self-supervised learning 自监督学习（无监督学习）：常见的语言模型，根据上文学习到embedding，该embedding还能预测下文（设计model，下文不能被偷看，此处self-attention需要加限制，mask掉下文需要预测部分）</li>
-<li>token-level<ul>
-<li><strong>ELMO</strong> (Embedding from Language Models) (bi-lstm)、<ul>
+<li>token-level
+<ul>
+<li><strong>ELMO</strong> (Embedding from Language Models) (bi-lstm)、
+<ul>
 <li>语言中预测一个单词，需要看它常常跟哪些词汇在一起（上下文）</li>
 <li>双向：基于上文预测下文，基于下文预测上文，再结合两部分embedding（按什么比例结合，看任务）</li>
 <li>缺点：每个LSTM<strong>只看到了部分的文本</strong>，各自工作</li>
-</ul>
-</li>
-<li><strong>GPT</strong> (Generative Pre-Training)（从上文预测下文，Left-to-Right）不希望fine-tune，直接pretrain解决问题<ul>
+</ul></li>
+<li><strong>GPT</strong> (Generative Pre-Training)（从上文预测下文，Left-to-Right）不希望fine-tune，直接pretrain解决问题
+<ul>
 <li>Transformer decoder部分</li>
 <li>GPT3</li>
-<li>in-context learning 纯文本输入，让模型理解文本内容<ul>
+<li>in-context learning 纯文本输入，让模型理解文本内容
+<ul>
 <li>few-shot learning： 输入：给出问题描述和少许例子，让模型读题目写答案</li>
 <li>one-shot learning： 输入：给出问题描述和1个例子，让模型读题目写答案</li>
 <li>zero-shot learning： 输入：给出问题描述，让模型读题目写答案</li>
-</ul>
-</li>
-<li>closed book QA<ul>
+</ul></li>
+<li>closed book QA
+<ul>
 <li>直接问问题，模型给出答案（问加法问题，直接给出答案）</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><strong>BERT</strong> (Bidirectional Encoder Representations from Transformer) (限定文本长度 512)<ul>
+</ul></li>
+</ul></li>
+<li><strong>BERT</strong> (Bidirectional Encoder Representations from Transformer) (限定文本长度 512)
+<ul>
 <li>Transformer encoder部分</li>
 <li>bert可以<strong>随机mask部分词汇</strong>，根据上下文的self-attention去预测mask的词汇，规避了ELMo的缺点（类似CBOW，求和固定的全部上下文，预测mask东西，bert的attention可以自己需要多少看多少）</li>
 <li>mask 输入的whole word(整个单词)(bert模型)、phrase-level(短语) &amp; entity-level(实体)(ERNIE模型)、mask 多个token (span bert模型)</li>
@@ -271,77 +273,71 @@
 <li><strong>XLNet</strong> (内部使用Transformer-XL)（mask掉的token，不参与预测计算，并且是随机选择上下文）</li>
 <li>Reformer, Longformer 解决self-attention计算量的问题</li>
 <li>bert缺点：假如必须上文预测下文，则bert效果不太好，但若是不需要按顺序预测，估计bert也ok</li>
-</ul>
-</li>
-<li>seq2seq 的pretrain<ul>
+</ul></li>
+<li>seq2seq 的pretrain
+<ul>
 <li>autoencoder+attention，破坏（mask、多个mask、删除、乱序）的输入部分，去预测正确的输入（BART/MASS模型）</li>
 <li><strong>BART/MASS</strong>：综合bert和gpt，前面部分使用bert双向attention，后面部分使用单向的attention</li>
 <li>UniLM：综合bert、gpt、BART/MASS三个模型</li>
-</ul>
-</li>
-<li>ERNIE (Enhanced Representation through Knowledge Integration)<ul>
+</ul></li>
+<li>ERNIE (Enhanced Representation through Knowledge Integration)
+<ul>
 <li>为中文设计，mask盖住phrase-level(短语) &amp; entity-level(实体)</li>
 <li>加入图谱</li>
-</ul>
-</li>
+</ul></li>
 <li>Grover (Generating aRticles by Only Viewing mEtadata Records)</li>
 <li>BERT &amp; PALs (Projected Attention Layers)</li>
-<li>ELECTRA (Efficiently Learning an Encoder that Classifies Token Replacements Accurately)<ul>
+<li>ELECTRA (Efficiently Learning an Encoder that Classifies Token Replacements Accurately)
+<ul>
 <li>置换token，语法没错，之改变语义</li>
 <li>不做embedding，对每个token做yes/no二分类，检查句子所有token是否有问题</li>
 <li>先用个small bert的预测一个token，填入原句，再利用model进行判断是否有问题</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>sentence-level，为整个句子进行embedding<ul>
+</ul></li>
+</ul></li>
+<li>sentence-level，为整个句子进行embedding
+<ul>
 <li>skip thought (encode上句，decode下句) : 根据上一句生产下一句的embedding，相邻句子，embdding类似</li>
 <li>qiuck thought (分别encode上句、下句) : 避开做生成seq（计算量很大），相近句子，embdding越相似</li>
 <li>bert中，两个句子学习NSP (next stence prediction)，[CLS]做分类（效果不好，检测是否相关还ok，顺序就不太行）</li>
 <li>使用SOP (sentence order prediction) 两句话颠倒（顺序很重要），则要输出错误</li>
 <li>结合NSP和SOP会更好</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>How to fine-tune?<ul>
+</ul></li>
+</ul></li>
+</ul></li>
+<li>How to fine-tune?
+<ul>
 <li>句子分割符号：seq1 [SEP] seq2</li>
-<li>句首符号：[CLS] seq<ul>
-<li>one class<ul>
+<li>句首符号：[CLS] seq
+<ul>
+<li>one class
+<ul>
 <li>[CLS]可以代表整个句子的embedding，可以用[CLS]的embedding做分类</li>
 <li>用所有embedding求平均或者RNN综合输出一个embedding做分类</li>
-</ul>
-</li>
-<li>class for each token<ul>
+</ul></li>
+<li>class for each token
+<ul>
 <li>将所有token输入一个分类器做多分类</li>
-</ul>
-</li>
-<li>copy from input<ul>
+</ul></li>
+<li>copy from input
+<ul>
 <li>Extracetion-base QA: 输入Document、Query，输出文本两个下标，代表答案范围</li>
 <li>输入[CLS] query [SEP] Document，得到document所有token的输出，分别用两个向量，在token中做dot-product or LSTM再接softmax，选择最高成绩，分别作为起始下标和终止下标</li>
-</ul>
-</li>
-<li>seq2seq<ul>
+</ul></li>
+<li>seq2seq
+<ul>
 <li>传统做法为，encoder-decoder + attention，存在decoder中的token没有在encoder见识过（没有pretrain过）</li>
 <li>输入seq1 [SEP] seq2，输出根据[SEP]开始，预测seq2第一个的token，最后个token预测结束字符</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>fine-tune方法<ul>
+</ul></li>
+</ul></li>
+<li>fine-tune方法
+<ul>
 <li><strong>pretrain作为特征提取，固定不变，再接入下游任务</strong> （更优，pretrain模型很大）</li>
 <li>pretrain 和 下游任务一起训练 （pretrain有预训练参数不是随机参数，所以也不会直接过拟合）</li>
 <li>折中做法：Adaptor模型，fine-tune时候，pretrain中加入adapter层（self-attention后，前馈神经网络后面），adaptor层与下游任务一起训练，pretrian部分不变</li>
-</ul>
-</li>
+</ul></li>
 <li>有实验证明 基于pretrain的模型，loss会下降很快，也就是可以快速训练，范化能力更强</li>
-</ul>
-</li>
-</ul>
-</li>
-<li></li>
+</ul></li>
+</ul></li>
 </ul>
 
       
@@ -379,141 +375,125 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <ol>
-<li><p>简历项目</p>
+        <ol type="1">
+<li>简历项目
 <ul>
-<li>自适应图聚类<ul>
-<li>GCN细节<ul>
+<li>自适应图聚类
+<ul>
+<li>GCN细节
+<ul>
 <li>2016年诞生</li>
 <li>针对非结构化数据（（欧氏空间）结构化数据：一维的文本or信号、二维的图片）</li>
 <li><font color="red">基于拓扑结构与节点属性特征，卷积过程：传播节点信息，汇聚邻居节点信息来更新自身节点。</font>（计算公式上，基于邻接矩阵求得拉普拉斯矩阵，再与特征矩阵做内积，意义在于从谱域傅里叶转换到频域做乘积计算，再逆傅里叶转换回谱域，实现卷积的过程）</li>
 <li>CNN的卷积操作属于GCN的一种特殊情况（3x3九宫格中，中心节点汇聚周围8个节点的信息）</li>
 <li>本质实在数据中做<strong>低通滤波</strong>的作用，过滤高频噪声信息，提取出低频信息（类似于CNN人脸识别的时候获得人脸五官的基础特征信息，叠加深层之后，获得整个人脸特征）</li>
-</ul>
-</li>
-<li>用什么方法解决了什么问题？结果如何？<ul>
+</ul></li>
+<li>用什么方法解决了什么问题？结果如何？
+<ul>
 <li>问题：图神经网的浅层、深层会出现过平滑问题、所有节点卷积层是固定的</li>
 <li>将RNN中自适应机制转移到GNN中，实现所有节点可以自适应控制自己的卷积层数，有效缓解过平滑问题，学习到更好的embedding，效果在不同数据有3%～6%的提升。</li>
 <li>基于聚类两大特性设计损失函数（簇内的距离应当越小，簇间的距离应当越大），也属于自监督学习（无监督学习）</li>
-</ul>
-</li>
-<li>应用场景<ul>
+</ul></li>
+<li>应用场景
+<ul>
 <li>基于拓扑结构和特征信息的聚类操作、推荐系统、知识图谱、蛋白质相互作用网络、社交网络、风控网络</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>病毒宿主预测任务<ul>
+</ul></li>
+</ul></li>
+<li>病毒宿主预测任务
+<ul>
 <li>问题：分析病毒基因数据，预测宿主</li>
 <li>针对基因学习序列信息，基于宿主构造拓扑结构，实现匹配网络</li>
-</ul>
-</li>
-<li>卷积循环神经网络<ul>
+</ul></li>
+<li>卷积循环神经网络
+<ul>
 <li>问题：提取过去时序图片信息、预测未来某一时刻图片信息</li>
 <li>CNN+LSTM</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>机器学习、深度学习</p>
+</ul></li>
+</ul></li>
+<li>机器学习、深度学习
 <ul>
-<li><p><font color="red">SVM原理</font></p>
+<li><font color="red">SVM原理</font>
 <ul>
-<li>提出SVM是为了解决二分类问题；成功分类的直线（平面）有无数个，SVM就要找到最优的结果（即<strong>所有样本距离平面都足够大</strong>）max margin(w, b) s.t. yi (w^T xi + b) &gt; 0<ul>
+<li>提出SVM是为了解决二分类问题；成功分类的直线（平面）有无数个，SVM就要找到最优的结果（即<strong>所有样本距离平面都足够大</strong>）max margin(w, b) s.t. yi (w^T xi + b) &gt; 0</li>
 <li>最优平面：w x+b，参数需要基于样本学习</li>
-</ul>
-</li>
-<li>hard-margin SVM是基于样本属于可分的，但是实际数据是存在噪声，可能导致分不好，甚至不可分<ul>
-<li>二次凸优化问题<ul>
+<li>hard-margin SVM是基于样本属于可分的，但是实际数据是存在噪声，可能导致分不好，甚至不可分</li>
+<li>二次凸优化问题
+<ul>
 <li>符合参数的偏导为0，才能转换对偶问题（max min交换）</li>
 <li>针对线性可分数据</li>
-</ul>
-</li>
-</ul>
-</li>
+</ul></li>
 <li>soft-margin SVM在hard-margin SVM基础上允许一点点错误</li>
-<li><font color="red">kernel函数</font>，是针对完全非线性的数据，<strong>非线性转换到高维空间，转成线性可分问题</strong>，再使用SVM。（高维空间比低维更易线性可分）（深度学习使用多层感知机解决异或问题，可以不转高维）<ul>
+<li><font color="red">kernel函数</font>，是针对完全非线性的数据，<strong>非线性转换到高维空间，转成线性可分问题</strong>，再使用SVM。（高维空间比低维更易线性可分）（深度学习使用多层感知机解决异或问题，可以不转高维）
+<ul>
 <li>kernel 函数还可以解决对偶问题（计算高维空间内积运算），直接得到内及结果，不需要先得到单个函数结果，再计算内积。</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>牛顿法</p>
-</li>
-<li><p>LSTM</p>
+</ul></li>
+</ul></li>
+<li>牛顿法</li>
+<li>LSTM
 <ul>
 <li>Long short-term memory 长短期记忆，可以解决梯度消失和梯度爆炸</li>
 <li>对于RNN，多出cell state来记忆之前的信息，变化较慢</li>
-<li>忘记阶段。这个阶段主要是对上一个节点传进来的输入进行选择性忘记（<a href="https://zhuanlan.zhihu.com/p/100948638" target="_blank" rel="noopener">忘记不重要的，记住重要的</a>）<ul>
+<li>忘记阶段。这个阶段主要是对上一个节点传进来的输入进行选择性忘记（<a href="https://zhuanlan.zhihu.com/p/100948638" target="_blank" rel="noopener">忘记不重要的，记住重要的</a>）
+<ul>
 <li>sigmoid层，选择部分忘记</li>
-</ul>
-</li>
-<li>记忆阶段。这个阶段将这个阶段的输入有选择性地进行“记忆”<ul>
+</ul></li>
+<li>记忆阶段。这个阶段将这个阶段的输入有选择性地进行“记忆”
+<ul>
 <li>sigmoid层，决定什么值需要更新</li>
 <li>tanh层，创建一个新的候选值向量，生成候选记忆</li>
-</ul>
-</li>
-<li>输出阶段。这个阶段将决定哪些将会被当成当前状态的输出<ul>
-<li>sigmoid层，确定细胞状态的哪部分需要输出</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>DeepWalk</p>
+</ul></li>
+<li>输出阶段。这个阶段将决定哪些将会被当成当前状态的输出
 <ul>
-<li><p>思想类似word2vec，使用图中节点与节点的共现关系来学习节点的向量表示，<a href="https://leovan.me/cn/2020/04/graph-embedding-and-gnn/" target="_blank" rel="noopener">学习node embedding（在没有feature）</a></p>
-</li>
-<li><p>网络节点的表示中<strong>节点构成的序列</strong>就是随机游走，网络上不断重复地随机选择游走<strong>路径</strong></p>
-</li>
+<li>sigmoid层，确定细胞状态的哪部分需要输出</li>
+</ul></li>
+</ul></li>
+<li>DeepWalk
+<ul>
+<li><p>思想类似word2vec，使用图中节点与节点的共现关系来学习节点的向量表示，<a href="https://leovan.me/cn/2020/04/graph-embedding-and-gnn/" target="_blank" rel="noopener">学习node embedding（在没有feature）</a></p></li>
+<li><p>网络节点的表示中<strong>节点构成的序列</strong>就是随机游走，网络上不断重复地随机选择游走<strong>路径</strong></p></li>
 <li><p>从某个特定的端点开始，游走的每一步都从与当前节点相连的边中随机选择一条（固定长度），沿着选定的边移动到下一个顶点，不断重复这个过程（类似NLP，当前token预测下个token）（每一个节点映射成d维向量）</p>
-<p>  <img src="https://github.com/soloistben/images/raw/master/interview/deepwalk.jpg" alt="deepwalk 绿色部分即为一条随机游走" style="zoom: 80%;"></p>
-</li>
-<li><p>借用词向量中使用的skip-gram模型</p>
-</li>
-<li><p>优点：并行化（并行游走采样）、适应性（适应网络局部的变化）</p>
-</li>
-</ul>
-</li>
-<li><p>Spectral-GNN和Spatial-GNN的区别</p>
+<p><img src="https://github.com/soloistben/images/raw/master/interview/deepwalk.jpg" alt="deepwalk 绿色部分即为一条随机游走" style="zoom: 80%;"></p></li>
+<li><p>借用词向量中使用的skip-gram模型</p></li>
+<li><p>优点：并行化（并行游走采样）、适应性（适应网络局部的变化）</p></li>
+</ul></li>
+<li>Spectral-GNN和Spatial-GNN的区别
 <ul>
 <li>本质一样，GNN是一个热传导模型/信息扩散模型，从不同方式去汇聚信息，更新信息</li>
-<li>Spatial-GNN<ul>
+<li>Spatial-GNN
+<ul>
 <li>直接推广 CNN 的<strong>加权求和思想</strong>，使用不同的领域节点采样方法和不同加权求和方法来更新节点特征</li>
 <li>可以多种不同的采样方式，多种不同的加权求和方式</li>
 <li>GraphSAGE 和 GAT 等都可以 Inductive learning，扩展到新的节点和新的图，因为这一类方法直接学习的采样过程和加权求和方式（GraphSAGE 还支持 mini-batch 的训练方式）</li>
-<li>GraphSAGE：每一层的node的表示都是由上一层生成的，跟本层的其他节点无关<ul>
+<li>GraphSAGE：每一层的node的表示都是由上一层生成的，跟本层的其他节点无关
+<ul>
 <li>聚合邻居节点方法：mean、GCN(归一化的拉普拉斯再sum)、LSTM(忽略顺序)、max-pooling</li>
 <li>GIN理论证明sum方法较好，比较合理</li>
 <li>与GCN比，相对灵活，迁移性强，理论上没差</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Spectral-GNN<ul>
+</ul></li>
+</ul></li>
+<li>Spectral-GNN
+<ul>
 <li>从 CNN 的<strong>卷积定理</strong>，f 和 g 的卷积是 f 和 g 傅里叶变换之后乘积的傅里叶逆变换。然后通过拉普拉斯矩阵来实现傅里叶变换和逆傅里叶变换</li>
 <li>算是基于图谱理论的Spatial-GNN的特例</li>
 <li>优点：捕捉graph的全局信息，从而很好地表示node的特征；理论性强</li>
-<li>缺点：<ul>
+<li>缺点：
+<ul>
 <li>Transductive，都是单独的图结构，不能迁移到其他图结构（GAT，可以不受图结构影响）</li>
 <li>同阶邻居权重一样（GAT是可以不一样，attention）</li>
 <li>所有节点一起训练，无法快速学习新的node embedding（GraphSAGE 支持 mini-batch ）</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>新增加点意味着环境变了，那之前的节点的表示自然也应该有所调整<ul>
+</ul></li>
+</ul></li>
+<li>新增加点意味着环境变了，那之前的节点的表示自然也应该有所调整
+<ul>
 <li>Inductive：<strong>对于老节点，可能新增一个节点对其影响微乎其微</strong>，所以可以暂且使用原来的embedding</li>
 <li>Transductive：面对新节点，必须更新全部节点</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>有向图GNN</p>
+</ul></li>
+</ul></li>
+<li>有向图GNN
 <ul>
 <li>GCN不可以使用在有向图，<strong>拉普拉斯需要对称才能正交分解</strong>，GAT可以用在有向图</li>
-</ul>
-</li>
-<li><p>CNN卷积核计算、池化计算</p>
+</ul></li>
+<li>CNN卷积核计算、池化计算
 <ul>
 <li>图片大小n*n*c，卷积核大小f*f*c、卷积核个数为m个，padding大小p（为了保留边缘信息），步长stride为s</li>
 <li>padding后图片为(n+2p)*(n+2p)*c</li>
@@ -521,244 +501,213 @@
 <li>使用尺寸大的卷积核，计算量大，多个小尺寸的，达到一样效果，但是计算量更小</li>
 <li>池化（缩小模型大小，提高计算速度，提高特征的robust ）计算与卷积一样（一般不加padding）</li>
 <li>卷积（padding保持图片大小）+池化（无padding，缩小图片）=卷积层</li>
-<li>与全连接层相比，卷积层有两大优势：<ul>
+<li>与全连接层相比，卷积层有两大优势：
+<ul>
 <li>parameter sharing<strong>（卷积核）参数共享</strong>（节省参数，在卷积操作时，卷积计算可以在不同图片区域使用相同的参数，一个过滤器适合一个图片某一块，则也会适合另一块）</li>
 <li>sparsity connections<strong>稀疏连接</strong>（输入少，相比全连接而言，不需要输入全部参数，只要满足卷积核大的输入个数），有着两个优势也可以预防过拟合</li>
 <li>参数计算：(f*f+1)*c，1为bias，全连接参数=输入输出所有参数的乘积</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>解决过拟合方法</p>
+</ul></li>
+</ul></li>
+<li>解决过拟合方法
 <ul>
-<li><p>dropout原理、设置原理</p>
+<li>dropout原理、设置原理
 <ul>
 <li><p>在训练时，设置dropout使部分神经元暂时隐藏（不起作用），<font color="red"> 减少特征（隐层节点）间的相互作用，缓解过拟合（类似正则化）</font>，梯度下降仅更新未隐藏的神经元。（再依赖于有固定关系的隐含节点的共同作用，阻止了某些特征仅仅在其它特定特征下才有效果的情况 ）</p>
-<p><img src="https://github.com/soloistben/images/raw/master/interview/dropout.png" alt="dropout" style="zoom:80%;"></p>
-</li>
-<li><p>在过拟合严重处可降低dropout概率，不担心过拟合处可提高dropout概率</p>
-</li>
-<li>不在输入层使用dropout</li>
-<li>一般认为设置为0.5或者0.3（Dropout是一个超参，需要根据具体的网络、具体的应用领域进行尝试）</li>
-<li>在测试时不需要</li>
-<li>除非出现过拟合状态，否则不用dropout，在计算机视觉常用dropout，在别的领域少用</li>
-</ul>
-</li>
-<li>损失函数加入权重正则化一起训练（正则化是损失函数的惩罚项，对某些参数做一些限制）<ul>
-<li><font color="red"> L1, L2的正则化</font><ul>
-<li>L1（平均绝对误差，MAE，mean average error）：目标值与预测值的绝对误差值的总和<ul>
+<p><img src="https://github.com/soloistben/images/raw/master/interview/dropout.png" alt="dropout" style="zoom:80%;"></p></li>
+<li><p>在过拟合严重处可降低dropout概率，不担心过拟合处可提高dropout概率</p></li>
+<li><p>不在输入层使用dropout</p></li>
+<li><p>一般认为设置为0.5或者0.3（Dropout是一个超参，需要根据具体的网络、具体的应用领域进行尝试）</p></li>
+<li><p>在测试时不需要</p></li>
+<li><p>除非出现过拟合状态，否则不用dropout，在计算机视觉常用dropout，在别的领域少用</p></li>
+</ul></li>
+<li>损失函数加入权重正则化一起训练（正则化是损失函数的惩罚项，对某些参数做一些限制）
+<ul>
+<li><font color="red"> L1, L2的正则化</font>
+<ul>
+<li>L1（平均绝对误差，MAE，mean average error）：目标值与预测值的绝对误差值的总和
+<ul>
 <li>鲁棒性、不稳定性、可能有多个解（在非稀疏向量上的计算效率就很低）</li>
 <li>符合拉普拉斯分布，是不完全可微的，在图像上会有很多角出现（造成最优值出现在坐标轴上，<strong>因此就会导致某一维的权重为0</strong> ，产生<strong>稀疏权重矩阵</strong>，进而防止过拟合）</li>
 <li>L1正则化是指权值向量中各个元素绝对值之和</li>
 <li><strong>优点</strong>：输出具有稀疏性，<strong>即产生一个稀疏模型，进而可以用于特征选择</strong>（会趋向于产生少量的特征，而其他的特征都是0）；一定程度上，L1也可以防止过拟合</li>
 <li><strong>缺点</strong>：但在非稀疏情况下计算效率低，存在多个解</li>
 <li><font color="red">如果特征符合稀疏性，说明特征矩阵很多元素为0，只有少数元素是非零的矩阵，表示只有少数特征对这个模型有贡献，绝大部分特征是没有贡献的，或者贡献微小（因为它们前面的系数是0或者是很小的值，即使去掉对模型也没有什么影响）</font>，此时就可以只关注系数是非零值的特征。</li>
-</ul>
-</li>
-<li>L2（均方误差，MSE，mean squared error）：目标值与预测值的差值均方和<ul>
+</ul></li>
+<li>L2（均方误差，MSE，mean squared error）：目标值与预测值的差值均方和
+<ul>
 <li>不是很鲁棒性、稳定、一个解（计算方便）</li>
 <li>高斯分布，是完全可微的，图像上的棱角比较圆滑（参数<strong>不断趋向于0</strong>）</li>
 <li><font color="red">如果误差大于1，则误差会放大更多（比L1更大），因此模型会对样本更加敏感</font>（若有一个异常样本，模型需要调整or牺牲很多正常样本，来适应单个异常值，正常的样本的误差比这单个的异常值的误差小）</li>
 <li>L2正则化是指权值向量中各个元素的平方和然后再求平方根</li>
 <li><strong>优点</strong>：计算效率高（因为存在解析解）；可以防止模型过拟合；选择更多的特征，这些特征都会接近于0</li>
 <li><strong>缺点</strong>：非稀疏输出；无特征选择</li>
-</ul>
-</li>
-</ul>
-</li>
+</ul></li>
+</ul></li>
+</ul></li>
 <li>L1与L2的区别只在于，L2是权重的平方和，而L1就是权重的和</li>
-</ul>
-</li>
 <li>权重过大会引起梯度爆炸</li>
 <li>降低模型复杂度、减轻过拟合</li>
 <li>数据增强</li>
 <li>提早结束，在出现过拟合之前</li>
-</ul>
-</li>
-<li><p>bert预训练与word2vector比较</p>
+</ul></li>
+<li>bert预训练与word2vector比较
 <ul>
-<li>BERT使用Transformer中encoder部分的self-attention、Mask Language Model、Next Sentence Prediction<ul>
-<li>BERT的本质上是通过在海量的语料的基础上运行自监督学习方法为单词学习一个好的特征表示（自监督学习属于无监督学习）<ul>
+<li>BERT使用Transformer中encoder部分的self-attention、Mask Language Model、Next Sentence Prediction
+<ul>
+<li>BERT的本质上是通过在海量的语料的基础上运行自监督学习方法为单词学习一个好的特征表示（自监督学习属于无监督学习）</li>
 <li><font color="red">Mask Language Model</font>：在训练时在输入中随机mask 15%单词，然后根据上下文预测单词（完型填空）（80%直接mask、10%更换任意单词、10%保留原单词）（若100%mask掉，有可能在微调模型时候，没有见过某些单词）</li>
 <li>Next Sentence Prediction：判断第二句话是否第一句话的下文，50%的IsNext和50%的NotNext（选择题（多分类）、判断题（二分类）、简答题（回归））</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>word2vector<ul>
-<li>Skip-gram：如果是用一个词语作为输入，来预测它周围的上下文<ul>
+</ul></li>
+<li>word2vector
+<ul>
+<li>Skip-gram：如果是用一个词语作为输入，来预测它周围的上下文</li>
 <li>CBOW：如果是拿一个词语的上下文作为输入，来预测这个词语本身</li>
-</ul>
-</li>
-<li>one-hot encode输入单词，输入一个神经网络（隐含层未使用激活函数，线性的），得到的embedding则是整个word2vector模型，同时加入整个模型的训练（质上是一种<font color="red">降维操作</font>，词袋数量很大时候，onehot维度很大，则用神经网络降维到固定的维度）<ul>
+<li>one-hot encode输入单词，输入一个神经网络（隐含层未使用激活函数，线性的），得到的embedding则是整个word2vector模型，同时加入整个模型的训练（质上是一种<font color="red">降维操作</font>，词袋数量很大时候，onehot维度很大，则用神经网络降维到固定的维度）</li>
 <li>训练trick: hierarchical softmax (把 N 分类问题变成 log(N)次二分类) 和 negative sampling(预测总体类别的一个子集)</li>
 <li>word2vector 本质上是一个语言模型，它的输出节点数是 V 个，对应了 V 个词语，本质上是一个多分类问题，但实际当中，词语的个数非常非常多，会给计算造成很大困难，所以需要用技巧来加速训练</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>多分类问题</p>
+</ul></li>
+</ul></li>
+<li>多分类问题
 <ul>
-<li>拆成多个二分类<ul>
+<li>拆成多个二分类
+<ul>
 <li>例如三分类拆成一个为一类，两个看成另一类，但会出现样本不均衡问题</li>
 <li>四分类拆成一对一对，分别将两个看成一类</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>激活函数</p>
+</ul></li>
+</ul></li>
+<li>激活函数
 <ul>
 <li>sigmoid、tanh会引起梯度消失，relu不会</li>
 <li>relu在x=0处不可导，但实际情况很少会出现靠近0的数，则可以忽略</li>
 <li>线性函数作为激活函数一般是在输出时（全连接层）</li>
 <li>实际上大多数现象呈现关系都是<strong>正相关</strong>关系，并非线性关系，因此用非线性函数作为激活函数是更适合表达正相关关</li>
-</ul>
-</li>
-<li><p>模型调参（如何让模型更加鲁棒性）</p>
+</ul></li>
+<li>模型调参（如何让模型更加鲁棒性）
 <ul>
-<li>数据层面上<ul>
+<li>数据层面上
+<ul>
 <li>training时候保证数据是打乱顺序，防止学习到输入的顺序信息，会使模型更加鲁棒性</li>
 <li>数据增强（增加数据多样性）</li>
 <li>数据采用，尽可能数据平衡，训练集验证集测试集分布要一致</li>
 <li>数据不平衡的时候，在训练期间应用类别加权操作。<a href="https://scikit-learn.org/stable/modules/generated/sklearn.utils.class_weight.compute_class_weight.html" target="_blank" rel="noopener">给稀少的类更多的权重，给主要类更少的权重；sklearn计算类权重</a>，<a href="https://link.zhihu.com/?target=https%3A//en.wikipedia.org/wiki/Oversampling_and_undersampling_in_data_analysis" target="_blank" rel="noopener">或者尝试使用过采样和欠采样技术重新采样你的训练集</a></li>
-</ul>
-</li>
-<li>模型过拟合层面<ul>
+</ul></li>
+<li>模型过拟合层面
+<ul>
 <li>针对模型做一些正则化操作（L1、L2、Dropout）</li>
 <li>早停机制</li>
-</ul>
-</li>
-<li>训练层面<ul>
-<li>选择正确的优化器（关心快速收敛，使用自适应优化器，如Adam，但它可能会陷入局部最小；SGD+momentum可以实现找到全局最小值，但它依赖于鲁棒初始化，而且可能比其他自适应优化器需要更长的时间来收敛）<ul>
-<li>Adam和SGD，优化方法<ul>
-<li>优化算法的功能，是通过改善训练方式，来最小化(或最大化)损失函数E(x)<ul>
-<li><strong>SGD</strong>梯度下降主要用于在神经网络模型中进行权重更新，即在一个方向上更新和调整模型的参数，来最小化损失函数</li>
+</ul></li>
+<li>训练层面
+<ul>
+<li>选择正确的优化器（关心快速收敛，使用自适应优化器，如Adam，但它可能会陷入局部最小；SGD+momentum可以实现找到全局最小值，但它依赖于鲁棒初始化，而且可能比其他自适应优化器需要更长的时间来收敛）
+<ul>
+<li>Adam和SGD，优化方法
+<ul>
+<li>优化算法的功能，是通过改善训练方式，来最小化(或最大化)损失函数E(x)</li>
+</ul></li>
+<li><strong>SGD</strong>梯度下降主要用于在神经网络模型中进行权重更新，即在一个方向上更新和调整模型的参数，来最小化损失函数
+<ul>
 <li>momentum通过优化相关方向的训练和弱化无关方向的振荡，来加速SGD训练，使网络能更优和更稳定的收敛；减少振荡过程（通常设定为0.9）</li>
 <li>当其梯度指向实际移动方向时，动量项γ增大；当梯度与实际移动方向相反时，γ减小。这种方式意味着动量项只对相关样本进行参数更新，减少了不必要的参数更新，从而得到更快且稳定的收敛，也减少了振荡过程。</li>
-</ul>
-</li>
-<li><strong>Adam</strong> （Adaptive Moment Estimation）<ul>
+<li><strong>Adam</strong> （Adaptive Moment Estimation）
+<ul>
 <li>计算每个参数的自适应学习率</li>
 <li>在稀疏数据集使用，效果好</li>
-</ul>
-</li>
+</ul></li>
 <li>在数据统计特性明显，分布好计算（估计）的时候，容易调整SGD的参数，使得SGD收敛好（设置好参数，<font color="red">可以达到全局最优</font>）</li>
 <li>在数据统计特性不好，变化大，误差曲面复杂的时候，优先使用傻瓜算法Adam（简化了调参，但默认参数，<font color="red">可能会导致不收敛、局部最优</font>）</li>
-</ul>
-</li>
-</ul>
-</li>
+</ul></li>
+</ul></li>
 <li>调整学习率（0.1，0.001，0.000001，以10为阶数进行尝试），微调：0.001；完整训练：&gt;=0.001。使用衰减学习率。</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>python</p>
+</ul></li>
+</ul></li>
+</ul></li>
+<li>python
 <ul>
-<li><p>深拷贝原理</p>
+<li>深拷贝原理
 <ul>
-<li>直接赋值：其实就是对象的引用（别名）</li>
-<li>浅拷贝(copy)：拷贝父对象，不会拷贝对象的内部的子对象</li>
+<li><p>直接赋值：其实就是对象的引用（别名）</p></li>
+<li><p>浅拷贝(copy)：拷贝父对象，不会拷贝对象的内部的子对象</p></li>
 <li><p>深拷贝(deepcopy)： copy 模块的 deepcopy 方法，完全拷贝了父对象及其子对象</p>
-<p><img src="https://github.com/soloistben/images/raw/master/interview/deepcopy.png" alt="deepcopy" style="zoom: 80%;"></p>
-</li>
-</ul>
-</li>
-<li><p>垃圾回收机制</p>
+<p><img src="https://github.com/soloistben/images/raw/master/interview/deepcopy.png" alt="deepcopy" style="zoom: 80%;"></p></li>
+</ul></li>
+<li>垃圾回收机制
 <ul>
-<li>主要通过<strong>引用计数（Reference Counting）</strong>进行垃圾回收<ul>
+<li>主要通过<strong>引用计数（Reference Counting）</strong>进行垃圾回收
+<ul>
 <li>每一个对象的核心就是一个结构体（内部有一个引用计数器）</li>
 <li>引用计数+1：创建、引用、作为参数传入到函数、作为元素存储在容器（list、set等）</li>
 <li>引用计数-1： del销毁对象、对象被赋予新对象、对象离开作用域、容器被销毁or容器删除该元素</li>
-<li>引用计数法有其明显的优点，如高效、实现逻辑简单、具备实时性，<font color="red">一旦一个对象的引用计数归零，内存就直接释放了 </font> （缺点是需要单独分配空间来维护引用计数、当释放一个较大的对象时需要较长时间、循环引用是该机制必然存在的，需要算法对其补充）</li>
-<li>只有容器对象才会产生<strong>循环引用</strong>的情况，比如列表、字典、用户自定义类的对象、元组等<ul>
-<li>“标记-清除”(Mark and Sweep)算法（双端链表，一个链表存放着需要被扫描的容器对象，另一个链表存放着临时不可达对象）：<ul>
+<li>引用计数法有其明显的优点，如高效、实现逻辑简单、具备实时性，<font color="red">一旦一个对象的引用计数归零，内存就直接释放了 </font> （缺点是需要单独分配空间来维护引用计数、当释放一个较大的对象时需要较长时间、循环引用是该机制必然存在的，需要算法对其补充）</li>
+<li>只有容器对象才会产生<strong>循环引用</strong>的情况，比如列表、字典、用户自定义类的对象、元组等
+<ul>
+<li>“标记-清除”(Mark and Sweep)算法（双端链表，一个链表存放着需要被扫描的容器对象，另一个链表存放着临时不可达对象）：
+<ul>
 <li>标记阶段，遍历所有的对象，是否还有<strong>对象引用它</strong>，那么就标记该对象为可达</li>
 <li>清除阶段，再次遍历对象，如果发现某个对象没有标记为可达，则就将其回收。</li>
 <li>垃圾回收的阶段，会暂停整个应用程序，等待标记清除结束后才会恢复应用程序的运行</li>
-</ul>
-</li>
-<li>分代回收(Generational Collection)<ul>
+</ul></li>
+<li>分代回收(Generational Collection)
+<ul>
 <li>上面算法需要暂停应用，分代回收以空间换时间，减少暂停时间</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>多线程<ul>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li>多线程
+<ul>
 <li><font color="red">多线程类似于同时执行多个不同程序</font></li>
-<li>优点<ul>
+<li>优点
+<ul>
 <li>占据长时间的程序中的任务放到后台去处理</li>
 <li>程序的运行速度可能加快</li>
 <li>在一些等待的任务使用多线程，释放一些珍贵的资源占用</li>
-</ul>
-</li>
+</ul></li>
 <li>线程在执行过程中与进程还是有区别的。每个独立的进程有一个程序运行的入口、顺序执行序列和程序的出口。但是线程不能够独立执行，必须依存在应用程序中，由应用程序提供多个线程执行控制。</li>
 <li>每个线程都有他自己的一组CPU寄存器，称为线程的上下文，该上下文反映了线程上次运行该线程的CPU寄存器的状态</li>
-<li>指令指针和堆栈指针寄存器是线程上下文中两个最重要的寄存器，线程总是在进程得到上下文中运行的，这些地址都用于标志拥有线程的进程地址空间中的内存。<ul>
+<li>指令指针和堆栈指针寄存器是线程上下文中两个最重要的寄存器，线程总是在进程得到上下文中运行的，这些地址都用于标志拥有线程的进程地址空间中的内存。
+<ul>
 <li>线程可以被抢占（中断）</li>
-<li>在其他线程正在运行时，线程可以暂时搁置（也称为睡眠） — 这就是线程的退让</li>
-</ul>
-</li>
-<li>线程可以分为:<ul>
+<li>在其他线程正在运行时，线程可以暂时搁置（也称为睡眠） -- 这就是线程的退让</li>
+</ul></li>
+<li>线程可以分为:
+<ul>
 <li><strong>内核线程：</strong>由操作系统内核创建和撤销</li>
 <li><strong>用户线程：</strong>不需要内核支持而在用户程序中实现的线程</li>
-</ul>
-</li>
-<li><a href="https://www.liaoxuefeng.com/wiki/1016959663602400/1017627212385376" target="_blank" rel="noopener">进程与线程</a><ul>
+</ul></li>
+<li><a href="https://www.liaoxuefeng.com/wiki/1016959663602400/1017627212385376" target="_blank" rel="noopener">进程与线程</a>
+<ul>
 <li>每个进程至少要干一件事，一个进程至少有一个线程（线程是最小的执行单元），复杂程序有多个线程（比如Word，它可以多个线程同时进行打字、拼写检查、打印等事情）</li>
 <li>操作系统在多个线程之间快速切换，让每个线程都短暂地交替运行，看起来就像同时执行一样</li>
 <li>多任务三种模式：多进程、多线程、多进程+多线程（复杂、少用）</li>
 <li>涉及到同步、数据共享的问题</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>基础知识点（数据结构）</p>
+</ul></li>
+</ul></li>
+</ul></li>
+<li>基础知识点（数据结构）
 <ul>
-<li>数组、链表<ul>
+<li>数组、链表
+<ul>
 <li>数组元素存储地址连续（若频繁访问某个下标的元素，选择数组方式，时间复杂度O(1)）</li>
 <li>链表元素存储地址不连续（若频繁访问某个下标的元素，需要从头访问，时间复杂度O(n)）</li>
-</ul>
-</li>
-<li><font color="red">快速排序原理</font><ul>
+</ul></li>
+<li><font color="red">快速排序原理</font>
+<ul>
 <li>选择第一个元素的值做准基数</li>
 <li>在右边找到较小的值放到左边、在左边找到较大值放到右边，达到左侧元素小于准基数，右侧大于准基数</li>
 <li>每次根据选择后点的位置，划分成两部分，再分别进行上诉操作</li>
 <li>达到小到大的排序</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>大数据（spark，hadoop）</p>
-</li>
+</ul></li>
+</ul></li>
+<li>大数据（spark，hadoop）</li>
 </ol>
-<p>code</p>
+<p>code + quick_sort <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">quick_sort</span><span class="params">(arr, low, high)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">partition</span><span class="params">(arr, low, high)</span>:</span></span><br><span class="line">        p = arr[low]	<span class="comment"># 设定当前low位置为基准</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span> low&lt;high:</span><br><span class="line">            <span class="keyword">while</span> low&lt;high <span class="keyword">and</span> arr[high]&gt;=p:	<span class="comment"># 在右边找比基准小的数</span></span><br><span class="line">                high -= <span class="number">1</span></span><br><span class="line">            arr[low] = arr[high]	<span class="comment"># 放置左边</span></span><br><span class="line">            </span><br><span class="line">            <span class="keyword">while</span> low&lt;high <span class="keyword">and</span> arr[low]&lt;=p:		<span class="comment"># 在左边找到比基准大的数 </span></span><br><span class="line">                low += <span class="number">1</span></span><br><span class="line">            arr[high] = arr[low]	<span class="comment"># 放置右边</span></span><br><span class="line">       	</span><br><span class="line">        arr[low] = p	<span class="comment"># 放置基准</span></span><br><span class="line">        <span class="keyword">return</span> low 		<span class="comment"># 返回基准下标</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> low&lt;high:</span><br><span class="line">        mid = partition(arr, low, high)	<span class="comment"># 找到一个准基数下标</span></span><br><span class="line">        quick_sort(arr, low, mid<span class="number">-1</span>)		<span class="comment"># 左边是小于准基数的部分，进行快排</span></span><br><span class="line">        quick_sort(arr, mid, high)		<span class="comment"># 右边是大于准基数的部分，进行快排</span></span><br></pre></td></tr></table></figure></p>
 <ul>
-<li><p>quick_sort</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">quick_sort</span><span class="params">(arr, low, high)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">partition</span><span class="params">(arr, low, high)</span>:</span></span><br><span class="line">        p = arr[low]	<span class="comment"># 设定当前low位置为基准</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span> low&lt;high:</span><br><span class="line">            <span class="keyword">while</span> low&lt;high <span class="keyword">and</span> arr[high]&gt;=p:	<span class="comment"># 在右边找比基准小的数</span></span><br><span class="line">                high -= <span class="number">1</span></span><br><span class="line">            arr[low] = arr[high]	<span class="comment"># 放置左边</span></span><br><span class="line">            </span><br><span class="line">            <span class="keyword">while</span> low&lt;high <span class="keyword">and</span> arr[low]&lt;=p:		<span class="comment"># 在左边找到比基准大的数 </span></span><br><span class="line">                low += <span class="number">1</span></span><br><span class="line">            arr[high] = arr[low]	<span class="comment"># 放置右边</span></span><br><span class="line">       	</span><br><span class="line">        arr[low] = p	<span class="comment"># 放置基准</span></span><br><span class="line">        <span class="keyword">return</span> low 		<span class="comment"># 返回基准下标</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> low&lt;high:</span><br><span class="line">        mid = partition(arr, low, high)	<span class="comment"># 找到一个准基数下标</span></span><br><span class="line">        quick_sort(arr, low, mid<span class="number">-1</span>)		<span class="comment"># 左边是小于准基数的部分，进行快排</span></span><br><span class="line">        quick_sort(arr, mid, high)		<span class="comment"># 右边是大于准基数的部分，进行快排</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>DFS (Depth First Search)</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">neighbor_dict = &#123;node1:[neighbor1, ...], ...&#125;	<span class="comment"># 邻居集合，数据处理成邻接表形式</span></span><br><span class="line">node_list = [node1, node2, ...]	<span class="comment"># 所有节点</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 递归</span></span><br><span class="line">visited = []</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">DFS_Traverse</span><span class="params">(node_list)</span>:</span></span><br><span class="line">    <span class="keyword">for</span> node <span class="keyword">in</span> node_list:	<span class="comment"># 这层遍历防止非连通子图</span></span><br><span class="line">        <span class="keyword">if</span> node <span class="keyword">not</span> <span class="keyword">in</span> visited:</span><br><span class="line">            DFS(G, node)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">DFS</span><span class="params">(node)</span>:</span></span><br><span class="line">    <span class="string">'''针对node做操作'''</span></span><br><span class="line">    visited.append(node)</span><br><span class="line">    <span class="comment"># 遍历邻居</span></span><br><span class="line">    <span class="keyword">for</span> neighbor <span class="keyword">in</span> neighbor_dict[node]:	</span><br><span class="line">        <span class="keyword">if</span> neighbor <span class="keyword">not</span> <span class="keyword">in</span> visited:</span><br><span class="line">            DFS(neighbor)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 非递归(使用栈)(直接指定某个起始节点，并非完整图的一个DFS)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">DFS_Traverse</span><span class="params">(node, neighbor_dict)</span>:</span></span><br><span class="line">    stack = []		<span class="comment"># list模仿栈</span></span><br><span class="line">	visited = []</span><br><span class="line">    </span><br><span class="line">    stack.append(node)	<span class="comment"># 入栈起始节点</span></span><br><span class="line">  	visited.append(node)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span> len(stack)&gt;<span class="number">0</span>:</span><br><span class="line">        node = stack.pop()	<span class="comment"># 弹出栈顶的元素</span></span><br><span class="line">        <span class="string">'''针对node做操作'''</span></span><br><span class="line">        <span class="comment"># 遍历邻居</span></span><br><span class="line">        <span class="keyword">for</span> neighbor <span class="keyword">in</span> neighbor_dict[node]:	</span><br><span class="line">            <span class="keyword">if</span> neighbor <span class="keyword">not</span> <span class="keyword">in</span> visited:</span><br><span class="line">                stack.append(neighbor)</span><br><span class="line">                visited.append(neighbor)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>BFS (Breadth First Search)</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">neighbor_dict = &#123;node1:[neighbor1, ...], ...&#125;	<span class="comment"># 邻居集合，数据处理成邻接表形式</span></span><br><span class="line">node_list = [node1, node2, ...]	<span class="comment"># 所有节点</span></span><br><span class="line"></span><br><span class="line"><span class="string">'''非递归'''</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">BFS_Traverse</span><span class="params">(node_list)</span>:</span></span><br><span class="line">    queue = []</span><br><span class="line">	visited = []</span><br><span class="line">    <span class="keyword">for</span> node <span class="keyword">in</span> node_list:	<span class="comment"># 这层遍历防止非连通子图</span></span><br><span class="line">        <span class="keyword">if</span> node <span class="keyword">not</span> <span class="keyword">in</span> visited:</span><br><span class="line">            <span class="string">'''针对node做操作'''</span></span><br><span class="line">            queue.append(node)	<span class="comment"># 入队起始节点</span></span><br><span class="line">            visited.append(node)</span><br><span class="line">            <span class="keyword">while</span> len(queue):</span><br><span class="line">                start_node = queue.pop(<span class="number">0</span>)	<span class="comment"># 弹出队头的起始节点，找邻居</span></span><br><span class="line">                <span class="comment"># 遍历邻居</span></span><br><span class="line">                <span class="keyword">for</span> neighbor <span class="keyword">in</span> neighbor_dict[start_node]:	</span><br><span class="line">                    <span class="keyword">if</span> neighbor <span class="keyword">not</span> <span class="keyword">in</span> visited:</span><br><span class="line">                        <span class="string">'''针对node做操作'''</span></span><br><span class="line">                        queue.append(neighbor)	<span class="comment"># 入队邻居节点</span></span><br><span class="line">            			visited.append(neighbor)</span><br><span class="line">                        </span><br><span class="line"><span class="string">'''BFS 求无权图某节点的最短路径'''</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">BFS_Min_Distance</span><span class="params">(node, node_list)</span>:</span></span><br><span class="line">    queue = []</span><br><span class="line">    visited = []</span><br><span class="line">    d = &#123;node_:<span class="number">0</span> <span class="keyword">for</span> node_ <span class="keyword">in</span> node_list&#125;	<span class="comment"># 初始化为0，n个的距离数组</span></span><br><span class="line">    </span><br><span class="line">    queue.append(node)	<span class="comment"># 入队起始节点</span></span><br><span class="line">    visited.append(node)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span> len(queue):</span><br><span class="line">        start_node = queue.pop(<span class="number">0</span>)	<span class="comment"># 弹出队头的起始节点，找邻居</span></span><br><span class="line">        <span class="comment"># 遍历邻居</span></span><br><span class="line">        <span class="keyword">for</span> neighbor <span class="keyword">in</span> neighbor_dict[start_node]:	</span><br><span class="line">            <span class="keyword">if</span> neighbor <span class="keyword">not</span> <span class="keyword">in</span> visited:</span><br><span class="line">                <span class="string">'''针对node做操作'''</span></span><br><span class="line">                d[neighbor] = d[start_node] + <span class="number">1</span> </span><br><span class="line">                queue.append(neighbor)	<span class="comment"># 入队邻居节点</span></span><br><span class="line">                visited.append(neighbor)</span><br></pre></td></tr></table></figure>
-</li>
+<li><p>DFS (Depth First Search) <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">neighbor_dict = &#123;node1:[neighbor1, ...], ...&#125;	<span class="comment"># 邻居集合，数据处理成邻接表形式</span></span><br><span class="line">node_list = [node1, node2, ...]	<span class="comment"># 所有节点</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 递归</span></span><br><span class="line">visited = []</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">DFS_Traverse</span><span class="params">(node_list)</span>:</span></span><br><span class="line">    <span class="keyword">for</span> node <span class="keyword">in</span> node_list:	<span class="comment"># 这层遍历防止非连通子图</span></span><br><span class="line">        <span class="keyword">if</span> node <span class="keyword">not</span> <span class="keyword">in</span> visited:</span><br><span class="line">            DFS(G, node)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">DFS</span><span class="params">(node)</span>:</span></span><br><span class="line">    <span class="string">'''针对node做操作'''</span></span><br><span class="line">    visited.append(node)</span><br><span class="line">    <span class="comment"># 遍历邻居</span></span><br><span class="line">    <span class="keyword">for</span> neighbor <span class="keyword">in</span> neighbor_dict[node]:	</span><br><span class="line">        <span class="keyword">if</span> neighbor <span class="keyword">not</span> <span class="keyword">in</span> visited:</span><br><span class="line">            DFS(neighbor)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 非递归(使用栈)(直接指定某个起始节点，并非完整图的一个DFS)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">DFS_Traverse</span><span class="params">(node, neighbor_dict)</span>:</span></span><br><span class="line">    stack = []		<span class="comment"># list模仿栈</span></span><br><span class="line">	visited = []</span><br><span class="line">    </span><br><span class="line">    stack.append(node)	<span class="comment"># 入栈起始节点</span></span><br><span class="line">  	visited.append(node)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span> len(stack)&gt;<span class="number">0</span>:</span><br><span class="line">        node = stack.pop()	<span class="comment"># 弹出栈顶的元素</span></span><br><span class="line">        <span class="string">'''针对node做操作'''</span></span><br><span class="line">        <span class="comment"># 遍历邻居</span></span><br><span class="line">        <span class="keyword">for</span> neighbor <span class="keyword">in</span> neighbor_dict[node]:	</span><br><span class="line">            <span class="keyword">if</span> neighbor <span class="keyword">not</span> <span class="keyword">in</span> visited:</span><br><span class="line">                stack.append(neighbor)</span><br><span class="line">                visited.append(neighbor)</span><br></pre></td></tr></table></figure></p></li>
+<li><p>BFS (Breadth First Search) <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">neighbor_dict = &#123;node1:[neighbor1, ...], ...&#125;	<span class="comment"># 邻居集合，数据处理成邻接表形式</span></span><br><span class="line">node_list = [node1, node2, ...]	<span class="comment"># 所有节点</span></span><br><span class="line"></span><br><span class="line"><span class="string">'''非递归'''</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">BFS_Traverse</span><span class="params">(node_list)</span>:</span></span><br><span class="line">    queue = []</span><br><span class="line">	visited = []</span><br><span class="line">    <span class="keyword">for</span> node <span class="keyword">in</span> node_list:	<span class="comment"># 这层遍历防止非连通子图</span></span><br><span class="line">        <span class="keyword">if</span> node <span class="keyword">not</span> <span class="keyword">in</span> visited:</span><br><span class="line">            <span class="string">'''针对node做操作'''</span></span><br><span class="line">            queue.append(node)	<span class="comment"># 入队起始节点</span></span><br><span class="line">            visited.append(node)</span><br><span class="line">            <span class="keyword">while</span> len(queue):</span><br><span class="line">                start_node = queue.pop(<span class="number">0</span>)	<span class="comment"># 弹出队头的起始节点，找邻居</span></span><br><span class="line">                <span class="comment"># 遍历邻居</span></span><br><span class="line">                <span class="keyword">for</span> neighbor <span class="keyword">in</span> neighbor_dict[start_node]:	</span><br><span class="line">                    <span class="keyword">if</span> neighbor <span class="keyword">not</span> <span class="keyword">in</span> visited:</span><br><span class="line">                        <span class="string">'''针对node做操作'''</span></span><br><span class="line">                        queue.append(neighbor)	<span class="comment"># 入队邻居节点</span></span><br><span class="line">            			visited.append(neighbor)</span><br><span class="line">                        </span><br><span class="line"><span class="string">'''BFS 求无权图某节点的最短路径'''</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">BFS_Min_Distance</span><span class="params">(node, node_list)</span>:</span></span><br><span class="line">    queue = []</span><br><span class="line">    visited = []</span><br><span class="line">    d = &#123;node_:<span class="number">0</span> <span class="keyword">for</span> node_ <span class="keyword">in</span> node_list&#125;	<span class="comment"># 初始化为0，n个的距离数组</span></span><br><span class="line">    </span><br><span class="line">    queue.append(node)	<span class="comment"># 入队起始节点</span></span><br><span class="line">    visited.append(node)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span> len(queue):</span><br><span class="line">        start_node = queue.pop(<span class="number">0</span>)	<span class="comment"># 弹出队头的起始节点，找邻居</span></span><br><span class="line">        <span class="comment"># 遍历邻居</span></span><br><span class="line">        <span class="keyword">for</span> neighbor <span class="keyword">in</span> neighbor_dict[start_node]:	</span><br><span class="line">            <span class="keyword">if</span> neighbor <span class="keyword">not</span> <span class="keyword">in</span> visited:</span><br><span class="line">                <span class="string">'''针对node做操作'''</span></span><br><span class="line">                d[neighbor] = d[start_node] + <span class="number">1</span> </span><br><span class="line">                queue.append(neighbor)	<span class="comment"># 入队邻居节点</span></span><br><span class="line">                visited.append(neighbor)</span><br></pre></td></tr></table></figure></p></li>
 <li><p>LCS (Longest Common Subsequence)</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"> <span class="string">'''最长公共子序列，（递归）暴力破解版，自顶向下'''</span> </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">LCS_rc</span><span class="params">(text1, text2)</span>:</span></span><br><span class="line">    <span class="comment"># 最基本，若其中一个为空序列，则没有公共部分</span></span><br><span class="line">    <span class="keyword">if</span> len(text1)==<span class="number">0</span> <span class="keyword">or</span> len(text2)==<span class="number">0</span>:  </span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> text1[<span class="number">-1</span>] == text2[<span class="number">-1</span>]:</span><br><span class="line">        <span class="keyword">return</span> LCS_rc(text1[:<span class="number">-1</span>], text2[:<span class="number">-1</span>]) + <span class="number">1</span>   <span class="comment"># 找到一个就加1</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="comment"># 找不到就各缩短一边来再做比较</span></span><br><span class="line">        <span class="keyword">return</span> max(LCS_rc(text1[:<span class="number">-1</span>], text2), LCS_rc(text1, text2[:<span class="number">-1</span>]))</span><br><span class="line"></span><br><span class="line"><span class="string">'''自底向上'''</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">LCS</span><span class="params">(text1, text2)</span>:</span></span><br><span class="line">    <span class="comment"># 创建二维表格，多创建一行，0行0列作为全零，不变，用于后续计算</span></span><br><span class="line">    <span class="comment"># 利用循环生成list，防止出现引用问题</span></span><br><span class="line">    <span class="comment"># text1 作为纵向，text2作为横向</span></span><br><span class="line">    dp = [[<span class="number">0</span>]*(len(text2)+<span class="number">1</span>) <span class="keyword">for</span> _ <span class="keyword">in</span> range(len(text1)+<span class="number">1</span>)]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, len(text1)+<span class="number">1</span>):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">1</span>, len(text2)+<span class="number">1</span>):</span><br><span class="line">            <span class="keyword">if</span> text1[i<span class="number">-1</span>] == text2[j<span class="number">-1</span>]:</span><br><span class="line">                dp[i][j] = dp[i<span class="number">-1</span>][j<span class="number">-1</span>]+<span class="number">1</span> <span class="comment"># 找到一个公共元素</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                dp[i][j] = max(dp[i<span class="number">-1</span>][j], dp[i][j<span class="number">-1</span>])  <span class="comment"># 取相邻近的较大元素</span></span><br><span class="line">    <span class="keyword">return</span> dp[<span class="number">-1</span>][<span class="number">-1</span>]   <span class="comment"># 最后一个元素即公共子序列长度</span></span><br></pre></td></tr></table></figure>
-</li>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"> <span class="string">'''最长公共子序列，（递归）暴力破解版，自顶向下'''</span> </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">LCS_rc</span><span class="params">(text1, text2)</span>:</span></span><br><span class="line">    <span class="comment"># 最基本，若其中一个为空序列，则没有公共部分</span></span><br><span class="line">    <span class="keyword">if</span> len(text1)==<span class="number">0</span> <span class="keyword">or</span> len(text2)==<span class="number">0</span>:  </span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> text1[<span class="number">-1</span>] == text2[<span class="number">-1</span>]:</span><br><span class="line">        <span class="keyword">return</span> LCS_rc(text1[:<span class="number">-1</span>], text2[:<span class="number">-1</span>]) + <span class="number">1</span>   <span class="comment"># 找到一个就加1</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="comment"># 找不到就各缩短一边来再做比较</span></span><br><span class="line">        <span class="keyword">return</span> max(LCS_rc(text1[:<span class="number">-1</span>], text2), LCS_rc(text1, text2[:<span class="number">-1</span>]))</span><br><span class="line"></span><br><span class="line"><span class="string">'''自底向上'''</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">LCS</span><span class="params">(text1, text2)</span>:</span></span><br><span class="line">    <span class="comment"># 创建二维表格，多创建一行，0行0列作为全零，不变，用于后续计算</span></span><br><span class="line">    <span class="comment"># 利用循环生成list，防止出现引用问题</span></span><br><span class="line">    <span class="comment"># text1 作为纵向，text2作为横向</span></span><br><span class="line">    dp = [[<span class="number">0</span>]*(len(text2)+<span class="number">1</span>) <span class="keyword">for</span> _ <span class="keyword">in</span> range(len(text1)+<span class="number">1</span>)]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, len(text1)+<span class="number">1</span>):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">1</span>, len(text2)+<span class="number">1</span>):</span><br><span class="line">            <span class="keyword">if</span> text1[i<span class="number">-1</span>] == text2[j<span class="number">-1</span>]:</span><br><span class="line">                dp[i][j] = dp[i<span class="number">-1</span>][j<span class="number">-1</span>]+<span class="number">1</span> <span class="comment"># 找到一个公共元素</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                dp[i][j] = max(dp[i<span class="number">-1</span>][j], dp[i][j<span class="number">-1</span>])  <span class="comment"># 取相邻近的较大元素</span></span><br><span class="line">    <span class="keyword">return</span> dp[<span class="number">-1</span>][<span class="number">-1</span>]   <span class="comment"># 最后一个元素即公共子序列长度</span></span><br></pre></td></tr></table></figure></li>
 <li><p>0/1背包（动态规划）</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">N = <span class="number">3</span>   <span class="comment"># 每件物品只能装一次</span></span><br><span class="line">W = <span class="number">4</span></span><br><span class="line">wt = [<span class="number">2</span>, <span class="number">1</span>, <span class="number">3</span>]  <span class="comment"># 每个物品的重量</span></span><br><span class="line">val = [<span class="number">4</span>, <span class="number">2</span>, <span class="number">3</span>] <span class="comment"># 每个物品的价值</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># dp[i][w]: 对前i个物品，当前背包容量为w，最大价值则为dp[i][w]</span></span><br><span class="line"><span class="comment"># dp[3][5]=6: 对前3个物品，当前背包容量为5时，可以装下最大价值为6</span></span><br><span class="line">dp = [[<span class="number">0</span>]*(W+<span class="number">1</span>) <span class="keyword">for</span> _ <span class="keyword">in</span> range(N+<span class="number">1</span>)]</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, N+<span class="number">1</span>):</span><br><span class="line">    <span class="keyword">for</span> w <span class="keyword">in</span> range(<span class="number">1</span>, W+<span class="number">1</span>):</span><br><span class="line">        <span class="comment"># 当前容量w</span></span><br><span class="line">        <span class="comment"># 装第i件物品：dp[i-1][w-wt[i-1]]+wt[i-1] (w-wt = 剩余背包容量)</span></span><br><span class="line">        <span class="comment"># 不装第i件物品：dp[i-1][w]</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> w-wt[i<span class="number">-1</span>] &lt; <span class="number">0</span>:</span><br><span class="line">            <span class="comment"># 装不下了</span></span><br><span class="line">            dp[i][w] = dp[i<span class="number">-1</span>][w]</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="comment"># 能装下情况，选价值大的</span></span><br><span class="line">            dp[i][w] = max(dp[i<span class="number">-1</span>][w-wt[i<span class="number">-1</span>]]+val[i<span class="number">-1</span>], dp[i<span class="number">-1</span>][w])</span><br></pre></td></tr></table></figure>
-</li>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">N = <span class="number">3</span>   <span class="comment"># 每件物品只能装一次</span></span><br><span class="line">W = <span class="number">4</span></span><br><span class="line">wt = [<span class="number">2</span>, <span class="number">1</span>, <span class="number">3</span>]  <span class="comment"># 每个物品的重量</span></span><br><span class="line">val = [<span class="number">4</span>, <span class="number">2</span>, <span class="number">3</span>] <span class="comment"># 每个物品的价值</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># dp[i][w]: 对前i个物品，当前背包容量为w，最大价值则为dp[i][w]</span></span><br><span class="line"><span class="comment"># dp[3][5]=6: 对前3个物品，当前背包容量为5时，可以装下最大价值为6</span></span><br><span class="line">dp = [[<span class="number">0</span>]*(W+<span class="number">1</span>) <span class="keyword">for</span> _ <span class="keyword">in</span> range(N+<span class="number">1</span>)]</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, N+<span class="number">1</span>):</span><br><span class="line">    <span class="keyword">for</span> w <span class="keyword">in</span> range(<span class="number">1</span>, W+<span class="number">1</span>):</span><br><span class="line">        <span class="comment"># 当前容量w</span></span><br><span class="line">        <span class="comment"># 装第i件物品：dp[i-1][w-wt[i-1]]+wt[i-1] (w-wt = 剩余背包容量)</span></span><br><span class="line">        <span class="comment"># 不装第i件物品：dp[i-1][w]</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> w-wt[i<span class="number">-1</span>] &lt; <span class="number">0</span>:</span><br><span class="line">            <span class="comment"># 装不下了</span></span><br><span class="line">            dp[i][w] = dp[i<span class="number">-1</span>][w]</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="comment"># 能装下情况，选价值大的</span></span><br><span class="line">            dp[i][w] = max(dp[i<span class="number">-1</span>][w-wt[i<span class="number">-1</span>]]+val[i<span class="number">-1</span>], dp[i<span class="number">-1</span>][w])</span><br></pre></td></tr></table></figure></li>
 <li></li>
 </ul>
 
