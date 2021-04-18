@@ -17,7 +17,7 @@
 <meta property="og:image" content="https://github.com/soloistben/images/raw/master/interview/deepwalk.jpg">
 <meta property="og:image" content="https://github.com/soloistben/images/raw/master/interview/dropout.png">
 <meta property="og:image" content="https://github.com/soloistben/images/raw/master/interview/deepcopy.png">
-<meta property="og:updated_time" content="2021-04-15T10:00:16.765Z">
+<meta property="og:updated_time" content="2021-04-17T03:14:22.106Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Interview">
 <meta name="twitter:description" content="简历项目  自适应图聚类  GCN细节  2016年诞生 针对非结构化数据（（欧氏空间）结构化数据：一维的文本or信号、二维的图片） 基于拓扑结构与节点属性特征，卷积过程：传播节点信息，汇聚邻居节点信息来更新自身节点。（计算公式上，基于邻接矩阵求得拉普拉斯矩阵，再与特征矩阵做内积，意义在于从谱域傅里叶转换到频域做乘积计算，再逆傅里叶转换回谱域，实现卷积的过程） CNN的卷积操作属于GCN的一种特">
@@ -127,7 +127,7 @@
 </ul></li>
 <li>机器学习、深度学习
 <ul>
-<li><font color="red">SVM原理</font>
+<li><p><font color="red">SVM原理</font></p>
 <ul>
 <li>提出SVM是为了解决二分类问题；成功分类的直线（平面）有无数个，SVM就要找到最优的结果（即<strong>所有样本距离平面都足够大</strong>）max margin(w, b) s.t. yi (w^T xi + b) &gt; 0</li>
 <li>最优平面：w x+b，参数需要基于样本学习</li>
@@ -143,8 +143,8 @@
 <li>kernel 函数还可以解决对偶问题（计算高维空间内积运算），直接得到内及结果，不需要先得到单个函数结果，再计算内积。</li>
 </ul></li>
 </ul></li>
-<li>牛顿法</li>
-<li>LSTM
+<li><p>牛顿法</p></li>
+<li><p>LSTM</p>
 <ul>
 <li>Long short-term memory 长短期记忆，可以解决梯度消失和梯度爆炸</li>
 <li>对于RNN，多出cell state来记忆之前的信息，变化较慢</li>
@@ -162,7 +162,7 @@
 <li>sigmoid层，确定细胞状态的哪部分需要输出</li>
 </ul></li>
 </ul></li>
-<li>DeepWalk
+<li><p>DeepWalk</p>
 <ul>
 <li><p>思想类似word2vec，使用图中节点与节点的共现关系来学习节点的向量表示，<a href="https://leovan.me/cn/2020/04/graph-embedding-and-gnn/" target="_blank" rel="noopener">学习node embedding（在没有feature）</a></p></li>
 <li><p>网络节点的表示中<strong>节点构成的序列</strong>就是随机游走，网络上不断重复地随机选择游走<strong>路径</strong></p></li>
@@ -171,7 +171,7 @@
 <li><p>借用词向量中使用的skip-gram模型</p></li>
 <li><p>优点：并行化（并行游走采样）、适应性（适应网络局部的变化）</p></li>
 </ul></li>
-<li>Spectral-GNN和Spatial-GNN的区别
+<li><p>Spectral-GNN和Spatial-GNN的区别</p>
 <ul>
 <li>本质一样，GNN是一个热传导模型/信息扩散模型，从不同方式去汇聚信息，更新信息</li>
 <li>Spatial-GNN
@@ -204,11 +204,11 @@
 <li>Transductive：面对新节点，必须更新全部节点</li>
 </ul></li>
 </ul></li>
-<li>有向图GNN
+<li><p>有向图GNN</p>
 <ul>
 <li>GCN不可以使用在有向图，<strong>拉普拉斯需要对称才能正交分解</strong>，GAT可以用在有向图</li>
 </ul></li>
-<li>CNN卷积核计算、池化计算
+<li><p>CNN卷积核计算、池化计算</p>
 <ul>
 <li>图片大小n*n*c，卷积核大小f*f*c、卷积核个数为m个，padding大小p（为了保留边缘信息），步长stride为s</li>
 <li>padding后图片为(n+2p)*(n+2p)*c</li>
@@ -223,7 +223,7 @@
 <li>参数计算：(f*f+1)*c，1为bias，全连接参数=输入输出所有参数的乘积</li>
 </ul></li>
 </ul></li>
-<li>解决过拟合方法
+<li><p>解决过拟合方法</p>
 <ul>
 <li>dropout原理、设置原理
 <ul>
@@ -265,7 +265,7 @@
 <li>数据增强</li>
 <li>提早结束，在出现过拟合之前</li>
 </ul></li>
-<li>bert预训练与word2vector比较
+<li><p>bert预训练与word2vector比较</p>
 <ul>
 <li>BERT使用Transformer中encoder部分的self-attention、Mask Language Model、Next Sentence Prediction
 <ul>
@@ -282,7 +282,7 @@
 <li>word2vector 本质上是一个语言模型，它的输出节点数是 V 个，对应了 V 个词语，本质上是一个多分类问题，但实际当中，词语的个数非常非常多，会给计算造成很大困难，所以需要用技巧来加速训练</li>
 </ul></li>
 </ul></li>
-<li>多分类问题
+<li><p>多分类问题</p>
 <ul>
 <li>拆成多个二分类
 <ul>
@@ -290,14 +290,14 @@
 <li>四分类拆成一对一对，分别将两个看成一类</li>
 </ul></li>
 </ul></li>
-<li>激活函数
+<li><p>激活函数</p>
 <ul>
 <li>sigmoid、tanh会引起梯度消失，relu不会</li>
 <li>relu在x=0处不可导，但实际情况很少会出现靠近0的数，则可以忽略</li>
 <li>线性函数作为激活函数一般是在输出时（全连接层）</li>
 <li>实际上大多数现象呈现关系都是<strong>正相关</strong>关系，并非线性关系，因此用非线性函数作为激活函数是更适合表达正相关关</li>
 </ul></li>
-<li>模型调参（如何让模型更加鲁棒性）
+<li><p>模型调参（如何让模型更加鲁棒性）</p>
 <ul>
 <li>数据层面上
 <ul>
@@ -333,6 +333,22 @@
 </ul></li>
 </ul></li>
 <li>调整学习率（0.1，0.001，0.000001，以10为阶数进行尝试），微调：0.001；完整训练：&gt;=0.001。使用衰减学习率。</li>
+</ul></li>
+</ul></li>
+<li><p>自回归模型</p>
+<ul>
+<li>是统计上处理时间序列的方法，假设{x1, x2, ..., xt-1, xt} 存在一维线性关系，有依赖关系，需要用xt-1去预测xt，而不是x预测y 。</li>
+<li>预训练模型往往针对自回归语言生成模型设计，自回归每次会使用已生成的序列作为已知信息预测未来的一个单词，最终再把每个时间步生成的单词拼成一个完整的序列输出</li>
+<li>优点：
+<ul>
+<li>所需数据不多，可用x自身变数数列来进行预测；</li>
+<li>非自回归和半非自回归的依赖关系学习和生成难度较大，它们的生成质量往往弱于自回归模型</li>
+</ul></li>
+<li>缺点：
+<ul>
+<li>随着数据量增大，自回归模型推断耗时也随之变大</li>
+<li>非自回归模型学习时间更快，每个单词之间没有依赖关系，整个输出序列的每个单词被并行地同步预测（质量则更差）</li>
+<li>只能上文预测下文，无法双向</li>
 </ul></li>
 </ul></li>
 </ul></li>
@@ -415,7 +431,7 @@
 </ul></li>
 <li>大数据（spark，hadoop）</li>
 </ol>
-<p>code + quick_sort <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">quick_sort</span><span class="params">(arr, low, high)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">partition</span><span class="params">(arr, low, high)</span>:</span></span><br><span class="line">        p = arr[low]	<span class="comment"># 设定当前low位置为基准</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span> low&lt;high:</span><br><span class="line">            <span class="keyword">while</span> low&lt;high <span class="keyword">and</span> arr[high]&gt;=p:	<span class="comment"># 在右边找比基准小的数</span></span><br><span class="line">                high -= <span class="number">1</span></span><br><span class="line">            arr[low] = arr[high]	<span class="comment"># 放置左边</span></span><br><span class="line">            </span><br><span class="line">            <span class="keyword">while</span> low&lt;high <span class="keyword">and</span> arr[low]&lt;=p:		<span class="comment"># 在左边找到比基准大的数 </span></span><br><span class="line">                low += <span class="number">1</span></span><br><span class="line">            arr[high] = arr[low]	<span class="comment"># 放置右边</span></span><br><span class="line">       	</span><br><span class="line">        arr[low] = p	<span class="comment"># 放置基准</span></span><br><span class="line">        <span class="keyword">return</span> low 		<span class="comment"># 返回基准下标</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> low&lt;high:</span><br><span class="line">        mid = partition(arr, low, high)	<span class="comment"># 找到一个准基数下标</span></span><br><span class="line">        quick_sort(arr, low, mid<span class="number">-1</span>)		<span class="comment"># 左边是小于准基数的部分，进行快排</span></span><br><span class="line">        quick_sort(arr, mid, high)		<span class="comment"># 右边是大于准基数的部分，进行快排</span></span><br></pre></td></tr></table></figure></p>
+<p>code + quick_sort <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">quick_sort</span><span class="params">(arr, low, high)</span>:</span></span><br><span class="line">   </span><br><span class="line">    <span class="keyword">if</span> low&lt;high:</span><br><span class="line">        mid = partition(arr, low, high)	<span class="comment"># 找到一个准基数下标</span></span><br><span class="line">        quick_sort(arr, low, mid<span class="number">-1</span>)		<span class="comment"># 左边是小于准基数的部分，进行快排</span></span><br><span class="line">        quick_sort(arr, mid+<span class="number">1</span>, high)	<span class="comment"># 右边是大于准基数的部分，进行快排</span></span><br><span class="line">        </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">partition</span><span class="params">(arr, low, high)</span>:</span></span><br><span class="line">	p = arr[low]	<span class="comment"># 设定当前low位置为基准</span></span><br><span class="line">    <span class="keyword">while</span> low&lt;high:</span><br><span class="line">        <span class="keyword">while</span> low&lt;high <span class="keyword">and</span> arr[high]&gt;=p:	<span class="comment"># 在右边找比基准小的数</span></span><br><span class="line">            high -= <span class="number">1</span></span><br><span class="line">        arr[low] = arr[high]	<span class="comment"># 放置左边</span></span><br><span class="line">            </span><br><span class="line">        <span class="keyword">while</span> low&lt;high <span class="keyword">and</span> arr[low]&lt;=p:		<span class="comment"># 在左边找到比基准大的数 </span></span><br><span class="line">            low += <span class="number">1</span></span><br><span class="line">        arr[high] = arr[low]	<span class="comment"># 放置右边</span></span><br><span class="line">    arr[low] = p	<span class="comment"># 放置基准</span></span><br><span class="line">    <span class="keyword">return</span> low 		<span class="comment"># 返回基准下标</span></span><br></pre></td></tr></table></figure></p>
 <ul>
 <li><p>DFS (Depth First Search) <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">neighbor_dict = &#123;node1:[neighbor1, ...], ...&#125;	<span class="comment"># 邻居集合，数据处理成邻接表形式</span></span><br><span class="line">node_list = [node1, node2, ...]	<span class="comment"># 所有节点</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 递归</span></span><br><span class="line">visited = []</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">DFS_Traverse</span><span class="params">(node_list)</span>:</span></span><br><span class="line">    <span class="keyword">for</span> node <span class="keyword">in</span> node_list:	<span class="comment"># 这层遍历防止非连通子图</span></span><br><span class="line">        <span class="keyword">if</span> node <span class="keyword">not</span> <span class="keyword">in</span> visited:</span><br><span class="line">            DFS(G, node)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">DFS</span><span class="params">(node)</span>:</span></span><br><span class="line">    <span class="string">'''针对node做操作'''</span></span><br><span class="line">    visited.append(node)</span><br><span class="line">    <span class="comment"># 遍历邻居</span></span><br><span class="line">    <span class="keyword">for</span> neighbor <span class="keyword">in</span> neighbor_dict[node]:	</span><br><span class="line">        <span class="keyword">if</span> neighbor <span class="keyword">not</span> <span class="keyword">in</span> visited:</span><br><span class="line">            DFS(neighbor)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 非递归(使用栈)(直接指定某个起始节点，并非完整图的一个DFS)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">DFS_Traverse</span><span class="params">(node, neighbor_dict)</span>:</span></span><br><span class="line">    stack = []		<span class="comment"># list模仿栈</span></span><br><span class="line">	visited = []</span><br><span class="line">    </span><br><span class="line">    stack.append(node)	<span class="comment"># 入栈起始节点</span></span><br><span class="line">  	visited.append(node)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span> len(stack)&gt;<span class="number">0</span>:</span><br><span class="line">        node = stack.pop()	<span class="comment"># 弹出栈顶的元素</span></span><br><span class="line">        <span class="string">'''针对node做操作'''</span></span><br><span class="line">        <span class="comment"># 遍历邻居</span></span><br><span class="line">        <span class="keyword">for</span> neighbor <span class="keyword">in</span> neighbor_dict[node]:	</span><br><span class="line">            <span class="keyword">if</span> neighbor <span class="keyword">not</span> <span class="keyword">in</span> visited:</span><br><span class="line">                stack.append(neighbor)</span><br><span class="line">                visited.append(neighbor)</span><br></pre></td></tr></table></figure></p></li>
 <li><p>BFS (Breadth First Search) <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">neighbor_dict = &#123;node1:[neighbor1, ...], ...&#125;	<span class="comment"># 邻居集合，数据处理成邻接表形式</span></span><br><span class="line">node_list = [node1, node2, ...]	<span class="comment"># 所有节点</span></span><br><span class="line"></span><br><span class="line"><span class="string">'''非递归'''</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">BFS_Traverse</span><span class="params">(node_list)</span>:</span></span><br><span class="line">    queue = []</span><br><span class="line">	visited = []</span><br><span class="line">    <span class="keyword">for</span> node <span class="keyword">in</span> node_list:	<span class="comment"># 这层遍历防止非连通子图</span></span><br><span class="line">        <span class="keyword">if</span> node <span class="keyword">not</span> <span class="keyword">in</span> visited:</span><br><span class="line">            <span class="string">'''针对node做操作'''</span></span><br><span class="line">            queue.append(node)	<span class="comment"># 入队起始节点</span></span><br><span class="line">            visited.append(node)</span><br><span class="line">            <span class="keyword">while</span> len(queue):</span><br><span class="line">                start_node = queue.pop(<span class="number">0</span>)	<span class="comment"># 弹出队头的起始节点，找邻居</span></span><br><span class="line">                <span class="comment"># 遍历邻居</span></span><br><span class="line">                <span class="keyword">for</span> neighbor <span class="keyword">in</span> neighbor_dict[start_node]:	</span><br><span class="line">                    <span class="keyword">if</span> neighbor <span class="keyword">not</span> <span class="keyword">in</span> visited:</span><br><span class="line">                        <span class="string">'''针对node做操作'''</span></span><br><span class="line">                        queue.append(neighbor)	<span class="comment"># 入队邻居节点</span></span><br><span class="line">            			visited.append(neighbor)</span><br><span class="line">                        </span><br><span class="line"><span class="string">'''BFS 求无权图某节点的最短路径'''</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">BFS_Min_Distance</span><span class="params">(node, node_list)</span>:</span></span><br><span class="line">    queue = []</span><br><span class="line">    visited = []</span><br><span class="line">    d = &#123;node_:<span class="number">0</span> <span class="keyword">for</span> node_ <span class="keyword">in</span> node_list&#125;	<span class="comment"># 初始化为0，n个的距离数组</span></span><br><span class="line">    </span><br><span class="line">    queue.append(node)	<span class="comment"># 入队起始节点</span></span><br><span class="line">    visited.append(node)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span> len(queue):</span><br><span class="line">        start_node = queue.pop(<span class="number">0</span>)	<span class="comment"># 弹出队头的起始节点，找邻居</span></span><br><span class="line">        <span class="comment"># 遍历邻居</span></span><br><span class="line">        <span class="keyword">for</span> neighbor <span class="keyword">in</span> neighbor_dict[start_node]:	</span><br><span class="line">            <span class="keyword">if</span> neighbor <span class="keyword">not</span> <span class="keyword">in</span> visited:</span><br><span class="line">                <span class="string">'''针对node做操作'''</span></span><br><span class="line">                d[neighbor] = d[start_node] + <span class="number">1</span> </span><br><span class="line">                queue.append(neighbor)	<span class="comment"># 入队邻居节点</span></span><br><span class="line">                visited.append(neighbor)</span><br></pre></td></tr></table></figure></p></li>

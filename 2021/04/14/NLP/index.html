@@ -14,7 +14,7 @@
 <meta property="og:site_name" content="MR.C">
 <meta property="og:description" content="Natural Language Processing  word embedding 发展历程  基于字典组成one-hot模型  一方面词典的数目一般都是上万数量级的，造成对于单个词而言，向量表示过于稀疏 另一方面由于仅仅存储0、1数据，没有办法保存对应的语序信息，也就无法通过one-hot编码挖掘词与词之间的语义关系  tf-idf  tf是词频，也就是当前词在文档中出现的次数 idf的计算">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2021-04-15T10:01:09.458Z">
+<meta property="og:updated_time" content="2021-04-16T09:28:04.938Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="NLP">
 <meta name="twitter:description" content="Natural Language Processing  word embedding 发展历程  基于字典组成one-hot模型  一方面词典的数目一般都是上万数量级的，造成对于单个词而言，向量表示过于稀疏 另一方面由于仅仅存储0、1数据，没有办法保存对应的语序信息，也就无法通过one-hot编码挖掘词与词之间的语义关系  tf-idf  tf是词频，也就是当前词在文档中出现的次数 idf的计算">
@@ -262,14 +262,36 @@
 <li>直接问问题，模型给出答案（问加法问题，直接给出答案）</li>
 </ul></li>
 </ul></li>
-<li><strong>BERT</strong> (Bidirectional Encoder Representations from Transformer) (限定文本长度 512)
+<li><strong>BERT</strong> (Bidirectional Encoder Representations from Transformer) <font color="red">(限定文本长度 512)</font>
 <ul>
 <li>Transformer encoder部分</li>
 <li>bert可以<strong>随机mask部分词汇</strong>，根据上下文的self-attention去预测mask的词汇，规避了ELMo的缺点（类似CBOW，求和固定的全部上下文，预测mask东西，bert的attention可以自己需要多少看多少）</li>
-<li>mask 输入的whole word(整个单词)(bert模型)、phrase-level(短语) &amp; entity-level(实体)(ERNIE模型)、mask 多个token (span bert模型)</li>
+<li>mask 输入的<font color="red">whole word(整个单词)(bert模型)</font>、phrase-level(短语) &amp; entity-level(实体)(ERNIE模型)、mask 多个token (span bert模型)</li>
+<li><strong>Transformer-XL</strong> 可以跨文本读取更长的文本
+<ul>
+<li>Transformer 问题1：<strong>context fragmentation（内容碎片化）</strong>，一次输入x最长只能是512长度，若输入超过512只能且分成两段喂入模型，这样形成两个片段之间内容信息没有被使用到（也就是处于500的token没有使用到处于600位置上token的信息，反之第二片段，也没有使用到第一段的信息，这样语义上是不完整的）</li>
+<li>XL maens extra-long</li>
+<li>解决方法：segment-level recurrence（跨越片段获取信息）将前面训练过片段固定缓存下来，为下个片段提供信息，反向传播不会影响前面固定片段信息（长度只能达到80%RNN能学的长度，但效果好）（尽可能保存多个片段，效果会更好）</li>
+<li>vanilla transfromer 解决方案：固定窗口大小，在x中滑动，事后面的xt能学到前面的消息，但同时也受限于固定的窗口滑动大小（长度只能达到450% vanilla transfromer能学的长度，效果好，训练速度快）</li>
+<li>Transformer 问题1: <strong>absolute Positional Encoding （绝对路径）</strong>，每个片段内部都使用绝对路径，两个片段没有距离可言，则跨片段获取信息是不起作用的</li>
+<li>解决方法：Relative Positional Encoding（相对路径），直接考虑input x之间的相对位置，而不是绝对位置
+<ul>
+<li>在计算attention score的时候，只考虑query向量与key向量的相对位置关系，根据正弦函数生成</li>
+<li>在当前key中<strong>拼接</strong>前片段的hidden state长度，query不变</li>
+</ul></li>
+</ul></li>
+<li><strong>XLNet</strong> (内部使用Transformer-XL)
+<ul>
+<li>属于自回归模型</li>
+<li>预测当前token i的时候，xi不参与预测计算（已知xi再去预测xi，有点无意义）
+<ul>
+<li>每个输入都有content stream和query stream，前者带有输入信息，后者不带有输入信息（训练得到）（两者类似encode和decode）</li>
+<li>每层都更新content stream和query stream，query stream用于预测当前词的时候作为输入</li>
+<li>微调的时候不需要query stream，content stream已经学到信息了</li>
+</ul></li>
+<li>输入序列是正常顺序，拆分词的时候，进行打乱顺序（解决双向问题）</li>
 <li>“语言模型中，上下文乱序也能学出mask的token”</li>
-<li><strong>Transformer-XL</strong> 可以跨文本读取更长的文本</li>
-<li><strong>XLNet</strong> (内部使用Transformer-XL)（mask掉的token，不参与预测计算，并且是随机选择上下文）</li>
+</ul></li>
 <li>Reformer, Longformer 解决self-attention计算量的问题</li>
 <li>bert缺点：假如必须上文预测下文，则bert效果不太好，但若是不需要按顺序预测，估计bert也ok</li>
 </ul></li>
